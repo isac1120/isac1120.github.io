@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta
+      property="og:url"
+      content="https://isac1120.github.io/raiders-cube/"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="레이더스 큐브 - 로아 공대/파티 시너지 시뮬레이터"
+    />
+    <meta
+      property="og:description"
+      content="'레이더스 큐브'는 로스트아크 게임의, 공대/파티 시너지 조합 시뮬레이터입니다. 공대나 파티를 구성할 때, 시너지 조합이 힘든 로아 유저들을 위해 제작되었습니다."
+    />
+    <meta
+      property="og:image"
+      content="https://isac1120.github.io/raiders-cube/website image synergy.png"
+    />
+    <meta property="og:site_name" content="레이더스 큐브" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="Title" content="레이더스 큐브" />
+    <meta
+      name="Description"
+      content="'레이더스 큐브'는 로스트아크 게임의, 공대/파티 시너지 조합 시뮬레이터입니다. 공대나 파티를 구성할 때, 시너지 조합이 힘든 로아 유저들을 위해 제작되었습니다."
+    />
+    <meta
+      name="Keywords"
+      content="raiders cube,로아,로스트아크,시너지,시너지표,공대장,공대,파티,시너지 조합,파티 시너지,공대 시너지,조합,레이더스 큐브,시뮬레이터,레이더스큐브"
+    />
+    <meta
+      name="google-site-verification"
+      content="yaUkKYCiVab6JzqQot32mvHsHdLC1XGTu2oBjYX8RHg"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>레이더스 큐브 - 로아 공대/파티 시너지 시뮬레이터</title>
+    
+    <link
+      rel="icon"
+      href="https://isac1120.github.io/raiders-cube/favicon/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* For Webkit browsers (Chrome, Safari, etc.) */
+      ::-webkit-scrollbar {
+        width: 15px; /* Increase the width of the vertical scrollbar */
+        height: 20px; /* Increase the height of the horizontal scrollbar */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+      }
+
+      .title {
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 1% 0px;
+        padding: 0.5% 0px;
+        width: 100%;
+        height: 10%;
+        background-color: #63c5da;
+        font-family: "Jua", sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        height: 100vh;
+        font-family: "Jua", sans-serif;
+      }
+
+
+      /* 서브 컨테이너 클래스 만들고 시너지(타이틀 박스)+시너지 컬럼즈(박스)를 그 박스에 묶어둔다. */
+      .row {
+        width: 100%;
+      }
+
+      .synergy-column {
+        min-height: 150px;
+        min-width: 250px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 20px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #synergy-columns {
+        min-height: 300px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
+        height: 90%;
+      }
+
+      #grouping-columns {
+        min-height: 260px;
+        min-width: 300px;
+        overflow-y: scroll;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        height: 90%;
+      }
+
+      .party-column {
+        min-width: 250px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 20px 20px;
+        padding: 10px 10px;
+      }
+
+      .user-column {
+        min-width: 250px;
+        min-height: 150px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 20px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #user-columns {
+        min-height: 300px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: auto;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        height: 90%;
+
+      }
+
+      #grouping-columns2 {
+        min-height: 260px;
+        min-width: 300px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: stretch;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        height: 90%;
+
+      }
+      .nickname-input {
+        margin-right: 10px;
+      }
+
+      .submit-button {
+        margin: 4% auto;
+        background-color: #63c5da;
+        border: none;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .character-container {
+        margin-top: 10px;
+        height: 80%;
+        overflow-x: auto;
+        overflow-y: auto;
+      }
+
+      .draggable,
+      .droppable {
+        border: 1px solid #ccc;
+        padding: 3px;
+        margin: 3px;
+        border-radius: 3px;
+        text-align: center;
+        background-color: #f5f5f5;
+      }
+
+      .draggable {
+        font-size: 15px;
+        cursor: pointer;
+        min-width: 150px;
+      }
+
+      .droppable {
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: 3px; /* Increase the padding */
+        margin: 3px;
+        border-radius: 3px;
+        text-align: center;
+        background-color: #f5f5f5;
+        min-height: 30px; /* Increase the min-height */
+        width: 100%; /* Set the width to 100% */
+      }
+
+      button.delete {
+        float: right;
+        background-color: transparent;
+        border: none;
+        color: #f00;
+        font-weight: bold;
+      }
+
+      .placeholder {
+        border: 1px dashed #ccc;
+        min-height: 50px;
+        margin: 5px;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      .class-element-circle {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin: auto 5px;
+      }
+      .row.scrollable-row {
+        overflow-x: hidden;
+        white-space: nowrap;
+      }
+      #from-container {
+        width: 66%;
+      }
+      #to-container {
+        width: 33%;
+      }
+
+      @media (max-width: 768px) {
+
+        #from-container {
+          width: 100%;
+          height: 50%;
+          margin: 2%;
+        }
+        #to-container {
+          width: 100%;
+          height: 50%;
+          margin: 2%;
+        }
+
+      } 
+
+  /* Other styles you have here */
+
+  /* Media query for mobile devices */
+
+</style>
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <h2 class="text-center">공대 구성 시뮬레이터</h2>
+    </div>
+    <div class="container">   
+      <div id="from-container">
+        <h4 class="text-center">시너지</h4>
+        <div id="synergy-columns">
+          <!-- Add your synergy columns here -->
+        </div>
+      </div>
+      <div id="to-container">
+        <h4 class="text-center">공대</h4>
+        <div id="grouping-columns">
+          <!-- Add your grouping columns here -->
+        </div>
+      </div>
+      <div id="from-container">
+        <h4 class="text-center">유저</h4>
+        <div id="user-columns">
+          <!-- Add your user columns here -->
+        </div>
+      </div>
+      <div id="to-container">
+        <h4 class="text-center">공대</h4>
+        <div id="grouping-columns2">
+          <!-- Add your grouping columns here -->
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-NY4TE8ZY84"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-NY4TE8ZY84");
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Synergy data
+        var synergies = [
+          {
+            name: "치명타 적중률 증가",
+            categories: [
+              {
+                categoryName: "상시10%",
+                classes: ["건슬링어", "아르카나", "데빌헌터(사멸)", "기상술사"],
+                color: "#8B0000",
+              },
+              {
+                categoryName: "순간18%",
+                classes: ["스트라이커(사멸)", "배틀마스터", "창술사"],
+                color: "#FF0000",
+              },
+            ],
+            color: "#FF0000",
+          },
+          {
+            name: "받는 피해 증가",
+            categories: [
+              {
+                categoryName: "상시6%",
+                classes: [
+                  "소서리스",
+                  "인파이터(사멸)",
+                  "호크아이",
+                  "데모닉",
+                  "버서커",
+                  "블레이드",
+                  "슬레이어(사멸)",
+                ],
+                color: "#FF1493",
+              },
+              {
+                categoryName: "상시3%",
+                classes: ["워로드"],
+                color: "#FF69B4",
+              },
+              {
+                categoryName: "기타",
+                classes: ["바드", "도화가", "홀리나이트"],
+                color: "#FFC0CB",
+              },
+            ],
+            color: "#FF1493",
+          },
+          {
+            name: "방어력 감소",
+            categories: [
+              {
+                categoryName: "상시12%",
+                classes: [
+                  "워로드",
+                  "디스트로이어(사멸)",
+                  "블래스터",
+                  "서머너",
+                  "리퍼(사멸)",
+                ],
+                color: "#8B4513",
+              },
+            ],
+            color: "#8B4513",
+          },
+          {
+            name: "공격력 증가",
+            categories: [
+              {
+                categoryName: "상시6%",
+                classes: ["기공사", "스카우터"],
+                color: "#FF4500",
+              },
+              {
+                categoryName: "기타",
+                classes: ["바드", "도화가", "홀리나이트"],
+                color: "#FF6347",
+              },
+            ],
+            color: "#FF4500",
+          },
+          {
+            name: "백헤드 피해 증가",
+            categories: [
+              {
+                categoryName: "상시9%",
+                classes: ["블레이드(사멸)"],
+                color: "#BDB76B",
+              },
+              {
+                categoryName: "순간9%",
+                classes: ["워로드"],
+                color: "#FFFF00",
+              },
+            ],
+            color: "#FFFF00",
+          },
+          {
+            name: "공격력 감소",
+            categories: [
+              {
+                categoryName: "여우비상태10%",
+                classes: ["(이슬비)기상술사"],
+                color: "#00BFFF",
+              },
+            ],
+            color: "#00BFFF",
+          },
+          {
+            name: "피해 감소 / 보호막",
+            categories: [
+              {
+                categoryName: "딜러",
+                classes: ["워로드", "기공사"],
+                color: "#008B8B",
+              },
+              {
+                categoryName: "서폿",
+                classes: ["바드", "도화가", "홀리나이트"],
+                color: "#00FFFF",
+              },
+            ],
+            color: "#00FFFF",
+          },
+          {
+            name: "무력화 피해 증가",
+            categories: [
+              {
+                categoryName: "순간20%",
+                classes: ["디스트로이어", "블래스터"],
+                color: "#006400",
+              },
+            ],
+            color: "#006400",
+          },
+          {
+            name: "공격 속도 증가",
+            categories: [
+              {
+                categoryName: "딜러",
+                classes: [
+                  "배틀마스터",
+                  "블레이드",
+                  "스트라이커(사멸)",
+                  "(질풍)기상술사",
+                ],
+                color: "#800080",
+              },
+              {
+                categoryName: "서폿",
+                classes: ["바드", "도화가"],
+                color: "#9370DB",
+              },
+            ],
+            color: "#9370DB",
+          },
+          {
+            name: "이동 속도 증가",
+            categories: [
+              {
+                categoryName: "딜러",
+                classes: [
+                  "배틀마스터",
+                  "블레이드",
+                  "(두동)호크아이",
+                  "(질풍)기상술사",
+                ],
+                color: "#FFE4E1",
+              },
+              {
+                categoryName: "서폿",
+                classes: ["도화가", "홀리나이트"],
+                color: "#FFFFF0",
+              },
+            ],
+            color: "FFFFF0",
+          },
+          {
+            name: "정화",
+            categories: [
+              {
+                categoryName: "딜러",
+                classes: ["워로드", "기공사"],
+                color: "#2F4F4F",
+              },
+              {
+                categoryName: "서폿",
+                classes: ["도화가", "홀리나이트"],
+                color: "#696969",
+              },
+            ],
+            color: "#2F4F4F",
+          },
+          {
+            name: "체력 / 마나 회복",
+            categories: [
+              {
+                categoryName: "딜러",
+                classes: ["서머너"],
+                color: "#778899",
+              },
+              {
+                categoryName: "서폿",
+                classes: ["바드", "도화가", "홀리나이트"],
+                color: "#DCDCDC",
+              },
+            ],
+            color: "#DCDCDC",
+          },
+        ];
+
+        // Create synergy columns
+        synergies.forEach(function (synergy) {
+          var column = $('<div class="synergy-column"></div>').css(
+            "background-color",
+            "#fff"
+          ); /* Change the background color to white */
+          var header = $("<h5></h5>").text(synergy.name);
+          column.append(header);
+
+          synergy.categories.forEach(function (category) {
+            var categoryName = category.categoryName;
+            var categoryHeader = $("<h6></h6>").text(categoryName);
+            var subColumn = $('<div class="col-4"></div>');
+            subColumn.append(categoryHeader);
+
+            category.classes.forEach(function (className) {
+              var element = $("<div></div>")
+                .text(className)
+                .addClass("draggable")
+                .css(
+                  "background-color",
+                  category.color
+                ); /* Add the .class-element class and set the background color */
+              subColumn.append(element);
+            });
+
+            column.append(subColumn);
+          });
+
+          $("#synergy-columns").append(column);
+        });
+
+        // Define your parties here
+        var groupA = ["1파티", "2파티"];
+
+        // Create grouping columns
+        groupA.forEach(function (party, index) {
+          var column = $('<div class="party-column"></div>').css(
+            "background-color",
+            "#fff"
+          );
+          var header = $("<h6></h6>").text(party);
+          column.append(header);
+
+          for (var i = 0; i < 4; i++) {
+            var element = $("<div></div>")
+              .addClass("droppable")
+              .css("min-height", "50px");
+            column.append(element);
+          }
+
+          $("#grouping-columns").append(column);
+        });
+
+        // Draggable elements
+        $(".draggable").draggable({
+          helper: "clone",
+          revert: "invalid",
+          appendTo: "body",
+          zIndex: 100,
+        });
+
+        // Droppable elements
+        $(".droppable").droppable({
+          accept: ".draggable",
+          drop: function (event, ui) {
+            var dropped = ui.helper.clone();
+            dropped.removeClass("ui-draggable ui-draggable-handle");
+            dropped.css({ position: "static", left: "", top: "" });
+            dropped.click(function () {
+              $(this).remove();
+            });
+
+            $(this).empty().append(dropped);
+          },
+        });
+
+        // Sortable elements
+        $("#grouping-columns")
+          .sortable({
+            connectWith: "#grouping-columns",
+            items: ".droppable",
+            placeholder: "placeholder",
+            start: function (event, ui) {
+              ui.item.addClass("dragging");
+                
+		ui.item.data("fromIndex", ui.item.index());
+		ui.item.data("fromParent", ui.item.parent());
+            },
+            stop: function (event, ui) {
+              ui.item.removeClass("dragging");
+    
+		ui.item.data("toIndex", ui.item.index());
+		ui.item.data("toParent", ui.item.parent());
+
+		var fromParent = ui.item.data("fromParent");
+		var fromIndex = ui.item.data("fromIndex");
+		var toParent = ui.item.data("toParent");
+		var toIndex = ui.item.data("toIndex");
+
+		if (fromParent[0] !== toParent[0]) {
+		var fromChild = fromParent.children().eq(fromIndex);
+		var toChild = toParent.children().eq(toIndex+1);
+
+		fromChild.before(toChild);
+		}
+            },
+          })
+          .disableSelection();
+
+        // Define user columns
+        var users = [
+          "유저 1",
+          "유저 2",
+          "유저 3",
+          "유저 4",
+          "유저 5",
+          "유저 6",
+          "유저 7",
+          "유저 8",
+        ];
+
+        // Create user columns
+        users.forEach(function (user) {
+          var column = $('<div class="user-column col-5"></div>').css(
+            "background-color",
+            "#fff"
+          );
+          var header = $("<h5></h5>").text(user);
+          var form = $(
+            '<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임을 입력하세요"><button type="submit" class="submit-button">Submit</button></form>'
+          );
+          var container = $('<div class="character-container"></div>');
+          column.append(header);
+          column.append(form);
+          column.append(container);
+          $("#user-columns").append(column);
+
+          // Handle form submission
+          form.submit(function (event) {
+            event.preventDefault();
+            var nickname = $(this).find(".nickname-input").val();
+            getCharacterData(nickname, container);
+          });
+        });
+
+        function getCharacterData(nickname, container) {
+          var url =
+            "https://developer-lostark.game.onstove.com/characters/" +
+            nickname +
+            "/siblings";
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", url, true);
+          xhr.setRequestHeader("accept", "application/json");
+          xhr.setRequestHeader(
+            "authorization",
+            "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+          );
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                displayCharacterData(response, container);
+              } else {
+                console.log("Error:", xhr.statusText);
+              }
+            }
+          };
+          xhr.send();
+        }
+
+        function displayCharacterData(data, container) {
+          container.empty();
+          data.forEach(function (character) {
+            var element = $("<div></div>")
+              .text(
+                character.CharacterName +
+                  " (" +
+                  character.CharacterClassName +
+                  " " +
+                  character.ItemAvgLevel +
+                  ")"
+              )
+              .addClass("draggable")
+              .css("background-color", "white");
+            var color = getColorForClass(character.CharacterClassName);
+            var synergy = getSynergyForClass(character.CharacterClassName);
+            var shortSyn = getShortSynergyForClass(
+              character.CharacterClassName
+            );
+            var wrapper = $("<div></div>");
+
+            color.forEach(function (colorElement, index) {
+              //make circle with colored corresponding to each class synergy
+              var circle = $("<div></div>")
+                .addClass("class-element-circle")
+                .css("background-color", colorElement);
+              circle.text(shortSyn[index]);
+              circle
+                .attr({
+                  "data-toggle": "tooltip",
+                  "data-placement": "bottom",
+                  title: synergy[index],
+                })
+                .tooltip();
+
+              wrapper.append(circle);
+            });
+
+            element.append(wrapper);
+            container.append(element);
+            element.draggable({
+              helper: "clone",
+              revert: "invalid",
+              appendTo: "body",
+              zIndex: 100,
+            });
+          });
+        }
+
+        // Define your parties here
+        var groupB = ["1파티", "2파티"];
+        // Create grouping columns
+        groupB.forEach(function (party, index) {
+          var column = $('<div class="party-column col-10"></div>').css(
+            "background-color",
+            "#fff"
+          );
+          var header = $("<h6></h6>").text(party);
+          var avgItemLevel = $("<span></span>")
+            .addClass("avg-item-level")
+            .css("font-size", "13px");
+          var colorCount = $("<span></span>")
+            .addClass("color-count")
+            .css("font-size", "13px");
+          header.append(avgItemLevel, colorCount);
+          column.append(header);
+
+          for (var i = 0; i < 4; i++) {
+            var element = $("<div></div>")
+              .addClass("droppable")
+              .css("min-height", "50px");
+            column.append(element);
+          }
+
+          $("#grouping-columns2").append(column);
+        });
+	      
+        $("#grouping-columns2 .droppable").droppable({
+          accept: ".draggable",
+          drop: function (event, ui) {
+            var dropped = ui.helper.clone();
+            dropped.removeClass("ui-draggable ui-draggable-handle");
+            dropped.css({ position: "static", left: "", top: "" });
+            // Add tooltips to the cloned draggable elements
+            dropped.find("[data-toggle='tooltip']").tooltip();
+
+            dropped.click(function () {
+              $(this).remove();
+              updatePartyStats();
+            });
+
+            $(this).empty().append(dropped);
+            updatePartyStats();
+          },
+        });
+	      
+        $("#grouping-columns2")
+          .sortable({
+            connectWith: "#grouping-columns2",
+            items: ".droppable",
+            placeholder: "placeholder",
+		appendTo: "body",
+		helper: "clone",
+            start: function (event, ui) {
+              ui.item.addClass("dragging");
+		ui.item.data("fromIndex", ui.item.index());
+		ui.item.data("fromParent", ui.item.parent());
+            },
+            stop: function (event, ui) {
+              ui.item.removeClass("dragging");
+		ui.item.data("toIndex", ui.item.index());
+		ui.item.data("toParent", ui.item.parent());
+		var fromParent = ui.item.data("fromParent");
+		var fromIndex = ui.item.data("fromIndex");
+		var toParent = ui.item.data("toParent");
+		var toIndex = ui.item.data("toIndex");
+
+		if (fromParent[0] !== toParent[0]) {
+		var fromChild = fromParent.children().eq(fromIndex);
+		var toChild = toParent.children().eq(toIndex+1);
+
+		fromChild.before(toChild);
+		} 
+		updatePartyStats();
+            },
+          })
+          .disableSelection();
+
+        function getColorForClass(className) {
+          var classColor = [];
+          synergies.forEach(function (synergy) {
+            synergy.categories.forEach(function (category) {
+              category.classes.forEach(function (classType) {
+                if (classType.includes(className)) {
+                  classColor.push(category.color);
+                }
+              });
+            });
+          });
+          return classColor;
+        }
+
+        function getSynergyForClass(className) {
+          var classSynergy = [];
+          synergies.forEach(function (synergy) {
+            synergy.categories.forEach(function (category) {
+              category.classes.forEach(function (classType) {
+                if (classType.includes(className)) {
+                  classSynergy.push(
+                    synergy.name + " - " + category.categoryName
+                  );
+                }
+              });
+            });
+          });
+          return classSynergy;
+        }
+        function getShortSynergyForClass(className) {
+          var classSynergy = [];
+          synergies.forEach(function (synergy) {
+            synergy.categories.forEach(function (category) {
+              category.classes.forEach(function (classType) {
+                if (classType.includes(className)) {
+                  var shortenedName = synergy.name.split(" ")[0].charAt(0);
+                  classSynergy.push(shortenedName);
+                }
+              });
+            });
+          });
+          return classSynergy;
+        }
+
+        function updatePartyStats() {
+          $(".party-column").each(function (elementIndex, element) {
+            var totalItemLevel = 0;
+            var itemCount = 0;
+            var uniColor = [];
+            var uniShortSyn = [];
+            var uniSynergy = [];
+            var uniData = [];
+		  
+            //iterate every character element space.
+            $(element)
+              .find(".droppable")
+              .each(function (ElementIndex, Element) {
+                //check character element existence in a character element space.
+                if ($(this).find(".draggable").length) {
+                  //get character data from a characterElement
+
+                  //get class name of a characterElement
+                  className = $(Element)
+                    .text()
+                    .match(/\(([^)]+)\)/)[1]
+                    .split(" ")[0]
+                    .trim();
+                  //get other data of characterElement using className
+                  var color = getColorForClass(className);
+                  var synergy = getSynergyForClass(className);
+                  var shortSyn = getShortSynergyForClass(className);
+                  var itemLevel = Number(
+                    $(Element)
+                      .text()
+                      .split("(")[1]
+                      .replace(/[^0-9.-]+/g, "")
+                  );
+
+                  //add unique data in a party from each character element
+                  color.forEach(function (item, index) {
+                    if (!uniColor.includes(item)) {
+                      uniColor.push(item);
+                    }
+                  });
+                  synergy.forEach(function (item, index) {
+                    if (!uniSynergy.includes(item)) {
+                      uniSynergy.push(item);
+                    }
+                  });
+
+                  totalItemLevel += itemLevel;
+                  itemCount++;
+                }
+              });
+
+            uniSynergy.forEach(function (item, index) {
+              uniShortSyn.push(item.split(" ")[0].charAt(0));
+            });
+
+            //rearrange uniData synergy in Korean alphabetical order
+            for (var i = 0; i < uniColor.length; i++) {
+              var data = {
+                color: uniColor[i],
+                shortSyn: uniShortSyn[i],
+                synergy: uniSynergy[i],
+              };
+              uniData.push(data);
+            }
+
+            uniData.sort(function (a, b) {
+              var synergyA = a.synergy.toUpperCase();
+              var synergyB = b.synergy.toUpperCase();
+              if (synergyA < synergyB) {
+                return -1;
+              }
+              if (synergyA > synergyB) {
+                return 1;
+              }
+              return 0;
+            });
+
+            //make colorCircles with tooltip
+            $(this).find(".colorCircles").remove();
+            var colorCircles = $("<div></div>")
+              .addClass("colorCircles")
+              .attr({ width: "100%" });
+            var prevSynergy = "";
+            for (var i = 0; i < Object.keys(uniData).length; i++) {
+              if (
+                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
+              ) {
+                counter = 0;
+              }
+              counter++;
+              var colorCircle = $("<span></span>")
+                .addClass("class-element-circle")
+                .css("background-color", uniData[i].color);
+              colorCircle.text(uniData[i].shortSyn);
+              colorCircle
+                .attr({
+                  "data-toggle": "tooltip",
+                  "data-placement": "bottom",
+                  title: uniData[i].synergy,
+                })
+                .tooltip();
+              // add '/' between colorCircles with successive same synergy
+              if (
+                i > 0 &&
+                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
+              ) {
+                colorCircles.append("<span> / </span>");
+              }
+              colorCircles.append(colorCircle);
+              prevSynergy = uniData[i].synergy;
+            }
+
+            //display party data except character data
+            var numSlash = colorCircles.text().split("/").length - 1;
+            //avgItemLevel data
+            var avgItemLevel =
+              itemCount > 0 ? (totalItemLevel / itemCount).toFixed(1) : 0;
+            $(this)
+              .find(".avg-item-level")
+              .text(" 평균템렙:" + avgItemLevel);
+            //synergy number data
+            if (numSlash >= 1) {
+              numSlash++;
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else {
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            }
+            //color circles
+            $(this).find(".color-count").after(colorCircles);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
+
