@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-	  
-    <meta
-      property="og:url"
-      content="https://isac1120.github.io/"
-    />
+    <meta property="og:url" content="https://isac1120.github.io/" />
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
@@ -38,27 +34,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>레이더스 큐브 - 로아 공대/파티 시너지 시뮬레이터</title>
-    
-    <link rel="icon" href="https://isac1120.github.io/favicon/favicon.ico"/>
-		<link rel="shortcut icon" href="https://isac1120.github.io/favicon/favicon.ico"/>
-		<link rel="apple-touch-icon" sizes="57x57" href="https://isac1120.github.io/favicon/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="https://isac1120.github.io/favicon/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="https://isac1120.github.io/favicon/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="https://isac1120.github.io/favicon/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="https://isac1120.github.io/favicon/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="https://isac1120.github.io/favicon/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="https://isac1120.github.io/favicon/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="https://isac1120.github.io/favicon/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="https://isac1120.github.io/favicon/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="https://isac1120.github.io/favicon/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="https://isac1120.github.io/favicon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="https://isac1120.github.io/favicon/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="https://isac1120.github.io/favicon/favicon-16x16.png">
-		<link rel="manifest" href="https://isac1120.github.io/favicon/manifest.json">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="msapplication-TileImage" content="https://isac1120.github.io/favicon/ms-icon-144x144.png">
-		<meta name="theme-color" content="#ffffff">
 
+    <link rel="icon" href="https://isac1120.github.io/favicon/favicon.ico" />
+    <link
+      rel="shortcut icon"
+      href="https://isac1120.github.io/favicon/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="https://isac1120.github.io/favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="https://isac1120.github.io/favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="https://isac1120.github.io/favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="https://isac1120.github.io/favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="https://isac1120.github.io/favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="https://isac1120.github.io/favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="https://isac1120.github.io/favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="https://isac1120.github.io/favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://isac1120.github.io/favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="https://isac1120.github.io/favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://isac1120.github.io/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="https://isac1120.github.io/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://isac1120.github.io/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="manifest"
+      href="https://isac1120.github.io/favicon/manifest.json"
+    />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="https://isac1120.github.io/favicon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -86,10 +146,11 @@
       }
 
       .title {
+        min-width: 320px;
         border: 1px solid #ccc;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin: 1% 0px;
-        padding: 0.5% 0px;
+        margin: 1% auto;
+        padding: 0.5% 0;
         width: 100%;
         height: 10%;
         background-color: #63c5da;
@@ -101,20 +162,116 @@
       }
 
       .container {
+        position: relative;
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        height: 100vh;
+        /* height: 100vh; */
         font-family: "Jua", sans-serif;
       }
+      /* swithch */
+      .switch-container {
+        position: absolute;
+        float: left;
+      }
 
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 120px;
+        height: 28px;
+      }
 
-      /* 서브 컨테이너 클래스 만들고 시너지(타이틀 박스)+시너지 컬럼즈(박스)를 그 박스에 묶어둔다. */
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: red;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: #2196f3;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196f3;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(90px);
+      }
+
+      .on {
+        display: none;
+      }
+
+      .on,
+      .off {
+        color: white;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        font-size: 10px;
+        font-family: Verdana, sans-serif;
+      }
+
+      input:checked + .slider .on {
+        display: block;
+      }
+
+      input:checked + .slider .off {
+        display: none;
+      }
+      /*--------- END --------*/
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
+      /* switch end*/
+
+      .from-container {
+        width: 66%;
+        height: 700px;
+      }
+      .to-container {
+        width: 33%;
+        height: 700px;
+      }
+
       .row {
         width: 100%;
       }
 
+      .class-column,
       .synergy-column {
         min-height: 150px;
         min-width: 250px;
@@ -126,9 +283,21 @@
         background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
+      .class-column.draggable {
+        min-width: 200px;
+        padding: 10px;
+        margin: 10px;
+      }
 
+      .class-column {
+        min-height: 80px;
+      }
+
+      #class-columns,
       #synergy-columns {
+        height: 90%;
         min-height: 300px;
+        min-width: 300px;
         border: 1px solid #ccc;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -136,17 +305,45 @@
         flex-wrap: nowrap;
         overflow-x: auto;
         white-space: nowrap;
-        height: 90%;
       }
 
-      #grouping-columns {
-        min-height: 260px;
+      #class-columns {
+        min-width: 250px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        overflow-y: auto;
+      }
+
+      .container-header {
+        min-width: 320px;
+        width: 100%;
+        padding: 0 40%;
+      }
+
+      .container-header {
+        min-width: 320px;
+        width: 100%;
+        padding: 0 40%;
+      }
+
+      .rounded-rectangle {
+        display: inline-block;
+        background-color: #f00; /* Default color */
+        color: #fff; /* Text color */
+        border-radius: 10px; /* Adjust this value to change the roundness of the rectangle */
+        padding: 5px 10px; /* Vertical and horizontal padding */
+        margin: 5px; /* Space around each rectangle */
+        font-size: 14px;
+      }
+
+      .grouping-columns {
+        height: 90%;
+        min-height: 250px;
         min-width: 300px;
         overflow-y: scroll;
         border: 1px solid #ccc;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        height: 90%;
       }
 
       .party-column {
@@ -173,7 +370,9 @@
       }
 
       #user-columns {
-        min-height: 300px;
+        height: 90%;
+        min-height: 250px;
+        min-width: 300px;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -183,24 +382,8 @@
         border: 1px solid #ccc;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        height: 90%;
-
       }
 
-      #grouping-columns2 {
-        min-height: 260px;
-        min-width: 300px;
-        overflow-y: auto;
-        border: 1px solid #ccc;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        align-items: stretch;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        height: 90%;
-
-      }
       .nickname-input {
         margin-right: 10px;
       }
@@ -215,18 +398,11 @@
         cursor: pointer;
       }
 
-      .character-container {
-        margin-top: 10px;
-        height: 80%;
-        overflow-x: auto;
-        overflow-y: auto;
-      }
-
       .draggable,
       .droppable {
         border: 1px solid #ccc;
-        padding: 3px;
-        margin: 3px;
+        padding: 5px 0;
+        margin: 5px auto;
         border-radius: 3px;
         text-align: center;
         background-color: #f5f5f5;
@@ -235,7 +411,7 @@
       .draggable {
         font-size: 15px;
         cursor: pointer;
-        min-width: 150px;
+        width: 250px;
       }
 
       .droppable {
@@ -247,7 +423,6 @@
         text-align: center;
         background-color: #f5f5f5;
         min-height: 30px; /* Increase the min-height */
-        width: 100%; /* Set the width to 100% */
       }
 
       button.delete {
@@ -264,7 +439,7 @@
         margin: 5px;
         background-color: rgba(0, 0, 0, 0.1);
       }
-      .class-element-circle {
+      .color-circle {
         display: inline-block;
         width: 15px;
         height: 15px;
@@ -275,66 +450,95 @@
         overflow-x: hidden;
         white-space: nowrap;
       }
-      #from-container {
-        width: 66%;
-      }
-      #to-container {
-        width: 33%;
-      }
 
       @media (max-width: 768px) {
-
-        #from-container {
+        .from-container,
+        .to-container {
           width: 100%;
-          height: 50%;
+          height: 350px;
           margin: 2%;
         }
-        #to-container {
-          width: 100%;
-          height: 50%;
-          margin: 2%;
+        .draggable {
+          width: 200px;
         }
+      }
 
-      } 
-
-  /* Other styles you have here */
-
-  /* Media query for mobile devices */
-
-</style>
+      /* Media query for mobile devices */
     </style>
   </head>
   <body>
     <div class="title">
       <h2 class="text-center">공대 구성 시뮬레이터</h2>
     </div>
-    <div class="container">   
-      <div id="from-container">
-        <h4 class="text-center">시너지</h4>
+    <div class="container">
+      <div class="switch-container">
+        <label class="switch">
+          <input type="checkbox" class="togBtn" />
+          <div class="slider round">
+            <!-- Added changes here -->
+            <span class="on">시너지순</span>
+            <span class="off">클래스순</span>
+          </div>
+        </label>
+      </div>
+
+      <div id="synergy-container" class="from-container">
+        <div class="container-header">
+          <h4 class="text-center">시너지</h4>
+        </div>
         <div id="synergy-columns">
           <!-- Add your synergy columns here -->
         </div>
       </div>
-      <div id="to-container">
-        <h4 class="text-center">공대</h4>
-        <div id="grouping-columns">
+
+      <div id="synergy-group-container" class="to-container">
+        <div class="container-header">
+          <h4 class="text-center">공대</h4>
+        </div>
+        <div id="synergy-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
         </div>
       </div>
-      <div id="from-container">
-        <h4 class="text-center">유저</h4>
+
+      <div id="class-container" class="from-container" style="display: none">
+        <div class="container-header">
+          <h4 class="text-center">클래스</h4>
+        </div>
+        <div id="class-columns">
+          <!-- Add your class columns here -->
+        </div>
+      </div>
+
+      <div
+        id="class-group-container"
+        class="to-container"
+        style="display: none"
+      >
+        <div class="container-header">
+          <h4 class="text-center">공대</h4>
+        </div>
+        <div id="class-group" class="grouping-columns">
+          <!-- Add your grouping columns here -->
+        </div>
+      </div>
+
+      <div id="user-container" class="from-container">
+        <div class="container-header">
+          <h4 class="text-center">유저</h4>
+        </div>
         <div id="user-columns">
           <!-- Add your user columns here -->
         </div>
       </div>
-      <div id="to-container">
-        <h4 class="text-center">공대</h4>
-        <div id="grouping-columns2">
+
+      <div id="character-group-container" class="to-container">
+        <div class="container-header">
+          <h4 class="text-center">공대</h4>
+        </div>
+        <div id="character-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
         </div>
       </div>
-
-
     </div>
 
     <!-- Google tag (gtag.js) -->
@@ -468,7 +672,7 @@
             color: "#00BFFF",
           },
           {
-            name: "피해 감소 / 보호막",
+            name: "피해 감소 & 보호막",
             categories: [
               {
                 categoryName: "딜러",
@@ -553,7 +757,7 @@
             color: "#2F4F4F",
           },
           {
-            name: "체력 / 마나 회복",
+            name: "체력 & 마나 회복",
             categories: [
               {
                 categoryName: "딜러",
@@ -582,17 +786,15 @@
           synergy.categories.forEach(function (category) {
             var categoryName = category.categoryName;
             var categoryHeader = $("<h6></h6>").text(categoryName);
-            var subColumn = $('<div class="col-4"></div>');
+            var subColumn = $("<div></div>");
             subColumn.append(categoryHeader);
 
             category.classes.forEach(function (className) {
               var element = $("<div></div>")
                 .text(className)
                 .addClass("draggable")
-                .css(
-                  "background-color",
-                  category.color
-                ); /* Add the .class-element class and set the background color */
+                .css("background-color", category.color);
+              /* Add the .class-element class and set the background color */
               subColumn.append(element);
             });
 
@@ -602,11 +804,71 @@
           $("#synergy-columns").append(column);
         });
 
+        // Create a dictionary to store class-centric data
+        var classes = {};
+
+        // Iterate over synergies to build the classes dictionary
+        synergies.forEach(function (synergy) {
+          synergy.categories.forEach(function (category) {
+            category.classes.forEach(function (className) {
+              // If class is not yet in the dictionary, add it
+              // Remove any words in parentheses
+              var baseClassName = className.replace(/\(.*\)/g, "").trim();
+              if (!(baseClassName in classes)) {
+                classes[baseClassName] = [];
+              }
+              // Add the synergy to the class
+              classes[baseClassName].push({
+                synergyName: synergy.name,
+                categoryName: category.categoryName,
+                color: category.color,
+              });
+            });
+          });
+        });
+
+        // Now you have a classes dictionary where each key is a class name and its value is an array of synergies
+
+        // Create class columns
+        Object.keys(classes).forEach(function (className) {
+          var column = $('<div class="class-column"></div>')
+            .text(className)
+            .addClass("draggable")
+            .css("background-color", "#fff");
+
+          var wrapper = $("<div></div>");
+          classes[className].forEach(function (synergy) {
+            var initials = synergy.synergyName
+              .split(" ")
+              .map((word) => word.charAt(0).toUpperCase())
+              .join("");
+            // Create a circle with the first letter of synergyName
+            var circle = $("<div></div>")
+              .addClass("rounded-rectangle")
+              .css("background-color", synergy.color)
+              .text(initials);
+
+            // Add tooltip attributes
+            circle
+              .attr({
+                "data-toggle": "tooltip",
+                "data-placement": "bottom",
+                title: synergy.synergyName + "-" + synergy.categoryName,
+              })
+              .tooltip();
+
+            wrapper.append(circle);
+          });
+          column.append(wrapper);
+          // Append the column to the appropriate container
+          $("#class-columns").append(column);
+        });
+
         // Define your parties here
-        var groupA = ["1파티", "2파티"];
+        var synergyGroup = ["1파티", "2파티"];
 
         // Create grouping columns
-        groupA.forEach(function (party, index) {
+        synergyGroup.forEach(function (party, index) {
           var column = $('<div class="party-column"></div>').css(
             "background-color",
             "#fff"
@@ -621,11 +883,37 @@
             column.append(element);
           }
 
-          $("#grouping-columns").append(column);
+          $("#synergy-group").append(column);
+        });
+
+        // Define your parties here
+        var classGroup = ["1파티", "2파티"];
+
+        // Create grouping columns
+        classGroup.forEach(function (party, index) {
+          var column = $('<div class="party-column"></div>').css(
+            "background-color",
+            "#fff"
+          );
+          var header = $("<h6></h6>").text(party);
+          var colorCount = $("<span></span>")
+            .addClass("color-count")
+            .css("font-size", "13px");
+          header.append(colorCount);
+          column.append(header);
+
+          for (var i = 0; i < 4; i++) {
+            var element = $("<div></div>")
+              .addClass("droppable")
+              .css("min-height", "50px");
+            column.append(element);
+          }
+
+          $("#class-group").append(column);
         });
 
         // Draggable elements
-        $(".draggable").draggable({
+        $("#synergy-columns .draggable").draggable({
           helper: "clone",
           revert: "invalid",
           appendTo: "body",
@@ -633,13 +921,16 @@
         });
 
         // Droppable elements
-        $(".droppable").droppable({
-          accept: ".draggable",
+        $("#synergy-group .droppable").droppable({
+          accept: "#synergy-columns .draggable",
           drop: function (event, ui) {
             var dropped = ui.helper.clone();
             dropped.removeClass("ui-draggable ui-draggable-handle");
             dropped.css({ position: "static", left: "", top: "" });
+            // Add tooltips to the cloned draggable elements
+            dropped.find("[data-toggle='tooltip']").tooltip();
             dropped.click(function () {
+              dropped.find("[data-toggle='tooltip']").tooltip("hide");
               $(this).remove();
             });
 
@@ -648,37 +939,262 @@
         });
 
         // Sortable elements
-        $("#grouping-columns")
+        $("#synergy-group .grouping-columns")
           .sortable({
-            connectWith: "#grouping-columns",
+            connectWith: "#synergy-group .grouping-columns",
             items: ".droppable",
             placeholder: "placeholder",
             start: function (event, ui) {
               ui.item.addClass("dragging");
-                
-		ui.item.data("fromIndex", ui.item.index());
-		ui.item.data("fromParent", ui.item.parent());
+
+              ui.item.data("fromIndex", ui.item.index());
+              ui.item.data("fromParent", ui.item.parent());
             },
             stop: function (event, ui) {
               ui.item.removeClass("dragging");
-    
-		ui.item.data("toIndex", ui.item.index());
-		ui.item.data("toParent", ui.item.parent());
 
-		var fromParent = ui.item.data("fromParent");
-		var fromIndex = ui.item.data("fromIndex");
-		var toParent = ui.item.data("toParent");
-		var toIndex = ui.item.data("toIndex");
+              ui.item.data("toIndex", ui.item.index());
+              ui.item.data("toParent", ui.item.parent());
 
-		if (fromParent[0] !== toParent[0]) {
-		var fromChild = fromParent.children().eq(fromIndex);
-		var toChild = toParent.children().eq(toIndex+1);
+              var fromParent = ui.item.data("fromParent");
+              var fromIndex = ui.item.data("fromIndex");
+              var toParent = ui.item.data("toParent");
+              var toIndex = ui.item.data("toIndex");
 
-		fromChild.before(toChild);
-		}
+              if (fromParent[0] !== toParent[0]) {
+                var fromChild = fromParent.children().eq(fromIndex);
+                var toChild = toParent.children().eq(toIndex + 1);
+
+                fromChild.before(toChild);
+              }
             },
           })
           .disableSelection();
+
+        // Draggable elements
+        $("#class-columns .draggable").draggable({
+          helper: "clone",
+          revert: "invalid",
+          appendTo: "body",
+          zIndex: 100,
+        });
+
+        // Droppable elements
+        $("#class-group .droppable").droppable({
+          accept: "#class-columns .draggable",
+          drop: function (event, ui) {
+            var dropped = ui.helper.clone();
+            dropped.removeClass("ui-draggable ui-draggable-handle");
+            dropped.css({ position: "static", left: "", top: "" });
+            // Add tooltips to the cloned draggable elements
+            dropped.find("[data-toggle='tooltip']").tooltip();
+            dropped.click(function () {
+              dropped.find("[data-toggle='tooltip']").tooltip("hide");
+              $(this).remove();
+              updateClassPartyStats();
+            });
+
+            $(this).empty().append(dropped);
+            updateClassPartyStats();
+          },
+        });
+
+        // Sortable elements
+        $("#class-group .grouping-columns")
+          .sortable({
+            connectWith: "#class-group .grouping-columns",
+            items: ".droppable",
+            placeholder: "placeholder",
+            start: function (event, ui) {
+              ui.item.addClass("dragging");
+
+              ui.item.data("fromIndex", ui.item.index());
+              ui.item.data("fromParent", ui.item.parent());
+            },
+            stop: function (event, ui) {
+              ui.item.removeClass("dragging");
+
+              ui.item.data("toIndex", ui.item.index());
+              ui.item.data("toParent", ui.item.parent());
+
+              var fromParent = ui.item.data("fromParent");
+              var fromIndex = ui.item.data("fromIndex");
+              var toParent = ui.item.data("toParent");
+              var toIndex = ui.item.data("toIndex");
+
+              if (fromParent[0] !== toParent[0]) {
+                var fromChild = fromParent.children().eq(fromIndex);
+                var toChild = toParent.children().eq(toIndex + 1);
+
+                fromChild.before(toChild);
+              }
+            },
+          })
+          .disableSelection();
+
+        function updateClassPartyStats() {
+          $("#class-group .party-column").each(function (
+            elementIndex,
+            element
+          ) {
+            var totalItemLevel = 0;
+            var itemCount = 0;
+            var uniColor = [];
+            var uniShortSyn = [];
+            var uniSynergy = [];
+            var uniData = [];
+
+            //iterate every character element space.
+            $(element)
+              .find(".droppable")
+              .each(function (ElementIndex, Element) {
+                //check character element existence in a character element space.
+                if ($(this).find(".draggable").length) {
+                  //get character data from a characterElement
+                  console.log("shit");
+                  //get class name of a characterElement
+                  className = $(Element)[0].innerText.split("\n")[0];
+                  console.log(className);
+
+                  //get other data of characterElement using className
+                  var color = getColorForClass(className);
+                  var synergy = getSynergyForClass(className);
+                  var shortSyn = getShortSynergyForClass(className);
+
+                  //add unique data in a party from each character element
+                  color.forEach(function (item, index) {
+                    uniColor.push(item);
+                  });
+                  synergy.forEach(function (item, index) {
+                    uniSynergy.push(item);
+                  });
+                }
+              });
+
+            uniSynergy.forEach(function (item, index) {
+              uniShortSyn.push(
+                item
+                  .split("-")[0]
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase())
+                  .join("")
+              );
+            });
+
+            //rearrange uniData synergy in Korean alphabetical order
+            for (var i = 0; i < uniColor.length; i++) {
+              var data = {
+                color: uniColor[i],
+                shortSyn: uniShortSyn[i],
+                synergy: uniSynergy[i],
+              };
+              uniData.push(data);
+            }
+
+            uniData.sort(function (a, b) {
+              var synergyA = a.synergy.toUpperCase();
+              var synergyB = b.synergy.toUpperCase();
+              if (synergyA < synergyB) {
+                return -1;
+              }
+              if (synergyA > synergyB) {
+                return 1;
+              }
+              return 0;
+            });
+
+            //make colorCircles with tooltip
+            $(this).find(".colorCircles").remove();
+            var colorCircles = $("<div></div>")
+              .addClass("colorCircles")
+              .attr({ width: "100%" });
+            var prevSynergy = "";
+            for (var i = 0; i < Object.keys(uniData).length; i++) {
+              if (
+                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
+              ) {
+                counter = 0;
+              }
+              counter++;
+              var colorCircle = $("<span></span>")
+                .addClass("rounded-rectangle")
+                .css("background-color", uniData[i].color);
+              colorCircle.text(uniData[i].shortSyn);
+              colorCircle
+                .attr({
+                  "data-toggle": "tooltip",
+                  "data-placement": "bottom",
+                  title: uniData[i].synergy,
+                })
+                .tooltip();
+              // add '/' between colorCircles with successive same synergy
+              if (
+                i > 0 &&
+                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
+              ) {
+                colorCircles.append("<span> / </span>");
+              }
+              colorCircles.append(colorCircle);
+              prevSynergy = uniData[i].synergy;
+            }
+
+            //display party data except character data
+            var numSlash = colorCircles.text().split("/").length - 1;
+
+            //synergy number data
+            if (numSlash == 0 && Object.keys(uniData).length == 0) {
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else if (numSlash == 0 && Object.keys(uniData).length != 0) {
+              numSlash++;
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else {
+              numSlash++;
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            }
+            //color circles
+            $(this).find(".color-count").after(colorCircles);
+          });
+        }
+
+        $(".togBtn").change(function () {
+          if ($(this).is(":checked")) {
+            // Hide synergiesContainer and show classesContainer when the slider is on the right
+            $("#synergy-container").hide();
+            $("#class-container").show();
+            $("#synergy-group-container").hide();
+            $("#class-group-container").show();
+          } else {
+            // Show synergiesContainer and hide classesContainer when the slider is on the left
+            $("#synergy-container").show();
+            $("#class-container").hide();
+            $("#synergy-group-container").show();
+            $("#class-group-container").hide();
+          }
+        });
 
         // Define user columns
         var users = [
@@ -765,7 +1281,7 @@
             color.forEach(function (colorElement, index) {
               //make circle with colored corresponding to each class synergy
               var circle = $("<div></div>")
-                .addClass("class-element-circle")
+                .addClass("rounded-rectangle")
                 .css("background-color", colorElement);
               circle.text(shortSyn[index]);
               circle
@@ -791,9 +1307,9 @@
         }
 
         // Define your parties here
-        var groupB = ["1파티", "2파티"];
+        var characterGroup = ["1파티", "2파티"];
         // Create grouping columns
-        groupB.forEach(function (party, index) {
+        characterGroup.forEach(function (party, index) {
           var column = $('<div class="party-column col-10"></div>').css(
             "background-color",
             "#fff"
@@ -815,10 +1331,10 @@
             column.append(element);
           }
 
-          $("#grouping-columns2").append(column);
+          $("#character-group").append(column);
         });
-	      
-        $("#grouping-columns2 .droppable").droppable({
+
+        $("#character-group .droppable").droppable({
           accept: ".draggable",
           drop: function (event, ui) {
             var dropped = ui.helper.clone();
@@ -828,43 +1344,44 @@
             dropped.find("[data-toggle='tooltip']").tooltip();
 
             dropped.click(function () {
+              dropped.find("[data-toggle='tooltip']").tooltip("hide");
               $(this).remove();
-              updatePartyStats();
+              updateCharacterPartyStats();
             });
 
             $(this).empty().append(dropped);
-            updatePartyStats();
+            updateCharacterPartyStats();
           },
         });
-	      
-        $("#grouping-columns2")
+
+        $("#character-group")
           .sortable({
-            connectWith: "#grouping-columns2",
+            connectWith: "#character-group",
             items: ".droppable",
             placeholder: "placeholder",
-		appendTo: "body",
-		helper: "clone",
+            appendTo: "body",
+            helper: "clone",
             start: function (event, ui) {
               ui.item.addClass("dragging");
-		ui.item.data("fromIndex", ui.item.index());
-		ui.item.data("fromParent", ui.item.parent());
+              ui.item.data("fromIndex", ui.item.index());
+              ui.item.data("fromParent", ui.item.parent());
             },
             stop: function (event, ui) {
               ui.item.removeClass("dragging");
-		ui.item.data("toIndex", ui.item.index());
-		ui.item.data("toParent", ui.item.parent());
-		var fromParent = ui.item.data("fromParent");
-		var fromIndex = ui.item.data("fromIndex");
-		var toParent = ui.item.data("toParent");
-		var toIndex = ui.item.data("toIndex");
+              ui.item.data("toIndex", ui.item.index());
+              ui.item.data("toParent", ui.item.parent());
+              var fromParent = ui.item.data("fromParent");
+              var fromIndex = ui.item.data("fromIndex");
+              var toParent = ui.item.data("toParent");
+              var toIndex = ui.item.data("toIndex");
 
-		if (fromParent[0] !== toParent[0]) {
-		var fromChild = fromParent.children().eq(fromIndex);
-		var toChild = toParent.children().eq(toIndex+1);
+              if (fromParent[0] !== toParent[0]) {
+                var fromChild = fromParent.children().eq(fromIndex);
+                var toChild = toParent.children().eq(toIndex + 1);
 
-		fromChild.before(toChild);
-		} 
-		updatePartyStats();
+                fromChild.before(toChild);
+              }
+              updateCharacterPartyStats();
             },
           })
           .disableSelection();
@@ -904,7 +1421,12 @@
             synergy.categories.forEach(function (category) {
               category.classes.forEach(function (classType) {
                 if (classType.includes(className)) {
-                  var shortenedName = synergy.name.split(" ")[0].charAt(0);
+                  // var shortenedName = synergy.name.split(" ")[0].charAt(0);
+                  var shortenedName = synergy.name
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase())
+                    .join("");
+
                   classSynergy.push(shortenedName);
                 }
               });
@@ -913,15 +1435,18 @@
           return classSynergy;
         }
 
-        function updatePartyStats() {
-          $(".party-column").each(function (elementIndex, element) {
+        function updateCharacterPartyStats() {
+          $("#character-group .party-column").each(function (
+            elementIndex,
+            element
+          ) {
             var totalItemLevel = 0;
             var itemCount = 0;
             var uniColor = [];
             var uniShortSyn = [];
             var uniSynergy = [];
             var uniData = [];
-		  
+
             //iterate every character element space.
             $(element)
               .find(".droppable")
@@ -949,14 +1474,10 @@
 
                   //add unique data in a party from each character element
                   color.forEach(function (item, index) {
-                    if (!uniColor.includes(item)) {
-                      uniColor.push(item);
-                    }
+                    uniColor.push(item);
                   });
                   synergy.forEach(function (item, index) {
-                    if (!uniSynergy.includes(item)) {
-                      uniSynergy.push(item);
-                    }
+                    uniSynergy.push(item);
                   });
 
                   totalItemLevel += itemLevel;
@@ -965,7 +1486,13 @@
               });
 
             uniSynergy.forEach(function (item, index) {
-              uniShortSyn.push(item.split(" ")[0].charAt(0));
+              uniShortSyn.push(
+                item
+                  .split("-")[0]
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase())
+                  .join("")
+              );
             });
 
             //rearrange uniData synergy in Korean alphabetical order
@@ -1004,7 +1531,7 @@
               }
               counter++;
               var colorCircle = $("<span></span>")
-                .addClass("class-element-circle")
+                .addClass("rounded-rectangle")
                 .css("background-color", uniData[i].color);
               colorCircle.text(uniData[i].shortSyn);
               colorCircle
@@ -1034,7 +1561,17 @@
               .find(".avg-item-level")
               .text(" 평균템렙:" + avgItemLevel);
             //synergy number data
-            if (numSlash >= 1) {
+            if (numSlash == 0 && Object.keys(uniData).length == 0) {
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else if (numSlash == 0 && Object.keys(uniData).length != 0) {
               numSlash++;
               $(this)
                 .find(".color-count")
@@ -1046,6 +1583,7 @@
                     ")"
                 );
             } else {
+              numSlash++;
               $(this)
                 .find(".color-count")
                 .text(
@@ -1064,4 +1602,3 @@
     </script>
   </body>
 </html>
-
