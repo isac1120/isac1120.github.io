@@ -431,10 +431,9 @@
         <div class="container-header">
           <h4 class="text-center">공대</h4>
           <div class="button-container">
-            <button id="copyButton">Copy</button>
-            <button id="saveButton">Save</button>
-            <input type="file" id="loadInput" accept=".txt">
-            <button id="loadButton">Load</button>
+            <button id="copyDataBtn" class="rounded-rectangle">Copy</button>
+            <button id="saveDataBtn" class="rounded-rectangle">Save</button>
+            <button id="loadDataBtn" class="rounded-rectangle">Load</button>
           </div>
         </div>
         <div id="synergy-group" class="grouping-columns">
@@ -459,11 +458,12 @@
         <div class="container-header">
           <h4 class="text-center">공대</h4>
           <div class="button-container">
-            <button id="copyButton">Copy</button>
-            <button id="saveButton">Save</button>
-            <input type="file" id="loadInput" accept=".txt">
-            <button id="loadButton">Load</button>
+            <button id="copyDataBtn" class="rounded-rectangle">Copy</button>
+            <button id="saveDataBtn" class="rounded-rectangle">Save</button>
+            <button id="loadDataBtn" class="rounded-rectangle">Load</button>
           </div>
+        </div>
+
         </div>
         <div id="class-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -1549,58 +1549,54 @@
         
       });
       
-  // Copy button click event handler
-  $("#copyButton").click(function() {
-    var groupingData = $("#synergy-group").text();
-    copyToClipboard(groupingData);
-    alert("Grouping data copied!");
-  });
+    // Helper function to convert data to a downloadable file
+    function downloadFile(data, filename) {
+      var blob = new Blob([data], { type: "text/plain" });
+      var url = window.URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
 
-  // Save button click event handler
-  $("#saveButton").click(function() {
-    var groupingData = $("#synergy-group").text();
-    downloadTextFile(groupingData, "grouping_data.txt");
-  });
+    // Copy grouping columns data to the clipboard
+    function copyData() {
+      var data = JSON.stringify($("#synergy-group").html());
+      navigator.clipboard.writeText(data)
+        .then(() => {
+          alert("Grouping columns data copied to clipboard!");
+        })
+        .catch((error) => {
+          console.error("Failed to copy data:", error);
+        });
+    }
 
-  // Load button click event handler
-  $("#loadButton").click(function() {
-    $("#loadInput").click();
-  });
+    // Save grouping columns data to the browser cache
+    function saveData() {
+      var data = JSON.stringify($("#synergy-group").html());
+      localStorage.setItem("groupingData", data);
+      alert("Grouping columns data saved!");
+    }
 
-  // Load input change event handler
-  $("#loadInput").change(function(event) {
-    var file = event.target.files[0];
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      var groupingData = e.target.result;
-      $("#synergy-group").text(groupingData);
-      alert("Grouping data loaded!");
-    };
-    reader.readAsText(file);
-  });
+    // Load grouping columns data from the browser cache
+    function loadData() {
+      var data = localStorage.getItem("groupingData");
+      if (data) {
+        $("#synergy-group").html(JSON.parse(data));
+        alert("Grouping columns data loaded!");
+      } else {
+        alert("No saved data found!");
+      }
+    }
 
-  // Function to copy text to clipboard
-  function copyToClipboard(text) {
-    var tempInput = $("<textarea>");
-    $("body").append(tempInput);
-    tempInput.val(text).select();
-    document.execCommand("copy");
-    tempInput.remove();
-  }
+    // Attach click event handlers to the buttons
+    $("#copyDataBtn").click(copyData);
+    $("#saveDataBtn").click(saveData);
+    $("#loadDataBtn").click(loadData);
 
-  // Function to download text file
-  function downloadTextFile(text, filename) {
-    var element = document.createElement("a");
-    element.setAttribute(
-      "href",
-      "data:text/plain;charset=utf-8," + encodeURIComponent(text)
-    );
-    element.setAttribute("download", filename);
-    element.style.display = "none";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  }
 
     </script>
   </body>
