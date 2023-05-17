@@ -415,10 +415,10 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-            <button id="copyDataButton">Copy Grouping Data</button>
-            <button id="saveDataButton">Save Grouping Data</button>
-            <input type="file" id="loadDataInput" style="display: none" accept=".txt">
-            <button id="loadDataButton">Load Grouping Data</button>
+            <button id="synergyCopyButton" class="copyDataButton">Copy Grouping Data</button>
+            <button id="synergySaveButton" class="saveDataButton">Save Grouping Data</button>
+            <input type="file" id="synergyLoadInput" class="loadDataInput" style="display: none" accept=".txt">
+            <button id="synergyLoadButton" class="loadDataButton">Load Grouping Data</button>
         </div>
         <div id="synergy-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -441,10 +441,10 @@
       >
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-            <button id="copyDataButton">Copy Grouping Data</button>
-            <button id="saveDataButton">Save Grouping Data</button>
-            <input type="file" id="loadDataInput" style="display: none" accept=".txt">
-            <button id="loadDataButton">Load Grouping Data</button>
+            <button id="classCopyButton" class="copyDataButton">Copy Grouping Data</button>
+            <button id="classSaveButton" class="saveDataButton">Save Grouping Data</button>
+            <input type="file" id="classLoadInput" class="loadDataInput" style="display: none" accept=".txt">
+            <button id="synergyCopyButton" id="classLoadButton" class="loadDataButton">Load Grouping Data</button>
         </div>
         <div id="class-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -1597,13 +1597,19 @@
     }
 
     // Add event listeners to the buttons
-    document.getElementById("copyDataButton").addEventListener("click", copyGroupingData);
-    document.getElementById("saveDataButton").addEventListener("click", saveGroupingData);
-    document.getElementById("loadDataButton").addEventListener("click", () => {
-      document.getElementById("loadDataInput").click();
+    document.getElementById("synergyCopyButton").addEventListener("click", copyGroupingData);
+    document.getElementById("synergySaveButton").addEventListener("click", saveGroupingData);
+    document.getElementById("synergyLoadButton").addEventListener("click", () => {
+      document.getElementById("synergyLoadInput").click();
     });
-    document.getElementById("loadDataInput").addEventListener("change", loadGroupingData);
-        
+    document.getElementById("synergyLoadInput").addEventListener("change", loadGroupingData);
+            // Add event listeners to the buttons
+    document.getElementById("classCopyButton").addEventListener("click", copyGroupingData);
+    document.getElementById("classSaveButton").addEventListener("click", saveGroupingData);
+    document.getElementById("classLoadButton").addEventListener("click", () => {
+      document.getElementById("classLoadInput").click();
+    });
+    document.getElementById("classLoadInput").addEventListener("change", loadGroupingData);
         
         
       });
