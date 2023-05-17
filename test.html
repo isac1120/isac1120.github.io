@@ -430,16 +430,12 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-            <div class="button-container">
-              <!-- Button to copy grouping columns data -->
-              <button onclick="copyGroupingColumnsData()">Copy</button>
-
-              <!-- Button to save grouping columns data as a text file -->
-              <button onclick="saveGroupingColumnsData()">Save</button>
-
-              <!-- Button to reload grouping columns data from saved text file -->
-              <button onclick="reloadGroupingColumnsData()">Reload</button>
-            </div>
+          <div class="button-container">
+            <button id="copyButton">Copy</button>
+            <button id="saveButton">Save</button>
+            <input type="file" id="loadInput" accept=".txt">
+            <button id="loadButton">Load</button>
+          </div>
         </div>
         <div id="synergy-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -462,16 +458,12 @@
       >
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-            <div class="button-container">
-              <!-- Button to copy grouping columns data -->
-              <button onclick="copyGroupingColumnsData()">Copy</button>
-
-              <!-- Button to save grouping columns data as a text file -->
-              <button onclick="saveGroupingColumnsData()">Save</button>
-
-              <!-- Button to reload grouping columns data from saved text file -->
-              <button onclick="reloadGroupingColumnsData()">Reload</button>
-            </div>
+          <div class="button-container">
+            <button id="copyButton">Copy</button>
+            <button id="saveButton">Save</button>
+            <input type="file" id="loadInput" accept=".txt">
+            <button id="loadButton">Load</button>
+          </div>
         </div>
         <div id="class-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -1557,46 +1549,59 @@
         
       });
       
-                      // Function to copy grouping columns data
-        function copyGroupingColumnsData() {
-          var groupingColumnsData = getGroupingColumnsData();
-          // Perform copy operation (e.g., using the Clipboard API)
-          // Replace the following line with the actual code to copy the data
-          console.log("Copying grouping columns data:", groupingColumnsData);
-        }
+  // Copy button click event handler
+  $("#copyButton").click(function() {
+    var groupingData = $("#synergy-group").text();
+    copyToClipboard(groupingData);
+    alert("Grouping data copied!");
+  });
 
-        // Function to save grouping columns data as a text file
-        function saveGroupingColumnsData() {
-          var groupingColumnsData = getGroupingColumnsData();
-          // Convert the data to text format
-          var textData = JSON.stringify(groupingColumnsData);
-          // Perform save operation (e.g., using the FileSaver.js library)
-          // Replace the following line with the actual code to save the data as a text file
-          console.log("Saving grouping columns data:", textData);
-        }
+  // Save button click event handler
+  $("#saveButton").click(function() {
+    var groupingData = $("#synergy-group").text();
+    downloadTextFile(groupingData, "grouping_data.txt");
+  });
 
-        // Function to reload grouping columns data from saved text file
-        function reloadGroupingColumnsData() {
-          // Perform reload operation (e.g., using an input element with type="file")
-          // Replace the following line with the actual code to reload the data from a text file
-          console.log("Reloading grouping columns data");
-        }
+  // Load button click event handler
+  $("#loadButton").click(function() {
+    $("#loadInput").click();
+  });
 
-        // Function to get the current grouping columns data
-        function getGroupingColumnsData() {
-          var groupingColumns = [];
-          var groupingColumnElements = document.querySelectorAll("#synergy-group .droppable");
-          groupingColumnElements.forEach(function (columnElement) {
-            console.log(columnElement);
-            var classes = [];
-            var classElements = columnElement.querySelectorAll(".class-element");
-            classElements.forEach(function (classElement) {
-              classes.push(classElement.textContent);
-            });
-            groupingColumns.push(classes);
-          });
-          return groupingColumns;
-        }
+  // Load input change event handler
+  $("#loadInput").change(function(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var groupingData = e.target.result;
+      $("#synergy-group").text(groupingData);
+      alert("Grouping data loaded!");
+    };
+    reader.readAsText(file);
+  });
+
+  // Function to copy text to clipboard
+  function copyToClipboard(text) {
+    var tempInput = $("<textarea>");
+    $("body").append(tempInput);
+    tempInput.val(text).select();
+    document.execCommand("copy");
+    tempInput.remove();
+  }
+
+  // Function to download text file
+  function downloadTextFile(text, filename) {
+    var element = document.createElement("a");
+    element.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+    );
+    element.setAttribute("download", filename);
+    element.style.display = "none";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  }
+
     </script>
   </body>
 </html>
