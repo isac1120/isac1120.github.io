@@ -1547,9 +1547,8 @@
           });
         }
         
-      });
-      
-    // Helper function to convert data to a downloadable file
+        
+            // Helper function to convert data to a downloadable file
     function downloadFile(data, filename) {
       var data = Array.from(document.querySelectorAll(("#synergy-group"))
                      .map(column => column.innerText.trim())
@@ -1581,34 +1580,34 @@
         });
     }
 
-    // Save grouping columns data to the browser cache
-    function saveData() {
-      var data = Array.from(document.querySelectorAll(("#synergy-group"))
-                     .map(column => column.innerText.trim())
-                     .join('\n');
-      localStorage.setItem("groupingData", data);
-      alert("Grouping columns data saved!");
-    }
-
-    // Load grouping columns data from the browser cache
-    function loadData() {
-      var data = Array.from(document.querySelectorAll(("#synergy-group"))
-                     .map(column => column.innerText.trim())
-                     .join('\n');
-      if (data) {
-        $("#synergy-group").html(JSON.parse(data));
-        alert("Grouping columns data loaded!");
-      } else {
-        alert("No saved data found!");
+      // Save grouping columns data to the browser cache
+      function saveData() {
+        var data = Array.from(document.querySelectorAll(("#synergy-group"))
+                       .map(column => column.innerText.trim())
+                       .join('\n');
+        localStorage.setItem("groupingData", data);
+        alert("Grouping columns data saved!");
       }
-    }
 
-    // Attach click event handlers to the buttons
-    $("#copyDataBtn").click(copyData);
-    $("#saveDataBtn").click(saveData);
-    $("#loadDataBtn").click(loadData);
+      // Load grouping columns data from the browser cache
+      function loadData() {
+        var data = Array.from(document.querySelectorAll(("#synergy-group"))
+                       .map(column => column.innerText.trim())
+                       .join('\n');
+        if (data) {
+          $("#synergy-group").html(JSON.parse(data));
+          alert("Grouping columns data loaded!");
+        } else {
+          alert("No saved data found!");
+        }
+      }
 
-
+      // Attach click event handlers to the buttons
+      $("#copyDataBtn").click(copyData);
+      $("#saveDataBtn").click(saveData);
+      $("#loadDataBtn").click(loadData);
+      });
+      
     </script>
   </body>
 </html>
