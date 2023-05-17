@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <meta
-      property="og:url"
-      content="https://isac1120.github.io/"
-    />
+    <meta property="og:url" content="https://isac1120.github.io/" />
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
@@ -38,10 +35,12 @@
 
     <title>레이더스 큐브 - 로아 공대/파티 시너지 시뮬레이터</title>
 
-    <link
-      rel="icon"
-      href="https://isac1120.github.io/favicon/favicon.ico"
-    />
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -188,13 +187,12 @@
       .to-container {
         width: 33%;
         height: 700px;
-
       }
 
       .row {
         width: 100%;
       }
-      
+
       .class-column,
       .synergy-column {
         min-height: 150px;
@@ -207,11 +205,14 @@
         background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-      
-      .class-column {
-        min-width: 250px;
-        min-height: 80px;
+      .class-column.draggable {
+        width: 250px;
+        padding: 5px;
+        margin: 10px;
+      }
 
+      .class-column {
+        min-height: 80px;
       }
 
       #class-columns,
@@ -226,17 +227,22 @@
         flex-wrap: nowrap;
         overflow-x: auto;
         white-space: nowrap;
-
       }
 
       #class-columns {
-        min-width : 250px;
+        min-width: 250px;
         flex-direction: column;
         flex-wrap: wrap;
         overflow-y: auto;
       }
 
-      .header {
+      .container-header {
+        min-width: 320px;
+        width: 100%;
+        padding: 0 40%;
+      }
+
+      .container-header {
         min-width: 320px;
         width: 100%;
         padding: 0 40%;
@@ -260,7 +266,6 @@
         border: 1px solid #ccc;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        
       }
 
       .party-column {
@@ -319,7 +324,7 @@
       .droppable {
         border: 1px solid #ccc;
         padding: 5px 0;
-        margin: 5px;
+        margin: 5px auto;
         border-radius: 3px;
         text-align: center;
         background-color: #f5f5f5;
@@ -328,7 +333,6 @@
       .draggable {
         font-size: 15px;
         cursor: pointer;
-        min-width: 150px;
       }
 
       .droppable {
@@ -340,7 +344,6 @@
         text-align: center;
         background-color: #f5f5f5;
         min-height: 30px; /* Increase the min-height */
-
       }
 
       button.delete {
@@ -373,8 +376,11 @@
         .from-container,
         .to-container {
           width: 100%;
-          height: 50%;
+          height: 350px;
           margin: 2%;
+        }
+        .draggable {
+          width: 200px;
         }
       }
 
@@ -391,14 +397,14 @@
           <input type="checkbox" class="togBtn" />
           <div class="slider round">
             <!-- Added changes here -->
-            <span class="on">시너지순</span>
-            <span class="off">클래스순</span>
+            <span class="on">시너지순으로</span>
+            <span class="off">클래스</span>
           </div>
         </label>
       </div>
 
       <div id="synergy-container" class="from-container">
-        <div class="header">
+        <div class="container-header">
           <h4 class="text-center">시너지</h4>
         </div>
         <div id="synergy-columns">
@@ -407,7 +413,7 @@
       </div>
 
       <div id="synergy-group-container" class="to-container">
-        <div class="header">
+        <div class="container-header">
           <h4 class="text-center">공대</h4>
         </div>
         <div id="synergy-group" class="grouping-columns">
@@ -416,7 +422,7 @@
       </div>
 
       <div id="class-container" class="from-container" style="display: none">
-        <div class="header">
+        <div class="container-header">
           <h4 class="text-center">클래스</h4>
         </div>
         <div id="class-columns">
@@ -429,7 +435,7 @@
         class="to-container"
         style="display: none"
       >
-        <div class="header">
+        <div class="container-header">
           <h4 class="text-center">공대</h4>
         </div>
         <div id="class-group" class="grouping-columns">
@@ -438,7 +444,7 @@
       </div>
 
       <div id="user-container" class="from-container">
-        <div class="header">
+        <div class="container-header">
           <h4 class="text-center">유저</h4>
         </div>
         <div id="user-columns">
@@ -447,7 +453,7 @@
       </div>
 
       <div id="character-group-container" class="to-container">
-        <div class="header">
+        <div class="container-header">
           <h4 class="text-center">공대</h4>
         </div>
         <div id="character-group" class="grouping-columns">
@@ -743,16 +749,15 @@
         });
 
         // Now you have a classes dictionary where each key is a class name and its value is an array of synergies
-        console.log(classes);
 
         // Create class columns
         Object.keys(classes).forEach(function (className) {
           var column = $('<div class="class-column"></div>')
+            .text(className)
             .addClass("draggable")
             .css("background-color", "#fff");
-          var header = $("<h5></h5>").text(className);
-          column.append(header);
 
+          var wrapper = $("<div></div>");
           classes[className].forEach(function (synergy) {
             var initials = synergy.synergyName
               .split(" ")
@@ -773,9 +778,9 @@
               })
               .tooltip();
 
-            column.append(circle);
+            wrapper.append(circle);
           });
-
+          column.append(wrapper);
           // Append the column to the appropriate container
           $("#class-columns").append(column);
         });
@@ -812,6 +817,10 @@
             "#fff"
           );
           var header = $("<h6></h6>").text(party);
+          var colorCount = $("<span></span>")
+            .addClass("color-count")
+            .css("font-size", "13px");
+          header.append(colorCount);
           column.append(header);
 
           for (var i = 0; i < 4; i++) {
@@ -825,7 +834,7 @@
         });
 
         // Draggable elements
-        $(".draggable").draggable({
+        $("#synergy-columns .draggable").draggable({
           helper: "clone",
           revert: "invalid",
           appendTo: "body",
@@ -833,8 +842,8 @@
         });
 
         // Droppable elements
-        $(".droppable").droppable({
-          accept: ".draggable",
+        $("#synergy-group .droppable").droppable({
+          accept: "#synergy-columns .draggable",
           drop: function (event, ui) {
             var dropped = ui.helper.clone();
             dropped.removeClass("ui-draggable ui-draggable-handle");
@@ -842,6 +851,7 @@
             // Add tooltips to the cloned draggable elements
             dropped.find("[data-toggle='tooltip']").tooltip();
             dropped.click(function () {
+              dropped.find("[data-toggle='tooltip']").tooltip("hide");
               $(this).remove();
             });
 
@@ -850,9 +860,9 @@
         });
 
         // Sortable elements
-        $(".grouping-columns")
+        $("#synergy-group .grouping-columns")
           .sortable({
-            connectWith: ".grouping-columns",
+            connectWith: "#synergy-group .grouping-columns",
             items: ".droppable",
             placeholder: "placeholder",
             start: function (event, ui) {
@@ -881,6 +891,215 @@
             },
           })
           .disableSelection();
+
+        // Draggable elements
+        $("#class-columns .draggable").draggable({
+          helper: "clone",
+          revert: "invalid",
+          appendTo: "body",
+          zIndex: 100,
+        });
+
+        // Droppable elements
+        $("#class-group .droppable").droppable({
+          accept: "#class-columns .draggable",
+          drop: function (event, ui) {
+            var dropped = ui.helper.clone();
+            dropped.removeClass("ui-draggable ui-draggable-handle");
+            dropped.css({ position: "static", left: "", top: "" });
+            // Add tooltips to the cloned draggable elements
+            dropped.find("[data-toggle='tooltip']").tooltip();
+            dropped.click(function () {
+              dropped.find("[data-toggle='tooltip']").tooltip("hide");
+              $(this).remove();
+              updateClassPartyStats();
+            });
+
+            $(this).empty().append(dropped);
+            updateClassPartyStats();
+          },
+        });
+
+        // Sortable elements
+        $("#class-group .grouping-columns")
+          .sortable({
+            connectWith: "#class-group .grouping-columns",
+            items: ".droppable",
+            placeholder: "placeholder",
+            start: function (event, ui) {
+              ui.item.addClass("dragging");
+
+              ui.item.data("fromIndex", ui.item.index());
+              ui.item.data("fromParent", ui.item.parent());
+            },
+            stop: function (event, ui) {
+              ui.item.removeClass("dragging");
+
+              ui.item.data("toIndex", ui.item.index());
+              ui.item.data("toParent", ui.item.parent());
+
+              var fromParent = ui.item.data("fromParent");
+              var fromIndex = ui.item.data("fromIndex");
+              var toParent = ui.item.data("toParent");
+              var toIndex = ui.item.data("toIndex");
+
+              if (fromParent[0] !== toParent[0]) {
+                var fromChild = fromParent.children().eq(fromIndex);
+                var toChild = toParent.children().eq(toIndex + 1);
+
+                fromChild.before(toChild);
+              }
+            },
+          })
+          .disableSelection();
+
+        function updateClassPartyStats() {
+          $("#class-group .party-column").each(function (
+            elementIndex,
+            element
+          ) {
+            var totalItemLevel = 0;
+            var itemCount = 0;
+            var uniColor = [];
+            var uniShortSyn = [];
+            var uniSynergy = [];
+            var uniData = [];
+
+            //iterate every character element space.
+            $(element)
+              .find(".droppable")
+              .each(function (ElementIndex, Element) {
+                //check character element existence in a character element space.
+                if ($(this).find(".draggable").length) {
+                  //get character data from a characterElement
+                  console.log("shit");
+                  //get class name of a characterElement
+                  className = $(Element)[0].innerText.split("\n")[0];
+                  console.log(className);
+
+                  //get other data of characterElement using className
+                  var color = getColorForClass(className);
+                  var synergy = getSynergyForClass(className);
+                  var shortSyn = getShortSynergyForClass(className);
+
+                  //add unique data in a party from each character element
+                  color.forEach(function (item, index) {
+                    uniColor.push(item);
+                  });
+                  synergy.forEach(function (item, index) {
+                    uniSynergy.push(item);
+                  });
+                }
+              });
+
+            uniSynergy.forEach(function (item, index) {
+              uniShortSyn.push(
+                item
+                  .split("-")[0]
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase())
+                  .join("")
+              );
+            });
+
+            //rearrange uniData synergy in Korean alphabetical order
+            for (var i = 0; i < uniColor.length; i++) {
+              var data = {
+                color: uniColor[i],
+                shortSyn: uniShortSyn[i],
+                synergy: uniSynergy[i],
+              };
+              uniData.push(data);
+            }
+
+            uniData.sort(function (a, b) {
+              var synergyA = a.synergy.toUpperCase();
+              var synergyB = b.synergy.toUpperCase();
+              if (synergyA < synergyB) {
+                return -1;
+              }
+              if (synergyA > synergyB) {
+                return 1;
+              }
+              return 0;
+            });
+
+            //make colorCircles with tooltip
+            $(this).find(".colorCircles").remove();
+            var colorCircles = $("<div></div>")
+              .addClass("colorCircles")
+              .attr({ width: "100%" });
+            var prevSynergy = "";
+            for (var i = 0; i < Object.keys(uniData).length; i++) {
+              if (
+                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
+              ) {
+                counter = 0;
+              }
+              counter++;
+              var colorCircle = $("<span></span>")
+                .addClass("rounded-rectangle")
+                .css("background-color", uniData[i].color);
+              colorCircle.text(uniData[i].shortSyn);
+              colorCircle
+                .attr({
+                  "data-toggle": "tooltip",
+                  "data-placement": "bottom",
+                  title: uniData[i].synergy,
+                })
+                .tooltip();
+              // add '/' between colorCircles with successive same synergy
+              if (
+                i > 0 &&
+                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
+              ) {
+                colorCircles.append("<span> / </span>");
+              }
+              colorCircles.append(colorCircle);
+              prevSynergy = uniData[i].synergy;
+            }
+
+            //display party data except character data
+            var numSlash = colorCircles.text().split("/").length - 1;
+
+            //synergy number data
+            if (numSlash == 0 && Object.keys(uniData).length == 0) {
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else if (numSlash == 0 && Object.keys(uniData).length != 0) {
+              numSlash++;
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else {
+              numSlash++;
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            }
+            //color circles
+            $(this).find(".color-count").after(colorCircles);
+          });
+        }
 
         $(".togBtn").change(function () {
           if ($(this).is(":checked")) {
@@ -1046,12 +1265,13 @@
             dropped.find("[data-toggle='tooltip']").tooltip();
 
             dropped.click(function () {
+              dropped.find("[data-toggle='tooltip']").tooltip("hide");
               $(this).remove();
-              updatePartyStats();
+              updateCharacterPartyStats();
             });
 
             $(this).empty().append(dropped);
-            updatePartyStats();
+            updateCharacterPartyStats();
           },
         });
 
@@ -1082,7 +1302,7 @@
 
                 fromChild.before(toChild);
               }
-              updatePartyStats();
+              updateCharacterPartyStats();
             },
           })
           .disableSelection();
@@ -1136,8 +1356,11 @@
           return classSynergy;
         }
 
-        function updatePartyStats() {
-          $(".party-column").each(function (elementIndex, element) {
+        function updateCharacterPartyStats() {
+          $("#character-group .party-column").each(function (
+            elementIndex,
+            element
+          ) {
             var totalItemLevel = 0;
             var itemCount = 0;
             var uniColor = [];
@@ -1172,14 +1395,10 @@
 
                   //add unique data in a party from each character element
                   color.forEach(function (item, index) {
-                    if (!uniColor.includes(item)) {
-                      uniColor.push(item);
-                    }
+                    uniColor.push(item);
                   });
                   synergy.forEach(function (item, index) {
-                    if (!uniSynergy.includes(item)) {
-                      uniSynergy.push(item);
-                    }
+                    uniSynergy.push(item);
                   });
 
                   totalItemLevel += itemLevel;
@@ -1263,7 +1482,17 @@
               .find(".avg-item-level")
               .text(" 평균템렙:" + avgItemLevel);
             //synergy number data
-            if (numSlash >= 0) {
+            if (numSlash == 0 && Object.keys(uniData).length == 0) {
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else if (numSlash == 0 && Object.keys(uniData).length != 0) {
               numSlash++;
               $(this)
                 .find(".color-count")
@@ -1275,6 +1504,7 @@
                     ")"
                 );
             } else {
+              numSlash++;
               $(this)
                 .find(".color-count")
                 .text(
