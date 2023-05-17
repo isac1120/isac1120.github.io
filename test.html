@@ -92,6 +92,93 @@
         /* height: 100vh; */
         font-family: "Jua", sans-serif;
       }
+      /* swithch */
+      .switch-container {
+        position: absolute;
+        float: left;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 120px;
+        height: 28px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: red;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: #2196f3;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196f3;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(90px);
+      }
+
+      .on {
+        display: none;
+      }
+
+      .on,
+      .off {
+        color: white;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        font-size: 10px;
+        font-family: Verdana, sans-serif;
+      }
+
+      input:checked + .slider .on {
+        display: block;
+      }
+
+      input:checked + .slider .off {
+        display: none;
+      }
+      /*--------- END --------*/
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
+      /* switch end*/
 
       .from-container {
         width: 66%;
@@ -296,109 +383,7 @@
           width: 200px;
         }
       }
-      
-     .button-container {
-      margin-top: 10px;
-      text-align: center;
-    }
 
-    .button-container button {
-      margin: 0 5px;
-      padding: 5px 10px;
-      background-color: #63c5da;
-      border: none;
-      color: #fff;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-/* swithch */
-      .switch-container {
-        position: absolute;
-        float: left;
-      }
-
-      .switch {
-        position: relative;
-        display: inline-block;
-        width: 120px;
-        height: 28px;
-      }
-
-      .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: red;
-        transition: 0.4s;
-      }
-
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 20px;
-        width: 20px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: 0.4s;
-      }
-
-      input:checked + .slider {
-        background-color: #2196f3;
-      }
-
-      input:focus + .slider {
-        box-shadow: 0 0 1px #2196f3;
-      }
-
-      input:checked + .slider:before {
-        transform: translateX(90px);
-      }
-
-      .on {
-        display: none;
-      }
-
-      .on,
-      .off {
-        color: white;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
-        font-size: 10px;
-        font-family: Verdana, sans-serif;
-      }
-
-      input:checked + .slider .on {
-        display: block;
-      }
-
-      input:checked + .slider .off {
-        display: none;
-      }
-      /*--------- END --------*/
-
-      /* Rounded sliders */
-      .slider.round {
-        border-radius: 34px;
-      }
-
-      .slider.round:before {
-        border-radius: 50%;
-      }
-
-      /* switch end*/
       /* Media query for mobile devices */
     </style>
   </head>
@@ -430,11 +415,10 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-          <div class="button-container">
-            <button id="copyDataBtn" class="rounded-rectangle">Copy</button>
-            <button id="saveDataBtn" class="rounded-rectangle">Save</button>
-            <button id="loadDataBtn" class="rounded-rectangle">Load</button>
-          </div>
+            <button id="copyDataButton">Copy Grouping Data</button>
+            <button id="saveDataButton">Save Grouping Data</button>
+            <input type="file" id="loadDataInput" style="display: none" accept=".txt">
+            <button id="loadDataButton">Load Grouping Data</button>
         </div>
         <div id="synergy-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -457,11 +441,10 @@
       >
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-          <div class="button-container">
-            <button id="copyDataBtn" class="rounded-rectangle">Copy</button>
-            <button id="saveDataBtn" class="rounded-rectangle">Save</button>
-            <button id="loadDataBtn" class="rounded-rectangle">Load</button>
-          </div>
+            <button id="copyDataButton">Copy Grouping Data</button>
+            <button id="saveDataButton">Save Grouping Data</button>
+            <input type="file" id="loadDataInput" style="display: none" accept=".txt">
+            <button id="loadDataButton">Load Grouping Data</button>
         </div>
         <div id="class-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -1545,67 +1528,85 @@
           });
         }
         
-        
-            // Helper function to convert data to a downloadable file
-    function downloadFile(data, filename) {
-      var data = Array.from(document.querySelectorAll(("#synergy-group"))
-                     .map(column => column.innerText.trim())
-                     .join('\n');
-
-      // Create a Blob object from the text data
-      var blob = new Blob([data], {type: 'text/plain'});
-      var url = window.URL.createObjectURL(blob);
-      var a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }
-
-    // Copy grouping columns data to the clipboard
-    function copyData() {
-      var data = Array.from(document.querySelectorAll(("#synergy-group"))
-                     .map(column => column.innerText.trim())
-                     .join('\n');
-      navigator.clipboard.writeText(data)
+            // Function to copy the grouping data to the clipboard
+    function copyGroupingData() {
+      const groupingData = JSON.stringify(getGroupingData());
+      navigator.clipboard.writeText(groupingData)
         .then(() => {
-          alert("Grouping columns data copied to clipboard!");
+          alert("Grouping data copied to clipboard!");
         })
         .catch((error) => {
-          console.error("Failed to copy data:", error);
+          console.error("Error copying grouping data:", error);
         });
     }
 
-      // Save grouping columns data to the browser cache
-      function saveData() {
-        var data = Array.from(document.querySelectorAll(("#synergy-group"))
-                       .map(column => column.innerText.trim())
-                       .join('\n');
-        localStorage.setItem("groupingData", data);
-        alert("Grouping columns data saved!");
-      }
+    // Function to save the grouping data as a TXT file
+    function saveGroupingData() {
+      const groupingData = JSON.stringify(getGroupingData());
+      const blob = new Blob([groupingData], { type: "text/plain;charset=utf-8" });
+      saveAs(blob, "grouping_data.txt");
+    }
 
-      // Load grouping columns data from the browser cache
-      function loadData() {
-        var data = Array.from(document.querySelectorAll(("#synergy-group"))
-                       .map(column => column.innerText.trim())
-                       .join('\n');
-        if (data) {
-          $("#synergy-group").html(JSON.parse(data));
-          alert("Grouping columns data loaded!");
-        } else {
-          alert("No saved data found!");
+    // Function to load grouping data from a TXT file
+    function loadGroupingData(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const groupingData = event.target.result;
+        try {
+          const parsedData = JSON.parse(groupingData);
+          // Use the parsed data to load the grouping columns
+          loadGroupingColumns(parsedData);
+          alert("Grouping data loaded successfully!");
+        } catch (error) {
+          console.error("Error parsing grouping data:", error);
+          alert("Error loading grouping data!");
         }
-      }
+      };
+      reader.readAsText(file);
+    }
 
-      // Attach click event handlers to the buttons
-      $("#copyDataBtn").click(copyData);
-      $("#saveDataBtn").click(saveData);
-      $("#loadDataBtn").click(loadData);
+    // Helper function to get the current grouping data
+    function getGroupingData() {
+      const groupingColumns = document.querySelectorAll(".grouping-columns");
+      const groupingData = [];
+      groupingColumns.forEach((column) => {
+        const columnData = [];
+        const items = column.querySelectorAll(".draggable");
+        items.forEach((item) => {
+          columnData.push(item.innerText);
+        });
+        groupingData.push(columnData);
       });
-      
+      return groupingData;
+    }
+
+    // Helper function to load grouping columns with data
+    function loadGroupingColumns(groupingData) {
+      const groupingColumns = document.querySelectorAll(".grouping-columns");
+      groupingColumns.forEach((column, columnIndex) => {
+        const columnData = groupingData[columnIndex];
+        column.innerHTML = ""; // Clear the column before loading
+        columnData.forEach((itemText) => {
+          const item = document.createElement("div");
+          item.innerText = itemText;
+          item.classList.add("draggable");
+          column.appendChild(item);
+        });
+      });
+    }
+
+    // Add event listeners to the buttons
+    document.getElementById("copyDataButton").addEventListener("click", copyGroupingData);
+    document.getElementById("saveDataButton").addEventListener("click", saveGroupingData);
+    document.getElementById("loadDataButton").addEventListener("click", () => {
+      document.getElementById("loadDataInput").click();
+    });
+    document.getElementById("loadDataInput").addEventListener("change", loadGroupingData);
+        
+        
+        
+      });
     </script>
   </body>
 </html>
