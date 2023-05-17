@@ -92,93 +92,6 @@
         /* height: 100vh; */
         font-family: "Jua", sans-serif;
       }
-      /* swithch */
-      .switch-container {
-        position: absolute;
-        float: left;
-      }
-
-      .switch {
-        position: relative;
-        display: inline-block;
-        width: 120px;
-        height: 28px;
-      }
-
-      .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: red;
-        transition: 0.4s;
-      }
-
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 20px;
-        width: 20px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: 0.4s;
-      }
-
-      input:checked + .slider {
-        background-color: #2196f3;
-      }
-
-      input:focus + .slider {
-        box-shadow: 0 0 1px #2196f3;
-      }
-
-      input:checked + .slider:before {
-        transform: translateX(90px);
-      }
-
-      .on {
-        display: none;
-      }
-
-      .on,
-      .off {
-        color: white;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
-        font-size: 10px;
-        font-family: Verdana, sans-serif;
-      }
-
-      input:checked + .slider .on {
-        display: block;
-      }
-
-      input:checked + .slider .off {
-        display: none;
-      }
-      /*--------- END --------*/
-
-      /* Rounded sliders */
-      .slider.round {
-        border-radius: 34px;
-      }
-
-      .slider.round:before {
-        border-radius: 50%;
-      }
-
-      /* switch end*/
 
       .from-container {
         width: 66%;
@@ -383,7 +296,109 @@
           width: 200px;
         }
       }
+      
+     .button-container {
+      margin-top: 10px;
+      text-align: center;
+    }
 
+    .button-container button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      background-color: #63c5da;
+      border: none;
+      color: #fff;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+/* swithch */
+      .switch-container {
+        position: absolute;
+        float: left;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 120px;
+        height: 28px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: red;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: #2196f3;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196f3;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(90px);
+      }
+
+      .on {
+        display: none;
+      }
+
+      .on,
+      .off {
+        color: white;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        font-size: 10px;
+        font-family: Verdana, sans-serif;
+      }
+
+      input:checked + .slider .on {
+        display: block;
+      }
+
+      input:checked + .slider .off {
+        display: none;
+      }
+      /*--------- END --------*/
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
+      /* switch end*/
       /* Media query for mobile devices */
     </style>
   </head>
@@ -415,6 +430,16 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
+            <div class="button-container">
+              <!-- Button to copy grouping columns data -->
+              <button onclick="copyGroupingColumnsData()">Copy</button>
+
+              <!-- Button to save grouping columns data as a text file -->
+              <button onclick="saveGroupingColumnsData()">Save</button>
+
+              <!-- Button to reload grouping columns data from saved text file -->
+              <button onclick="reloadGroupingColumnsData()">Reload</button>
+            </div>
         </div>
         <div id="synergy-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -437,6 +462,16 @@
       >
         <div class="container-header">
           <h4 class="text-center">공대</h4>
+            <div class="button-container">
+              <!-- Button to copy grouping columns data -->
+              <button onclick="copyGroupingColumnsData()">Copy</button>
+
+              <!-- Button to save grouping columns data as a text file -->
+              <button onclick="saveGroupingColumnsData()">Save</button>
+
+              <!-- Button to reload grouping columns data from saved text file -->
+              <button onclick="reloadGroupingColumnsData()">Reload</button>
+            </div>
         </div>
         <div id="class-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -1518,6 +1553,47 @@
             //color circles
             $(this).find(".color-count").after(colorCircles);
           });
+        }
+        
+                // Function to copy grouping columns data
+        function copyGroupingColumnsData() {
+          var groupingColumnsData = getGroupingColumnsData();
+          // Perform copy operation (e.g., using the Clipboard API)
+          // Replace the following line with the actual code to copy the data
+          console.log("Copying grouping columns data:", groupingColumnsData);
+        }
+
+        // Function to save grouping columns data as a text file
+        function saveGroupingColumnsData() {
+          var groupingColumnsData = getGroupingColumnsData();
+          // Convert the data to text format
+          var textData = JSON.stringify(groupingColumnsData);
+          // Perform save operation (e.g., using the FileSaver.js library)
+          // Replace the following line with the actual code to save the data as a text file
+          console.log("Saving grouping columns data:", textData);
+        }
+
+        // Function to reload grouping columns data from saved text file
+        function reloadGroupingColumnsData() {
+          // Perform reload operation (e.g., using an input element with type="file")
+          // Replace the following line with the actual code to reload the data from a text file
+          console.log("Reloading grouping columns data");
+        }
+
+        // Function to get the current grouping columns data
+        function getGroupingColumnsData() {
+          var groupingColumns = [];
+          var groupingColumnElements = document.querySelectorAll("#synergy-group .droppable");
+          groupingColumnElements.forEach(function (columnElement) {
+            console.log(columnElement);
+            var classes = [];
+            var classElements = columnElement.querySelectorAll(".class-element");
+            classElements.forEach(function (classElement) {
+              classes.push(classElement.textContent);
+            });
+            groupingColumns.push(classes);
+          });
+          return groupingColumns;
         }
       });
     </script>
