@@ -773,13 +773,13 @@
               // If class is not yet in the dictionary, add it
               if (!(className in classes)) {
                 classes[className] = JSON.parse(JSON.stringify(classes[baseClassName]));
-              }
-              // Add one synergy from synergy table to the class
-              classes[className].push({
-                synergyName: synergy.name,
-                categoryName: category.categoryName,
-                color: category.color,
-              });           
+                // Add one synergy from synergy table to the class
+                classes[className].push({
+                  synergyName: synergy.name,
+                  categoryName: category.categoryName,
+                  color: category.color,
+                });         
+               }  
 
             });            
           });
