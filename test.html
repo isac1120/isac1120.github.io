@@ -755,14 +755,13 @@
               // Add the child class synergy to the class
               if (!(className in classes)) {
                 classes[className] = JSON.parse(JSON.stringify(classes[baseClassName]));
-              }
-              // Add the synergy to the class
-              classes[className].push({
-                synergyName: synergy.name,
-                categoryName: category.categoryName,
-                color: category.color,
-              });
-              
+                // Add the synergy to the class
+                classes[className].push({
+                  synergyName: synergy.name,
+                  categoryName: category.categoryName,
+                  color: category.color,
+                });
+              }              
 
             });
           });
