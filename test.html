@@ -752,6 +752,17 @@
                 categoryName: category.categoryName,
                 color: category.color,
               });
+              
+              // Add the child class to the parent class's synergy
+              var parentClassName = baseClassName;
+              var childClassName = className.trim();
+              if (parentClassName !== childClassName) {
+                classes[parentClassName].push({
+                  synergyName: synergy.name,
+                  categoryName: category.categoryName,
+                  color: category.color,
+                });
+              }
             });
           });
         });
