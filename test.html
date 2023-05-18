@@ -743,7 +743,7 @@
 
               
               // Remove any words in parentheses
-              var baseClassName = className.replace(/\([^)]*\)/g, "").trim();
+              var baseClassName = className.replace(/\[[^\]]*\]/g, "").trim();
               
               // If class is not yet in the dictionary, add it
               if (!(baseClassName in classes)) {
@@ -756,9 +756,32 @@
                 color: category.color,
               });           
 
-            });
-            console.log(classes);
-            
+            });            
+          });
+        });
+        
+        
+        // Iterate over synergies to build the classes dictionary
+        synergies.forEach(function (synergy) {
+          synergy.categories.forEach(function (category) {
+            category.classes.forEach(function (className) {
+
+              
+              // Remove any words in parentheses
+              var baseClassName = className.replace(/\[[^\]]*\]/g, "").trim();
+              
+              // If class is not yet in the dictionary, add it
+              if (!(className in classes)) {
+                classes[className] = JSON.parse(JSON.stringify(classes[baseClassName]));
+              }
+              // Add one synergy from synergy table to the class
+              classes[className].push({
+                synergyName: synergy.name,
+                categoryName: category.categoryName,
+                color: category.color,
+              });           
+
+            });            
           });
         });
 
