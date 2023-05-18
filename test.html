@@ -743,7 +743,7 @@
 
               
               // Remove any words in parentheses
-              var baseClassName = className.replace(/\[.*\]/g, "").trim();
+              var baseClassName = className.replace(/\([^)]*\)/g, "").trim();
               
               // If class is not yet in the dictionary, add it
               if (!(baseClassName in classes)) {
@@ -757,20 +757,7 @@
               });           
 
             });
-            console.log(
-            category.classes.forEach(function (className) {
-                // Remove any words in parentheses
-                var baseClassName = className.replace(/\[.*\]/g, "").trim();
-                if (!(className in classes)) {
-                  classes[className] = JSON.parse(JSON.stringify(classes[baseClassName]));
-                  // Add the synergy to the class
-                  classes[className].push({
-                    synergyName: synergy.name,
-                    categoryName: category.categoryName,
-                    color: category.color,
-                  });
-               }   
-            });
+            console.log(classes);
             
           });
         });
