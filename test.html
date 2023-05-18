@@ -594,7 +594,7 @@
             categories: [
               {
                 categoryName: "여우비상태10%",
-                classes: ["(이슬비)기상술사"],
+                classes: ["[이슬비]기상술사"],
                 color: "#00BFFF",
               },
             ],
@@ -636,7 +636,7 @@
                   "배틀마스터",
                   "블레이드",
                   "스트라이커(사멸)",
-                  "(질풍)기상술사",
+                  "[질풍]기상술사",
                 ],
                 color: "#800080",
               },
@@ -656,8 +656,8 @@
                 classes: [
                   "배틀마스터",
                   "블레이드",
-                  "(두동)호크아이",
-                  "(질풍)기상술사",
+                  "[두동]호크아이",
+                  "[질풍]기상술사",
                 ],
                 color: "#FFE4E1",
               },
@@ -746,23 +746,24 @@
               if (!(baseClassName in classes)) {
                 classes[baseClassName] = [];
               }
-              // Add the synergy to the class
+              // Add the parent class synergy to the class
               classes[baseClassName].push({
                 synergyName: synergy.name,
                 categoryName: category.categoryName,
                 color: category.color,
               });
-              
-              // Add the child class to the parent class's synergy
-              var parentClassName = baseClassName;
-              var childClassName = className.trim();
-              if (parentClassName !== childClassName) {
-                classes[parentClassName].push({
-                  synergyName: synergy.name,
-                  categoryName: category.categoryName,
-                  color: category.color,
-                });
+              // Add the child class synergy to the class
+              if (!(className in classes)) {
+                classes[className] = JSON.parse(JSON.stringify(classes[baseClassName]);
               }
+              // Add the synergy to the class
+              classes[className].push({
+                synergyName: synergy.name,
+                categoryName: category.categoryName,
+                color: category.color,
+              });
+              
+
             });
           });
         });
