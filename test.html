@@ -740,20 +740,27 @@
         synergies.forEach(function (synergy) {
           synergy.categories.forEach(function (category) {
             category.classes.forEach(function (className) {
-              // If class is not yet in the dictionary, add it
+
+              
               // Remove any words in parentheses
               var baseClassName = className.replace(/\(.*\)/g, "").trim();
+              
+              // If class is not yet in the dictionary, add it
               if (!(baseClassName in classes)) {
                 classes[baseClassName] = [];
               }
-              // Add the parent class synergy to the class
+              // Add one synergy from synergy table to the class
               classes[baseClassName].push({
                 synergyName: synergy.name,
                 categoryName: category.categoryName,
                 color: category.color,
-              });
-              // Add the child class synergy to the class
-              if (!(className in classes)) {
+              });           
+
+            });
+            category.classes.forEach(function (className) {
+                // Remove any words in parentheses
+                var baseClassName = className.replace(/\(.*\)/g, "").trim();
+                if (!(className in classes)) {
                 classes[className] = JSON.parse(JSON.stringify(classes[baseClassName]));
                 // Add the synergy to the class
                 classes[className].push({
@@ -761,9 +768,9 @@
                   categoryName: category.categoryName,
                   color: category.color,
                 });
-              }              
-
+              }   
             });
+            
           });
         });
 
