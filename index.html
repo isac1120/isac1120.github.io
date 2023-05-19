@@ -378,6 +378,7 @@
       }
       .copy-button,
       .save-button {
+        font-size: 13px;
         background-color: #63c5da;
         border: none;
         color: #fff;
@@ -395,10 +396,16 @@
         .draggable {
           width: 200px;
         }
-        .synergy-columns,.class-columns,.user-columns,.grouping-columns{
+        .class-column.draggable {
+          min-width: 200px;
+          width: 200px;
+        }
+        #synergy-columns,
+        #class-columns,
+        #user-columns,
+        .grouping-columns {
           height: 300px;
         }
-
       }
 
       /* Media query for mobile devices */
