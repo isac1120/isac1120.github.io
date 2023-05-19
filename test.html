@@ -415,7 +415,7 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-            <button id="synergyCopyButton" class="copyDataButton">Copy Grouping Data</button>
+
         </div>
         <div id="synergy-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -486,32 +486,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
       $(document).ready(function () {
-        
-          // Function to copy the grouping data
-      function copyGroupingData(containerId) {
-        var groupingColumns = $("#" + containerId + " .grouping-columns");
-        var groupingData = groupingColumns
-          .find(".draggable")
-          .map(function () {
-            return $(this).text();
-          })
-          .get()
-          .join(", ");
 
-        // Copy the grouping data to the clipboard
-        navigator.clipboard.writeText(groupingData).then(function () {
-          alert("Grouping data copied to clipboard!");
-        });
-        
-          // Add click event listeners to the copy buttons
-        $("#synergyCopyButton").click(function () {
-          copyGroupingData("synergy-group-container");
-        });
-
-        $("#classCopyButton").click(function () {
-          copyGroupingData("class-group-container");
-        });
-        
         // Synergy data
         var synergies = [
           {
