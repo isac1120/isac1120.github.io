@@ -35,12 +35,12 @@
 
     <title>레이더스 큐브 - 로아 공대/파티 시너지 시뮬레이터</title>
 
-    <link rel="icon" type="image/icon" href="favicon.ico">
-    <link rel="shortcut icon" type="image/icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/icon" href="favicon.ico" />
+    <link rel="shortcut icon" type="image/icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -207,8 +207,9 @@
       }
       .class-column.draggable {
         width: 250px;
-        padding: 5px;
-        margin: 10px;
+        height: 100px;
+        padding: 15px;
+        margin: 5px;
       }
 
       .class-column {
@@ -217,12 +218,12 @@
 
       #class-columns,
       #synergy-columns {
-        height: 90%;
+        height: 650px;
         min-height: 300px;
         min-width: 300px;
         border: 1px solid #ccc;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px rgba(255, 156, 156, 0.1);
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -259,7 +260,7 @@
       }
 
       .grouping-columns {
-        height: 90%;
+        height: 650px;
         min-height: 250px;
         min-width: 300px;
         overflow-y: scroll;
@@ -275,7 +276,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin: 20px 20px;
+        margin: 35px auto;
         padding: 10px 10px;
       }
 
@@ -292,7 +293,7 @@
       }
 
       #user-columns {
-        height: 90%;
+        height: 650px;
         min-height: 250px;
         min-width: 300px;
         display: flex;
@@ -371,7 +372,19 @@
         overflow-x: hidden;
         white-space: nowrap;
       }
-
+      .button-container {
+        position: absolute;
+        right: 20px;
+      }
+      .copy-button,
+      .save-button {
+        background-color: #63c5da;
+        border: none;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
       @media (max-width: 768px) {
         .from-container,
         .to-container {
@@ -381,6 +394,9 @@
         }
         .draggable {
           width: 200px;
+        }
+        .grouping-columns {
+          height: 300px;
         }
       }
 
@@ -402,7 +418,6 @@
           </div>
         </label>
       </div>
-
       <div id="synergy-container" class="from-container">
         <div class="container-header">
           <h4 class="text-center">시너지</h4>
@@ -414,6 +429,10 @@
 
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
+          <div class="button-container">
+            <button class="copy-button">복사</button>
+            <button class="save-button">저장</button>
+          </div>
           <h4 class="text-center">공대</h4>
         </div>
         <div id="synergy-group" class="grouping-columns">
@@ -436,6 +455,10 @@
         style="display: none"
       >
         <div class="container-header">
+          <div class="button-container">
+            <button class="copy-button">복사</button>
+            <button class="save-button">저장</button>
+          </div>
           <h4 class="text-center">공대</h4>
         </div>
         <div id="class-group" class="grouping-columns">
@@ -454,6 +477,10 @@
 
       <div id="character-group-container" class="to-container">
         <div class="container-header">
+          <div class="button-container">
+            <button class="copy-button">복사</button>
+            <button class="save-button">저장</button>
+          </div>
           <h4 class="text-center">공대</h4>
         </div>
         <div id="character-group" class="grouping-columns">
@@ -476,6 +503,7 @@
 
       gtag("config", "G-NY4TE8ZY84");
     </script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -485,6 +513,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
       $(document).ready(function () {
+        // Add event listeners to copy buttons
+        $(".copy-button").click(function () {
+          var containerId = $(this).closest(".to-container").attr("id");
+          var container = $("#" + containerId + " .grouping-columns");
+          copyElement(container);
+        });
+
+        // Add event listeners to save buttons
+        $(".save-button").click(function () {
+          var containerId = $(this).closest(".to-container").attr("id");
+          var container = $("#" + containerId + " .grouping-columns");
+          saveImage(container);
+        });
+
+        // Function to copy the content of an element as an image
+        function copyElement(element) {
+          html2canvas(element[0], { scrollY: -window.scrollY }).then(function (
+            canvas
+          ) {
+            var image = canvas.toDataURL("image/png");
+            navigator.clipboard.writeText(image).then(function () {
+              alert("Image copied to clipboard!");
+            });
+          });
+        }
+
+        // Function to save the content of an element as an image
+        function saveImage(element) {
+          html2canvas(element[0], { scrollY: -window.scrollY }).then(function (
+            canvas
+          ) {
+            var link = document.createElement("a");
+            link.href = canvas.toDataURL("image/png");
+            link.download = "image.png";
+            link.click();
+          });
+        }
         // Synergy data
         var synergies = [
           {
@@ -492,12 +557,12 @@
             categories: [
               {
                 categoryName: "상시10%",
-                classes: ["건슬링어", "아르카나", "데빌헌터(사멸)", "기상술사"],
+                classes: ["건슬링어", "아르카나", "데빌헌터", "기상술사"],
                 color: "#8B0000",
               },
               {
                 categoryName: "순간18%",
-                classes: ["스트라이커(사멸)", "배틀마스터", "창술사"],
+                classes: ["스트라이커", "배틀마스터", "창술사"],
                 color: "#FF0000",
               },
             ],
@@ -510,12 +575,12 @@
                 categoryName: "상시6%",
                 classes: [
                   "소서리스",
-                  "인파이터(사멸)",
+                  "인파이터",
                   "호크아이",
                   "데모닉",
                   "버서커",
                   "블레이드",
-                  "슬레이어(사멸)",
+                  "슬레이어",
                 ],
                 color: "#FF1493",
               },
@@ -539,10 +604,10 @@
                 categoryName: "상시12%",
                 classes: [
                   "워로드",
-                  "디스트로이어(사멸)",
+                  "디스트로이어",
                   "블래스터",
                   "서머너",
-                  "리퍼(사멸)",
+                  "리퍼",
                 ],
                 color: "#8B4513",
               },
@@ -570,7 +635,7 @@
             categories: [
               {
                 categoryName: "상시9%",
-                classes: ["블레이드(사멸)"],
+                classes: ["블레이드"],
                 color: "#BDB76B",
               },
               {
@@ -586,7 +651,7 @@
             categories: [
               {
                 categoryName: "여우비상태10%",
-                classes: ["(이슬비)기상술사"],
+                classes: ["[이슬비]기상술사"],
                 color: "#00BFFF",
               },
             ],
@@ -627,8 +692,8 @@
                 classes: [
                   "배틀마스터",
                   "블레이드",
-                  "스트라이커(사멸)",
-                  "(질풍)기상술사",
+                  "스트라이커",
+                  "[질풍]기상술사",
                 ],
                 color: "#800080",
               },
@@ -648,8 +713,8 @@
                 classes: [
                   "배틀마스터",
                   "블레이드",
-                  "(두동)호크아이",
-                  "(질풍)기상술사",
+                  "[두동]호크아이",
+                  "[질풍]기상술사",
                 ],
                 color: "#FFE4E1",
               },
@@ -734,16 +799,59 @@
             category.classes.forEach(function (className) {
               // If class is not yet in the dictionary, add it
               // Remove any words in parentheses
-              var baseClassName = className.replace(/\(.*\)/g, "").trim();
-              if (!(baseClassName in classes)) {
-                classes[baseClassName] = [];
+              var baseClassName = className.replace(/\[.*\]/g, "").trim();
+
+              if (!(className in classes)) {
+                classes[className] = [];
               }
               // Add the synergy to the class
-              classes[baseClassName].push({
+              classes[className].push({
                 synergyName: synergy.name,
                 categoryName: category.categoryName,
                 color: category.color,
               });
+            });
+          });
+        });
+        console.log(classes);
+        // Iterate over synergies to build the classes dictionary
+        synergies.forEach(function (synergy) {
+          synergy.categories.forEach(function (category) {
+            category.classes.forEach(function (className) {
+              // If class is not yet in the dictionary, add it
+              // Remove any words in parentheses
+              var baseClassName = className.replace(/\[.*\]/g, "").trim();
+              if (
+                className.includes(baseClassName) &&
+                className !== baseClassName
+              ) {
+                classes[className] = JSON.parse(
+                  JSON.stringify(classes[baseClassName])
+                );
+                // Add the synergy to the class
+                classes[className].push({
+                  synergyName: synergy.name,
+                  categoryName: category.categoryName,
+                  color: category.color,
+                });
+              }
+            });
+          });
+        });
+
+        // Iterate over synergies to build the classes dictionary
+        synergies.forEach(function (synergy) {
+          synergy.categories.forEach(function (category) {
+            category.classes.forEach(function (className) {
+              // If class is not yet in the dictionary, add it
+              // Remove any words in parentheses
+              var baseClassName = className.replace(/\[.*\]/g, "").trim();
+              if (
+                className.includes(baseClassName) &&
+                className !== baseClassName
+              ) {
+                delete classes[baseClassName];
+              }
             });
           });
         });
@@ -756,14 +864,14 @@
             .text(className)
             .addClass("draggable")
             .css("background-color", "#fff");
-
+          // Create a circle with the first letter of synergyName
           var wrapper = $("<div></div>");
           classes[className].forEach(function (synergy) {
             var initials = synergy.synergyName
               .split(" ")
               .map((word) => word.charAt(0).toUpperCase())
               .join("");
-            // Create a circle with the first letter of synergyName
+
             var circle = $("<div></div>")
               .addClass("rounded-rectangle")
               .css("background-color", synergy.color)
@@ -790,7 +898,7 @@
 
         // Create grouping columns
         synergyGroup.forEach(function (party, index) {
-          var column = $('<div class="party-column"></div>').css(
+          var column = $('<div class="party-column col-10"></div>').css(
             "background-color",
             "#fff"
           );
@@ -812,7 +920,7 @@
 
         // Create grouping columns
         classGroup.forEach(function (party, index) {
-          var column = $('<div class="party-column"></div>').css(
+          var column = $('<div class="party-column col-10"></div>').css(
             "background-color",
             "#fff"
           );
