@@ -428,6 +428,10 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
+          <div class="button-container">
+            <button class="copy-button" onclick="copyImage('synergy-group')">Copy</button>
+            <button class="save-button" onclick="saveImage('synergy-group')">Save</button>
+          </div>
         </div>
         <div id="synergy-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -450,6 +454,10 @@
       >
         <div class="container-header">
           <h4 class="text-center">공대</h4>
+          <div class="button-container">
+            <button class="copy-button" onclick="copyImage('class-group')">Copy</button>
+            <button class="save-button" onclick="saveImage('class-group')">Save</button>
+          </div>
         </div>
         <div id="class-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -468,6 +476,10 @@
       <div id="character-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
+          <div class="button-container">
+            <button class="copy-button" onclick="copyImage('character-group')">Copy</button>
+            <button class="save-button" onclick="saveImage('character-group')">Save</button>
+          </div>
         </div>
         <div id="character-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -489,6 +501,7 @@
 
       gtag("config", "G-NY4TE8ZY84");
     </script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -498,47 +511,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
       $(document).ready(function () {
-        // Function to copy the grouping column texts as JSON
-        function copyGroupingColumnTexts() {
-          var groupingColumns = $(".grouping-columns");
-          var columnTexts = [];
-
-          groupingColumns.each(function () {
-            var columnText = [];
-            $(this)
-              .children()
-              .each(function () {
-                columnText.push($(this).text());
-              });
-            columnTexts.push(columnText);
+        
+        function copyImage(groupId) {
+          var container = document.getElementById(groupId);
+          html2canvas(container).then(function (canvas) {
+            canvas.toBlob(function (blob) {
+              navigator.clipboard.write([
+                new ClipboardItem({
+                  [blob.type]: blob,
+                }),
+              ]);
+            });
           });
-
-          var jsonText = JSON.stringify(columnTexts);
-          copyToClipboard(jsonText);
         }
 
-        // Function to copy text to clipboard
-        function copyToClipboard(text) {
-          var dummy = document.createElement("textarea");
-          document.body.appendChild(dummy);
-          dummy.value = text;
-          dummy.select();
-          document.execCommand("copy");
-          document.body.removeChild(dummy);
+        function saveImage(groupId) {
+          var container = document.getElementById(groupId);
+          html2canvas(container).then(function (canvas) {
+            var link = document.createElement("a");
+            link.href = canvas.toDataURL();
+            link.download = groupId + ".png";
+            link.click();
+          });
         }
-
-        // Add copy button click event to each to-container header
-        $(".to-container .container-header").each(function () {
-          var copyButton = $("<button></button>")
-            .text("Copy")
-            .addClass("copy-button");
-          $(this).append(copyButton);
-        });
-
-        // Copy button click event handler
-        $(".copy-button").on("click", function () {
-          copyGroupingColumnTexts();
-        });
         // Synergy data
         var synergies = [
           {
