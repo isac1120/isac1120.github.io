@@ -493,7 +493,9 @@
             .click(function () {
               var groupingColumns = $(this).siblings(".grouping-columns");
               var columnData = getColumnData(groupingColumns);
+              console.log(columnData);
               var jsonData = JSON.stringify(columnData);
+              console.log(jsonData);
               copyToClipboard(jsonData);
             });
 
