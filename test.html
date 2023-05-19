@@ -415,7 +415,7 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-
+          <button id="synergy-copy-button" class="copy-button">Copy</button>
         </div>
         <div id="synergy-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -438,6 +438,7 @@
       >
         <div class="container-header">
           <h4 class="text-center">공대</h4>
+          <button id="class-copy-button" class="copy-button">Copy</button>
         </div>
         <div id="class-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -486,7 +487,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
       $(document).ready(function () {
+         // Copy button event listeners
+          $("#synergy-copy-button").on("click", function () {
+            var groupingColumnText = $("#synergy-group")
+              .text()
+              .trim();
+            copyToClipboard(groupingColumnText);
+            alert("Text copied from Synergy grouping columns!");
+          });
 
+          $("#class-copy-button").on("click", function () {
+            var groupingColumnText = $("#class-group")
+              .text()
+              .trim();
+            copyToClipboard(groupingColumnText);
+            alert("Text copied from Class grouping columns!");
+          });
+
+          // Copy text to clipboard
+          function copyToClipboard(text) {
+            var textarea = $("<textarea></textarea>");
+            textarea.val(text).css("position", "fixed").css("opacity", 0);
+            $("body").append(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            textarea.remove();
+          }
         // Synergy data
         var synergies = [
           {
