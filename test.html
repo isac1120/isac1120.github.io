@@ -487,32 +487,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
       $(document).ready(function () {
-         // Copy button event listeners
-          $("#synergy-copy-button").on("click", function () {
-            var groupingColumnText = $("#synergy-group")
-              .text()
-              .trim();
-            copyToClipboard(groupingColumnText);
-            alert("Text copied from Synergy grouping columns!");
+        // Add a copy button to each container header
+        $(".container-header").each(function () {
+          var copyButton = $("<button></button>")
+            .text("Copy")
+            .addClass("copy-button")
+            .click(function () {
+              var groupingColumns = $(this).siblings(".grouping-columns");
+              var columnData = getColumnData(groupingColumns);
+              var jsonData = JSON.stringify(columnData);
+              copyToClipboard(jsonData);
+            });
+
+          $(this).append(copyButton);
+        });
+
+        // Helper function to get the data from the grouping columns
+        function getColumnData(groupingColumns) {
+          var columnData = [];
+
+          groupingColumns.children(".party-column").each(function () {
+            var partyData = [];
+
+            $(this)
+              .children(".droppable")
+              .each(function () {
+                var className = $(this).text().trim();
+                partyData.push(className);
+              });
+
+            columnData.push(partyData);
           });
 
-          $("#class-copy-button").on("click", function () {
-            var groupingColumnText = $("#class-group")
-              .text()
-              .trim();
-            copyToClipboard(groupingColumnText);
-            alert("Text copied from Class grouping columns!");
-          });
+          return columnData;
+        }
 
-          // Copy text to clipboard
-          function copyToClipboard(text) {
-            var textarea = $("<textarea></textarea>");
-            textarea.val(text).css("position", "fixed").css("opacity", 0);
-            $("body").append(textarea);
-            textarea.select();
-            document.execCommand("copy");
-            textarea.remove();
-          }
+        // Helper function to copy the data to the clipboard
+        function copyToClipboard(data) {
+          var textField = $("<textarea></textarea>").val(data);
+          $("body").append(textField);
+          textField.select();
+          document.execCommand("copy");
+          textField.remove();
+          alert("Copied to clipboard!");
+        }
+
         // Synergy data
         var synergies = [
           {
