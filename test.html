@@ -385,6 +385,19 @@
       }
 
       /* Media query for mobile devices */
+      
+      .copy-button {
+        background-color: #63c5da;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin-left: 5px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -485,54 +498,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
       $(document).ready(function () {
-        // Add a copy button to each container header
+        // Function to copy the grouping column texts as JSON
+        function copyGroupingColumnTexts() {
+          var groupingColumns = $("#synergy-group .party-column .droppable");
+          var columnTexts = [];
+
+          groupingColumns.each(function () {
+            var columnText = [];
+            $(this)
+              .children()
+              .each(function () {
+                columnText.push($(this).text());
+              });
+            columnTexts.push(columnText);
+          });
+
+          var jsonText = JSON.stringify(columnTexts);
+          copyToClipboard(jsonText);
+        }
+
+        // Function to copy text to clipboard
+        function copyToClipboard(text) {
+          var dummy = document.createElement("textarea");
+          document.body.appendChild(dummy);
+          dummy.value = text;
+          dummy.select();
+          document.execCommand("copy");
+          document.body.removeChild(dummy);
+        }
+
+        // Add copy button click event to each to-container header
         $(".to-container .container-header").each(function () {
           var copyButton = $("<button></button>")
             .text("Copy")
-            .addClass("copy-button")
-            .click(function () {
-              var groupingColumns = $(this).siblings(".grouping-columns");
-              console.log(groupingColumns);
-              var columnData = getColumnData(groupingColumns);
-              console.log(columnData);
-              var jsonData = JSON.stringify(columnData);
-              console.log(jsonData);
-              copyToClipboard(jsonData);
-            });
-
+            .addClass("copy-button");
           $(this).append(copyButton);
         });
 
-        // Helper function to get the data from the grouping columns
-        function getColumnData(groupingColumns) {
-          var columnData = [];
-
-          groupingColumns.each(function () {
-            var partyData = [];
-
-            $(this)
-              .children(".droppable")
-              .each(function () {
-                var className = $(this).text().trim();
-                partyData.push(className);
-              });
-
-            columnData.push(partyData);
-          });
-
-          return columnData;
-        }
-
-        // Helper function to copy the data to the clipboard
-        function copyToClipboard(data) {
-          var textField = $("<textarea></textarea>").val(data);
-          $("body").append(textField);
-          textField.select();
-          document.execCommand("copy");
-          textField.remove();
-          alert("Copied to clipboard!");
-        }
-
+        // Copy button click event handler
+        $(".copy-button").on("click", function () {
+          copyGroupingColumnTexts();
+        });
         // Synergy data
         var synergies = [
           {
