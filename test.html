@@ -414,10 +414,11 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-          <div class="button-container">
-            <button class="copy-button" onclick="copyImage('synergy-group')">Copy</button>
-            <button class="save-button" onclick="saveImage('synergy-group')">Save</button>
+          <div class="container-header">
+            <button class="copy-button">Copy</button>
+            <button class="save-button">Save</button>
           </div>
+
         </div>
         <div id="synergy-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -440,9 +441,9 @@
       >
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-          <div class="button-container">
-            <button class="copy-button" onclick="copyImage('class-group')">Copy</button>
-            <button class="save-button" onclick="saveImage('class-group')">Save</button>
+          <div class="container-header">
+            <button class="copy-button">Copy</button>
+            <button class="save-button">Save</button>
           </div>
         </div>
         <div id="class-group" class="grouping-columns">
@@ -462,9 +463,9 @@
       <div id="character-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-          <div class="button-container">
-            <button class="copy-button" onclick="copyImage('character-group')">Copy</button>
-            <button class="save-button" onclick="saveImage('character-group')">Save</button>
+          <div class="container-header">
+            <button class="copy-button">Copy</button>
+            <button class="save-button">Save</button>
           </div>
         </div>
         <div id="character-group" class="grouping-columns">
@@ -497,29 +498,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
       $(document).ready(function () {
-        
-        function copyImage(groupId) {
-          var container = document.getElementById(groupId);
-          html2canvas(container).then(function (canvas) {
-            canvas.toBlob(function (blob) {
-              navigator.clipboard.write([
-                new ClipboardItem({
-                  [blob.type]: blob,
-                }),
-              ]);
-            });
+          // Add event listeners to copy buttons
+          $(".copy-button").click(function() {
+            var containerId = $(this).closest(".to-container").attr("id");
+            var container = $("#" + containerId + " .grouping-columns");
+            copyElement(container);
           });
-        }
 
-        function saveImage(groupId) {
-          var container = document.getElementById(groupId);
-          html2canvas(container).then(function (canvas) {
-            var link = document.createElement("a");
-            link.href = canvas.toDataURL();
-            link.download = groupId + ".png";
-            link.click();
+          // Add event listeners to save buttons
+          $(".save-button").click(function() {
+            var containerId = $(this).closest(".to-container").attr("id");
+            var container = $("#" + containerId + " .grouping-columns");
+            saveImage(container);
           });
-        }
+
+          // Function to copy the content of an element as an image
+          function copyElement(element) {
+            html2canvas(element[0]).then(function(canvas) {
+              var image = canvas.toDataURL("image/png");
+              navigator.clipboard.writeText(image).then(function() {
+                alert("Image copied to clipboard!");
+              });
+            });
+          }
+
+          // Function to save the content of an element as an image
+          function saveImage(element) {
+            html2canvas(element[0]).then(function(canvas) {
+              var link = document.createElement("a");
+              link.href = canvas.toDataURL("image/png");
+              link.download = "image.png";
+              link.click();
+            });
+          }
         // Synergy data
         var synergies = [
           {
