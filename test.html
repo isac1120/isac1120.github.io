@@ -415,10 +415,7 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <h4 class="text-center">공대</h4>
-            <button id="synergyCopyButton" class="copyDataButton">Copy Grouping Data</button>
-            <button id="synergySaveButton" class="saveDataButton">Save Grouping Data</button>
-            <input type="file" id="synergyLoadInput" class="loadDataInput" style="display: none" accept=".txt">
-            <button id="synergyLoadButton" class="loadDataButton">Load Grouping Data</button>
+            <button class="copyDataButton">Copy Grouping Data</button>
         </div>
         <div id="synergy-group" class="grouping-columns">
           <!-- Add your grouping columns here -->
@@ -702,7 +699,20 @@
             color: "#DCDCDC",
           },
         ];
+          $(".copyDataButton").click(function () {
+            var groupingData = $(this).parent().next(".grouping-columns").text();
+            copyToClipboard(groupingData);
+            alert("Grouping data copied to clipboard!");
+          });
 
+          function copyToClipboard(text) {
+            var $tempInput = $("<input>");
+            $("body").append($tempInput);
+            $tempInput.val(text).select();
+            document.execCommand("copy");
+            $tempInput.remove();
+          }
+        });
         // Create synergy columns
         synergies.forEach(function (synergy) {
           var column = $('<div class="synergy-column"></div>').css(
