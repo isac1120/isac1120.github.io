@@ -492,6 +492,7 @@
             .addClass("copy-button")
             .click(function () {
               var groupingColumns = $(this).siblings(".grouping-columns");
+              console.log(groupingColumns);
               var columnData = getColumnData(groupingColumns);
               console.log(columnData);
               var jsonData = JSON.stringify(columnData);
