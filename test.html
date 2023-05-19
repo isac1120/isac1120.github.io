@@ -406,6 +406,7 @@
       <div id="synergy-container" class="from-container">
         <div class="container-header">
           <h4 class="text-center">시너지</h4>
+          <button id="synergyCopyButton" class="copyDataButton">Copy Grouping Data</button>
         </div>
         <div id="synergy-columns">
           <!-- Add your synergy columns here -->
@@ -486,6 +487,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
       $(document).ready(function () {
+        
+          // Function to copy the grouping data
+      function copyGroupingData(containerId) {
+        var groupingColumns = $("#" + containerId + " .grouping-columns");
+        var groupingData = groupingColumns
+          .find(".draggable")
+          .map(function () {
+            return $(this).text();
+          })
+          .get()
+          .join(", ");
+
+        // Copy the grouping data to the clipboard
+        navigator.clipboard.writeText(groupingData).then(function () {
+          alert("Grouping data copied to clipboard!");
+        });
+        
+          // Add click event listeners to the copy buttons
+        $("#synergyCopyButton").click(function () {
+          copyGroupingData("synergy-group-container");
+        });
+
+        $("#classCopyButton").click(function () {
+          copyGroupingData("class-group-container");
+        });
+        
         // Synergy data
         var synergies = [
           {
@@ -695,20 +722,7 @@
             color: "#DCDCDC",
           },
         ];
-          $(".copyDataButton").click(function () {
-            var groupingData = $(this).parent().next(".grouping-columns").text();
-            copyToClipboard(groupingData);
-            alert("Grouping data copied to clipboard!");
-          });
 
-          function copyToClipboard(text) {
-            var $tempInput = $("<input>");
-            $("body").append($tempInput);
-            $tempInput.val(text).select();
-            document.execCommand("copy");
-            $tempInput.remove();
-          }
-        });
         // Create synergy columns
         synergies.forEach(function (synergy) {
           var column = $('<div class="synergy-column"></div>').css(
