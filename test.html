@@ -514,7 +514,7 @@
 
           // Function to copy the content of an element as an image
           function copyElement(element) {
-            html2canvas(element[0]).then(function(canvas) {
+            html2canvas(element[0],{scrollY: -window.scrollY}).then(function(canvas) {
               var image = canvas.toDataURL("image/png");
               navigator.clipboard.writeText(image).then(function() {
                 alert("Image copied to clipboard!");
@@ -524,7 +524,7 @@
 
           // Function to save the content of an element as an image
           function saveImage(element) {
-            html2canvas(element[0]).then(function(canvas) {
+            html2canvas(element[0],{scrollY: -window.scrollY}).then(function(canvas) {
               var link = document.createElement("a");
               link.href = canvas.toDataURL("image/png");
               link.download = "image.png";
