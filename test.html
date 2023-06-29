@@ -438,8 +438,8 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <div class="button-container">
-            <button class="copy-button">복사</button>
-            <button class="save-button">저장</button>
+            <button id="synergy-copyBtn" class="copy-button">복사</button>
+            <button id="synergy-saveBtn" class="save-button">저장</button>
           </div>
           <h4 class="text-center">공대</h4>
         </div>
@@ -464,8 +464,8 @@
       >
         <div class="container-header">
           <div class="button-container">
-            <button class="copy-button">복사</button>
-            <button class="save-button">저장</button>
+            <button id="class-copyBtn" class="copy-button">복사</button>
+            <button id="class-saveBtn" class="save-button">저장</button>
           </div>
           <h4 class="text-center">공대</h4>
         </div>
@@ -519,45 +519,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.0.5/js/tabulator.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.0.5/css/tabulator.min.css"
+    />
+
     <script>
       $(document).ready(function () {
-        // Add event listeners to copy buttons
-        $(".copy-button").click(function () {
-          var containerId = $(this).closest(".to-container").attr("id");
-          var container = $("#" + containerId + " .grouping-columns");
-          copyElement(container);
-        });
-
-        // Add event listeners to save buttons
-        $(".save-button").click(function () {
-          var containerId = $(this).closest(".to-container").attr("id");
-          var container = $("#" + containerId + " .grouping-columns");
-          saveImage(container);
-        });
-
-        // Function to copy the content of an element as an image
-        function copyElement(element) {
-          html2canvas(element[0], { scrollY: -window.scrollY }).then(function (
-            canvas
-          ) {
-            var image = canvas.toDataURL("image/png");
-            navigator.clipboard.writeText(image).then(function () {
-              alert("Image copied to clipboard!");
-            });
-          });
-        }
-
-        // Function to save the content of an element as an image
-        function saveImage(element) {
-          html2canvas(element[0], { scrollY: -window.scrollY }).then(function (
-            canvas
-          ) {
-            var link = document.createElement("a");
-            link.href = canvas.toDataURL("image/png");
-            link.download = "image.png";
-            link.click();
-          });
-        }
         // Synergy data
         var synergies = [
           {
@@ -821,7 +790,7 @@
             });
           });
         });
-        console.log(classes);
+
         // Iterate over synergies to build the classes dictionary
         synergies.forEach(function (synergy) {
           synergy.categories.forEach(function (category) {
@@ -873,7 +842,7 @@
             .addClass("draggable")
             .css("background-color", "#fff");
           // Create a circle with the first letter of synergyName
-          var wrapper = $("<div></div>");
+          var wrapper = $("<div class='class-synergy'></div>");
           classes[className].forEach(function (synergy) {
             var initials = synergy.synergyName
               .split(" ")
@@ -1087,11 +1056,8 @@
               .each(function (ElementIndex, Element) {
                 //check character element existence in a character element space.
                 if ($(this).find(".draggable").length) {
-                  //get character data from a characterElement
-                  console.log("shit");
                   //get class name of a characterElement
                   className = $(Element)[0].innerText.split("\n")[0];
-                  console.log(className);
 
                   //get other data of characterElement using className
                   var color = getColorForClass(className);
@@ -1140,10 +1106,10 @@
               return 0;
             });
 
-            //make colorCircles with tooltip
-            $(this).find(".colorCircles").remove();
-            var colorCircles = $("<div></div>")
-              .addClass("colorCircles")
+            //make partySynergy with tooltip
+            $(this).find(".party-synergy").remove();
+            var partySynergy = $("<div></div>")
+              .addClass("party-synergy")
               .attr({ width: "100%" });
             var prevSynergy = "";
             for (var i = 0; i < Object.keys(uniData).length; i++) {
@@ -1153,11 +1119,11 @@
                 counter = 0;
               }
               counter++;
-              var colorCircle = $("<span></span>")
+              var synergySymbol = $("<span></span>")
                 .addClass("rounded-rectangle")
                 .css("background-color", uniData[i].color);
-              colorCircle.text(uniData[i].shortSyn);
-              colorCircle
+              synergySymbol.text(uniData[i].shortSyn);
+              synergySymbol
                 .attr({
                   "data-toggle": "tooltip",
                   "data-placement": "bottom",
@@ -1169,14 +1135,14 @@
                 i > 0 &&
                 uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
               ) {
-                colorCircles.append("<span> / </span>");
+                partySynergy.append("<span> / </span>");
               }
-              colorCircles.append(colorCircle);
+              partySynergy.append(synergySymbol);
               prevSynergy = uniData[i].synergy;
             }
 
             //display party data except character data
-            var numSlash = colorCircles.text().split("/").length - 1;
+            var numSlash = partySynergy.text().split("/").length - 1;
 
             //synergy number data
             if (numSlash == 0 && Object.keys(uniData).length == 0) {
@@ -1213,7 +1179,7 @@
                 );
             }
             //color circles
-            $(this).find(".color-count").after(colorCircles);
+            $(this).find(".color-count").after(partySynergy);
           });
         }
 
@@ -1634,6 +1600,111 @@
             //color circles
             $(this).find(".color-count").after(colorCircles);
           });
+        }
+
+        // Add event listeners to copy buttons
+        $("#class-copyBtn").click(function () {
+          var containerId = $(this).closest(".to-container").attr("id");
+          var container = $("#" + containerId + " .grouping-columns");
+          copyElement(container);
+        });
+
+        // Add event listeners to save buttons
+        $("#class-saveBtn").click(function () {
+          var containerId = $(this).closest(".to-container").attr("id");
+          var container = $("#" + containerId + " .grouping-columns");
+          saveData(container);
+        });
+
+        // Function to copy the content of an element as JSON or CSV
+        function copyElement(element) {
+          var json = convertToJSON(element);
+          var csv = convertToCSV(json);
+          navigator.clipboard.writeText(csv).then(function () {
+            alert("Data copied to clipboard!");
+          });
+        }
+
+        // Function to save the content of an element as JSON or CSV
+        function saveData(element) {
+          var json = convertToJSON(element);
+          var csv = convertToCSV(json);
+
+          var link = document.createElement("a");
+          link.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
+          link.download = "data.csv";
+          link.click();
+        }
+
+        // Function to convert the content of an element to JSON format
+        function convertToJSON(group) {
+          party = $(group).find(".party-column");
+          groupData = {};
+
+          party.each(function (partyIndex, partyElement) {
+            partyArray = [];
+            element = $(partyElement).find(".droppable");
+            classElements = $(partyElement).find(".draggable");
+            partyName = partyIndex + 1 + "파티";
+            console.log("partyName:" + partyName);
+
+            if (classElements.length) {
+              classElements.each(function (classIndex, classElement) {
+                className = classElement.innerText.split("\n")[0];
+                console.log("className:" + className);
+
+                classSynergyWraper = $(classElement).find(".class-synergy");
+                classSynergyElements = classSynergyWraper.children();
+                synergyArray = [];
+                classSynergyElements.each(function (
+                  synergyIndex,
+                  synergyElement
+                ) {
+                  synergyName = synergyElement.innerText;
+                  console.log("synergyName:" + synergyName);
+                  synergyArray[synergyIndex] = synergyName;
+                });
+
+                partyArray.push({ Class: className, Synergy: synergyArray });
+              });
+            }
+            groupData["party" + (partyIndex + 1)] = partyArray;
+          });
+
+          console.log("test:" + JSON.stringify(groupData));
+          return groupData;
+        }
+
+        function convertToCSV(jsonData) {
+          const data = JSON.parse(JSON.stringify(jsonData));
+          let csv = "";
+
+          // Extract column headers from the first object
+          const headers = Object.keys(data);
+          csv += headers.join(",") + "\n";
+
+          // Extract values from each object and format them as CSV rows
+          const values = Object.values(data);
+          const maxLength = Math.max(...values.map((arr) => arr.length));
+
+          for (let i = 0; i < maxLength; i++) {
+            const row = headers.map((header) => {
+              if (Array.isArray(data[header][i])) {
+                return `"${data[header][i].join(", ")}"`;
+              } else if (
+                data[header][i] &&
+                typeof data[header][i] === "object"
+              ) {
+                return `"${JSON.stringify(data[header][i])}"`;
+              } else {
+                return data[header][i];
+              }
+            });
+
+            csv += row.join(",") + "\n";
+          }
+
+          return csv;
         }
       });
     </script>
