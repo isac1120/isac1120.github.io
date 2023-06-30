@@ -496,6 +496,7 @@
         </div>
       </div>
 
+      <button id="paste-button">Paste</button>
       <div id="spreadsheet-container">
       </div>
     </div>
@@ -529,6 +530,7 @@
     />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.0/papaparse.min.js"></script>
 
 
     <script>
@@ -1721,6 +1723,18 @@
           height: 400, // Adjust the height as needed
           width: '100%', // Adjust the width as needed
         });
+        const pasteButton = document.getElementById('paste-button');
+        pasteButton.addEventListener('click', () => {
+          // Trigger the paste action
+          navigator.clipboard.readText().then(pastedText => {
+            // Parse the pasted text as CSV and convert it into an array of arrays
+            const parsedData = Papa.parse(pastedText, { header: true }).data;
+        
+            // Set the parsed data as the new data for the Handsontable instance
+            hot.loadData(parsedData);
+          });
+        });
+        
       });
     </script>
   </body>
