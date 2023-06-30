@@ -496,7 +496,7 @@
         </div>
       </div>
 
-      <button id="paste-button">Paste</button>
+      <button id="paste-button" class="save-button">Paste</button>
       <div id="spreadsheet-container">
       </div>
     </div>
@@ -1627,8 +1627,7 @@
         // Function to copy the content of an element as JSON or CSV
         function copyElement(element) {
           var json = convertToJSON(element);
-          var csv = convertToCSV(json);
-          navigator.clipboard.writeText(csv).then(function () {
+          navigator.clipboard.writeText(json).then(function () {
             alert("Data copied to clipboard!");
           });
         }
@@ -1714,25 +1713,25 @@
 
           return csv;
         }
-        const container = document.getElementById('spreadsheet-container');
+        
+        const container = document.getElementById('table-container');
         const hot = new Handsontable(container, {
-          rowHeaders: true,
+          data: [[]], // Initialize with empty data
           colHeaders: true,
-          stretchH: 'all',
-          autoWrapRow: true,
-          height: 400, // Adjust the height as needed
-          width: '100%', // Adjust the width as needed
+          rowHeaders: true,
+          minSpareRows: 1 // Add an extra empty row at the bottom
         });
         const pasteButton = document.getElementById('paste-button');
         pasteButton.addEventListener('click', () => {
-          // Trigger the paste action
-          navigator.clipboard.readText().then(pastedText => {
-            // Parse the pasted text as CSV and convert it into an array of arrays
-            const parsedData = Papa.parse(pastedText, { header: true }).data;
-        
-            // Set the parsed data as the new data for the Handsontable instance
-            hot.loadData(parsedData);
-          });
+          // Retrieve data from clipboard (browser-dependent)
+          const clipboardData = window.clipboardData || event.clipboardData;
+          const data = clipboardData.getData('text');
+          
+          // Parse JSON data from clipboard
+          const parsedData = JSON.parse(data);
+          
+          // Update Handsontable with parsed data
+          hot.loadData(parsedData);
         });
         
       });
