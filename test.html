@@ -1773,13 +1773,13 @@
               const uniqueHeaders = Array.from(headers);
     
               // Create the data array for Handsontable
-              const data = [];
+              const tableData = [];
     
               // Add the top header row
               const headerRow = ['', '', 'party1', '', '', 'party2'];
               const classRow = ['', '', 'Class', 'Synergy', 'Class', 'Synergy'];
-              data.push(headerRow);
-              data.push(classRow);
+              tableData.push(headerRow);
+              tableData.push(classRow);
     
               let index = 1;
     
@@ -1800,14 +1800,14 @@
                   rowData.push('', '');
                 }
     
-                data.push(rowData);
+                tableData.push(rowData);
                 index++;
               }
     
               // Display the data using Handsontable
               const container = document.getElementById('spreadsheet-container');
               const hot = new Handsontable(container, {
-                data: data,
+                data: tableData,
                 rowHeaders: true,
                 columnSorting: true,
                 contextMenu: true
