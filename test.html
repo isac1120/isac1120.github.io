@@ -1714,26 +1714,114 @@
           return csv;
         }
         
-        const container = document.getElementById('table-container');
-        const hot = new Handsontable(container, {
-          data: [[]], // Initialize with empty data
-          colHeaders: true,
-          rowHeaders: true,
-          minSpareRows: 1 // Add an extra empty row at the bottom
-        });
+        // Function to flatten nested objects
+        function flattenObject(obj, prefix = '') {
+          let result = {};
+    
+          for (const [key, value] of Object.entries(obj)) {
+            const flattenedKey = prefix ? `${prefix}.${key}` : key;
+    
+            if (typeof value === 'object' && value !== null) {
+              if (Array.isArray(value)) {
+                for (let i = 0; i < value.length; i++) {
+                  const flattenedItem = flattenObject(value[i], flattenedKey);
+                  Object.assign(result, flattenedItem);
+                }
+              } else {
+                const flattenedItem = flattenObject(value, flattenedKey);
+                Object.assign(result, flattenedItem);
+              }
+            } else {
+              result[flattenedKey] = value;
+            }
+          }
+    
+          return result;
+        }
+    
+        // Get JSON data from clipboard and display it in the grid
+        function displayJSONData() {
+          navigator.clipboard.readText()
+            .then(data => {
+              const jsonData = JSON.parse(data);
+    
+              // Flatten the JSON data
+              const flattenedData = [];
+    
+              for (const [key, value] of Object.entries(jsonData)) {
+                if (Array.isArray(value)) {
+                  for (let i = 0; i < value.length; i++) {
+                    const flattenedItem = flattenObject(value[i], key);
+                    flattenedData.push(flattenedItem);
+                  }
+                } else {
+                  const flattenedItem = flattenObject(value, key);
+                  flattenedData.push(flattenedItem);
+                }
+              }
+    
+              // Get all unique headers
+              const headers = new Set();
+    
+              for (const item of flattenedData) {
+                for (const key of Object.keys(item)) {
+                  headers.add(key);
+                }
+              }
+    
+              // Convert Set to an array
+              const uniqueHeaders = Array.from(headers);
+    
+              // Create the data array for Handsontable
+              const data = [];
+    
+              // Add the top header row
+              const headerRow = ['', '', 'party1', '', '', 'party2'];
+              const classRow = ['', '', 'Class', 'Synergy', 'Class', 'Synergy'];
+              data.push(headerRow);
+              data.push(classRow);
+    
+              let index = 1;
+    
+              for (const item of flattenedData) {
+                const rowData = [index];
+    
+                if (item.hasOwnProperty('party1')) {
+                  rowData.push(item.party1.Class || '');
+                  rowData.push(item.party1.Synergy ? item.party1.Synergy.join(', ') : '');
+                } else {
+                  rowData.push('', '');
+                }
+    
+                if (item.hasOwnProperty('party2')) {
+                  rowData.push(item.party2.Class || '');
+                  rowData.push(item.party2.Synergy ? item.party2.Synergy.join(', ') : '');
+                } else {
+                  rowData.push('', '');
+                }
+    
+                data.push(rowData);
+                index++;
+              }
+    
+              // Display the data using Handsontable
+              const container = document.getElementById('spreadsheet-container');
+              const hot = new Handsontable(container, {
+                data: data,
+                rowHeaders: true,
+                columnSorting: true,
+                contextMenu: true
+              });
+            })
+            .catch(error => {
+              console.error('Failed to read clipboard data:', error);
+            });
+        }
+    
+        // Attach event listener to the paste button
         const pasteButton = document.getElementById('paste-button');
-        pasteButton.addEventListener('click', () => {
-          // Retrieve data from clipboard (browser-dependent)
-          const clipboardData = window.clipboardData || event.clipboardData;
-          const data = clipboardData.getData('text');
-          
-          // Parse JSON data from clipboard
-          const parsedData = JSON.parse(data);
-          
-          // Update Handsontable with parsed data
-          hot.loadData(parsedData);
-        });
-        
+        pasteButton.addEventListener('click', displayJSONData);
+            
       });
     </script>
   </body>
