@@ -1759,7 +1759,7 @@
                   flattenedData.push(flattenedItem);
                 }
               }
-              console.log("flattenedData:"+flattenedData);
+              console.log("flattenedData:"+JSON.stringify(flattenedData));
               
               // Get all unique headers
               const headers = new Set();
@@ -1786,7 +1786,7 @@
     
               for (const item of flattenedData) {
                 const rowData = [index];
-                console.log("itemData:"+item);
+                console.log("itemData:"+JSON.stringift(item));
                 if (item.hasOwnProperty('party1')) {
                   
                   rowData.push(item.party1.Class || '');
