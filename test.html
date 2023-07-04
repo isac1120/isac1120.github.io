@@ -1787,20 +1787,27 @@
                 const rowData = [index];
     
                 if (item.hasOwnProperty('party1')) {
+                  
                   rowData.push(item.party1.Class || '');
                   rowData.push(item.party1.Synergy ? item.party1.Synergy.join(', ') : '');
+                  console.log("rowData from party1:"+rowData);
+                  
                 } else {
                   rowData.push('', '');
+                  console.log("rowData from party1 exception:"+rowData);
                 }
     
                 if (item.hasOwnProperty('party2')) {
                   rowData.push(item.party2.Class || '');
                   rowData.push(item.party2.Synergy ? item.party2.Synergy.join(', ') : '');
+                  console.log("rowData from party2:"+rowData);
                 } else {
                   rowData.push('', '');
+                  console.log("rowData from party2 exception:"+rowData);
                 }
     
                 tableData.push(rowData);
+                console.log("tableData:"+tableData);
                 index++;
               }
     
