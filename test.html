@@ -1650,11 +1650,21 @@
 
           party.each(function (partyIndex, partyElement) {
             partyArray = [];
-            element = $(partyElement).find(".droppable");
             classElements = $(partyElement).find(".draggable");
+            partySynNumElement = $(partyElement).find(".color-count");
+            partySynElements = $(partyElement).find(".rounded-rectangle"); 
             partyName = partyIndex + 1 + "파티";
             console.log("partyName:" + partyName);
-
+            partySynNum = partySynNumElement.innerText;
+            console.log("partySynNum:"+partySynNum);
+            partySynArray = [];
+            partySynElement.each(function (partysynIndex,partySynElement){
+              partySynName = partySynElement.innerText;
+              partySynArray.push(partySynName);
+            });
+            groupData["Party"+(partyIndex+1)+"Synergy"]=partySynArray;
+            groupData["Party"+(partyIndex+1)+"SynNum"]=partySynNum;
+            console.log(groupData);
             if (classElements.length) {
               classElements.each(function (classIndex, classElement) {
                 className = classElement.innerText.split("\n")[0];
@@ -1675,7 +1685,7 @@
                 partyArray.push({ Class: className, Synergy: synergyArray });
               });
             }
-            groupData["party" + (partyIndex + 1)] = partyArray;
+            groupData["Party" + (partyIndex + 1)] = partyArray;
           });
 
           console.log("test:" + JSON.stringify(groupData));
