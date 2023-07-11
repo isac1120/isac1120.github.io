@@ -1645,26 +1645,47 @@
 
         // Function to convert the content of an element to JSON format
         function convertToJSON(group) {
+          //get party columns css object from grouping column.
           party = $(group).find(".party-column");
+          
+          //prepare object to store grouping column data.
           groupData = {};
 
+          //get text data from each party column objects.
           party.each(function (partyIndex, partyElement) {
-            partyArray = [];
+            
+            //get objects of each data element from party column.
             classElements = $(partyElement).find(".draggable");
             partySynNumElement = $(partyElement).find(".color-count");
             partySynElements = $(partyElement).find(".party-synergy .rounded-rectangle"); 
+            
+            //set partyName
             partyName = partyIndex + 1 + "파티";
             console.log("partyName:" + partyName);
-            partySynNum = partySynNumElement.innerText;
+
+            //get data of partySynNum
+            partySynNumText = partySynNumElement.text();
+            regex = /\d+/g;
+            partySynNum = partySynNumText.match(regex);
             console.log("partySynNum:"+partySynNum);
+
+            //prepare partySynArray to store partySyn data.
             partySynArray = [];
+            
+            //get data of partySyn
             partySynElements.each(function (partysynIndex,partySynElement){
+              //get data of each partySyns
               partySynName = partySynElement.innerText;
+              
+              //store data to partySynArray
               partySynArray.push(partySynName);
             });
+            
             groupData["Party"+(partyIndex+1)+"Synergy"]=partySynArray;
             groupData["Party"+(partyIndex+1)+"SynNum"]=partySynNum;
             console.log(groupData);
+
+            partyArray = [];
             if (classElements.length) {
               classElements.each(function (classIndex, classElement) {
                 className = classElement.innerText.split("\n")[0];
