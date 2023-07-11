@@ -497,8 +497,7 @@
       </div>
 
       <button id="paste-button" class="save-button">Paste</button>
-      <div id="spreadsheet-container">
-      </div>
+      <div id="spreadsheet-container"></div>
     </div>
 
     <!-- Google tag (gtag.js) -->
@@ -528,10 +527,15 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.0.5/css/tabulator.min.css"
     />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.0/papaparse.min.js"></script>
-
 
     <script>
       $(document).ready(function () {
@@ -1647,18 +1651,19 @@
         function convertToJSON(group) {
           //get party columns css object from grouping column.
           party = $(group).find(".party-column");
-          
+
           //prepare object to store grouping column data.
           groupData = {};
 
           //get text data from each party column objects.
           party.each(function (partyIndex, partyElement) {
-            
             //get objects of each data element from party column.
             classElements = $(partyElement).find(".draggable");
             partySynNumElement = $(partyElement).find(".color-count");
-            partySynElements = $(partyElement).find(".party-synergy .rounded-rectangle"); 
-            
+            partySynElements = $(partyElement).find(
+              ".party-synergy .rounded-rectangle"
+            );
+
             //set partyName
             partyName = partyIndex + 1 + "파티";
             console.log("partyName:" + partyName);
@@ -1667,22 +1672,22 @@
             partySynNumText = partySynNumElement.text();
             regex = /\d+/g;
             partySynNum = partySynNumText.match(regex);
-            console.log("partySynNum:"+partySynNum);
+            console.log("partySynNum:" + partySynNum);
 
             //prepare partySynArray to store partySyn data.
             partySynArray = [];
-            
+
             //get data of partySyn
-            partySynElements.each(function (partysynIndex,partySynElement){
+            partySynElements.each(function (partysynIndex, partySynElement) {
               //get data of each partySyns
               partySynName = partySynElement.innerText;
-              
+
               //store data to partySynArray
               partySynArray.push(partySynName);
             });
-            
-            groupData["Party"+(partyIndex+1)+"Synergy"]=partySynArray;
-            groupData["Party"+(partyIndex+1)+"SynNum"]=partySynNum;
+
+            groupData["Party" + (partyIndex + 1) + "Synergy"] = partySynArray;
+            groupData["Party" + (partyIndex + 1) + "SynNum"] = partySynNum;
             console.log(groupData);
 
             partyArray = [];
@@ -1713,159 +1718,66 @@
           return JSON.stringify(groupData);
         }
 
-        function convertToCSV(jsonData) {
-          const data = JSON.parse(JSON.stringify(jsonData));
-          let csv = "";
+        function convertToTable() {
+          console.log("initiated");
+          navigator.clipboard.readText().then((data) => {
+            const jsonData = JSON.parse(data);
+            // Extract data from JSON
+            var data = [];
+            data.push(["1파티", "파티시너지수", "파티시너지"]);
+            data.push([
+              "",
+              jsonData.Party1SynNum.join(","),
+              jsonData.Party1Synergy.join(","),
+            ]);
+            data.push(["", "직업", "시너지"]);
 
-          // Extract column headers from the first object
-          const headers = Object.keys(data);
-          csv += headers.join(",") + "\n";
+            jsonData.Party1.forEach(function (party) {
+              data.push(["", party.Class, party.Synergy.join(",")]);
+            });
+            console.log(jsonData.Party1SynNum);
+            data.push(["2파티", "파티시너지수", "파티시너지"]);
+            data.push([
+              "",
+              jsonData.Party2SynNum.join(","),
+              jsonData.Party2Synergy.join(","),
+            ]);
+            data.push(["", "직업", "시너지"]);
 
-          // Extract values from each object and format them as CSV rows
-          const values = Object.values(data);
-          const maxLength = Math.max(...values.map((arr) => arr.length));
-
-          for (let i = 0; i < maxLength; i++) {
-            const row = headers.map((header) => {
-              if (Array.isArray(data[header][i])) {
-                return `"${data[header][i].join(", ")}"`;
-              } else if (
-                data[header][i] &&
-                typeof data[header][i] === "object"
-              ) {
-                return `"${JSON.stringify(data[header][i])}"`;
-              } else {
-                return data[header][i];
-              }
+            jsonData.Party2.forEach(function (party) {
+              data.push(["", party.Class, party.Synergy.join(",")]);
             });
 
-            csv += row.join(",") + "\n";
-          }
-
-          return csv;
-        }
-        
-             // Function to flatten nested objects
-        function flattenObject(obj, prefix = '') {
-          let result = {};
-    
-          for (const [key, value] of Object.entries(obj)) {
-            const flattenedKey = prefix ? `${prefix}.${key}` : key;
-    
-            if (typeof value === 'object' && value !== null) {
-              if (Array.isArray(value)) {
-                for (let i = 0; i < value.length; i++) {
-                  const flattenedItem = flattenObject(value[i], flattenedKey);
-                  Object.assign(result, flattenedItem);
-                }
-              } else {
-                const flattenedItem = flattenObject(value, flattenedKey);
-                Object.assign(result, flattenedItem);
-              }
-            } else {
-              result[flattenedKey] = value;
-            }
-          }
-    
-          return result;
-        }
-    
-        // Get JSON data from clipboard and display it in the grid
-        function displayJSONData() {
-          navigator.clipboard.readText()
-            .then(data => {
-              const jsonData = JSON.parse(data);
-    
-              // Flatten the JSON data
-              const flattenedData = [];
-    
-              for (const [key, value] of Object.entries(jsonData)) {
-                if (Array.isArray(value)) {
-                  for (let i = 0; i < value.length; i++) {
-                    const flattenedItem = flattenObject(value[i], key);
-                    flattenedData.push(flattenedItem);
-                    console.log("frontFlattenedData:"+flattenedItem);
-                    console.log("frontFlattenedData:"+JSON.stringify(flattenedItem));
-                  }
-                } else {
-                  const flattenedItem = flattenObject(value, key);
-                  flattenedData.push(flattenedItem);
-                  console.log("backFlattenedData:"+flattenedItem);
-                  console.log("backFlattenedData:"+JSON.stringify(flattenedItem));
-                }
-              }
-              console.log("flattenedData:"+JSON.stringify(flattenedData));
-              
-              // Get all unique headers
-              const headers = new Set();
-    
-              for (const item of flattenedData) {
-                for (const key of Object.keys(item)) {
-                  headers.add(key);
-                }
-              }
-    
-              // Convert Set to an array
-              const uniqueHeaders = Array.from(headers);
-    
-              // Create the data array for Handsontable
-              const tableData = [];
-    
-              // Add the top header row
-              const headerRow = ['','party1', '', 'party2',''];
-              const classRow = ['','Class', 'Synergy', 'Class', 'Synergy'];
-              tableData.push(headerRow);
-              tableData.push(classRow);
-    
-              let index = 1;
-    
-              for (const item of flattenedData) {
-                const rowData = [index];
-                console.log("itemData:"+JSON.stringify(item));
-                if (item.hasOwnProperty('party1')) {
-                  
-                  rowData.push(item.party1.Class || '');
-                  rowData.push(item.party1.Synergy ? item.party1.Synergy.join(', ') : '');
-                  console.log("rowData from party1:"+rowData);
-                  
-                } else {
-                  rowData.push('', '');
-                  console.log("rowData from party1 exception:"+rowData);
-                }
-    
-                if (item.hasOwnProperty('party2')) {
-                  rowData.push(item.party2.Class || '');
-                  rowData.push(item.party2.Synergy ? item.party2.Synergy.join(', ') : '');
-                  console.log("rowData from party2:"+rowData);
-                } else {
-                  rowData.push('', '');
-                  console.log("rowData from party2 exception:"+rowData);
-                }
-    
-                tableData.push(rowData);
-                console.log("tableData:"+tableData);
-                index++;
-              }
-    
-              // Display the data using Handsontable
-              const container = document.getElementById('spreadsheet-container');
-              const hot = new Handsontable(container, {
-                data: tableData,
-                rowHeaders: true,
-                columnSorting: true,
-                contextMenu: true
-              });
-            })
-            .catch(error => {
-              console.error('Failed to read clipboard data:', error);
+            // Initialize Handsontable
+            var container = document.getElementById("spreadsheet-container");
+            var hot = new Handsontable(container, {
+              data: data,
+              width: "100%",
+              mergeCells: [
+                {
+                  row: 0,
+                  col: 0,
+                  rowspan: jsonData.Party1.length + 3,
+                  colspan: 1,
+                },
+                {
+                  row: jsonData.Party1.length + 3,
+                  col: 0,
+                  rowspan: jsonData.Party2.length + 3,
+                  colspan: 1,
+                },
+              ],
+              rowHeaders: true,
+              colHeaders: true,
+              contextMenu: true,
+              licenseKey: "non-commercial-and-evaluation",
             });
+          });
         }
-    
+
         // Attach event listener to the paste button
-        const pasteButton = document.getElementById('paste-button');
-        pasteButton.addEventListener('click', displayJSONData);   
-    
-
+        const pasteButton = document.getElementById("paste-button");
+        pasteButton.addEventListener("click", convertToTable);
       });
     </script>
   </body>
