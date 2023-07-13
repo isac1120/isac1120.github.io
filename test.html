@@ -407,7 +407,9 @@
           height: 300px;
         }
       }
-
+      .tableHeader{
+        background-header:red;
+      }
       /* Media query for mobile devices */
     </style>
   </head>
@@ -1772,6 +1774,7 @@
               contextMenu: true,
               licenseKey: "non-commercial-and-evaluation",
             });
+            hot.instance.setCellMeta(1,1,'className','tableHeader');
           });
         }
 
