@@ -1752,8 +1752,13 @@
 
             // Initialize Handsontable
             var container = document.getElementById("spreadsheet-container");
+            existingData = [];
+            newData = [];
             existingData = table.getData();
             newData = data;
+            console.log("existingData:"+existingData);
+            console.log("newData:"+newData);
+            
             sumData = [];
             sumData.push(exisingData);
             sumData.push(newData);
