@@ -1720,7 +1720,7 @@
           return JSON.stringify(groupData);
         }
 
-        function convertToTable() {
+        function convertToTable(table) {
           console.log("initiated");
           navigator.clipboard.readText().then((data) => {
             const jsonData = JSON.parse(data);
@@ -1752,23 +1752,28 @@
 
             // Initialize Handsontable
             var container = document.getElementById("spreadsheet-container");
+            existingData = table.getData();
+            newData = data;
+            sumData.push(exisingData);
+            sumData.push(newData);
+            console.log("sumData:"+sumData);
+            
+            table.updateSettings({
+            	data: sumData
+            });
+            table.render();
+  
+          });
+        }
+
+
+        
+            // Initialize Handsontable
+            var container = document.getElementById("spreadsheet-container");
             var hot = new Handsontable(container, {
-              data: data,
               width: "100%",
-              mergeCells: [
-                {
-                  row: 0,
-                  col: 0,
-                  rowspan: jsonData.Party1.length + 3,
-                  colspan: 1,
-                },
-                {
-                  row: jsonData.Party1.length + 3,
-                  col: 0,
-                  rowspan: jsonData.Party2.length + 3,
-                  colspan: 1,
-                },
-              ],
+              startRows: 10,
+              startCols: 10,
               rowHeaders: true,
               colHeaders: true,
               contextMenu: true,
@@ -1777,11 +1782,12 @@
             hot.setCellMeta(1,1,'className','tableHeader');
             hot.render();
           });
-        }
-
+      
         // Attach event listener to the paste button
         const pasteButton = document.getElementById("paste-button");
-        pasteButton.addEventListener("click", convertToTable);
+        pasteButton.addEventListener("click", function(){
+          convertToTable(hot);
+        });
       });
     </script>
   </body>
