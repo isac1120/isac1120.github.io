@@ -1760,8 +1760,18 @@
             console.log("newData:"+newData);
             
             sumData = [];
-            sumData.push(exisingData);
-            sumData.push(newData);
+            //빈 테이블인 경우
+            if(table.countRows == table.countEmptyRows)
+            {
+              sumData.push(newData);
+            }
+            //빈 테이블이 아닌 경우
+            else if(table.countRows > table.countEmptyRows)
+            {
+              sumData.push(existingData);
+              sumData.push(newData);
+            }
+
             console.log("sumData:"+sumData);
             
             table.updateSettings({
