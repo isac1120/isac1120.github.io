@@ -1725,48 +1725,47 @@
           navigator.clipboard.readText().then((data) => {
             const jsonData = JSON.parse(data);
             // Extract data from JSON
-            var data = [];
-            data.push(["1파티", "파티시너지수", "파티시너지"]);
-            data.push([
+            var arrayData = [];
+            arrayData.push(["1파티", "파티시너지수", "파티시너지"]);
+            arrayData.push([
               "",
               jsonData.Party1SynNum.join(","),
               jsonData.Party1Synergy.join(","),
             ]);
-            data.push(["", "직업", "시너지"]);
+            arrayData.push(["", "직업", "시너지"]);
 
             jsonData.Party1.forEach(function (party) {
-              data.push(["", party.Class, party.Synergy.join(",")]);
+              arrayData.push(["", party.Class, party.Synergy.join(",")]);
             });
             console.log(jsonData.Party1SynNum);
-            data.push(["2파티", "파티시너지수", "파티시너지"]);
-            data.push([
+            arrayData.push(["2파티", "파티시너지수", "파티시너지"]);
+            arrayData.push([
               "",
               jsonData.Party2SynNum.join(","),
               jsonData.Party2Synergy.join(","),
             ]);
-            data.push(["", "직업", "시너지"]);
+            arrayData.push(["", "직업", "시너지"]);
 
             jsonData.Party2.forEach(function (party) {
-              data.push(["", party.Class, party.Synergy.join(",")]);
+              arrayData.push(["", party.Class, party.Synergy.join(",")]);
             });
 
             // Initialize Handsontable
             var container = document.getElementById("spreadsheet-container");
             existingData = [];
-            newData = [];
             existingData = table.getData();
-            newData = data;
+            
             console.log("existingData:"+existingData);
             console.log("newData:"+newData);
             
-            sumData = [[]];
+            sumData = [];
             console.log("countRows:"+table.countRows());
             console.log("countEmptyRows:"+table.countEmptyRows());
             //빈 테이블인 경우
             if(table.countRows() == table.countEmptyRows())
             {
               console.log("empty table");
-              sumData.push(newData);
+              sumData.push(arrayData);
             }
             //빈 테이블이 아닌 경우
             else if(table.countRows() > table.countEmptyRows())
@@ -1774,7 +1773,7 @@
               
               console.log("not empty table");
               sumData.push(existingData);
-              sumData.push(newData);
+              sumData.push(arrayData);
             }
 
             console.log("sumData:");
