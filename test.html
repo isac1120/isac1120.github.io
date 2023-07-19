@@ -1756,7 +1756,7 @@
             existingData = table.getData();
             
             console.log("existingData:"+existingData);
-            console.log("newData:"+newData);
+            console.log("arrayData:"+arrayData);
             
             sumData = [];
             console.log("countRows:"+table.countRows());
@@ -1778,6 +1778,8 @@
 
             console.log("sumData:");
             console.table(sumData);
+            console.log("arratData:");
+            console.table(arrayData);
             table.updateSettings({
               startRows: 10,
               startCols: 10,
