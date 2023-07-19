@@ -1778,10 +1778,10 @@
             }
 
             console.log("sumData:");
-            console.log(sumData);
+            console.log(JSON.parse(JSON.stringify(sumData)));
             
             table.updateSettings({
-            	data: sumData,
+            	data: JSON.parse(JSON.stringify(sumData)),
               startRows: 10,
               startCols: 10,
               width: "100%",
@@ -1791,7 +1791,7 @@
               licenseKey: "non-commercial-and-evaluation",
               
             });
-            table.updateData(sumData);
+
             table.render();
   
           });
