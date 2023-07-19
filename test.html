@@ -1778,8 +1778,7 @@
             }
 
             console.log("sumData:");
-            console.log(JSON.parse(JSON.stringify(sumData)));
-            
+            console.table(sumData);
             table.updateSettings({
               startRows: 10,
               startCols: 10,
@@ -1790,7 +1789,7 @@
               licenseKey: "non-commercial-and-evaluation",
               
             });
-            table.loadData(sumData);
+            table.updateData(sumData);
             table.render();
   
           });
