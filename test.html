@@ -1726,28 +1726,28 @@
             const jsonData = JSON.parse(data);
             // Extract data from JSON
             var arrayData = [];
-            arrayData.push(["1파티", "파티시너지수", "파티시너지"]);
-            arrayData.push([
+            newData.push(["1파티", "파티시너지수", "파티시너지"]);
+            newData.push([
               "",
               jsonData.Party1SynNum.join(","),
               jsonData.Party1Synergy.join(","),
             ]);
-            arrayData.push(["", "직업", "시너지"]);
+            newData.push(["", "직업", "시너지"]);
 
             jsonData.Party1.forEach(function (party) {
-              arrayData.push(["", party.Class, party.Synergy.join(",")]);
+              newData.push(["", party.Class, party.Synergy.join(",")]);
             });
             console.log(jsonData.Party1SynNum);
-            arrayData.push(["2파티", "파티시너지수", "파티시너지"]);
-            arrayData.push([
+            newData.push(["2파티", "파티시너지수", "파티시너지"]);
+            newData.push([
               "",
               jsonData.Party2SynNum.join(","),
               jsonData.Party2Synergy.join(","),
             ]);
-            arrayData.push(["", "직업", "시너지"]);
+            newData.push(["", "직업", "시너지"]);
 
             jsonData.Party2.forEach(function (party) {
-              arrayData.push(["", party.Class, party.Synergy.join(",")]);
+              newData.push(["", party.Class, party.Synergy.join(",")]);
             });
 
             // Initialize Handsontable
@@ -1765,15 +1765,14 @@
             if(table.countRows() == table.countEmptyRows())
             {
               console.log("empty table");
-              sumData.push(arrayData);
+              sumData = [].concat(newData);
             }
             //빈 테이블이 아닌 경우
             else if(table.countRows() > table.countEmptyRows())
             {
               
               console.log("not empty table");
-              sumData.push(existingData);
-              sumData.push(arrayData);
+              sumData = newData.concat(existingData);
             }
 
             console.log("sumData:");
@@ -1781,8 +1780,9 @@
             console.log("arratData:");
             console.table(arrayData);
             table.updateSettings({
-              startRows: 10,
-              startCols: 10,
+              data: sumData,
+              minRows: 10,
+              minCols: 10,
               width: "100%",
               rowHeaders: true,
               colHeaders: true,
@@ -1790,7 +1790,7 @@
               licenseKey: "non-commercial-and-evaluation",
               
             });
-            table.updateData(sumData);
+            
             table.render();
   
           });
