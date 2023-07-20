@@ -242,13 +242,6 @@
         width: 100%;
         padding: 0 40%;
       }
-
-      .container-header {
-        min-width: 320px;
-        width: 100%;
-        padding: 0 40%;
-      }
-
       .rounded-rectangle {
         display: inline-block;
         background-color: #f00; /* Default color */
@@ -407,9 +400,13 @@
           height: 300px;
         }
       }
-      .handsontable .tableHeader{
+      .handsontable .main-header{
         background-color:red;
       }
+      .handsontable .sub-header{
+        background-color:orange;
+      }
+
       /* Media query for mobile devices */
     </style>
   </head>
@@ -1790,7 +1787,24 @@
               licenseKey: "non-commercial-and-evaluation",
               
             });
-            
+            //party1
+            table.setCellMeta(0,0,'className','main-header');
+            //party1 attribute
+            table.setCellMeta(0,1,'className','sub-header');
+            table.setCellMeta(0,2,'className','sub-header');
+            //character attribute
+            table.setCellMeta(2,1,'className','sub-header');
+            table.setCellMeta(2,2,'className','sub-header');
+
+            //party2
+            v
+            table.setCellMeta((2+jsonData.Party1.length)+0,0,'className','main-header');
+            //party2 attribute
+            table.setCellMeta((2+jsonData.Party1.length)+0,1,'className','sub-header');
+            table.setCellMeta((2+jsonData.Party1.length)+0,2,'className','sub-header');
+            //character attribute
+            table.setCellMeta((2+jsonData.Party1.length)+2,1,'className','sub-header');
+            table.setCellMeta((2+jsonData.Party1.length)+2,2,'className','sub-header');
             table.render();
   
           });
@@ -1809,7 +1823,7 @@
               contextMenu: true,
               licenseKey: "non-commercial-and-evaluation",
             });
-            hot.setCellMeta(1,1,'className','tableHeader');
+
             hot.render();
       
         // Attach event listener to the paste button
