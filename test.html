@@ -1719,9 +1719,11 @@
 
         function convertToTable(table) {
           console.log("initiated");
+          //get table data from clipboard
           navigator.clipboard.readText().then((data) => {
+            //parse JSON 
             const jsonData = JSON.parse(data);
-            // Extract data from JSON
+            //extract data from JSON
             var newData = [];
             newData.push(["1파티", "파티시너지수", "파티시너지"]);
             newData.push([
@@ -1748,23 +1750,20 @@
             });
 
             // Initialize Handsontable
+
+            //prepare table data
             var container = document.getElementById("spreadsheet-container");
             existingData = [];
-            existingData = table.getData();
-            
-            console.log("existingData:"+existingData);
-            console.log("newData:"+newData);
-            
+            existingData = table.getData();            
             sumData = [];
-            console.log("countRows:"+table.countRows());
-            console.log("countEmptyRows:"+table.countEmptyRows());
-            //빈 테이블인 경우
+
+            //when table have no data
             if(table.countRows() == table.countEmptyRows())
             {
               console.log("empty table");
               sumData = [].concat(newData);
             }
-            //빈 테이블이 아닌 경우
+            //when table have data
             else if(table.countRows() > table.countEmptyRows())
             {
               
@@ -1772,21 +1771,25 @@
               sumData = newData.concat(existingData);
             }
 
-            console.log("sumData:");
-            console.table(sumData);
-            console.log("newData:");
-            console.table(newData);
+            //update table data
             table.updateSettings({
               data: sumData,
               minRows: 10,
               minCols: 10,
               width: "100%",
+              mergeCells: [
+                {row: 0, col:0, rowspan: 3+jsonData.Party1.length, colspan: 1},
+                {row: 3+jsonData.Party1.length, col:0, rowspan: 3+jsonData.Party1.length, colspan: 1}
+                ],
               rowHeaders: true,
               colHeaders: true,
               contextMenu: true,
               licenseKey: "non-commercial-and-evaluation",
               
             });
+
+            //set table header background color.
+            
             //party1
             table.setCellMeta(0,0,'className','main-header');
             //party1 attribute
@@ -1797,14 +1800,16 @@
             table.setCellMeta(2,2,'className','sub-header');
 
             //party2
-            
-            table.setCellMeta((2+jsonData.Party1.length)+0,0,'className','main-header');
+            table.setCellMeta((3+jsonData.Party1.length)+0,0,'className','main-header');
             //party2 attribute
-            table.setCellMeta((2+jsonData.Party1.length)+0,1,'className','sub-header');
-            table.setCellMeta((2+jsonData.Party1.length)+0,2,'className','sub-header');
+            table.setCellMeta((3+jsonData.Party1.length)+0,1,'className','sub-header');
+            table.setCellMeta((3+jsonData.Party1.length)+0,2,'className','sub-header');
             //character attribute
-            table.setCellMeta((2+jsonData.Party1.length)+2,1,'className','sub-header');
-            table.setCellMeta((2+jsonData.Party1.length)+2,2,'className','sub-header');
+            table.setCellMeta((3+jsonData.Party1.length)+2,1,'className','sub-header');
+            table.setCellMeta((3+jsonData.Party1.length)+2,2,'className','sub-header');
+
+            
+            //render table
             table.render();
   
           });
