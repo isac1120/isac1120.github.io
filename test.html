@@ -1769,19 +1769,20 @@
             {
               
               console.log("not empty table");
-              sumData = newData.concat(existingData);
+              sumData = existingData.concat(newData);
               console.log(sumData);
             }
 
             //update table data
+            var newBeginIndex = table.countRows()-table.countEmptyRows()-1;
             table.updateSettings({
               data: sumData,
               minRows: 10,
               minCols: 10,
               width: "100%",
               mergeCells: [
-                {row: 0, col:0, rowspan: (3+jsonData.Party1.length), colspan: 1},
-                {row: (3+jsonData.Party1.length), col:0, rowspan: (3+jsonData.Party2.length), colspan: 1}
+                {row: newBeginIndex+0, col:0, rowspan: (3+jsonData.Party1.length), colspan: 1},
+                {row: newBeginIndex+(3+jsonData.Party1.length), col:0, rowspan: (3+jsonData.Party2.length), colspan: 1}
                 ],
               rowHeaders: true,
               colHeaders: true,
@@ -1793,22 +1794,22 @@
             //set table header background color.
             
             //party1
-            table.setCellMeta(0,0,'className','main-header');
+            table.setCellMeta(newBeginIndex+0,0,'className','main-header');
             //party1 attribute
-            table.setCellMeta(0,1,'className','sub-header');
-            table.setCellMeta(0,2,'className','sub-header');
+            table.setCellMeta(newBeginIndex+0,1,'className','sub-header');
+            table.setCellMeta(newBeginIndex+0,2,'className','sub-header');
             //character attribute
-            table.setCellMeta(2,1,'className','sub-header');
-            table.setCellMeta(2,2,'className','sub-header');
+            table.setCellMeta(newBeginIndex+2,1,'className','sub-header');
+            table.setCellMeta(newBeginIndex+2,2,'className','sub-header');
 
             //party2
-            table.setCellMeta((3+jsonData.Party1.length)+0,0,'className','main-header');
+            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+0,0,'className','main-header');
             //party2 attribute
-            table.setCellMeta((3+jsonData.Party1.length)+0,1,'className','sub-header');
-            table.setCellMeta((3+jsonData.Party1.length)+0,2,'className','sub-header');
+            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+0,1,'className','sub-header');
+            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+0,2,'className','sub-header');
             //character attribute
-            table.setCellMeta((3+jsonData.Party1.length)+2,1,'className','sub-header');
-            table.setCellMeta((3+jsonData.Party1.length)+2,2,'className','sub-header');
+            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,1,'className','sub-header');
+            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,2,'className','sub-header');
 
             
             //render table
