@@ -1762,6 +1762,7 @@
             {
               console.log("empty table");
               sumData = [].concat(newData);
+              console.log(sumData);
             }
             //when table have data
             else if(table.countRows() > table.countEmptyRows())
@@ -1769,6 +1770,7 @@
               
               console.log("not empty table");
               sumData = newData.concat(existingData);
+              console.log(sumData);
             }
 
             //update table data
