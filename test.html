@@ -406,6 +406,23 @@
       .handsontable .sub-header{
         background-color:orange;
       }
+      /* The side navigation menu */
+      .sidebar {
+        position: fixed;
+        height: 350px; /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        z-index: 1; /* Stay on top */
+        background-color: grey; /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 60px; /* Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+      }
+      #sideOpenBtn {
+        
+        height: 350px;
+        background-color: grey;
+        position: fixed;
+      }
 
       /* Media query for mobile devices */
     </style>
@@ -415,7 +432,12 @@
         <h2 class="d-inline ">공대 구성 시뮬레이터</h2>
         <h6 class="d-inline align-bottom">2023.07ver</h6>
     </div>
+    <div id="sideOpenBtn" onclick="openBar()">open</div>
+      <div id="table-sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeBar()">&times</a>
+    </div>
     <div class="container">
+
       <div class="switch-container">
         <label class="switch">
           <input type="checkbox" class="togBtn" />
@@ -1850,7 +1872,19 @@
         pasteButton.addEventListener("click", function(){
           convertToTable(hot);
         });
+        
+                /* Set the width of the side navigation to 250px */
+
+
       });
+              function openBar() {
+          document.getElementById("table-sidebar").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeBar() {
+          document.getElementById("table-sidebar").style.width = "0";
+        }
     </script>
   </body>
 </html>
