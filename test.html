@@ -33,7 +33,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>레이더스 큐브 - 로아 공대/파티 시너지 시뮬레이터</title>
+    <title>레이더스 큐브 - 로아 시너지 시뮬레이터</title>
 
     <link rel="icon" type="image/icon" href="favicon.ico" />
     <link rel="shortcut icon" type="image/icon" href="favicon.ico" />
@@ -41,10 +41,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="manifest" href="site.webmanifest" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -74,7 +71,7 @@
         margin: 1% auto;
         padding: 0.5% 0;
         width: 100%;
-        height: 10%;
+        height: 15%;
         background-color: #63c5da;
         font-family: "Jua", sans-serif;
       }
@@ -181,12 +178,12 @@
       /* switch end*/
 
       .from-container {
-        width: 67%;
-        height: 350px;
+        width: 66%;
+        height: 700px;
       }
       .to-container {
         width: 33%;
-        height: 350px;
+        height: 700px;
       }
 
       .row {
@@ -242,6 +239,13 @@
         width: 100%;
         padding: 0 40%;
       }
+
+      .container-header {
+        min-width: 320px;
+        width: 100%;
+        padding: 0 40%;
+      }
+
       .rounded-rectangle {
         display: inline-block;
         background-color: #f00; /* Default color */
@@ -400,19 +404,14 @@
           height: 300px;
         }
       }
-      .handsontable .main-header{
-        background-color:orangered;
-      }
-      .handsontable .sub-header{
-        background-color:orange;
-      }
 
       /* Media query for mobile devices */
     </style>
   </head>
   <body>
-    <div class="title">
-      <h2 class="text-center">공대 구성 시뮬레이터</h2>
+    <div class="title text-center">
+        <h2 class="d-inline ">공대 구성 시뮬레이터</h2>
+        <h6 class="d-inline align-bottom">2023.07ver</h6>
     </div>
     <div class="container">
       <div class="switch-container">
@@ -437,8 +436,8 @@
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <div class="button-container">
-            <button id="synergy-copyBtn" class="copy-button">복사</button>
-            <button id="synergy-saveBtn" class="save-button">저장</button>
+            <button class="copy-button">복사</button>
+            <button class="save-button">저장</button>
           </div>
           <h4 class="text-center">공대</h4>
         </div>
@@ -463,8 +462,8 @@
       >
         <div class="container-header">
           <div class="button-container">
-            <button id="class-copyBtn" class="copy-button">복사</button>
-            <button id="class-saveBtn" class="save-button">저장</button>
+            <button class="copy-button">복사</button>
+            <button class="save-button">저장</button>
           </div>
           <h4 class="text-center">공대</h4>
         </div>
@@ -494,9 +493,6 @@
           <!-- Add your grouping columns here -->
         </div>
       </div>
-
-      <button id="paste-button" class="save-button">Paste</button>
-      <div id="spreadsheet-container"></div>
     </div>
 
     <!-- Google tag (gtag.js) -->
@@ -514,30 +510,52 @@
       gtag("config", "G-NY4TE8ZY84");
     </script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.0.5/js/tabulator.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.0.5/css/tabulator.min.css"
-    />
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.0/papaparse.min.js"></script>
-
     <script>
       $(document).ready(function () {
+        // Add event listeners to copy buttons
+        $(".copy-button").click(function () {
+          var containerId = $(this).closest(".to-container").attr("id");
+          var container = $("#" + containerId + " .grouping-columns");
+          copyElement(container);
+        });
+
+        // Add event listeners to save buttons
+        $(".save-button").click(function () {
+          var containerId = $(this).closest(".to-container").attr("id");
+          var container = $("#" + containerId + " .grouping-columns");
+          saveImage(container);
+        });
+
+        // Function to copy the content of an element as an image
+        function copyElement(element) {
+          html2canvas(element[0], { scrollY: -window.scrollY }).then(function (
+            canvas
+          ) {
+            var image = canvas.toDataURL("image/png");
+            navigator.clipboard.writeText(image).then(function () {
+              alert("Image copied to clipboard!");
+            });
+          });
+        }
+
+        // Function to save the content of an element as an image
+        function saveImage(element) {
+          html2canvas(element[0], { scrollY: -window.scrollY }).then(function (
+            canvas
+          ) {
+            var link = document.createElement("a");
+            link.href = canvas.toDataURL("image/png");
+            link.download = "image.png";
+            link.click();
+          });
+        }
         // Synergy data
         var synergies = [
           {
@@ -550,11 +568,21 @@
               },
               {
                 categoryName: "순간18%",
-                classes: ["스트라이커", "배틀마스터", "창술사"],
+                classes: ["스트라이커", "배틀마스터"],
                 color: "#FF0000",
               },
             ],
             color: "#FF0000",
+          },
+          {
+            name: "치명타시 받는 피해 증가",
+            categories: [
+              {
+                categoryName: "상시8%",
+                classes: ["창술사"],
+                color: "#DB7093",
+              }
+            ]
           },
           {
             name: "받는 피해 증가",
@@ -569,6 +597,7 @@
                   "버서커",
                   "블레이드",
                   "슬레이어",
+                  "소울이터",
                 ],
                 color: "#FF1493",
               },
@@ -801,7 +830,7 @@
             });
           });
         });
-
+        console.log(classes);
         // Iterate over synergies to build the classes dictionary
         synergies.forEach(function (synergy) {
           synergy.categories.forEach(function (category) {
@@ -853,7 +882,7 @@
             .addClass("draggable")
             .css("background-color", "#fff");
           // Create a circle with the first letter of synergyName
-          var wrapper = $("<div class='class-synergy'></div>");
+          var wrapper = $("<div></div>");
           classes[className].forEach(function (synergy) {
             var initials = synergy.synergyName
               .split(" ")
@@ -1067,8 +1096,11 @@
               .each(function (ElementIndex, Element) {
                 //check character element existence in a character element space.
                 if ($(this).find(".draggable").length) {
+                  //get character data from a characterElement
+                  console.log("shit");
                   //get class name of a characterElement
                   className = $(Element)[0].innerText.split("\n")[0];
+                  console.log(className);
 
                   //get other data of characterElement using className
                   var color = getColorForClass(className);
@@ -1117,10 +1149,10 @@
               return 0;
             });
 
-            //make partySynergy with tooltip
-            $(this).find(".party-synergy").remove();
-            var partySynergy = $("<div></div>")
-              .addClass("party-synergy")
+            //make colorCircles with tooltip
+            $(this).find(".colorCircles").remove();
+            var colorCircles = $("<div></div>")
+              .addClass("colorCircles")
               .attr({ width: "100%" });
             var prevSynergy = "";
             for (var i = 0; i < Object.keys(uniData).length; i++) {
@@ -1130,11 +1162,11 @@
                 counter = 0;
               }
               counter++;
-              var synergySymbol = $("<span></span>")
+              var colorCircle = $("<span></span>")
                 .addClass("rounded-rectangle")
                 .css("background-color", uniData[i].color);
-              synergySymbol.text(uniData[i].shortSyn);
-              synergySymbol
+              colorCircle.text(uniData[i].shortSyn);
+              colorCircle
                 .attr({
                   "data-toggle": "tooltip",
                   "data-placement": "bottom",
@@ -1146,14 +1178,14 @@
                 i > 0 &&
                 uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
               ) {
-                partySynergy.append("<span> / </span>");
+                colorCircles.append("<span> / </span>");
               }
-              partySynergy.append(synergySymbol);
+              colorCircles.append(colorCircle);
               prevSynergy = uniData[i].synergy;
             }
 
             //display party data except character data
-            var numSlash = partySynergy.text().split("/").length - 1;
+            var numSlash = colorCircles.text().split("/").length - 1;
 
             //synergy number data
             if (numSlash == 0 && Object.keys(uniData).length == 0) {
@@ -1190,7 +1222,7 @@
                 );
             }
             //color circles
-            $(this).find(".color-count").after(partySynergy);
+            $(this).find(".color-count").after(colorCircles);
           });
         }
 
@@ -1612,6 +1644,7 @@
             $(this).find(".color-count").after(colorCircles);
           });
         }
+
 
         // Add event listeners to copy buttons
         $("#class-copyBtn").click(function () {
