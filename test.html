@@ -435,7 +435,11 @@
       }
       /* The side navigation menu */
       .sidebar {
-        position: fixed;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-radius: 0 10px 10px 0;
+        position: absolute;
         height: 350px; /* 100% Full-height */
         width: 0; /* 0 width - change this with JavaScript */
         z-index: 1; /* Stay on top */
@@ -445,10 +449,18 @@
         transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
       }
       #sideOpenBtn {
-        padding: 50% 50%;
+        display: flex;
+        border-radius: 0 10px 10px 0;
+        justify-content: center;
+        align-items: center;
+        width: 5%;
         height: 350px;
         background-color: grey;
-        position: fixed;
+        position: absolute;
+        z-index: 1;
+      }
+      #sideOpenBtn:hover {
+        background-color: #444;
       }
 
       /* Media query for mobile devices */
@@ -465,8 +477,10 @@
       </svg>
     </div>
       <div id="table-sidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeBar()">&times</a>
-    </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+      </div>
     <div class="container">
 
       <div class="switch-container">
@@ -1908,8 +1922,8 @@
 
 
       });
-              function openBar() {
-          document.getElementById("table-sidebar").style.width = "250px";
+        function openBar() {
+          document.getElementById("table-sidebar").style.width = "100%";
         }
 
         /* Set the width of the side navigation to 0 */
