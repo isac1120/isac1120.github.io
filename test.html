@@ -464,12 +464,15 @@
         transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
       
       }
+      #sideCloseBtn:hover {
+        background-color: #444;
+      }
       #sideOpenBtn {
         display: flex;
         border-radius: 0 10px 10px 0;
         justify-content: center;
         align-items: center;
-        width: 2%;
+        width: 30px;
         height: 650px;
         background-color: grey;
         position: absolute;
@@ -493,9 +496,11 @@
       </svg>
     </div>
       <div id="table-sidebar" class="sidebar">
-        <svg onclick="closeBar()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        </svg>
+        <div id="sideCloseBtn" onclick="closeBar()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+        </div>
       </div>
     <div class="container">
 
