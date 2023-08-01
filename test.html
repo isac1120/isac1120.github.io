@@ -460,11 +460,11 @@
         background-color: grey; /* Black*/
         opacity: 95%;
         overflow-x: hidden; /* Disable horizontal scroll */
-        padding-top: 60px; /* Place content 60px from the top */
         transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
       
       }
       #sideCloseBtn:hover {
+        padding: 50% 10%;
         background-color: #444;
       }
       #sideOpenBtn {
@@ -1945,7 +1945,6 @@
       });
         function openBar() {
           document.getElementById("table-sidebar").style.width = "63%";
-          document.getElementById("table-sidebar").style.paddingRight = "1%";
 
           document.getElementById("sideOpenBtn").style.width = "0%";
         
@@ -1954,7 +1953,6 @@
         /* Set the width of the side navigation to 0 */
         function closeBar() {
           document.getElementById("table-sidebar").style.width = "0";
-          document.getElementById("table-sidebar").style.paddingRight = "0";
           
           document.getElementById("sideOpenBtn").style.width = "3%";
         }
