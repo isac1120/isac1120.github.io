@@ -449,7 +449,7 @@
       /* The side navigation menu */
       .sidebar {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         align-items: flex-start;
         border-radius: 0 10px 10px 0;
         position: absolute;
@@ -469,8 +469,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        
-
       }
       #sideCloseBtn:hover {
         
@@ -1962,7 +1960,7 @@
       
         function openBar() {
           document.getElementById("table-sidebar").style.width = "66%";
-          document.getElementById("table-sidebar").style.paddingLeft = "2%"
+          document.getElementById("table-sidebar").style.paddingRight = "2%"
           document.getElementById("sideOpenBtn").style.width = "0%";
         
         }
