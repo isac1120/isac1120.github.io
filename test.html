@@ -1775,6 +1775,7 @@
           link.click();
         }
 
+        
         // Function to convert the content of an element to JSON format
         function convertToJSON(group) {
           //get party columns css object from grouping column.
@@ -1813,11 +1814,12 @@
               //store data to partySynArray
               partySynArray.push(partySynName);
             });
-
+						//store party data in groupdata
             groupData["Party" + (partyIndex + 1) + "Synergy"] = partySynArray;
             groupData["Party" + (partyIndex + 1) + "SynNum"] = partySynNum;
             console.log(groupData);
 
+						//get each data of class
             partyArray = [];
             if (classElements.length) {
               classElements.each(function (classIndex, classElement) {
@@ -1827,6 +1829,8 @@
                 classSynergyWraper = $(classElement).find(".class-synergy");
                 classSynergyElements = classSynergyWraper.children();
                 synergyArray = [];
+                
+                //get each data of class synergy 
                 classSynergyElements.each(function (
                   synergyIndex,
                   synergyElement
@@ -1835,13 +1839,14 @@
                   console.log("synergyName:" + synergyName);
                   synergyArray[synergyIndex] = synergyName;
                 });
-
+								//store each class&synergy data in partyArray
                 partyArray.push({ Class: className, Synergy: synergyArray });
               });
             }
+            //store each partyArray data in groupdata
             groupData["Party" + (partyIndex + 1)] = partyArray;
           });
-
+					//send groupdata as string
           console.log("test:" + JSON.stringify(groupData));
           return JSON.stringify(groupData);
         }
