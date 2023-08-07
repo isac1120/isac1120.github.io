@@ -492,7 +492,7 @@
       }
       #spreadsheet-container {
         width : 95%;
-        padding: 0 10px;
+        padding: 10px 0 0 10px;
         height: 97%;
         overflow: auto;
       }
@@ -1775,6 +1775,81 @@
           link.click();
         }
 
+        // Function to convert the content of an element to JSON format
+        function convertToNew(group) {
+          //get party columns css object from grouping column.
+          party = $(group).find(".party-column");
+
+          //prepare object to store grouping column data.
+          groupData = {};
+	  str = "";
+		
+          //get text data from each party column objects.
+          party.each(function (partyIndex, partyElement) {
+            //get objects of each data element from party column.
+            classElements = $(partyElement).find(".draggable");
+            partySynNumElement = $(partyElement).find(".color-count");
+            partySynElements = $(partyElement).find(
+              ".party-synergy .rounded-rectangle"
+            );
+
+            //set partyName
+            partyName = partyIndex + 1 + "파티";
+            console.log("partyName:" + partyName);
+
+            //get data of partySynNum
+            partySynNumText = partySynNumElement.text();
+            regex = /\d+/g;
+            partySynNum = partySynNumText.match(regex);
+            console.log("partySynNum:" + partySynNum);
+
+            //prepare partySynArray to store partySyn data.
+            partySynArray = [];
+
+            //get data of partySyn
+            partySynElements.each(function (partysynIndex, partySynElement) {
+              //get data of each partySyns
+              partySynName = partySynElement.innerText;
+
+              //store data to partySynArray
+              partySynArray.push(partySynName);
+            });
+						//store party data in groupdata
+            groupData["Party" + (partyIndex + 1) + "Synergy"] = partySynArray;
+            groupData["Party" + (partyIndex + 1) + "SynNum"] = partySynNum;
+            console.log(groupData);
+
+						//get each data of class
+            partyArray = [];
+            if (classElements.length) {
+              classElements.each(function (classIndex, classElement) {
+                className = classElement.innerText.split("\n")[0];
+                console.log("className:" + className);
+
+                classSynergyWraper = $(classElement).find(".class-synergy");
+                classSynergyElements = classSynergyWraper.children();
+                synergyArray = [];
+                
+                //get each data of class synergy 
+                classSynergyElements.each(function (
+                  synergyIndex,
+                  synergyElement
+                ) {
+                  synergyName = synergyElement.innerText;
+                  console.log("synergyName:" + synergyName);
+                  synergyArray[synergyIndex] = synergyName;
+                });
+		//store each class&synergy data in partyArray
+                partyArray.push({ Class: className, Synergy: synergyArray });
+              });
+            }
+            //store each partyArray data in groupdata
+            groupData["Party" + (partyIndex + 1)] = partyArray;
+          });
+	  //send groupdata as string
+          console.log("test:" + JSON.stringify(groupData));
+          return JSON.stringify(groupData);
+        }
         
         // Function to convert the content of an element to JSON format
         function convertToJSON(group) {
