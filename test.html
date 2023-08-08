@@ -1965,25 +1965,25 @@
             existingData = [];
             existingData = table.getData();            
             sumData = [];
-
+	    var countDataRows = table.countRows() - table.countEmptyRows();
             //when table have no data
-            if(table.countRows() == table.countEmptyRows())
+            if(countDataRows==0)
             {
               console.log("empty table");
               sumData = [].concat(newData);
               console.log(sumData);
             }
             //when table have data
-            else if(table.countRows() > table.countEmptyRows())
+            else if(countDataRows>0)
             {
               
               console.log("not empty table");
-              sumData = newData.concat(existingData);
+              sumData = newData.concat(existingData[0:countDataRow]);
               console.log(sumData);
             }
 
             //update table data
-            var newBeginIndex = table.countRows()-table.countEmptyRows();
+            var newBeginIndex = countDataRows;
             table.updateSettings({
               data: sumData,
               minRows: 10,
