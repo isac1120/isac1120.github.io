@@ -2002,22 +2002,22 @@
             //set table header background color.
             
             //party1
-            table.setCellMeta(newBeginIndex+0,0,'className','main-header');
+            table.setCellMeta(0,0,'className','main-header');
             //party1 attribute
-            table.setCellMeta(newBeginIndex+0,1,'className','sub-header');
-            table.setCellMeta(newBeginIndex+0,2,'className','sub-header');
+            table.setCellMeta(0,1,'className','sub-header');
+            table.setCellMeta(0,2,'className','sub-header');
             //character attribute
-            table.setCellMeta(newBeginIndex+2,1,'className','sub-header');
-            table.setCellMeta(newBeginIndex+2,2,'className','sub-header');
+            table.setCellMeta(2,1,'className','sub-header');
+            table.setCellMeta(2,2,'className','sub-header');
 
             //party2
-            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+0,0,'className','main-header');
+            table.setCellMeta((3+jsonData.Party1.length)+0,0,'className','main-header');
             //party2 attribute
-            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+0,1,'className','sub-header');
-            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+0,2,'className','sub-header');
+            table.setCellMeta((3+jsonData.Party1.length)+0,1,'className','sub-header');
+            table.setCellMeta((3+jsonData.Party1.length)+0,2,'className','sub-header');
             //character attribute
-            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,1,'className','sub-header');
-            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,2,'className','sub-header');
+            table.setCellMeta((3+jsonData.Party1.length)+2,1,'className','sub-header');
+            table.setCellMeta((3+jsonData.Party1.length)+2,2,'className','sub-header');
 
             
             //render table
