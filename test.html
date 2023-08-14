@@ -1746,8 +1746,8 @@
         $("#class-copyBtn").click(function () {
           var containerId = $(this).closest(".to-container").attr("id");
           var dataElement = $("#" + containerId + " .grouping-columns");
-          copyData(dataElement);
 					openBar();
+          copyData(dataElement);
         });
 
         // Add event listeners to save buttons
@@ -1759,9 +1759,9 @@
 
         // Function to copy the content of an element as JSON or CSV
         function copyData(element) {
-          var json = convertToJSON(element);
-          navigator.clipboard.writeText(json).then(function () {
-            alert("Data copied to clipboard!");
+					var json = convertToJSON(element);
+					navigator.clipboard.writeText(json).then(function () {
+            alert("클립보드에 복사되었습니다.");
           });
         }
 
