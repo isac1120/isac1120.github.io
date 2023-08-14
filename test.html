@@ -1747,6 +1747,7 @@
           var containerId = $(this).closest(".to-container").attr("id");
           var dataElement = $("#" + containerId + " .grouping-columns");
           copyData(dataElement);
+					openBar();
         });
 
         // Add event listeners to save buttons
@@ -1813,12 +1814,12 @@
               //store data to partySynArray
               partySynArray.push(partySynName);
             });
-		//store party data in groupdata
+						//store party data in groupdata
             groupData["Party" + (partyIndex + 1) + "Synergy"] = partySynArray;
             groupData["Party" + (partyIndex + 1) + "SynNum"] = partySynNum;
             console.log(groupData);
 
-		//get each data of class
+						//get each data of class
             partyArray = [];
             if (classElements.length) {
               classElements.each(function (classIndex, classElement) {
@@ -1838,14 +1839,14 @@
                   console.log("synergyName:" + synergyName);
                   synergyArray[synergyIndex] = synergyName;
                 });
-		//store each class&synergy data in partyArray
+								//store each class&synergy data in partyArray
                 partyArray.push({ Class: className, Synergy: synergyArray });
               });
             }
-            	//store each partyArray data in groupdata
+						//store each partyArray data in groupdata
             groupData["Party" + (partyIndex + 1)] = partyArray;
           });
-		//send groupdata as string
+					//send groupdata as string
           console.log("test:" + JSON.stringify(groupData));
           return JSON.stringify(groupData);
         }
@@ -1889,7 +1890,7 @@
             existingData = [];
             existingData = table.getData();            
             sumData = [];
-	    var countDataRows = table.countRows() - table.countEmptyRows();
+						var countDataRows = table.countRows() - table.countEmptyRows();
             //when table have no data
             if(countDataRows==0)
             {
@@ -1968,7 +1969,6 @@
         const pasteButton = document.getElementById("paste-button");
         pasteButton.addEventListener("click", function(){
           convertToTable(hot);
-					openBar();
         });
       });
       
