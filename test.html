@@ -1910,16 +1910,15 @@
             }
 						
 						var newBeginIndex = countDataRows;
-            alert(table.mergeCells);
+            table.mergeCells.merge([
+                {row: newBeginIndex+0, col:0, rowspan: (3+jsonData.Party1.length), colspan: 1},
+                {row: newBeginIndex+(3+jsonData.Party1.length), col:0, rowspan: (3+jsonData.Party2.length), colspan: 1}
+            ]);
             table.updateSettings({
               data: sumData,
               minRows: 10,
               minCols: 10,
               width: "100%",
-              mergeCells: [
-                {row: newBeginIndex+0, col:0, rowspan: (3+jsonData.Party1.length), colspan: 1},
-                {row: newBeginIndex+(3+jsonData.Party1.length), col:0, rowspan: (3+jsonData.Party2.length), colspan: 1}
-                ],
               rowHeaders: true,
               colHeaders: true,
               contextMenu: true,
