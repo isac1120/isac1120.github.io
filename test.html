@@ -1892,7 +1892,7 @@
             existingData = [];
             existingData = table.getData();            
             sumData = [];
-						var countDataRows = table.countRows() - table.countEmptyRows();
+            var countDataRows = table.countRows() - table.countEmptyRows();
             //when table have no data
             if(countDataRows==0)
             {
@@ -1911,9 +1911,9 @@
 						
             var newBeginIndex = countDataRows;
             table.updateData(sumData);
-            table.mergeCells.merge(newBeginIndex+0, 0, (3+jsonData.Party1.length), 1);
-            table.mergeCells.merge(newBeginIndex+(3+jsonData.Party1.length), 0, (3+jsonData.Party2.length), 1);
-            table.mergeCells.updatePlugin();
+            table.merge(newBeginIndex+0, 0, (3+jsonData.Party1.length), 1);
+            table.merge(newBeginIndex+(3+jsonData.Party1.length), 0, (3+jsonData.Party2.length), 1);
+            table.updatePlugin();
 
             //set table header background color.
             
