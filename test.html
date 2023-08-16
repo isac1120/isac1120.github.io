@@ -1911,6 +1911,8 @@
 						
             var newBeginIndex = countDataRows;
             table.updateData(sumData);
+            console.log(table.getPlugin("MergeCells"));
+            console.log(table.getPlugin("MergeCells").mergeCells);
             table.getPlugin("MergeCells").merge(newBeginIndex+0, 0, newBeginIndex+(3+jsonData.Party1.length), 1);
             table.getPlugin("MergeCells").merge(newBeginIndex+(3+jsonData.Party1.length), 0, newBeginIndex+(3+jsonData.Party2.length), 1);
             table.getPlugin("MergeCells").updatePlugin();
