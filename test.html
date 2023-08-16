@@ -1911,9 +1911,9 @@
 						
             var newBeginIndex = countDataRows;
             table.updateData(sumData);
-            table.mergeCells.merge(newBeginIndex+0, 0, newBeginIndex+(3+jsonData.Party1.length), 1);
-            table.mergeCells.merge(newBeginIndex+(3+jsonData.Party1.length), 0, newBeginIndex+(3+jsonData.Party2.length), 1);
-            table.mergeCells.updatePlugin();
+            table.getPlugIin(mergeCells).merge(newBeginIndex+0, 0, newBeginIndex+(3+jsonData.Party1.length), 1);
+            table.getPlugIin(mergeCells).merge(newBeginIndex+(3+jsonData.Party1.length), 0, newBeginIndex+(3+jsonData.Party2.length), 1);
+            table.getPlugIin(mergeCells).updatePlugin();
 
             //set table header background color.
             
