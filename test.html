@@ -1910,21 +1910,9 @@
             }
 						
 						var newBeginIndex = countDataRows;
-            table.mergeCells.merge([
-                {row: newBeginIndex+0, col:0, rowspan: (3+jsonData.Party1.length), colspan: 1},
-                {row: newBeginIndex+(3+jsonData.Party1.length), col:0, rowspan: (3+jsonData.Party2.length), colspan: 1}
-            ]);
-            table.updateSettings({
-              data: sumData,
-              minRows: 10,
-              minCols: 10,
-              width: "100%",
-              rowHeaders: true,
-              colHeaders: true,
-              contextMenu: true,
-              licenseKey: "non-commercial-and-evaluation",
-              
-            });
+            table.mergeCells.merge(newBeginIndex+0, 0, (3+jsonData.Party1.length), 1);
+            table.mergeCells.merge(newBeginIndex+(3+jsonData.Party1.length), 0, (3+jsonData.Party2.length), 1);
+          
 
             //set table header background color.
             
