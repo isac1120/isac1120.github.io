@@ -1912,8 +1912,8 @@
             var newBeginIndex = countDataRows;
 						console.log(newBeginIndex);
             table.updateData(sumData);
-            table.getPlugin("MergeCells").merge(newBeginIndex+0, 0, newBeginIndex+(3+jsonData.Party1.length-1), 0);
-            table.getPlugin("MergeCells").merge(newBeginIndex+(3+jsonData.Party1.length), 0, newBeginIndex+(3+jsonData.Party2.length-1), 0);
+            table.getPlugin("MergeCells").merge(newBeginIndex+0, 0, newBeginIndex+(3+jsonData.Party1.length)-1, 0);
+            table.getPlugin("MergeCells").merge(newBeginIndex+(3+jsonData.Party1.length), 0, newBeginIndex+(3+jsonData.Party1.length)+(3+jsonData.Party2.length)-1, 0);
             table.getPlugin("MergeCells").updatePlugin();
 
             //set table header background color.
@@ -1949,8 +1949,8 @@
               width: "100%",
               startRows: 10,
               startCols: 10,
-							mergeCells: true,
-							rowHeaders: true,
+              mergeCells: true,
+              rowHeaders: true,
               colHeaders: true,
               contextMenu: true,
               licenseKey: "non-commercial-and-evaluation",
