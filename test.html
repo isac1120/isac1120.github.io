@@ -1911,15 +1911,11 @@
 						
             var newBeginIndex = countDataRows;
             console.log(newBeginIndex);
-            table.updateData(sumData);
-            console.log("plugin:"+table.getPlugin("MergeCells").isEnabled());
-            table.getPlugin("MergeCells").enablePlugin();		  
-            table.getPlugin("MergeCells").merge(newBeginIndex+0, 0, newBeginIndex+(3+jsonData.Party1.length), 1);
-            table.getPlugin("MergeCells").merge(newBeginIndex+(3+jsonData.Party1.length), 0, newBeginIndex+(3+jsonData.Party1.length)+(3+jsonData.Party2.length), 1);
-            table.getPlugin("MergeCells").updatePlugin();
 
+            //display table data
+            table.updateData(sumData);
+		  
             //set table header background color.
-            
             //party1
             table.setCellMeta(newBeginIndex+0,0,'className','main-header');
             //party1 attribute
@@ -1938,10 +1934,15 @@
             table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,1,'className','sub-header');
             table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,2,'className','sub-header');
 
-            
+            //merge cells
+            console.log("plugin:"+table.getPlugin("MergeCells").isEnabled());
+            table.getPlugin("MergeCells").enablePlugin();		  
+            table.getPlugin("MergeCells").merge(newBeginIndex+0, 0, newBeginIndex+(3+jsonData.Party1.length)-1, 0);
+            table.getPlugin("MergeCells").merge(newBeginIndex+(3+jsonData.Party1.length), 0, newBeginIndex+(3+jsonData.Party1.length)+(3+jsonData.Party2.length)-1, 0);
+            table.getPlugin("MergeCells").updatePlugin();
+
             //render table
             table.render();
-  
           });
         }
 
