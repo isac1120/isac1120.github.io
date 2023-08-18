@@ -1934,13 +1934,13 @@
             table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,1,'className','sub-header');
             table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,2,'className','sub-header');
 
+            //render table
+            table.render();
+
             //merge cells
             table.getPlugin("MergeCells").enablePlugin();
             table.getPlugin("MergeCells").merge(0,0,4,0);
             table.getPlugin("MergeCells").updatePlugin();
-
-            //render table
-            table.render();
           });
         }
 
