@@ -1938,10 +1938,7 @@
             table.render();
 
             //merge cells
-            table.getPlugin("MergeCells").enablePlugin();
-            table.getPlugin("MergeCells").merge(0,0,3,0);
-            table.getPlugin("MergeCells").updatePlugin();
-						table.updateSettings();
+						console.log("plugin:"+table.getPlugin("MergeCells"));
           });
         }
 
