@@ -1935,7 +1935,7 @@
             table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,2,'className','sub-header');
 
             //merge cells
-            table.getPlugin("MergeCells").mergeCells([{(newBeginIndex+0),0,(3+jsonData.Party1.length),1},{(newBeginIndex+3+jsonData.Party1.length),0,(3+jsonData.Party2.length),0}]);		  
+            table.getPlugin("MergeCells").mergeCells([{row: newBeginIndex+0, col: 0, rowspan: 3+jsonData.Party1.length, colspan: 1},{row: newBeginIndex+3+jsonData.Party1.length, col: 0, rowspan: 3+jsonData.Party2.length, colspan: 0}]);		  
             table.getPlugin("MergeCells").updatePlugin();
 
             //render table
