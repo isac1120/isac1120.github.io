@@ -202,9 +202,7 @@
         background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-      .synergy-column.draggable{
-        color: #fff;
-      }
+
       .class-column.draggable {
         width: 250px;
         height: 100px;
@@ -799,7 +797,7 @@
               var element = $("<div></div>")
                 .text(className)
                 .addClass("draggable")
-                .css("background-color", category.color);
+                .css({"background-color": category.color,"color": #fff);
               /* Add the .class-element class and set the background color */
               subColumn.append(element);
             });
