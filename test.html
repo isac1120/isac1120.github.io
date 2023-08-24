@@ -461,7 +461,7 @@
         z-index: 1; /* Stay on top */
         background-color: grey; /* Black*/
         opacity: 97%;
-        overflow-x: hidden; /* Disable horizontal scroll */
+        overflow: hidden; /* Disable horizontal scroll */
         transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
       
       }
@@ -472,6 +472,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
+				position: absolute;
+				right: 0;
       }
       #sideCloseBtn:hover {
         
