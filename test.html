@@ -436,9 +436,7 @@
         .sidebar {
           height: 350px;
         }
-        #sideOpenBtn {
-          height: 350px;
-        }
+
         
       }
       .handsontable .main-header{
@@ -447,13 +445,31 @@
       .handsontable .sub-header{
         background-color:orange;
       }
+	    
       /* The side navigation menu */
+			#sideOpenBtn {
+        display: flex;
+        border-radius: 0 10px 10px 0;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 650px;
+        background-color: grey;
+        position: fixed;
+				left: 0;
+				top: 15%;
+        z-index: 1;
+      }
+      #sideOpenBtn:hover {
+        background-color: #444;
+      }
+	    
       .sidebar {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         border-radius: 0 10px 10px 0;
-        position: absolute;
+        position: fixed;
 				left: 0;	     
 				top: 15%;
         height: 650px; /* 100% Full-height */
@@ -474,28 +490,12 @@
         align-items: center;
 				position: absolute;
 				right: 0;
-				top: 15%;
       }
       #sideCloseBtn:hover {
         
         background-color: #444;
       }
-      #sideOpenBtn {
-        display: flex;
-        border-radius: 0 10px 10px 0;
-        justify-content: center;
-        align-items: center;
-        width: 30px;
-        height: 650px;
-        background-color: grey;
-        position: absolute;
-				left: 0;
-				top: 15%;
-        z-index: 1;
-      }
-      #sideOpenBtn:hover {
-        background-color: #444;
-      }
+
       #spreadsheet-container {
         width : 95%;
         padding: 1% 0 0 5%;
