@@ -1767,7 +1767,6 @@
         function copyData(element) {
 					var json = convertToJSON(element);
 					navigator.clipboard.writeText(json).then(function () {
-            alert("클립보드에 복사되었습니다.");
           });
         }
 
@@ -1899,7 +1898,7 @@
             var countDataRows = table.countRows() - table.countEmptyRows();
             //when table have no data
             if(countDataRows==0)
-            {
+            {	//add new data to table
               console.log("empty table");
               sumData = [].concat(newData);
               console.log(sumData);
@@ -1907,7 +1906,7 @@
             //when table have data
             else if(countDataRows>0)
             {
-              
+              //sum new data and existing data first, then add data to table
               console.log("not empty table");
               sumData = existingData.slice(0,countDataRows).concat(newData);
               console.log(sumData);
