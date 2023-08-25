@@ -381,6 +381,81 @@
         border-radius: 3px;
         cursor: pointer;
       }
+
+						
+      .handsontable .main-header{
+        background-color:orangered;
+      }
+      .handsontable .sub-header{
+        background-color:orange;
+      }
+	    
+      /* The side navigation menu */
+			#sideOpenBtn {
+        display: flex;
+        border-radius: 0 10px 10px 0;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 600px;
+        background-color: grey;
+        position: fixed;
+				left: 0;
+				top: 15%;
+        z-index: 1;
+      }
+      #sideOpenBtn:hover {
+        background-color: #444;
+      }
+	    
+      .sidebar {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        border-radius: 0 10px 10px 0;
+        position: fixed;
+				left: 0;	     
+				top: 15%;
+        height: 600px; /* 100% Full-height */
+        width: 0; /* 0 initial width - change this with JavaScript */
+        z-index: 1; /* Stay on top */
+        background-color: grey; /* Black*/
+        opacity: 97%;
+        overflow: hidden; /* Disable horizontal scroll */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+      
+      }
+      #sideCloseBtn {
+        width: 40px;
+        height: 100%;
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+				position: absolute;
+				right: 0;
+      }
+      #sideCloseBtn:hover {
+        
+        background-color: #444;
+      }
+
+      #spreadsheet-container {
+        width : 95%;
+        padding: 2% 0 0 5%;
+        height: 97%;
+        overflow: auto;
+      }
+
+      #paste-button{
+        position: relative;
+        top: 3%;
+        left: 35%;
+        width: 80px;
+        height: 30px;
+
+      }
+			
       @media (max-width: 1024px) {
         .from-container,
         .to-container {
@@ -435,83 +510,8 @@
         }
         .sidebar {
           height: 350px;
-        }
-
-        
+				}
       }
-      .handsontable .main-header{
-        background-color:orangered;
-      }
-      .handsontable .sub-header{
-        background-color:orange;
-      }
-	    
-      /* The side navigation menu */
-			#sideOpenBtn {
-        display: flex;
-        border-radius: 0 10px 10px 0;
-        justify-content: center;
-        align-items: center;
-        width: 30px;
-        height: 600px;
-        background-color: grey;
-        position: fixed;
-				left: 0;
-				top: 15%;
-        z-index: 1;
-      }
-      #sideOpenBtn:hover {
-        background-color: #444;
-      }
-	    
-      .sidebar {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        border-radius: 0 10px 10px 0;
-        position: fixed;
-				left: 0;	     
-				top: 15%;
-        height: 600px; /* 100% Full-height */
-        width: 0; /* 0 width - change this with JavaScript */
-        z-index: 1; /* Stay on top */
-        background-color: grey; /* Black*/
-        opacity: 97%;
-        overflow: hidden; /* Disable horizontal scroll */
-        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-      
-      }
-      #sideCloseBtn {
-        width: 40px;
-        height: 100%;
-        padding: 0 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-				position: absolute;
-				right: 0;
-      }
-      #sideCloseBtn:hover {
-        
-        background-color: #444;
-      }
-
-      #spreadsheet-container {
-        width : 95%;
-        padding: 2% 0 0 5%;
-        height: 97%;
-        overflow: auto;
-      }
-
-      #paste-button{
-        position: relative;
-        top: 3%;
-        left: 35%;
-        width: 80px;
-        height: 30px;
-
-      }
-
       /* Media query for mobile devices */
     </style>
   </head>
@@ -1969,7 +1969,7 @@
       });
       
         function openBar() {
-          document.getElementById("table-sidebar").style.width = "66%";
+          document.getElementById("table-sidebar").style.width = "60%";
           document.getElementById("table-sidebar").style.paddingRight = "2%"
           document.getElementById("sideOpenBtn").style.width = "0%";
         
