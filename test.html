@@ -400,8 +400,8 @@
         height: 600px;
         background-color: grey;
         position: fixed;
-				left: 0;
-				top: 15%;
+        left: 0;
+        top: 15%;
         z-index: 1;
       }
       #sideOpenBtn:hover {
@@ -414,8 +414,8 @@
         align-items: flex-start;
         border-radius: 0 10px 10px 0;
         position: fixed;
-				left: 0;	     
-				top: 15%;
+        left: 0;
+        top: 15%;
         height: 600px; /* 100% Full-height */
         width: 0; /* 0 initial width - change this with JavaScript */
         z-index: 1; /* Stay on top */
@@ -1752,7 +1752,7 @@
         $("#class-copyBtn").click(function () {
           var containerId = $(this).closest(".to-container").attr("id");
           var dataElement = $("#" + containerId + " .grouping-columns");
-					openBar();
+          openBar();
           copyData(dataElement);
         });
 
@@ -1765,8 +1765,8 @@
 
         // Function to copy the content of an element as JSON or CSV
         function copyData(element) {
-					var json = convertToJSON(element);
-					navigator.clipboard.writeText(json).then(function () {
+          var json = convertToJSON(element);
+          navigator.clipboard.writeText(json).then(function () {
           });
         }
 
@@ -1819,12 +1819,12 @@
               //store data to partySynArray
               partySynArray.push(partySynName);
             });
-						//store party data in groupdata
+            //store party data in groupdata
             groupData["Party" + (partyIndex + 1) + "Synergy"] = partySynArray;
             groupData["Party" + (partyIndex + 1) + "SynNum"] = partySynNum;
             console.log(groupData);
-
-						//get each data of class
+            
+            //get each data of class
             partyArray = [];
             if (classElements.length) {
               classElements.each(function (classIndex, classElement) {
@@ -1844,14 +1844,14 @@
                   console.log("synergyName:" + synergyName);
                   synergyArray[synergyIndex] = synergyName;
                 });
-								//store each class&synergy data in partyArray
+                //store each class&synergy data in partyArray
                 partyArray.push({ Class: className, Synergy: synergyArray });
               });
             }
-						//store each partyArray data in groupdata
+            //store each partyArray data in groupdata
             groupData["Party" + (partyIndex + 1)] = partyArray;
           });
-					//send groupdata as string
+          //send groupdata as string
           console.log("test:" + JSON.stringify(groupData));
           return JSON.stringify(groupData);
         }
@@ -1941,7 +1941,7 @@
             table.render();
 
             //merge cells
-						console.log("plugin:"+table.getPlugin("MergeCells"));
+            console.log("plugin:"+table.getPlugin("MergeCells"));
           });
         }
 
