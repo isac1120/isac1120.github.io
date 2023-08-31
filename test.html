@@ -98,88 +98,6 @@
         left: 0;
       }
 
-      .switch {
-        position: relative;
-        display: inline-block;
-        width: 120px;
-        height: 28px;
-      }
-
-      .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: red;
-        transition: 0.4s;
-      }
-
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 20px;
-        width: 20px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: 0.4s;
-      }
-
-      input:checked + .slider {
-        background-color: #2196f3;
-      }
-
-      input:focus + .slider {
-        box-shadow: 0 0 1px #2196f3;
-      }
-
-      input:checked + .slider:before {
-        transform: translateX(90px);
-      }
-
-      .on {
-        display: none;
-      }
-
-      .on,
-      .off {
-        color: white;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
-        font-size: 10px;
-        font-family: Verdana, sans-serif;
-      }
-
-      input:checked + .slider .on {
-        display: block;
-      }
-
-      input:checked + .slider .off {
-        display: none;
-      }
-      /*--------- END --------*/
-
-      /* Rounded sliders */
-      .slider.round {
-        border-radius: 34px;
-      }
-
-      .slider.round:before {
-        border-radius: 50%;
-      }
-
-      /* switch end*/
-
       .from-container {
         width: 66%;
         height: 700px;
@@ -542,16 +460,17 @@
 
       </div>
     <div class="container">
-
       <div class="switch-container">
-        <label class="switch">
-          <input type="checkbox" class="togBtn" />
-          <div class="slider round">
-            <!-- Added changes here -->
-            <span class="on">시너지순으로</span>
-            <span class="off">클래스</span>
-          </div>
-        </label>
+        <div class="btn-group" role="group" aria-label="radioBtnGroup">
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+          <label class="btn btn-outline-primary" for="btnradio1">시너지순</label>
+        
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio2">클래스순</label>
+        
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio3">유저순</label>
+        </div>
       </div>
       <div id="synergy-container" class="from-container">
         <div class="container-header">
@@ -1329,22 +1248,6 @@
           });
         }
 
-        $(".togBtn").change(function () {
-          if ($(this).is(":checked")) {
-            // Hide synergiesContainer and show classesContainer when the slider is on the right
-            $("#synergy-container").hide();
-            $("#class-container").show();
-            $("#synergy-group-container").hide();
-            $("#class-group-container").show();
-          } else {
-            // Show synergiesContainer and hide classesContainer when the slider is on the left
-            $("#synergy-container").show();
-            $("#class-container").hide();
-            $("#synergy-group-container").show();
-            $("#class-group-container").hide();
-          }
-        });
-
         // Define user columns
         var users = [
           "유저 1",
@@ -1980,6 +1883,13 @@
           document.getElementById("table-sidebar").style.paddingRight = "0"
           document.getElementById("sideOpenBtn").style.width = "30px";
         }
+
+      const radioButtons = $("input[name='options']");
+      const components = $(".from-container");
+        radioButtons.on("change", function () {
+          const index = radioButtons.index(this);
+          components.hide().eq(index).show();
+        });
     </script>
   </body>
 </html>
