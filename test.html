@@ -1263,7 +1263,7 @@
 
         // Create user columns
         users.forEach(function (user) {
-          var column = $('<div class="user-column col-5"></div>').css(
+          var column = $('<div class="character-column col-5"></div>').css(
             "background-color",
             "#fff"
           );
@@ -1275,7 +1275,7 @@
           column.append(header);
           column.append(form);
           column.append(container);
-          $("#user-columns").append(column);
+          $("#character-columns").append(column);
 
           // Handle form submission
           form.submit(function (event) {
