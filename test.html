@@ -463,14 +463,14 @@
     <div class="container">
       <div class="switch-container">
         <div class="btn-group" role="group" aria-label="radioBtnGroup">
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-          <label class="btn btn-outline-primary" for="btnradio1">시너지순</label>
+          <input type="radio" class="btn-check" name="radioBtn" id="radioBtn1" autocomplete="off" checked>
+          <label class="btn btn-outline-primary" for="radioBtn1">시너지순</label>
         
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-          <label class="btn btn-outline-primary" for="btnradio2">클래스순</label>
+          <input type="radio" class="btn-check" name="radioBtn" id="radioBtn2" autocomplete="off">
+          <label class="btn btn-outline-primary" for="radioBtn2">클래스순</label>
         
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-          <label class="btn btn-outline-primary" for="btnradio3">유저순</label>
+          <input type="radio" class="btn-check" name="radioBtn" id="radioBtn3" autocomplete="off">
+          <label class="btn btn-outline-primary" for="radioBtn3">유저순</label>
         </div>
       </div>
       <div id="synergy-container" class="from-container">
@@ -521,7 +521,7 @@
         </div>
       </div>
 
-      <div id="user-container" class="from-container">
+      <div id="user-container" class="from-container" style="display: none">
         <div class="container-header">
           <h4 class="text-center">유저</h4>
         </div>
@@ -530,7 +530,7 @@
         </div>
       </div>
 
-      <div id="character-group-container" class="to-container">
+      <div id="character-group-container" class="to-container" style="display: none">
         <div class="container-header">
           <div class="button-container">
             <button class="copy-button">복사</button>
@@ -1869,8 +1869,15 @@
         pasteButton.addEventListener("click", function(){
           convertToTable(hot);
         });
+        
+        $('input[name="radioBtn"]').change(function() {
+            const selectedComponentId = $(this).val();
+            $('.from-container').hide(); // Hide all components
+            $('#' + selectedComponentId).show(); // Show the selected component
+        });
       });
-      
+      //end documnet
+	    //extra function
         function openBar() {
           document.getElementById("table-sidebar").style.width = "60%";
           document.getElementById("table-sidebar").style.paddingRight = "2%"
@@ -1885,12 +1892,6 @@
           document.getElementById("sideOpenBtn").style.width = "30px";
         }
 
-      const radioButtons = $("input[name='options']");
-      const components = $(".from-container");
-        radioButtons.on("change", function () {
-          const index = radioButtons.index(this);
-          components.hide().eq(index).show();
-        });
     </script>
   </body>
 </html>
