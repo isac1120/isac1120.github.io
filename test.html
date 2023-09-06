@@ -137,16 +137,12 @@
         min-height: 80px;
       }
 
-      #class-columns,
-      #synergy-columns,
-      #character-columns,
-      #spec-columns {
+      .base-columns {
         height: 300px;
-        min-height: 300px;
         min-width: 300px;
         border: 1px solid #ccc;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(255, 156, 156, 0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -154,7 +150,6 @@
       }
 
       #class-columns {
-        min-width: 250px;
         flex-direction: column;
         flex-wrap: wrap;
         overflow-y: auto;
@@ -176,7 +171,7 @@
         margin: 5px; /* Space around each rectangle */
         font-size: 14px;
       }
-
+/*
       .grouping-columns {
         height: 350px;
         min-height: 250px;
@@ -186,7 +181,7 @@
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-
+*/
       .party-column {
         min-width: 250px;
         overflow-x: hidden;
@@ -209,22 +204,16 @@
         background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-/*
+
       #character-columns {
-        height: 350px;
-        min-height: 250px;
-        min-width: 300px;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         overflow-x: auto;
         overflow-y: auto;
         width: 100%;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-*/
+
       .nickname-input {
         margin-right: 10px;
       }
@@ -356,8 +345,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-				position: absolute;
-				right: 0;
+        position: absolute;
+        right: 0;
       }
       #sideCloseBtn:hover {
         
@@ -394,10 +383,7 @@
           min-width: 200px;
           width: 200px;
         }
-        #synergy-columns,
-        #class-columns,
-        #character-columns,
-        .grouping-columns {
+        .base-columns {
           height: 300px;
         }
 
@@ -426,10 +412,7 @@
           min-width: 200px;
           width: 200px;
         }
-        #synergy-columns,
-        #class-columns,
-        #character-columns,
-        .grouping-columns {
+        .base-columns {
           height: 300px;
         }
         .sidebar {
@@ -482,7 +465,7 @@
         <div class="container-header">
           <h4 class="text-center">시너지</h4>
         </div>
-        <div id="synergy-columns">
+        <div id="synergy-columns" class="base-columns">
           <!-- Add your synergy columns here -->
         </div>
       </div>
@@ -495,7 +478,7 @@
           </div>
           <h4 class="text-center">공대</h4>
         </div>
-        <div id="synergy-group" class="grouping-columns">
+        <div id="synergy-group" class="base-columns">
           <!-- Add your grouping columns here -->
         </div>
       </div>
@@ -504,7 +487,7 @@
         <div class="container-header">
           <h4 class="text-center">클래스</h4>
         </div>
-        <div id="class-columns">
+        <div id="class-columns" class="base-columns">
           <!-- Add your class columns here -->
         </div>
       </div>
@@ -521,7 +504,7 @@
           </div>
           <h4 class="text-center">공대</h4>
         </div>
-        <div id="class-group" class="grouping-columns">
+        <div id="class-group" class="base-columns">
           <!-- Add your grouping columns here -->
         </div>
       </div>
@@ -530,7 +513,7 @@
         <div class="container-header">
           <h4 class="text-center">유저</h4>
         </div>
-        <div id="character-columns">
+        <div id="character-columns" class="base-columns>
           <!-- Add your character columns here -->
         </div>
       </div>
@@ -543,14 +526,14 @@
           </div>
           <h4 class="text-center">공대</h4>
         </div>
-        <div id="character-group" class="grouping-columns">
+        <div id="character-group" class="base-columns">
           <!-- Add your grouping columns here -->
         </div>
       </div>
 
       <div id="spec-container">
         <h4 class="text-center">스펙</h4>
-        <div id="spec-columns">
+        <div id="spec-columns" class="base-columns">
           <!-- Add your spec columns here -->
         </div>
       </div>
