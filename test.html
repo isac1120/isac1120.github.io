@@ -582,6 +582,9 @@
 
     <script>
       $(document).ready(function () {
+        
+        /* -----------------------------------------------synergyData module------------------------------------------------------------*/
+        
         // Synergy data
         var synergies = [
           {
@@ -801,7 +804,9 @@
             color: "#DCDCDC",
           },
         ];
-
+        
+        /* -----------------------------------------------synergyData display module------------------------------------------------------------*/
+        
         // Create synergy columns
         synergies.forEach(function (synergy) {
           var column = $('<div class="synergy-column"></div>').css(
@@ -832,6 +837,8 @@
           $("#synergy-columns").append(column);
         });
 
+
+        /* -----------------------------------------------classData module(extraction from synergyData)------------------------------------------------------------*/
         // Create a dictionary to store class-centric data
         var classes = {};
 
@@ -898,6 +905,9 @@
           });
         });
 
+
+        /* -----------------------------------------------classData display module------------------------------------------------------------*/
+        
         // Now you have a classes dictionary where each key is a class name and its value is an array of synergies
 
         // Create class columns
@@ -935,6 +945,362 @@
           $("#class-columns").append(column);
         });
 
+
+        /* -----------------------------------------------character display module------------------------------------------------------------*/
+        
+        // Define user columns
+        var users = [
+          "유저 1",
+          "유저 2",
+          "유저 3",
+          "유저 4",
+          "유저 5",
+          "유저 6",
+          "유저 7",
+          "유저 8",
+        ];
+
+        // Create user columns
+        users.forEach(function (user) {
+          var column = $('<div class="character-column col-5"></div>').css(
+            "background-color",
+            "#fff"
+          );
+          var header = $("<h5></h5>").text(user);
+          var form = $(
+            '<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임을 입력하세요"><button type="submit" class="submit-button">Submit</button></form>'
+          );
+          var container = $('<div class="character-container"></div>');
+          column.append(header);
+          column.append(form);
+          column.append(container);
+          $("#character-columns").append(column);
+
+          // Handle form submission
+          form.submit(function (event) {
+            event.preventDefault();
+            var nickname = $(this).find(".nickname-input").val();
+            getCharacterData(nickname, container);
+          });
+        });
+        
+        /* ++++++++++++++++++++++++++++++++++++++=+++++++++functions+++++++++++++++++++++++++++++++++++++++++++++++++++ */
+        
+        function getCharacterData(nickname, container) {
+          var url =
+            "https://developer-lostark.game.onstove.com/characters/" +
+            nickname +
+            "/siblings";
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", url, true);
+          xhr.setRequestHeader("accept", "application/json");
+          xhr.setRequestHeader(
+            "authorization",
+            "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+          );
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                displayCharacterData(response, container);
+              } else {
+                console.log("Error:", xhr.statusText);
+              }
+            }
+          };
+          xhr.send();
+        }
+
+        function getEquipmentData(nickname, container) {
+          var url =
+            "https://developer-lostark.game.onstove.com/armories/characters/" +
+            nickname +
+            "/equipment";
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", url, true);
+          xhr.setRequestHeader("accept", "application/json");
+          xhr.setRequestHeader(
+            "authorization",
+            "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+          );
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                displayEquipmentData(response, container);
+              } else {
+                console.log("Error:", xhr.statusText);
+              }
+            }
+          };
+          xhr.send();
+        }
+	      
+
+        function displayCharacterData(data, container) {
+          container.empty();
+          data.forEach(function (character) {
+            var element = $("<div></div>")
+              .text(
+                character.CharacterName +
+                  " (" +
+                  character.CharacterClassName +
+                  " " +
+                  character.ItemAvgLevel +
+                  ")"
+              )
+              .addClass("draggable")
+              .css("background-color", "white");
+            var color = getColorForClass(character.CharacterClassName);
+            var synergy = getSynergyForClass(character.CharacterClassName);
+            var shortSyn = getShortSynergyForClass(
+              character.CharacterClassName
+            );
+            var wrapper = $("<div></div>");
+
+            color.forEach(function (colorElement, index) {
+              //make circle with colored corresponding to each class synergy
+              var circle = $("<div></div>")
+                .addClass("rounded-rectangle")
+                .css("background-color", colorElement);
+              circle.text(shortSyn[index]);
+              circle
+                .attr({
+                  "data-toggle": "tooltip",
+                  "data-placement": "bottom",
+                  title: synergy[index],
+                })
+                .tooltip();
+
+              wrapper.append(circle);
+            });
+
+            element.append(wrapper);
+            container.append(element);
+            element.draggable({
+              helper: "clone",
+              revert: "invalid",
+              appendTo: "body",
+              zIndex: 100,
+            });
+          });
+        }
+                
+        function getColorForClass(className) {
+          var classColor = [];
+          synergies.forEach(function (synergy) {
+            synergy.categories.forEach(function (category) {
+              category.classes.forEach(function (classType) {
+                if (classType.includes(className)) {
+                  classColor.push(category.color);
+                }
+              });
+            });
+          });
+          return classColor;
+        }
+
+        function getSynergyForClass(className) {
+          var classSynergy = [];
+          synergies.forEach(function (synergy) {
+            synergy.categories.forEach(function (category) {
+              category.classes.forEach(function (classType) {
+                if (classType.includes(className)) {
+                  classSynergy.push(
+                    synergy.name + " - " + category.categoryName
+                  );
+                }
+              });
+            });
+          });
+          return classSynergy;
+        }
+        
+        function getShortSynergyForClass(className) {
+          var classSynergy = [];
+          synergies.forEach(function (synergy) {
+            synergy.categories.forEach(function (category) {
+              category.classes.forEach(function (classType) {
+                if (classType.includes(className)) {
+                  // var shortenedName = synergy.name.split(" ")[0].charAt(0);
+                  var shortenedName = synergy.name
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase())
+                    .join("");
+
+                  classSynergy.push(shortenedName);
+                }
+              });
+            });
+          });
+          return classSynergy;
+        }
+
+        function updateCharacterPartyStats() {
+          $("#character-group .party-column").each(function (
+            elementIndex,
+            element
+          ) {
+            var totalItemLevel = 0;
+            var itemCount = 0;
+            var uniColor = [];
+            var uniShortSyn = [];
+            var uniSynergy = [];
+            var uniData = [];
+
+            //iterate every character element space.
+            $(element)
+              .find(".droppable")
+              .each(function (ElementIndex, Element) {
+                //check character element existence in a character element space.
+                if ($(this).find(".draggable").length) {
+                  //get character data from a characterElement
+
+                  //get class name of a characterElement
+                  className = $(Element)
+                    .text()
+                    .match(/\(([^)]+)\)/)[1]
+                    .split(" ")[0]
+                    .trim();
+                  //get other data of characterElement using className
+                  var color = getColorForClass(className);
+                  var synergy = getSynergyForClass(className);
+                  var shortSyn = getShortSynergyForClass(className);
+                  var itemLevel = Number(
+                    $(Element)
+                      .text()
+                      .split("(")[1]
+                      .replace(/[^0-9.-]+/g, "")
+                  );
+
+                  //add unique data in a party from each character element
+                  color.forEach(function (item, index) {
+                    uniColor.push(item);
+                  });
+                  synergy.forEach(function (item, index) {
+                    uniSynergy.push(item);
+                  });
+
+                  totalItemLevel += itemLevel;
+                  itemCount++;
+                }
+              });
+
+            uniSynergy.forEach(function (item, index) {
+              uniShortSyn.push(
+                item
+                  .split("-")[0]
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase())
+                  .join("")
+              );
+            });
+
+            //rearrange uniData synergy in Korean alphabetical order
+            for (var i = 0; i < uniColor.length; i++) {
+              var data = {
+                color: uniColor[i],
+                shortSyn: uniShortSyn[i],
+                synergy: uniSynergy[i],
+              };
+              uniData.push(data);
+            }
+
+            uniData.sort(function (a, b) {
+              var synergyA = a.synergy.toUpperCase();
+              var synergyB = b.synergy.toUpperCase();
+              if (synergyA < synergyB) {
+                return -1;
+              }
+              if (synergyA > synergyB) {
+                return 1;
+              }
+              return 0;
+            });
+
+            //make colorCircles with tooltip
+            $(this).find(".colorCircles").remove();
+            var colorCircles = $("<div></div>")
+              .addClass("colorCircles")
+              .attr({ width: "100%" });
+            var prevSynergy = "";
+            for (var i = 0; i < Object.keys(uniData).length; i++) {
+              if (
+                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
+              ) {
+                counter = 0;
+              }
+              counter++;
+              var colorCircle = $("<span></span>")
+                .addClass("rounded-rectangle")
+                .css("background-color", uniData[i].color);
+              colorCircle.text(uniData[i].shortSyn);
+              colorCircle
+                .attr({
+                  "data-toggle": "tooltip",
+                  "data-placement": "bottom",
+                  title: uniData[i].synergy,
+                })
+                .tooltip();
+              // add '/' between colorCircles with successive same synergy
+              if (
+                i > 0 &&
+                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
+              ) {
+                colorCircles.append("<span> / </span>");
+              }
+              colorCircles.append(colorCircle);
+              prevSynergy = uniData[i].synergy;
+            }
+
+            //display party data except character data
+            var numSlash = colorCircles.text().split("/").length - 1;
+            //avgItemLevel data
+            var avgItemLevel =
+              itemCount > 0 ? (totalItemLevel / itemCount).toFixed(1) : 0;
+            $(this)
+              .find(".avg-item-level")
+              .text(" 평균템렙:" + avgItemLevel);
+            //synergy number data
+            if (numSlash == 0 && Object.keys(uniData).length == 0) {
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else if (numSlash == 0 && Object.keys(uniData).length != 0) {
+              numSlash++;
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else {
+              numSlash++;
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            }
+            //color circles
+            $(this).find(".color-count").after(colorCircles);
+          });
+        }
+     
+        /* -----------------------------------------------synergy grouping module------------------------------------------------------------*/
         // Define your parties here
         var synergyGroup = ["1파티", "2파티"];
 
@@ -957,33 +1323,7 @@
           $("#synergy-group").append(column);
         });
 
-        // Define your parties here
-        var classGroup = ["1파티", "2파티"];
-
-        // Create grouping columns
-        classGroup.forEach(function (party, index) {
-          var column = $('<div class="party-column col-10"></div>').css(
-            "background-color",
-            "#fff"
-          );
-          var header = $("<h6></h6>").text(party);
-          var colorCount = $("<span></span>")
-            .addClass("color-count")
-            .css("font-size", "13px");
-          header.append(colorCount);
-          column.append(header);
-
-          for (var i = 0; i < 4; i++) {
-            var element = $("<div></div>")
-              .addClass("droppable")
-              .css("min-height", "50px");
-            column.append(element);
-          }
-
-          $("#class-group").append(column);
-        });
-
-        // Draggable elements
+                // Draggable elements
         $("#synergy-columns .draggable").draggable({
           helper: "clone",
           revert: "invalid",
@@ -1041,6 +1381,33 @@
             },
           })
           .disableSelection();
+
+        /* -----------------------------------------------class grouping module------------------------------------------------------------*/
+        // Define your parties here
+        var classGroup = ["1파티", "2파티"];
+
+        // Create grouping columns
+        classGroup.forEach(function (party, index) {
+          var column = $('<div class="party-column col-10"></div>').css(
+            "background-color",
+            "#fff"
+          );
+          var header = $("<h6></h6>").text(party);
+          var colorCount = $("<span></span>")
+            .addClass("color-count")
+            .css("font-size", "13px");
+          header.append(colorCount);
+          column.append(header);
+
+          for (var i = 0; i < 4; i++) {
+            var element = $("<div></div>")
+              .addClass("droppable")
+              .css("min-height", "50px");
+            column.append(element);
+          }
+
+          $("#class-group").append(column);
+        });
 
         // Draggable elements
         $("#class-columns .draggable").draggable({
@@ -1248,116 +1615,8 @@
           });
         }
 
-        // Define user columns
-        var users = [
-          "유저 1",
-          "유저 2",
-          "유저 3",
-          "유저 4",
-          "유저 5",
-          "유저 6",
-          "유저 7",
-          "유저 8",
-        ];
-
-        // Create user columns
-        users.forEach(function (user) {
-          var column = $('<div class="character-column col-5"></div>').css(
-            "background-color",
-            "#fff"
-          );
-          var header = $("<h5></h5>").text(user);
-          var form = $(
-            '<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임을 입력하세요"><button type="submit" class="submit-button">Submit</button></form>'
-          );
-          var container = $('<div class="character-container"></div>');
-          column.append(header);
-          column.append(form);
-          column.append(container);
-          $("#character-columns").append(column);
-
-          // Handle form submission
-          form.submit(function (event) {
-            event.preventDefault();
-            var nickname = $(this).find(".nickname-input").val();
-            getCharacterData(nickname, container);
-          });
-        });
-
-        function getCharacterData(nickname, container) {
-          var url =
-            "https://developer-lostark.game.onstove.com/characters/" +
-            nickname +
-            "/siblings";
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", url, true);
-          xhr.setRequestHeader("accept", "application/json");
-          xhr.setRequestHeader(
-            "authorization",
-            "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
-          );
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-              if (xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
-                displayCharacterData(response, container);
-              } else {
-                console.log("Error:", xhr.statusText);
-              }
-            }
-          };
-          xhr.send();
-        }
-
-        function displayCharacterData(data, container) {
-          container.empty();
-          data.forEach(function (character) {
-            var element = $("<div></div>")
-              .text(
-                character.CharacterName +
-                  " (" +
-                  character.CharacterClassName +
-                  " " +
-                  character.ItemAvgLevel +
-                  ")"
-              )
-              .addClass("draggable")
-              .css("background-color", "white");
-            var color = getColorForClass(character.CharacterClassName);
-            var synergy = getSynergyForClass(character.CharacterClassName);
-            var shortSyn = getShortSynergyForClass(
-              character.CharacterClassName
-            );
-            var wrapper = $("<div></div>");
-
-            color.forEach(function (colorElement, index) {
-              //make circle with colored corresponding to each class synergy
-              var circle = $("<div></div>")
-                .addClass("rounded-rectangle")
-                .css("background-color", colorElement);
-              circle.text(shortSyn[index]);
-              circle
-                .attr({
-                  "data-toggle": "tooltip",
-                  "data-placement": "bottom",
-                  title: synergy[index],
-                })
-                .tooltip();
-
-              wrapper.append(circle);
-            });
-
-            element.append(wrapper);
-            container.append(element);
-            element.draggable({
-              helper: "clone",
-              revert: "invalid",
-              appendTo: "body",
-              zIndex: 100,
-            });
-          });
-        }
-
+        /* -----------------------------------------------character grouping module------------------------------------------------------------*/
+        
         // Define your parties here
         var characterGroup = ["1파티", "2파티"];
         // Create grouping columns
@@ -1438,219 +1697,7 @@
           })
           .disableSelection();
 
-        function getColorForClass(className) {
-          var classColor = [];
-          synergies.forEach(function (synergy) {
-            synergy.categories.forEach(function (category) {
-              category.classes.forEach(function (classType) {
-                if (classType.includes(className)) {
-                  classColor.push(category.color);
-                }
-              });
-            });
-          });
-          return classColor;
-        }
-
-        function getSynergyForClass(className) {
-          var classSynergy = [];
-          synergies.forEach(function (synergy) {
-            synergy.categories.forEach(function (category) {
-              category.classes.forEach(function (classType) {
-                if (classType.includes(className)) {
-                  classSynergy.push(
-                    synergy.name + " - " + category.categoryName
-                  );
-                }
-              });
-            });
-          });
-          return classSynergy;
-        }
-        function getShortSynergyForClass(className) {
-          var classSynergy = [];
-          synergies.forEach(function (synergy) {
-            synergy.categories.forEach(function (category) {
-              category.classes.forEach(function (classType) {
-                if (classType.includes(className)) {
-                  // var shortenedName = synergy.name.split(" ")[0].charAt(0);
-                  var shortenedName = synergy.name
-                    .split(" ")
-                    .map((word) => word.charAt(0).toUpperCase())
-                    .join("");
-
-                  classSynergy.push(shortenedName);
-                }
-              });
-            });
-          });
-          return classSynergy;
-        }
-
-        function updateCharacterPartyStats() {
-          $("#character-group .party-column").each(function (
-            elementIndex,
-            element
-          ) {
-            var totalItemLevel = 0;
-            var itemCount = 0;
-            var uniColor = [];
-            var uniShortSyn = [];
-            var uniSynergy = [];
-            var uniData = [];
-
-            //iterate every character element space.
-            $(element)
-              .find(".droppable")
-              .each(function (ElementIndex, Element) {
-                //check character element existence in a character element space.
-                if ($(this).find(".draggable").length) {
-                  //get character data from a characterElement
-
-                  //get class name of a characterElement
-                  className = $(Element)
-                    .text()
-                    .match(/\(([^)]+)\)/)[1]
-                    .split(" ")[0]
-                    .trim();
-                  //get other data of characterElement using className
-                  var color = getColorForClass(className);
-                  var synergy = getSynergyForClass(className);
-                  var shortSyn = getShortSynergyForClass(className);
-                  var itemLevel = Number(
-                    $(Element)
-                      .text()
-                      .split("(")[1]
-                      .replace(/[^0-9.-]+/g, "")
-                  );
-
-                  //add unique data in a party from each character element
-                  color.forEach(function (item, index) {
-                    uniColor.push(item);
-                  });
-                  synergy.forEach(function (item, index) {
-                    uniSynergy.push(item);
-                  });
-
-                  totalItemLevel += itemLevel;
-                  itemCount++;
-                }
-              });
-
-            uniSynergy.forEach(function (item, index) {
-              uniShortSyn.push(
-                item
-                  .split("-")[0]
-                  .split(" ")
-                  .map((word) => word.charAt(0).toUpperCase())
-                  .join("")
-              );
-            });
-
-            //rearrange uniData synergy in Korean alphabetical order
-            for (var i = 0; i < uniColor.length; i++) {
-              var data = {
-                color: uniColor[i],
-                shortSyn: uniShortSyn[i],
-                synergy: uniSynergy[i],
-              };
-              uniData.push(data);
-            }
-
-            uniData.sort(function (a, b) {
-              var synergyA = a.synergy.toUpperCase();
-              var synergyB = b.synergy.toUpperCase();
-              if (synergyA < synergyB) {
-                return -1;
-              }
-              if (synergyA > synergyB) {
-                return 1;
-              }
-              return 0;
-            });
-
-            //make colorCircles with tooltip
-            $(this).find(".colorCircles").remove();
-            var colorCircles = $("<div></div>")
-              .addClass("colorCircles")
-              .attr({ width: "100%" });
-            var prevSynergy = "";
-            for (var i = 0; i < Object.keys(uniData).length; i++) {
-              if (
-                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
-              ) {
-                counter = 0;
-              }
-              counter++;
-              var colorCircle = $("<span></span>")
-                .addClass("rounded-rectangle")
-                .css("background-color", uniData[i].color);
-              colorCircle.text(uniData[i].shortSyn);
-              colorCircle
-                .attr({
-                  "data-toggle": "tooltip",
-                  "data-placement": "bottom",
-                  title: uniData[i].synergy,
-                })
-                .tooltip();
-              // add '/' between colorCircles with successive same synergy
-              if (
-                i > 0 &&
-                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
-              ) {
-                colorCircles.append("<span> / </span>");
-              }
-              colorCircles.append(colorCircle);
-              prevSynergy = uniData[i].synergy;
-            }
-
-            //display party data except character data
-            var numSlash = colorCircles.text().split("/").length - 1;
-            //avgItemLevel data
-            var avgItemLevel =
-              itemCount > 0 ? (totalItemLevel / itemCount).toFixed(1) : 0;
-            $(this)
-              .find(".avg-item-level")
-              .text(" 평균템렙:" + avgItemLevel);
-            //synergy number data
-            if (numSlash == 0 && Object.keys(uniData).length == 0) {
-              $(this)
-                .find(".color-count")
-                .text(
-                  " 시너지수:" +
-                    Object.keys(uniData).length +
-                    " (" +
-                    numSlash +
-                    ")"
-                );
-            } else if (numSlash == 0 && Object.keys(uniData).length != 0) {
-              numSlash++;
-              $(this)
-                .find(".color-count")
-                .text(
-                  " 시너지수:" +
-                    Object.keys(uniData).length +
-                    " (" +
-                    numSlash +
-                    ")"
-                );
-            } else {
-              numSlash++;
-              $(this)
-                .find(".color-count")
-                .text(
-                  " 시너지수:" +
-                    Object.keys(uniData).length +
-                    " (" +
-                    numSlash +
-                    ")"
-                );
-            }
-            //color circles
-            $(this).find(".color-count").after(colorCircles);
-          });
-        }
-
+        /* ----------------------------------------------copy/paste module--------------------------------------------------------*/
         // Add event listeners to copy buttons
         $("#class-copyBtn").click(function () {
           var containerId = $(this).closest(".to-container").attr("id");
