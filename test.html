@@ -53,7 +53,7 @@
     />
     <style>
       
-	    /*  ====================================================  layout  ==================================================== */
+      /*  ====================================================  scrollbar layout  ==================================================== */
       
       /* For Webkit browsers (Chrome, Safari, etc.) */
       ::-webkit-scrollbar {
@@ -69,8 +69,8 @@
       ::-webkit-scrollbar-thumb:hover {
         background-color: #555;
       }
-      
-	    /*  ====================================================  topLV title layout module  ==================================================== */
+
+      /*  ====================================================  topLV title layout module  ==================================================== */
       
       .title {
         min-width: 320px;
@@ -84,7 +84,7 @@
         font-family: "Jua", sans-serif;
       }
       
-	    /*  ====================================================  topLV contents layout module  ==================================================== */
+      /*  ====================================================  topLV contents layout module  ==================================================== */
       
       body {
         font-family: "Jua", sans-serif;
@@ -101,6 +101,7 @@
       }
       
       /*  ====================================================  middleLV contents switch layout module  ==================================================== */
+	    
       /* swithch */
       .switch-container {
         position: absolute;
@@ -108,7 +109,9 @@
         top : -5px;
         z-index: 0;
       }
-	    /*  ====================================================   middleLV contents layout module  ==================================================== */
+      
+      /*  ====================================================   middleLV contents layout module  ==================================================== */
+	    
       .from-container {
         width: 66%;
         height: 350px;
@@ -475,7 +478,7 @@
       </div>
     <div class="container">
       <div class="switch-container">
-        <div class="btn-group" role="group" aria-label="radioBtnGroup">
+        <div class="btn-group btn-group-sm" role="group" aria-label="radioBtnGroup">
           <input type="radio" class="btn-check" name="radioBtn" id="radioBtn1" value="synergy" autocomplete="off" checked>
           <label class="btn btn-outline-primary" for="radioBtn1">시너지순</label>
         
