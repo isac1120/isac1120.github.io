@@ -1008,7 +1008,16 @@
             var nickname = $(this).find(".nickname-input").val();
             getCharacterData(nickname, container);
           });
+
+          // Attach a hover event to each character element
+          $("#character-columns).on("mouseenter", ".draggable", function () {
+            var characterId = $(this).data("character-id");
+            displayEquipmentData(characterId, $(this));
+          });
         });
+
+          // Define a global object to store equipment data
+          var equipmentData = {};
         
         /*  ---------------------------------- functions --------------------------------------  */
         
@@ -1061,6 +1070,13 @@
           };
           xhr.send();
         }
+
+        // Function to display equipment data when hovering over a character element
+        function displayEquipmentData(characterId, element) {
+          var equipment = equipmentData[characterId];
+          // Display equipment data for the hovered character
+          // You can implement this part based on your data structure and HTML elements
+        }
 	      
 
         function displayCharacterData(data, container) {
@@ -1076,7 +1092,9 @@
                   ")"
               )
               .addClass("draggable")
-              .css("background-color", "white");
+              .css("background-color", "white")
+              .attr("data-character-id", character.CharacterId);;
+            
             var color = getColorForClass(character.CharacterClassName);
             var synergy = getSynergyForClass(character.CharacterClassName);
             var shortSyn = getShortSynergyForClass(
