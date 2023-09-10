@@ -52,9 +52,8 @@
       rel="stylesheet"
     />
     <style>
-      
       /*  ====================================================  scrollbar layout  ==================================================== */
-      
+
       /* For Webkit browsers (Chrome, Safari, etc.) */
       ::-webkit-scrollbar {
         width: 15px; /* Increase the width of the vertical scrollbar */
@@ -71,7 +70,7 @@
       }
 
       /*  ====================================================  topLV title layout module  ==================================================== */
-      
+
       .title {
         min-width: 320px;
         border: 1px solid #ccc;
@@ -83,9 +82,9 @@
         background-color: #63c5da;
         font-family: "Jua", sans-serif;
       }
-      
+
       /*  ====================================================  topLV contents layout module  ==================================================== */
-      
+
       body {
         font-family: "Jua", sans-serif;
         background-color: #f5f5f5;
@@ -97,21 +96,20 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-
       }
-      
+
       /*  ====================================================  middleLV contents switch layout module  ==================================================== */
-	    
+
       /* swithch */
       .switch-container {
         position: absolute;
         left: 0;
-        top : -5px;
+        top: -5px;
         z-index: 0;
       }
-      
+
       /*  ====================================================   middleLV contents layout module  ==================================================== */
-	    
+
       .from-container {
         width: 66%;
         height: 350px;
@@ -131,9 +129,9 @@
         min-width: 320px;
         width: 100%;
       }
-      
-	    /*  ====================================================  bottomLV contents layout module  ==================================================== */
-      
+
+      /*  ====================================================  bottomLV contents layout module  ==================================================== */
+
       .class-column,
       .synergy-column {
         min-height: 150px;
@@ -157,7 +155,7 @@
         min-height: 80px;
       }
 
-      .base-columns{
+      .base-columns {
         height: 300px;
         min-width: 300px;
         padding: 0 10px;
@@ -176,7 +174,7 @@
         overflow-y: auto;
         padding: 10px;
       }
-      
+
       .base-grouping-columns {
         height: 300px;
         min-height: 250px;
@@ -219,9 +217,9 @@
         overflow-y: auto;
         width: 100%;
       }
-      
+
       /* ----------------- characterData layout module  -----------------------*/
-      
+
       .nickname-input {
         margin-right: 10px;
       }
@@ -268,7 +266,7 @@
         margin: 5px;
         background-color: rgba(0, 0, 0, 0.1);
       }
-      
+
       button.delete {
         float: right;
         background-color: transparent;
@@ -276,9 +274,9 @@
         color: #f00;
         font-weight: bold;
       }
-      
+
       /* ------------------------- synergy symbol ------------------------- */
-      
+
       .color-circle {
         display: inline-block;
         width: 15px;
@@ -296,18 +294,17 @@
         margin: 5px; /* Space around each rectangle */
         font-size: 14px;
       }
-      
+
       .row.scrollable-row {
         overflow-x: hidden;
         white-space: nowrap;
       }
-      
+
       /* ------------------- copy&save button -------------------------- */
-      
+
       .button-container {
         position: absolute;
         right: 0;
-        
       }
       .copy-button,
       .save-button {
@@ -321,7 +318,7 @@
       }
 
       /* ==================================================== sidebar layout module ========================================================*/
-      
+
       /* The side navigation menu */
       #sideOpenBtn {
         display: flex;
@@ -339,7 +336,7 @@
       #sideOpenBtn:hover {
         background-color: #444;
       }
-	    
+
       .sidebar {
         display: flex;
         justify-content: flex-start;
@@ -355,7 +352,6 @@
         opacity: 97%;
         overflow: hidden; /* Disable horizontal scroll */
         transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-      
       }
       #sideCloseBtn {
         width: 40px;
@@ -368,35 +364,33 @@
         right: 0;
       }
       #sideCloseBtn:hover {
-        
         background-color: #444;
       }
 
       #spreadsheet-container {
-        width : 95%;
+        width: 95%;
         padding: 2% 0 0 5%;
         height: 97%;
         overflow: auto;
       }
 
-      #paste-button{
+      #paste-button {
         position: relative;
         top: 3%;
         left: 35%;
         width: 80px;
         height: 30px;
-
       }
 
-      .handsontable .main-header{
-        background-color:orangered;
+      .handsontable .main-header {
+        background-color: orangered;
       }
-      .handsontable .sub-header{
-        background-color:orange;
+      .handsontable .sub-header {
+        background-color: orange;
       }
-      
+
       /* ==================================================== mediaquery layout module ==================================================== */
-      
+
       @media (max-width: 1024px) {
         .from-container,
         .to-container {
@@ -423,10 +417,10 @@
         }
       }
       @media (max-width: 340px) {
-        .container{
+        .container {
           width: 340px;
         }
-        
+
         .from-container,
         .to-container {
           width: 100%;
@@ -452,40 +446,88 @@
   </head>
   <body>
     <div class="title text-center">
-        <h2 class="d-inline ">공대 구성 시뮬레이터</h2>
-        <h6 class="d-inline align-bottom">2023.07ver</h6>
+      <h2 class="d-inline">공대 구성 시뮬레이터</h2>
+      <h6 class="d-inline align-bottom">2023.07ver</h6>
     </div>
     <div id="sideOpenBtn" onclick="openBar()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        class="bi bi-chevron-right"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+        />
       </svg>
     </div>
-      <div id="table-sidebar" class="sidebar">
-        <div id="sideCloseBtn" onclick="closeBar()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-          </svg>
-        </div>
-        <div id="spreadsheet-container">
-          <div id="spreadsheet-header" class="container-header">
-            <h4>레이드 시트</h4>
-            <button id="paste-button" class="save-button">붙여넣기</button>
-          </div>
-          <div id="spreadsheet">
-          </div>
-        </div>
-
+    <div id="table-sidebar" class="sidebar">
+      <div id="sideCloseBtn" onclick="closeBar()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-chevron-left"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+          />
+        </svg>
       </div>
+      <div id="spreadsheet-container">
+        <div id="spreadsheet-header" class="container-header">
+          <h4>레이드 시트</h4>
+          <button id="paste-button" class="save-button">붙여넣기</button>
+        </div>
+        <div id="spreadsheet"></div>
+      </div>
+    </div>
     <div class="container">
       <div class="switch-container">
-        <div class="btn-group btn-group-sm" role="group" aria-label="radioBtnGroup">
-          <input type="radio" class="btn-check" name="radioBtn" id="radioBtn1" value="synergy" autocomplete="off" checked>
-          <label class="btn btn-outline-primary" for="radioBtn1">시너지순</label>
-        
-          <input type="radio" class="btn-check" name="radioBtn" id="radioBtn2" value="class" autocomplete="off">
-          <label class="btn btn-outline-primary" for="radioBtn2">클래스순</label>
-        
-          <input type="radio" class="btn-check" name="radioBtn" id="radioBtn3" value="character" autocomplete="off">
+        <div
+          class="btn-group btn-group-sm"
+          role="group"
+          aria-label="radioBtnGroup"
+        >
+          <input
+            type="radio"
+            class="btn-check"
+            name="radioBtn"
+            id="radioBtn1"
+            value="synergy"
+            autocomplete="off"
+            checked
+          />
+          <label class="btn btn-outline-primary" for="radioBtn1"
+            >시너지순</label
+          >
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="radioBtn"
+            id="radioBtn2"
+            value="class"
+            autocomplete="off"
+          />
+          <label class="btn btn-outline-primary" for="radioBtn2"
+            >클래스순</label
+          >
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="radioBtn"
+            id="radioBtn3"
+            value="character"
+            autocomplete="off"
+          />
           <label class="btn btn-outline-primary" for="radioBtn3">유저순</label>
         </div>
       </div>
@@ -537,7 +579,11 @@
         </div>
       </div>
 
-      <div id="character-container" class="from-container" style="display: none">
+      <div
+        id="character-container"
+        class="from-container"
+        style="display: none"
+      >
         <div class="container-header">
           <h4 class="text-center">유저</h4>
         </div>
@@ -546,7 +592,11 @@
         </div>
       </div>
 
-      <div id="character-group-container" class="to-container" style="display: none">
+      <div
+        id="character-group-container"
+        class="to-container"
+        style="display: none"
+      >
         <div class="container-header">
           <div class="button-container">
             <button class="copy-button">복사</button>
@@ -565,8 +615,6 @@
           <!-- Add your spec columns here -->
         </div>
       </div>
-
-      
     </div>
 
     <!-- Google tag (gtag.js) -->
@@ -608,9 +656,8 @@
 
     <script>
       $(document).ready(function () {
-        
         /*  ==================================================== synergyData module ====================================================  */
-        
+
         // Synergy data
         var synergies = [
           {
@@ -636,9 +683,9 @@
                 categoryName: "상시8%",
                 classes: ["창술사"],
                 color: "#DB7093",
-              }
-            ]
-          },        
+              },
+            ],
+          },
           {
             name: "받는 피해 증가",
             categories: [
@@ -830,9 +877,9 @@
             color: "#DCDCDC",
           },
         ];
-        
+
         /*  ==================================================== synergyData display module ==================================================== */
-        
+
         // Create synergy columns
         synergies.forEach(function (synergy) {
           var column = $('<div class="synergy-column"></div>').css(
@@ -862,7 +909,6 @@
 
           $("#synergy-columns").append(column);
         });
-
 
         /* ================================================ classData module(extraction from synergyData ==================================================== */
         // Create a dictionary to store class-centric data
@@ -931,9 +977,8 @@
           });
         });
 
-
         /*  ==================================================== classData display module ==================================================== */
-        
+
         // Now you have a classes dictionary where each key is a class name and its value is an array of synergies
 
         // Create class columns
@@ -971,9 +1016,8 @@
           $("#class-columns").append(column);
         });
 
-
         /*  ==================================================== character display module ==================================================== */
-        
+
         // Define user columns
         var users = [
           "유저 1",
@@ -1006,13 +1050,159 @@
           form.submit(function (event) {
             event.preventDefault();
             var nickname = $(this).find(".nickname-input").val();
-            getCharacterData(nickname, container);
-		  
+            //getCharacterData(nickname, container);
+            // Call the getCharacterData function when the page loads
+            characterManager.getCharacterData(nickname, container);
           });
+        });
 
+        // Assuming you have a class name "character" for your character elements
+        $(".draggable").on("click", function () {
+          var characterName = $(this).text().split(" ")[0]; // Extract character name
+          console.log(characterName);
+          characterManager.displayEquipmentData(characterName);
+        });
+
+        // Create an object to encapsulate the functionality
+        var characterManager = {
+          equipmentData: {}, // Store equipment data here
+
+          getCharacterData: function (nickname, container) {
+            var url = 
+              "https://developer-lostark.game.onstove.com/characters/" +
+              nickname +
+              "/siblings";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader(
+              "authorization",
+              "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+            );
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  characterManager.displayCharacterData(response, container);
+                  console.log(response);
+                } else {
+                  console.log("Error:", xhr.statusText);
+                }
+              }
+            };
+            xhr.send();
+          },
+
+          displayCharacterData: function (data, container) {
+            container.empty();
+            data.forEach(function (character) {
+              var element = $("<div></div>")
+                .text(
+                  character.CharacterName +
+                    " (" +
+                    character.CharacterClassName +
+                    " " +
+                    character.ItemAvgLevel +
+                    ")"
+                )
+                .addClass("draggable")
+                .css("background-color", "white");
+              // Add other character information as needed
+              var color = getColorForClass(character.CharacterClassName);
+              var synergy = getSynergyForClass(character.CharacterClassName);
+              var shortSyn = getShortSynergyForClass(
+                character.CharacterClassName
+              );
+              var wrapper = $("<div></div>");
+
+              color.forEach(function (colorElement, index) {
+                //make circle with colored corresponding to each class synergy
+                var circle = $("<div></div>")
+                  .addClass("rounded-rectangle")
+                  .css("background-color", colorElement);
+                circle.text(shortSyn[index]);
+                circle
+                  .attr({
+                    "data-toggle": "tooltip",
+                    "data-placement": "bottom",
+                    title: synergy[index],
+                  })
+                  .tooltip();
+
+                wrapper.append(circle);
+              });
+
+              element.append(wrapper);
+              container.append(element);
+              element.draggable({
+                helper: "clone",
+                revert: "invalid",
+                appendTo: "body",
+                zIndex: 100,
+              });
+              // Save equipment data for this character
+              characterManager.equipmentData[character.CharacterName] =
+                characterManager.getEquipmentData(character.CharacterName);
+            });
+          },
+
+          getEquipmentData: function (characterName) {
+            var url = 
+              "https://developer-lostark.game.onstove.com/armories/characters/" +
+              characterName +
+              "/equipment";
+            console.log(url)
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader(
+              "authorization",
+              "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+            );
+            console.log(characterName);
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  console.log("serverstatusText:"+xhr.statusText);
+                  console.log(JSON.parse(xhr.responseXML));
+                  var response = JSON.parse(xhr.responseText);
+                  console.log(response);
+                  console.log(xhr.responseText);
+                } else {
+                  console.log("Error:", xhr.statusText);
+                }
+              }
+            };
+            xhr.send();
+          },
+
+          displayEquipmentData: function (characterName) {
+            var equipmentData = this.equipmentData[characterName];
+
+            // Clear the existing equipment data display
+            $("#spec-container").empty();
+
+            // Iterate through the equipment data and display it
+            equipmentData.forEach(function (equipment) {
+              var equipmentElement = $("<div></div>")
+                .addClass("equipment-item")
+                .html(
+                  `<strong>Type:</strong> ${equipment.Type}<br>` +
+                    `<strong>Name:</strong> ${equipment.Name}<br>` +
+                    `<strong>Icon:</strong> ${equipment.Icon}<br>` +
+                    `<strong>Grade:</strong> ${equipment.Grade}<br>` +
+                    `<strong>Tooltip:</strong> ${equipment.Tooltip}`
+                );
+
+              
+              $("#spec-columns").append(equipmentElement);
+            });
+          },
+        };
 
         /*  ---------------------------------- functions --------------------------------------  */
-        
+
+        /*
         function getCharacterData(nickname, container) {
           var url =
             "https://developer-lostark.game.onstove.com/characters/" +
@@ -1051,8 +1241,7 @@
                   ")"
               )
               .addClass("draggable")
-              .css("background-color", "white")
-              .attr("data-character-id", character.CharacterId);;
+              .css("background-color", "white");
             
             var color = getColorForClass(character.CharacterClassName);
             var synergy = getSynergyForClass(character.CharacterClassName);
@@ -1078,6 +1267,7 @@
               wrapper.append(circle);
             });
 
+
             element.append(wrapper);
             container.append(element);
             element.draggable({
@@ -1086,9 +1276,11 @@
               appendTo: "body",
               zIndex: 100,
             });
+
+
           });
         }
-                
+*/
         function getColorForClass(className) {
           var classColor = [];
           synergies.forEach(function (synergy) {
@@ -1118,7 +1310,7 @@
           });
           return classSynergy;
         }
-        
+
         function getShortSynergyForClass(className) {
           var classSynergy = [];
           synergies.forEach(function (synergy) {
@@ -1302,7 +1494,7 @@
             $(this).find(".color-count").after(colorCircles);
           });
         }
-     
+
         /*  ==================================================== synergy grouping module ==================================================== */
         // Define your parties here
         var synergyGroup = ["1파티", "2파티"];
@@ -1326,7 +1518,7 @@
           $("#synergy-group").append(column);
         });
 
-                // Draggable elements
+        // Draggable elements
         $("#synergy-columns .draggable").draggable({
           helper: "clone",
           revert: "invalid",
@@ -1619,7 +1811,7 @@
         }
 
         /*  ==================================================== character grouping module ==================================================== */
-        
+
         // Define your parties here
         var characterGroup = ["1파티", "2파티"];
         // Create grouping columns
@@ -1719,8 +1911,7 @@
         // Function to copy the content of an element as JSON or CSV
         function copyData(element) {
           var json = convertToJSON(element);
-          navigator.clipboard.writeText(json).then(function () {
-          });
+          navigator.clipboard.writeText(json).then(function () {});
         }
 
         // Function to save the content of an element as JSON or CSV
@@ -1733,7 +1924,7 @@
           link.download = "data.csv";
           link.click();
         }
-        
+
         // Function to convert the content of an element to JSON format
         function convertToJSON(group) {
           //get party columns css object from grouping column.
@@ -1776,7 +1967,7 @@
             groupData["Party" + (partyIndex + 1) + "Synergy"] = partySynArray;
             groupData["Party" + (partyIndex + 1) + "SynNum"] = partySynNum;
             console.log(groupData);
-            
+
             //get each data of class
             partyArray = [];
             if (classElements.length) {
@@ -1787,8 +1978,8 @@
                 classSynergyWraper = $(classElement).find(".class-synergy");
                 classSynergyElements = classSynergyWraper.children();
                 synergyArray = [];
-                
-                //get each data of class synergy 
+
+                //get each data of class synergy
                 classSynergyElements.each(function (
                   synergyIndex,
                   synergyElement
@@ -1813,7 +2004,7 @@
           console.log("initiated");
           //get table data from clipboard
           navigator.clipboard.readText().then((data) => {
-            //parse JSON 
+            //parse JSON
             const jsonData = JSON.parse(data);
             //extract data from JSON
             var newData = [];
@@ -1846,103 +2037,125 @@
             //prepare table data
             var container = document.getElementById("spreadsheet");
             existingData = [];
-            existingData = table.getData();            
+            existingData = table.getData();
             sumData = [];
             var countDataRows = table.countRows() - table.countEmptyRows();
             //when table have no data
-            if(countDataRows==0)
-            {	//add new data to table
+            if (countDataRows == 0) {
+              //add new data to table
               console.log("empty table");
               sumData = [].concat(newData);
               console.log(sumData);
             }
             //when table have data
-            else if(countDataRows>0)
-            {
+            else if (countDataRows > 0) {
               //sum new data and existing data first, then add data to table
               console.log("not empty table");
-              sumData = existingData.slice(0,countDataRows).concat(newData);
+              sumData = existingData.slice(0, countDataRows).concat(newData);
               console.log(sumData);
             }
-						
+
             var newBeginIndex = countDataRows;
             console.log(newBeginIndex);
 
             //display table data
             table.updateData(sumData);
-		  
+
             //set table header background color.
             //party1
-            table.setCellMeta(newBeginIndex+0,0,'className','main-header');
+            table.setCellMeta(newBeginIndex + 0, 0, "className", "main-header");
             //party1 attribute
-            table.setCellMeta(newBeginIndex+0,1,'className','sub-header');
-            table.setCellMeta(newBeginIndex+0,2,'className','sub-header');
+            table.setCellMeta(newBeginIndex + 0, 1, "className", "sub-header");
+            table.setCellMeta(newBeginIndex + 0, 2, "className", "sub-header");
             //character attribute
-            table.setCellMeta(newBeginIndex+2,1,'className','sub-header');
-            table.setCellMeta(newBeginIndex+2,2,'className','sub-header');
+            table.setCellMeta(newBeginIndex + 2, 1, "className", "sub-header");
+            table.setCellMeta(newBeginIndex + 2, 2, "className", "sub-header");
 
             //party2
-            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+0,0,'className','main-header');
+            table.setCellMeta(
+              newBeginIndex + (3 + jsonData.Party1.length) + 0,
+              0,
+              "className",
+              "main-header"
+            );
             //party2 attribute
-            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+0,1,'className','sub-header');
-            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+0,2,'className','sub-header');
+            table.setCellMeta(
+              newBeginIndex + (3 + jsonData.Party1.length) + 0,
+              1,
+              "className",
+              "sub-header"
+            );
+            table.setCellMeta(
+              newBeginIndex + (3 + jsonData.Party1.length) + 0,
+              2,
+              "className",
+              "sub-header"
+            );
             //character attribute
-            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,1,'className','sub-header');
-            table.setCellMeta(newBeginIndex+(3+jsonData.Party1.length)+2,2,'className','sub-header');
+            table.setCellMeta(
+              newBeginIndex + (3 + jsonData.Party1.length) + 2,
+              1,
+              "className",
+              "sub-header"
+            );
+            table.setCellMeta(
+              newBeginIndex + (3 + jsonData.Party1.length) + 2,
+              2,
+              "className",
+              "sub-header"
+            );
 
             //render table
             table.render();
 
             //merge cells
-            console.log("plugin:"+table.getPlugin("MergeCells"));
+            console.log("plugin:" + table.getPlugin("MergeCells"));
           });
         }
 
-            // Initialize Handsontable
-            var container = document.getElementById("spreadsheet");
-            var hot = new Handsontable(container, {
-              width: "100%",
-              startRows: 10,
-              startCols: 10,
-              mergeCells: true,
-              rowHeaders: true,
-              colHeaders: true,
-              contextMenu: true,
-              licenseKey: "non-commercial-and-evaluation",
-            });
+        // Initialize Handsontable
+        var container = document.getElementById("spreadsheet");
+        var hot = new Handsontable(container, {
+          width: "100%",
+          startRows: 10,
+          startCols: 10,
+          mergeCells: true,
+          rowHeaders: true,
+          colHeaders: true,
+          contextMenu: true,
+          licenseKey: "non-commercial-and-evaluation",
+        });
 
-            hot.render();
-      
+        hot.render();
+
         // Attach event listener to the paste button
         const pasteButton = document.getElementById("paste-button");
-        pasteButton.addEventListener("click", function(){
+        pasteButton.addEventListener("click", function () {
           convertToTable(hot);
         });
-        
-        $('input[name="radioBtn"]').change(function() {
+
+        $('input[name="radioBtn"]').change(function () {
           const selectedComponentId = $(this).val();
-          $('.from-container').hide(); // Hide all components
-          $('.to-container').hide(); // Hide all components
-          $('#' + selectedComponentId+"-container").show(); // Show the selected component
-          $('#' + selectedComponentId+"-group-container").show(); // Show the selected component
+          $(".from-container").hide(); // Hide all components
+          $(".to-container").hide(); // Hide all components
+          $("#" + selectedComponentId + "-container").show(); // Show the selected component
+          $("#" + selectedComponentId + "-group-container").show(); // Show the selected component
         });
       });
       //end documnet
-	    //extra function
-        function openBar() {
-          document.getElementById("table-sidebar").style.width = "60%";
-          document.getElementById("table-sidebar").style.paddingRight = "2%"
-          document.getElementById("sideOpenBtn").style.width = "0%";
-        
-        }
+      //extra function
+      function openBar() {
+        document.getElementById("table-sidebar").style.width = "60%";
+        document.getElementById("table-sidebar").style.paddingRight = "2%";
+        document.getElementById("sideOpenBtn").style.width = "0%";
+      }
 
-        /* Set the width of the side navigation to 0 */
-        function closeBar() {
-          document.getElementById("table-sidebar").style.width = "0";
-          document.getElementById("table-sidebar").style.paddingRight = "0"
-          document.getElementById("sideOpenBtn").style.width = "30px";
-        }
-
+      /* Set the width of the side navigation to 0 */
+      function closeBar() {
+        document.getElementById("table-sidebar").style.width = "0";
+        document.getElementById("table-sidebar").style.paddingRight = "0";
+        document.getElementById("sideOpenBtn").style.width = "30px";
+      }
     </script>
   </body>
 </html>
