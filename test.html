@@ -1163,11 +1163,7 @@
             xhr.onreadystatechange = function () {
               if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                  console.log("serverstatusText:"+xhr.statusText);
-                  console.log(JSON.parse(xhr.responseXML));
                   var response = JSON.parse(xhr.responseText);
-                  console.log(response);
-                  console.log(xhr.responseText);
                 } else {
                   console.log("Error:", xhr.statusText);
                 }
@@ -1196,6 +1192,7 @@
 
               
               $("#spec-columns").append(equipmentElement);
+              
             });
           },
         };
