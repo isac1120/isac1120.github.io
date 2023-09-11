@@ -1056,7 +1056,7 @@
           });
         });
         
-        $(".draggable").on("click", function () {
+        $(".draggable").on("mouseup", function () {
           var characterName = $(this).text().split(" ")[0]; // Extract character name
           console.log(characterName);
           characterManager.displayEquipmentData(characterName);
