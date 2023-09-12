@@ -1142,6 +1142,7 @@
               // Save equipment data for this character
               characterManager.equipmentData[character.CharacterName] =
                 characterManager.getEquipmentData(character.CharacterName);
+              console.log(characterManager.equipmentData[character.CharacterName]);
             });
           },
 
@@ -1171,7 +1172,7 @@
           },
 
           displayEquipmentData: function (characterName) {
-            var equipmentData = this.equipmentData[characterName];
+            var equipmentData = characterManager.equipmentData[characterName];
             console.log(equipmentData);
             // Clear the existing equipment data display
             $("#spec-container").empty();
