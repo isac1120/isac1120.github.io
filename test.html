@@ -1140,10 +1140,15 @@
                 zIndex: 100,
               });
               // Save equipment data for this character
-              characterManager.equipmentData[character.CharacterName] =
-                characterManager.getEquipmentData(character.CharacterName);
-              console.log(characterManager.equipmentData[character.CharacterName]);
-            });
+              characterManager.equipmentData[character.CharacterName] =     
+                characterManager.getEquipmentData(characterName, function (response) {
+                  if (response) {
+                    console.log("Equipment data:", response);
+                    displayEquipmentData(response);
+                  } else {
+                    console.error("Failed to retrieve equipment data.");
+                  }
+              });
           },
 
           getEquipmentData: function (characterName, callback) {
