@@ -1152,7 +1152,7 @@
               characterName +
               "/equipment";
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
+            xhr.open("GET", url, false);
             xhr.setRequestHeader("accept", "application/json");
             xhr.setRequestHeader(
               "authorization",
@@ -1172,8 +1172,7 @@
           },
 
           displayEquipmentData: function (characterName) {
-            var equipmentData = characterManager.equipmentData[characterName];
-            console.log(equipmentData);
+            var equipmentData = this.equipmentData[characterName];
             // Clear the existing equipment data display
             $("#spec-container").empty();
 
