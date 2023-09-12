@@ -1093,7 +1093,7 @@
           },
 
           displayCharacterData: function (data, section) {
-            section.empty();
+            $(section).empty();
             data.forEach(function (character) {
               var element = $("<div></div>")
                 .text(
