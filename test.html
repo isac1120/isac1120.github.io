@@ -1052,7 +1052,7 @@
             var nickname = $(this).find(".nickname-input").val();
             //getCharacterData(nickname, container);
             // Call the getCharacterData function when the page loads
-            characterManager.getCharacterData(nickname, container);
+            characterManager.getCharacterData(nickname, section);
           });
         });
           // Event binding for .draggable elements
@@ -1093,7 +1093,7 @@
           },
 
           displayCharacterData: function (data, section) {
-            $(section).empty();
+            section.empty();
             data.forEach(function (character) {
               var element = $("<div></div>")
                 .text(
