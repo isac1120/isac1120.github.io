@@ -1092,6 +1092,36 @@
             xhr.send();
           },
 
+                    getEquipmentData: function (characterName, callback) {
+            var url = 
+              "https://developer-lostark.game.onstove.com/armories/characters/" +
+              characterName +
+              "/equipment";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader(
+              "authorization",
+              "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+            );
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  console.log("response");
+                  console.log(response);
+                  // Call the callback function with the response data
+                  callback(response);
+                } else {
+                  console.log("Error:", xhr.statusText);
+                  // Call the callback function with an error flag or message
+                  callback(null);
+                }
+              }
+            };
+            xhr.send();
+          },
+          
           displayCharacterData: function (data, section) {
             section.empty();
             data.forEach(function (character) {
@@ -1149,36 +1179,6 @@
                     console.error("Failed to retrieve equipment data.");
                   }
               });
-          },
-
-          getEquipmentData: function (characterName, callback) {
-            var url = 
-              "https://developer-lostark.game.onstove.com/armories/characters/" +
-              characterName +
-              "/equipment";
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
-            xhr.setRequestHeader("accept", "application/json");
-            xhr.setRequestHeader(
-              "authorization",
-              "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
-            );
-            xhr.onreadystatechange = function () {
-              if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                  var response = JSON.parse(xhr.responseText);
-                  console.log("response");
-                  console.log(response);
-                  // Call the callback function with the response data
-                  callback(response);
-                } else {
-                  console.log("Error:", xhr.statusText);
-                  // Call the callback function with an error flag or message
-                  callback(null);
-                }
-              }
-            };
-            xhr.send();
           },
 
           displayEquipmentData: function (characterName) {
