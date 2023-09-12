@@ -1053,14 +1053,15 @@
             //getCharacterData(nickname, container);
             // Call the getCharacterData function when the page loads
             characterManager.getCharacterData(nickname, container);
+            $(".draggable").on("mouseup", function () {
+              var characterName = $(this).text().split(" ")[0]; // Extract character name
+              console.log(characterName);
+              characterManager.displayEquipmentData(characterName);
+            });
           });
         });
         
-        $(".draggable").on("mouseup", function () {
-          var characterName = $(this).text().split(" ")[0]; // Extract character name
-          console.log(characterName);
-          characterManager.displayEquipmentData(characterName);
-        });
+
 
         // Create an object to encapsulate the functionality
         var characterManager = {
