@@ -1040,10 +1040,10 @@
           var form = $(
             '<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임을 입력하세요"><button type="submit" class="submit-button">Submit</button></form>'
           );
-          var container = $('<div class="character-container"></div>');
+          var section = $('<div class="character-section"></div>');
           column.append(header);
           column.append(form);
-          column.append(container);
+          column.append(section);
           $("#character-columns").append(column);
 
           // Handle form submission
@@ -1053,21 +1053,20 @@
             //getCharacterData(nickname, container);
             // Call the getCharacterData function when the page loads
             characterManager.getCharacterData(nickname, container);
-            $(".draggable").on("mouseup", function () {
-              var characterName = $(this).text().split(" ")[0]; // Extract character name
-              console.log(characterName);
-              characterManager.displayEquipmentData(characterName);
-            });
           });
         });
-        
+          $(".character-section .draggable").on("mouseup", function () {
+            var characterName = $(this).text().split(" ")[0]; // Extract character name
+            console.log(characterName);
+            characterManager.displayEquipmentData(characterName);
+          });
 
 
         // Create an object to encapsulate the functionality
         var characterManager = {
           equipmentData: {}, // Store equipment data here
 
-          getCharacterData: function (nickname, container) {
+          getCharacterData: function (nickname, section) {
             var url = 
               "https://developer-lostark.game.onstove.com/characters/" +
               nickname +
@@ -1083,7 +1082,7 @@
               if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                   var response = JSON.parse(xhr.responseText);
-                  characterManager.displayCharacterData(response, container);
+                  characterManager.displayCharacterData(response, section);
                 } else {
                   console.log("Error:", xhr.statusText);
                 }
@@ -1092,8 +1091,8 @@
             xhr.send();
           },
 
-          displayCharacterData: function (data, container) {
-            container.empty();
+          displayCharacterData: function (data, section) {
+            section.empty();
             data.forEach(function (character) {
               var element = $("<div></div>")
                 .text(
@@ -1132,7 +1131,7 @@
               });
 
               element.append(wrapper);
-              container.append(element);
+              section.append(element);
               element.draggable({
                 helper: "clone",
                 revert: "invalid",
@@ -1172,7 +1171,7 @@
 
           displayEquipmentData: function (characterName) {
             var equipmentData = this.equipmentData[characterName];
-
+            console.log("displayEquipmentData Activated");
             // Clear the existing equipment data display
             $("#spec-container").empty();
 
