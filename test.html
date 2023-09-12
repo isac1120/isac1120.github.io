@@ -1055,10 +1055,11 @@
             characterManager.getCharacterData(nickname, container);
           });
         });
-          $(".character-section .draggable").on("mouseup", function () {
-            var characterName = $(this).text().split(" ")[0]; // Extract character name
-            console.log(characterName);
-            characterManager.displayEquipmentData(characterName);
+          // Event binding for .draggable elements
+          $(".character-section").on("mouseup", ".draggable", function () {
+              var characterName = $(this).text().split(" ")[0]; // Extract character name
+              console.log(characterName);
+              characterManager.displayEquipmentData(characterName);
           });
 
 
