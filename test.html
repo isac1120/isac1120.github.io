@@ -1191,13 +1191,13 @@
             var equipmentElement = $("<div></div>").addClass("spec-column");
         
             // Display basic equipment information
-            equipmentElement.append(`<strong>Type:</strong> ${equipment.Type}<br>`);
-            equipmentElement.append(`<strong>Name:</strong> ${equipment.Name}<br>`);
-            equipmentElement.append(`<strong>Icon:</strong> <img src=${equipment.Icon}><br>`);
-            equipmentElement.append(`<strong>Grade:</strong> ${equipment.Grade}<br>`);
+            equipmentElement.append(`<strong>Type:</strong> ${equipmentData.Type}<br>`);
+            equipmentElement.append(`<strong>Name:</strong> ${equipmentData.Name}<br>`);
+            equipmentElement.append(`<strong>Icon:</strong> <img src=${equipmentData.Icon}><br>`);
+            equipmentElement.append(`<strong>Grade:</strong> ${equipmentData.Grade}<br>`);
         
             // Process and display tooltip data
-            var tooltipData = JSON.parse(equipment.Tooltip);
+            var tooltipData = JSON.parse(equipmentData.Tooltip);
             $.each(tooltipData, function (key, value) {
               switch (value.type) {
                 case "SingleTextBox":
