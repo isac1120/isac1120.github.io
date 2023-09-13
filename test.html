@@ -1191,7 +1191,7 @@
 
             // Iterate through the equipment data and display it
             equipmentData.forEach(function (equipment) {
-              var tooltipData = JSON.parse(equipment.Tooltip);
+              
               var equipmentElement = $("<div></div>")
                 .addClass("spec-column")
                 .html(
@@ -1201,8 +1201,8 @@
                     `<strong>Grade:</strong> ${equipment.Grade}<br>`
           
                 );
-              // Extract and format tooltip information
-              for (var key in tooltipData) {
+              var tooltipData = JSON.parse(equipment.Tooltip);
+             for (var key in tooltipData) {
                 if (tooltipData.hasOwnProperty(key)) {
                   var tooltipInfo = tooltipData[key];
           
@@ -1211,12 +1211,20 @@
                   } else if (tooltipInfo.type === "ItemPartBox") {
                     for (var subKey in tooltipInfo.value) {
                       if (tooltipInfo.value.hasOwnProperty(subKey)) {
-                        equipmentElement.append(subKey + ": " + tooltipInfo.value[subKey] + "<br>");
+                        equipmentElement.append("<strong>" + subKey + ":</strong> " + tooltipInfo.value[subKey] + "<br>");
                       }
                     }
                   } else if (tooltipInfo.type === "SetItemGroup") {
-                    equipmentElement.append(tooltipInfo.value.firstMsg + "<br>");
-                  } // Add more conditions for other tooltip types if needed
+                    equipmentElement.append("<strong>" + tooltipInfo.value.firstMsg + ":</strong><br>");
+                  } else if (tooltipInfo.type === "IndentStringGroup") {
+                    for (var contentKey in tooltipInfo.value) {
+                      if (tooltipInfo.value.hasOwnProperty(contentKey)) {
+                        var contentInfo = tooltipInfo.value[contentKey];
+                        equipmentElement.append("<strong>" + contentInfo.topStr + ":</strong><br>");
+                        equipmentElement.append(contentInfo.contentStr.Element_000.contentStr + "<br>");
+                      }
+                    }
+                  }
                 }
               }
               $("#spec-columns").append(equipmentElement);
