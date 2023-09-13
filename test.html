@@ -1191,6 +1191,7 @@
 
             // Iterate through the equipment data and display it
             equipmentData.forEach(function (equipment) {
+              var tooltipData = JSON.parse(equipment.Tooltip);
               var equipmentElement = $("<div></div>")
                 .addClass("spec-column")
                 .html(
@@ -1200,7 +1201,24 @@
                     `<strong>Grade:</strong> ${equipment.Grade}<br>` +
                     `<strong>Tooltip:</strong> ${equipment.Tooltip}`
                 );
-
+              // Extract and format tooltip information
+              for (var key in tooltipData) {
+                if (tooltipData.hasOwnProperty(key)) {
+                  var tooltipInfo = tooltipData[key];
+          
+                  if (tooltipInfo.type === "SingleTextBox") {
+                    equipmentElement.append(tooltipInfo.value + "<br>");
+                  } else if (tooltipInfo.type === "ItemPartBox") {
+                    for (var subKey in tooltipInfo.value) {
+                      if (tooltipInfo.value.hasOwnProperty(subKey)) {
+                        equipmentElement.append(subKey + ": " + tooltipInfo.value[subKey] + "<br>");
+                      }
+                    }
+                  } else if (tooltipInfo.type === "SetItemGroup") {
+                    equipmentElement.append(tooltipInfo.value.firstMsg + "<br>");
+                  } // Add more conditions for other tooltip types if needed
+                }
+              }
               $("#spec-columns").append(equipmentElement);
               console.log(equipmentElement);
             });
