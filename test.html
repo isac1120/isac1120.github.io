@@ -1188,20 +1188,48 @@
 
             // Clear the existing equipment data display
             $("#spec-columns").empty();
-
-            // Iterate through the equipment data and display it
-            equipmentData.forEach(function (equipment) {
-              
-              var equipmentElement = $("<div></div>")
-                .addClass("spec-column")
-                .html(
-                  `<strong>Type:</strong> ${equipment.Type}<br>` +
-                    `<strong>Name:</strong> ${equipment.Name}<br>` +
-                    `<strong>Icon:</strong> <img src=${equipment.Icon}><br>` +
-                    `<strong>Grade:</strong> ${equipment.Grade}<br>` +
-                    generateTooltipHTML(equipment.Tooltip) // Call a function to generate tooltip HTML
-          
-                );
+            var equipmentElement = $("<div></div>").addClass("spec-column");
+        
+            // Display basic equipment information
+            equipmentElement.append(`<strong>Type:</strong> ${equipment.Type}<br>`);
+            equipmentElement.append(`<strong>Name:</strong> ${equipment.Name}<br>`);
+            equipmentElement.append(`<strong>Icon:</strong> <img src=${equipment.Icon}><br>`);
+            equipmentElement.append(`<strong>Grade:</strong> ${equipment.Grade}<br>`);
+        
+            // Process and display tooltip data
+            var tooltipData = JSON.parse(equipment.Tooltip);
+            $.each(tooltipData, function (key, value) {
+              switch (value.type) {
+                case "SingleTextBox":
+                case "MultiTextBox":
+                  equipmentElement.append(value.value + "<br>");
+                  break;
+                case "ItemPartBox":
+                  equipmentElement.append(`<strong>${value.value.Element_000}:</strong> ${value.value.Element_001}<br>`);
+                  break;
+                case "Progress":
+                  equipmentElement.append(`<strong>${value.value.title}:</strong> ${value.value.value} / ${value.value.maximum}<br>`);
+                  break;
+                case "SetItemGroup":
+                  equipmentElement.append(`<strong>${value.value.firstMsg}</strong><br>`);
+                  $.each(value.value.itemData, function (subKey, subValue) {
+                    equipmentElement.append(`<img src=${subValue.slotData.iconPath}>`);
+                  });
+                  equipmentElement.append("<br>");
+                  break;
+                case "IndentStringGroup":
+                  $.each(value.value, function (subKey, subValue) {
+                    equipmentElement.append(`<strong>${subValue.topStr}</strong><br>`);
+                    equipmentElement.append(subValue.contentStr.contentStr + "<br>");
+                  });
+                  break;
+                case "ShowMeTheMoney":
+                  equipmentElement.append(value.value + "<br>");
+                  break;
+                default:
+                  break;
+              }
+            });
 
               $("#spec-columns").append(equipmentElement);
               console.log(equipmentElement);
@@ -1209,58 +1237,7 @@
           },
         };
 
-        function generateTooltipHTML(tooltipData) {
-          var tooltipHTML = '';
-          var parsedData = JSON.parse(tooltipData);
-        
-          // Display the icon image for the main item
-          tooltipHTML += `<img src="${parsedData.Element_001.value.slotData.iconPath}" alt="Item Icon"><br><br>`;
-        
-          // Display the name
-          tooltipHTML += `<strong>${parsedData.Element_000.value}</strong><br><br>`;
-        
-          // Display item type, grade, and equipped status
-          tooltipHTML += `${parsedData.Element_001.value.leftStr0}<br>`;
-          tooltipHTML += `${parsedData.Element_001.value.leftStr2}<br>`;
-          tooltipHTML += `${parsedData.Element_001.value.rightStr0}<br>`;
-          tooltipHTML += `${parsedData.Element_001.value.leftStr1}<br><br>`;
-        
-          // Display additional information
-          tooltipHTML += `${parsedData.Element_002.value}<br>`;
-          tooltipHTML += `${parsedData.Element_003.value}<br>`;
-          tooltipHTML += `${parsedData.Element_004.value}<br><br>`;
-        
-          // Display basic effects
-          tooltipHTML += `<strong>${parsedData.Element_005.value.Element_000}</strong><br>`;
-          tooltipHTML += `${parsedData.Element_005.value.Element_001}<br>`;
-          tooltipHTML += `<strong>${parsedData.Element_006.value.Element_000}</strong><br>`;
-          tooltipHTML += `${parsedData.Element_006.value.Element_001}<br><br>`;
-        
-          // Display progress
-          tooltipHTML += `${parsedData.Element_007.value.title}<br>`;
-          tooltipHTML += `<progress value="${parsedData.Element_007.value.value}" max="${parsedData.Element_007.value.maximum}"></progress><br><br>`;
-        
-          // Display set item group including icons
-          tooltipHTML += `${parsedData.Element_008.value.firstMsg}<br>`;
-          for (var i = 0; i < 7; i++) {
-            var setItem = parsedData.Element_009.value.itemData["Element_" + i];
-            tooltipHTML += `${setItem.label} <img src="${setItem.slotData.iconPath}" alt="Set Item Icon"> `;
-          }
-          tooltipHTML += '<br><br>';
-        
-          // Display indent string group
-          for (var i = 0; i < 3; i++) {
-            tooltipHTML += `<strong>${parsedData.Element_010.value["Element_" + i].topStr}</strong><br>`;
-            tooltipHTML += `${parsedData.Element_010.value["Element_" + i].contentStr.Element_000.contentStr}<br><br>`;
-          }
-        
-          // Display other information
-          tooltipHTML += `${parsedData.Element_011.value}<br>`;
-          tooltipHTML += `${parsedData.Element_012.value}<br>`;
-          tooltipHTML += `${parsedData.Element_013.value}<br>`;
-        
-          return tooltipHTML;
-        }
+
 
 
 
