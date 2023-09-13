@@ -1211,79 +1211,62 @@
 
         function generateTooltipHTML(tooltipData) {
           var tooltipHTML = '';
+          var parsedData = JSON.parse(tooltipData);
         
-          // Parse the JSON tooltip data
-          try {
-            var tooltipObject = JSON.parse(tooltipData);
+          // Display the icon image for the main item
+          tooltipHTML += `<img src="${parsedData.Element_001.value.slotData.iconPath}" alt="Item Icon"><br><br>`;
         
-            for (var key in tooltipObject) {
-              var tooltipElement = tooltipObject[key];
+          // Display the name
+          tooltipHTML += `<strong>${parsedData.Element_000.value}</strong><br><br>`;
         
-              switch (tooltipElement.type) {
-                case 'NameTagBox':
-                  tooltipHTML += tooltipElement.value;
-                  break;
-                case 'ItemTitle':
-                  tooltipHTML += '<div class="item-title">';
-                  tooltipHTML += tooltipElement.value.leftStr0;
-                  tooltipHTML += tooltipElement.value.leftStr1;
-                  tooltipHTML += tooltipElement.value.leftStr2;
-                  tooltipHTML += tooltipElement.value.rightStr0;
-                  tooltipHTML += '</div>';
-                  break;
-                case 'SingleTextBox':
-                case 'MultiTextBox':
-                  tooltipHTML += tooltipElement.value;
-                  break;
-                case 'ItemPartBox':
-                  tooltipHTML += '<div class="item-part-box">';
-                  tooltipHTML += tooltipElement.value.Element_000;
-                  tooltipHTML += tooltipElement.value.Element_001;
-                  tooltipHTML += '</div>';
-                  break;
-                case 'Progress':
-                  tooltipHTML += '<div class="progress-box">';
-                  tooltipHTML += tooltipElement.value.title;
-                  tooltipHTML += '<progress value="' + tooltipElement.value.value + '" max="' + tooltipElement.value.maximum + '"></progress>';
-                  tooltipHTML += '</div>';
-                  break;
-                case 'SetItemGroup':
-                  tooltipHTML += '<div class="set-item-group">';
-                  tooltipHTML += tooltipElement.value.firstMsg;
-                  for (var itemKey in tooltipElement.value.itemData) {
-                    var item = tooltipElement.value.itemData[itemKey];
-                    tooltipHTML += '<div class="set-item">';
-                    tooltipHTML += item.label;
-                    // Add other item data here if needed
-                    tooltipHTML += '</div>';
-                  }
-                  tooltipHTML += '</div>';
-                  break;
-                case 'IndentStringGroup':
-                  tooltipHTML += '<div class="indent-string-group">';
-                  for (var groupKey in tooltipElement.value) {
-                    var group = tooltipElement.value[groupKey];
-                    tooltipHTML += '<div class="indent-group">';
-                    tooltipHTML += group.topStr;
-                    tooltipHTML += group.contentStr.Element_000.contentStr;
-                    tooltipHTML += '</div>';
-                  }
-                  tooltipHTML += '</div>';
-                  break;
-                case 'ShowMeTheMoney':
-                  tooltipHTML += tooltipElement.value;
-                  break;
-                default:
-                  // Handle unknown tooltip types or ignore them
-                  break;
-              }
-            }
-          } catch (error) {
-            console.error('Error parsing tooltip data:', error);
+          // Display item type, grade, and equipped status
+          tooltipHTML += `${parsedData.Element_001.value.leftStr0}<br>`;
+          tooltipHTML += `${parsedData.Element_001.value.leftStr2}<br>`;
+          tooltipHTML += `${parsedData.Element_001.value.rightStr0}<br>`;
+          tooltipHTML += `${parsedData.Element_001.value.leftStr1}<br><br>`;
+        
+          // Display additional information
+          tooltipHTML += `${parsedData.Element_002.value}<br>`;
+          tooltipHTML += `${parsedData.Element_003.value}<br>`;
+          tooltipHTML += `${parsedData.Element_004.value}<br><br>`;
+        
+          // Display basic effects
+          tooltipHTML += `<strong>${parsedData.Element_005.value.Element_000}</strong><br>`;
+          tooltipHTML += `${parsedData.Element_005.value.Element_001}<br>`;
+          tooltipHTML += `<strong>${parsedData.Element_006.value.Element_000}</strong><br>`;
+          tooltipHTML += `${parsedData.Element_006.value.Element_001}<br><br>`;
+        
+          // Display progress
+          tooltipHTML += `${parsedData.Element_007.value.title}<br>`;
+          tooltipHTML += `<progress value="${parsedData.Element_007.value.value}" max="${parsedData.Element_007.value.maximum}"></progress><br><br>`;
+        
+          // Display set item group including icons
+          tooltipHTML += `${parsedData.Element_008.value.firstMsg}<br>`;
+          for (var i = 0; i < 7; i++) {
+            var setItem = parsedData.Element_009.value.itemData["Element_" + i];
+            tooltipHTML += `${setItem.label} <img src="${setItem.slotData.iconPath}" alt="Set Item Icon"> `;
           }
+          tooltipHTML += '<br><br>';
+        
+          // Display indent string group
+          for (var i = 0; i < 3; i++) {
+            tooltipHTML += `<strong>${parsedData.Element_010.value["Element_" + i].topStr}</strong><br>`;
+            tooltipHTML += `${parsedData.Element_010.value["Element_" + i].contentStr.Element_000.contentStr}<br><br>`;
+          }
+        
+          // Display other information
+          tooltipHTML += `${parsedData.Element_011.value}<br>`;
+          tooltipHTML += `${parsedData.Element_012.value}<br>`;
+          tooltipHTML += `${parsedData.Element_013.value}<br>`;
         
           return tooltipHTML;
         }
+
+
+
+
+
+
 
 
 
