@@ -1198,41 +1198,92 @@
                   `<strong>Type:</strong> ${equipment.Type}<br>` +
                     `<strong>Name:</strong> ${equipment.Name}<br>` +
                     `<strong>Icon:</strong> <img src=${equipment.Icon}><br>` +
-                    `<strong>Grade:</strong> ${equipment.Grade}<br>`
+                    `<strong>Grade:</strong> ${equipment.Grade}<br>` +
+                    generateTooltipHTML(equipment.Tooltip) // Call a function to generate tooltip HTML
           
                 );
-              var tooltipData = JSON.parse(equipment.Tooltip);
-             for (var key in tooltipData) {
-                if (tooltipData.hasOwnProperty(key)) {
-                  var tooltipInfo = tooltipData[key];
-          
-                  if (tooltipInfo.type === "SingleTextBox") {
-                    equipmentElement.append(tooltipInfo.value + "<br>");
-                  } else if (tooltipInfo.type === "ItemPartBox") {
-                    for (var subKey in tooltipInfo.value) {
-                      if (tooltipInfo.value.hasOwnProperty(subKey)) {
-                        equipmentElement.append("<strong>" + subKey + ":</strong> " + tooltipInfo.value[subKey] + "<br>");
-                      }
-                    }
-                  } else if (tooltipInfo.type === "SetItemGroup") {
-                    equipmentElement.append("<strong>" + tooltipInfo.value.firstMsg + ":</strong><br>");
-                  } else if (tooltipInfo.type === "IndentStringGroup") {
-                    for (var contentKey in tooltipInfo.value) {
-                      if (tooltipInfo.value.hasOwnProperty(contentKey)) {
-                        var contentInfo = tooltipInfo.value[contentKey];
-                        equipmentElement.append("<strong>" + contentInfo.topStr + ":</strong><br>");
-                        equipmentElement.append(contentInfo.contentStr.Element_000.contentStr + "<br>");
-                      }
-                    }
-                  }
-                }
-              }
+
               $("#spec-columns").append(equipmentElement);
               console.log(equipmentElement);
             });
           },
         };
 
+        function generateTooltipHTML(tooltipData) {
+          var tooltipHTML = '';
+        
+          // Parse the JSON tooltip data
+          try {
+            var tooltipObject = JSON.parse(tooltipData);
+        
+            for (var key in tooltipObject) {
+              var tooltipElement = tooltipObject[key];
+        
+              switch (tooltipElement.type) {
+                case 'NameTagBox':
+                  tooltipHTML += tooltipElement.value;
+                  break;
+                case 'ItemTitle':
+                  tooltipHTML += '<div class="item-title">';
+                  tooltipHTML += tooltipElement.value.leftStr0;
+                  tooltipHTML += tooltipElement.value.leftStr1;
+                  tooltipHTML += tooltipElement.value.leftStr2;
+                  tooltipHTML += tooltipElement.value.rightStr0;
+                  tooltipHTML += '</div>';
+                  break;
+                case 'SingleTextBox':
+                case 'MultiTextBox':
+                  tooltipHTML += tooltipElement.value;
+                  break;
+                case 'ItemPartBox':
+                  tooltipHTML += '<div class="item-part-box">';
+                  tooltipHTML += tooltipElement.value.Element_000;
+                  tooltipHTML += tooltipElement.value.Element_001;
+                  tooltipHTML += '</div>';
+                  break;
+                case 'Progress':
+                  tooltipHTML += '<div class="progress-box">';
+                  tooltipHTML += tooltipElement.value.title;
+                  tooltipHTML += '<progress value="' + tooltipElement.value.value + '" max="' + tooltipElement.value.maximum + '"></progress>';
+                  tooltipHTML += '</div>';
+                  break;
+                case 'SetItemGroup':
+                  tooltipHTML += '<div class="set-item-group">';
+                  tooltipHTML += tooltipElement.value.firstMsg;
+                  for (var itemKey in tooltipElement.value.itemData) {
+                    var item = tooltipElement.value.itemData[itemKey];
+                    tooltipHTML += '<div class="set-item">';
+                    tooltipHTML += item.label;
+                    // Add other item data here if needed
+                    tooltipHTML += '</div>';
+                  }
+                  tooltipHTML += '</div>';
+                  break;
+                case 'IndentStringGroup':
+                  tooltipHTML += '<div class="indent-string-group">';
+                  for (var groupKey in tooltipElement.value) {
+                    var group = tooltipElement.value[groupKey];
+                    tooltipHTML += '<div class="indent-group">';
+                    tooltipHTML += group.topStr;
+                    tooltipHTML += group.contentStr.Element_000.contentStr;
+                    tooltipHTML += '</div>';
+                  }
+                  tooltipHTML += '</div>';
+                  break;
+                case 'ShowMeTheMoney':
+                  tooltipHTML += tooltipElement.value;
+                  break;
+                default:
+                  // Handle unknown tooltip types or ignore them
+                  break;
+              }
+            }
+          } catch (error) {
+            console.error('Error parsing tooltip data:', error);
+          }
+        
+          return tooltipHTML;
+        }
 
 
 
