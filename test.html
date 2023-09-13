@@ -133,8 +133,7 @@
       /*  ====================================================  bottomLV contents layout module  ==================================================== */
 
       .class-column,
-      .synergy-column,
-      .spec-column {
+      .synergy-column {
         min-height: 150px;
         min-width: 250px;
         overflow-y: auto;
@@ -1183,72 +1182,116 @@
             xhr.send();
           },
 
+
           displayEquipmentData: function (characterName) {
             var equipmentData = this.equipmentData[characterName];
 
             // Clear the existing equipment data display
             $("#spec-columns").empty();
-            var equipmentElement = $("<div></div>").addClass("spec-column");
-        
-            // Display basic equipment information
-            equipmentElement.append(`<strong>Type:</strong> ${equipmentData.Type}<br>`);
-            equipmentElement.append(`<strong>Name:</strong> ${equipmentData.Name}<br>`);
-            equipmentElement.append(`<strong>Icon:</strong> <img src=${equipmentData.Icon}><br>`);
-            equipmentElement.append(`<strong>Grade:</strong> ${equipmentData.Grade}<br>`);
-        
-            // Process and display tooltip data
-            var tooltipData = JSON.parse(equipmentData.Tooltip);
-            $.each(tooltipData, function (key, value) {
-              switch (value.type) {
-                case "SingleTextBox":
-                case "MultiTextBox":
-                  equipmentElement.append(value.value + "<br>");
-                  break;
-                case "ItemPartBox":
-                  equipmentElement.append(`<strong>${value.value.Element_000}:</strong> ${value.value.Element_001}<br>`);
-                  break;
-                case "Progress":
-                  equipmentElement.append(`<strong>${value.value.title}:</strong> ${value.value.value} / ${value.value.maximum}<br>`);
-                  break;
-                case "SetItemGroup":
-                  equipmentElement.append(`<strong>${value.value.firstMsg}</strong><br>`);
-                  $.each(value.value.itemData, function (subKey, subValue) {
-                    equipmentElement.append(`<img src=${subValue.slotData.iconPath}>`);
-                  });
-                  equipmentElement.append("<br>");
-                  break;
-                case "IndentStringGroup":
-                  $.each(value.value, function (subKey, subValue) {
-                    equipmentElement.append(`<strong>${subValue.topStr}</strong><br>`);
-                    equipmentElement.append(subValue.contentStr.contentStr + "<br>");
-                  });
-                  break;
-                case "ShowMeTheMoney":
-                  equipmentElement.append(value.value + "<br>");
-                  break;
-                default:
-                  break;
-              }
-            });
 
+            // Iterate through the equipment data and display it
+            equipmentData.forEach(function (equipment) {
+              var equipmentElement = $("<div></div>")
+                .addClass("spec-column")
+                .html(
+                  `<strong>Type:</strong> ${equipment.Type}<br>` +
+                    `<strong>Name:</strong> ${equipment.Name}<br>` +
+                    `<strong>Icon:</strong> ${equipment.Icon}<br>` +
+                    `<strong>Grade:</strong> ${equipment.Grade}<br>` +
+                    `<strong>Tooltip:</strong> `
+                );
+              // Parse Tooltip and append to the equipment element
+              var tooltipData = characterManager.parseTooltip(equipment.Tooltip);
+              equipmentElement.append(tooltipData);
               $("#spec-columns").append(equipmentElement);
               console.log(equipmentElement);
+            });
+          },
+          parseTooltip: function (tooltip) {
+            var tooltipElement = $("<div></div>");
 
+            try {
+              var parsedTooltip = JSON.parse(tooltip);
+              for (var key in parsedTooltip) {
+                var element = parsedTooltip[key];
+                var elementDiv = $("<div></div>").addClass("tooltip-element");
+
+                switch (element.type) {
+                  case "NameTagBox":
+                    elementDiv.append(`<p>${element.value}</p>`);
+                    break;
+
+                  case "ItemTitle":
+                    elementDiv.append(`<p>${element.value.leftStr0}</p>`);
+                    elementDiv.append(`<p>${element.value.rightStr0}</p>`);
+                    elementDiv.append(`<p>${element.value.leftStr1}</p>`);
+                    elementDiv.append(`<p>${element.value.qualityValue}</p>`);
+                    elementDiv.append(`<p>${element.value.leftStr2}</p>`);
+                    elementDiv.append(`<img src="${element.value.slotData.iconPath}" alt="Icon">`);
+                    break;
+
+                  case "SingleTextBox":
+                    elementDiv.append(`<p>${element.value}</p>`);
+                    break;
+
+                  case "MultiTextBox":
+                    var values = element.value.split('|');
+                    values.forEach(function(value) {
+                      elementDiv.append(`<p>${value}</p>`);
+                    });
+                    break;
+
+                  case "ItemPartBox":
+                    for (var subKey in element.value) {
+                      elementDiv.append(`<p>${element.value[subKey]}</p>`);
+                    }
+                    break;
+
+                  case "Progress":
+                    elementDiv.append(`<p>${element.value.title}: ${element.value.value}/${element.value.maximum}</p>`);
+                    break;
+
+                  case "SetItemGroup":
+                    elementDiv.append(`<p>${element.value.firstMsg}</p>`);
+                    for (var itemKey in element.value.itemData) {
+                      var itemElement = element.value.itemData[itemKey];
+                      elementDiv.append(`<img src="${itemElement.slotData.iconPath}" alt="Icon"> ${itemElement.label}`);
+                    }
+                    break;
+
+                  case "IndentStringGroup":
+                    for (var groupKey in element.value) {
+                      var groupElement = element.value[groupKey];
+                      elementDiv.append(`<p>${groupElement.topStr}</p>`);
+                      for (var contentKey in groupElement.contentStr) {
+                        var contentElement = groupElement.contentStr[contentKey];
+                        elementDiv.append(`<p>${contentElement.contentStr}</p>`);
+                      }
+                    }
+                    break;
+
+                  case "ShowMeTheMoney":
+                    elementDiv.append(`<p>${element.value}</p>`);
+                    break;
+
+                  default:
+                    break;
+                }
+
+                tooltipElement.append(elementDiv);
+              }
+            } catch (error) {
+              console.error('Error parsing tooltip:', error);
+            }
+
+            return tooltipElement;
           }
+
+          //don't touch
         };
 
-
-
-
-
-
-
-
-
-
-
-
-        /*  ---------------------------------- functions --------------------------------------  */
+ 
+    /*  ---------------------------------- functions --------------------------------------  */
 
         /*
         function getCharacterData(nickname, container) {
