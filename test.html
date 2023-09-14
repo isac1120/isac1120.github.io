@@ -1207,6 +1207,49 @@
               console.log(equipmentElement);
             });
           },
+          parseTooltip: function (tooltipString) {
+  try {
+    var tooltipJson = JSON.parse(tooltipString);
+
+    var parsedTooltip = "";
+    parsedTooltip += tooltipJson.Element_000.value;
+    parsedTooltip += "Icon " + tooltipJson.Element_001.value.leftStr0 + " " + tooltipJson.Element_001.value.rightStr0 + "<br>";
+    parsedTooltip += tooltipJson.Element_001.value.leftStr2 + "<br>";
+    parsedTooltip += "품질 " + tooltipJson.Element_001.value.qualityValue + "<br>";
+    parsedTooltip += tooltipJson.Element_002.value + "<br>";
+    parsedTooltip += tooltipJson.Element_003.value + "<br>";
+    parsedTooltip += tooltipJson.Element_004.value + "<br>";
+    parsedTooltip += tooltipJson.Element_005.value.Element_000 + tooltipJson.Element_005.value.Element_001 + "<br>";
+    parsedTooltip += tooltipJson.Element_006.value.Element_000 + tooltipJson.Element_006.value.Element_001 + "<br>";
+    parsedTooltip += tooltipJson.Element_007.value.title + "<br>";
+    parsedTooltip += tooltipJson.Element_007.value.value + " / " + tooltipJson.Element_007.value.maximum + "<br>";
+    parsedTooltip += tooltipJson.Element_008.value.Element_000 + tooltipJson.Element_008.value.Element_001 + "<br>";
+
+    parsedTooltip += tooltipJson.Element_009.value.firstMsg + "<br>";
+    var itemData = tooltipJson.Element_009.value.itemData;
+    for (var key in itemData) {
+      parsedTooltip += `<img src="${itemData[key].slotData.iconPath}" alt="[Icon]" />` + itemData[key].label + " ";
+    }
+    parsedTooltip += "<br>";
+
+    var indentStringGroup = tooltipJson.Element_010.value;
+    for (var key in indentStringGroup) {
+      parsedTooltip += indentStringGroup[key].topStr + "<br>";
+      parsedTooltip += indentStringGroup[key].contentStr.Element_000.contentStr + "<br>";
+    }
+
+    parsedTooltip += tooltipJson.Element_011.value + "<br>";
+    parsedTooltip += tooltipJson.Element_012.value + "<br>";
+    parsedTooltip += tooltipJson.Element_013.value;
+
+    return parsedTooltip;
+  } catch (e) {
+    console.error("Failed to parse tooltip", e);
+    return "Failed to parse tooltip";
+  }
+}
+
+          /*
           parseTooltip: function (tooltip) {
             var tooltipElement = $("<div></div>");
 
@@ -1291,8 +1334,10 @@
 
             return tooltipElement;
           }
-
-          //don't touch
+         */
+          
+        //don't touch
+        
         };
 
  
