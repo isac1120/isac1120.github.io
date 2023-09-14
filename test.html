@@ -1214,13 +1214,15 @@
             var tooltipElement = $("<div></div>");
 
             try {
-              // Replace the font size values to include 'px'
-              var fixedTooltip = tooltip.replace(/<FONT SIZE='(\d+)'>/gi, function(match, p1){
-                return `<FONT SIZE='${p1}px'>`;
-              }).replace(/<font size='(\d+)'>/gi, function(match, p1){
-                return `<font size='${p1}px'>`;
-              });
+              // Replace the font size values with inline CSS
+              var fixedTooltip = tooltipString.replace(/<font size='(\d+)'>/gi, function(match, p1){
+                return `<span style='font-size:${p1}px;'>`;
+              }).replace(/<FONT SIZE='(\d+)'>/gi, function(match, p1){
+                return `<span style='font-size:${p1}px;'>`;
+              }).replace(/<\/font>/gi, "</span>").replace(/<\/FONT>/gi, "</span>");
+              
               var parsedTooltip = JSON.parse(fixedTooltip);
+              
               for (var key in parsedTooltip) {
                 var element = parsedTooltip[key];
                 var elementDiv = $("<div></div>").addClass("tooltip-element");
