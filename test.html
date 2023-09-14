@@ -1215,7 +1215,7 @@
 
               try {
                 // Replace the font size and color attributes with inline CSS
-                var formattedTooltipString = tooltipString.replace(/<font[^>]*>/gi, function(match){
+                var fixedTooltip = tooltip.replace(/<font[^>]*>/gi, function(match){
                   let newTag = '<span style=\'';
                   let sizeMatch = match.match(/size='(\d+)'/i);
                   let colorMatch = match.match(/color='([^']+)'/i);
