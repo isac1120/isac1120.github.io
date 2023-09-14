@@ -1207,10 +1207,17 @@
               console.log(equipmentElement);
             });
           },
+
           parseTooltip: function (tooltipString) {
   try {
-    var tooltipJson = JSON.parse(tooltipString);
-
+    
+    // Replace the font size values to include 'px'
+    var formattedTooltipString = tooltipString.replace(/<FONT SIZE='(\d+)'>/gi, function(match, p1){
+      return `<FONT SIZE='${p1}px'>`;
+    }).replace(/<font size='(\d+)'>/gi, function(match, p1){
+      return `<font size='${p1}px'>`;
+    });
+    var tooltipJson = JSON.parse(formattedTooltipString);
     var parsedTooltip = "";
     parsedTooltip += tooltipJson.Element_000.value;
     parsedTooltip += "Icon " + tooltipJson.Element_001.value.leftStr0 + " " + tooltipJson.Element_001.value.rightStr0 + "<br>";
