@@ -1208,112 +1208,70 @@
             });
           },
 
-          parseTooltip: function (tooltipString) {
 
-    
-    // Replace the font size values to include 'px'
-    var formattedTooltipString = tooltipString.replace(/<FONT SIZE='(\d+)'>/gi, function(match, p1){
-      return `<FONT SIZE='${p1}px'>`;
-    }).replace(/<font size='(\d+)'>/gi, function(match, p1){
-      return `<font size='${p1}px'>`;
-    });
-    var tooltipJson = JSON.parse(formattedTooltipString);
-    var parsedTooltip = "";
-    parsedTooltip += tooltipJson.Element_000.value;
-    parsedTooltip += "Icon " + tooltipJson.Element_001.value.leftStr0 + " " + tooltipJson.Element_001.value.rightStr0 + "<br>";
-    parsedTooltip += tooltipJson.Element_001.value.leftStr2 + "<br>";
-    parsedTooltip += "품질 " + tooltipJson.Element_001.value.qualityValue + "<br>";
-    parsedTooltip += tooltipJson.Element_002.value + "<br>";
-    parsedTooltip += tooltipJson.Element_003.value + "<br>";
-    parsedTooltip += tooltipJson.Element_004.value + "<br>";
-    parsedTooltip += tooltipJson.Element_005.value.Element_000 + tooltipJson.Element_005.value.Element_001 + "<br>";
-    parsedTooltip += tooltipJson.Element_006.value.Element_000 + tooltipJson.Element_006.value.Element_001 + "<br>";
-    parsedTooltip += tooltipJson.Element_007.value.title + "<br>";
-    parsedTooltip += tooltipJson.Element_007.value.value + " / " + tooltipJson.Element_007.value.maximum + "<br>";
-    parsedTooltip += tooltipJson.Element_008.value.Element_000 + tooltipJson.Element_008.value.Element_001 + "<br>";
-
-    parsedTooltip += tooltipJson.Element_009.value.firstMsg + "<br>";
-    var itemData = tooltipJson.Element_009.value.itemData;
-    for (var key in itemData) {
-      parsedTooltip += `<img src="${itemData[key].slotData.iconPath}" alt="[Icon]" />` + itemData[key].label + " ";
-    }
-    parsedTooltip += "<br>";
-
-    var indentStringGroup = tooltipJson.Element_010.value;
-    for (var key in indentStringGroup) {
-      parsedTooltip += indentStringGroup[key].topStr + "<br>";
-      parsedTooltip += indentStringGroup[key].contentStr.Element_000.contentStr + "<br>";
-    }
-
-    parsedTooltip += tooltipJson.Element_011.value + "<br>";
-    parsedTooltip += tooltipJson.Element_012.value + "<br>";
-    parsedTooltip += tooltipJson.Element_013.value;
-
-    return parsedTooltip;
-  
-}
-
-          /*
+          
           parseTooltip: function (tooltip) {
             var tooltipElement = $("<div></div>");
 
             try {
-              var parsedTooltip = JSON.parse(tooltip);
+              // Replace the font size values to include 'px'
+              var fixedTooltip = tooltip.replace(/<FONT SIZE='(\d+)'>/gi, function(match, p1){
+                return `<FONT SIZE='${p1}px'>`;
+              }).replace(/<font size='(\d+)'>/gi, function(match, p1){
+                return `<font size='${p1}px'>`;
+              });
+              var parsedTooltip = JSON.parse(fixedTooltip);
               for (var key in parsedTooltip) {
                 var element = parsedTooltip[key];
                 var elementDiv = $("<div></div>").addClass("tooltip-element");
-
-                var formattedValue = element.value;
-                if (typeof formattedValue === 'string') {
-                  formattedValue = formattedValue.replace(/FONT SIZE='(\d+)'/g, "style='font-size:$1px'");
-                }
+            
                 
                 switch (element.type) {
                   case "NameTagBox":
-                    elementDiv.append(`<p>${formattedValue}</p>`);
+                    elementDiv.append(`<p>${element.value}</p>`);
                     break;
 
                   case "ItemTitle":
-                    elementDiv.append(`<p>${formattedValue.leftStr0}</p>`);
-                    elementDiv.append(`<p>${formattedValue.rightStr0}</p>`);
-                    elementDiv.append(`<p>${formattedValue.leftStr1}</p>`);
-                    elementDiv.append(`<p>${formattedValue.qualityValue}</p>`);
-                    elementDiv.append(`<p>${formattedValue.leftStr2}</p>`);
-                    elementDiv.append(`<img src="${formattedValue.slotData.iconPath}" alt="Icon">`);
+                    elementDiv.append(`<p>${element.value.leftStr0}</p>`);
+                    elementDiv.append(`<p>${element.value.rightStr0}</p>`);
+                    elementDiv.append(`<p>${element.value.leftStr1}</p>`);
+                    elementDiv.append(`<p>${element.value.qualityValue}</p>`);
+                    elementDiv.append(`<p>${element.value.leftStr2}</p>`);
+                    elementDiv.append(`<img src="${element.value.slotData.iconPath}" alt="Icon">`);
                     break;
 
                   case "SingleTextBox":
-                    elementDiv.append(`<p>${formattedValue}</p>`);
+                    elementDiv.append(`<p>${element.value}</p>`);
                     break;
 
                   case "MultiTextBox":
-                    var values = formattedValue.split('|');
+                    var values = element.value.split('|');
                     values.forEach(function(value) {
                       elementDiv.append(`<p>${value}</p>`);
                     });
                     break;
 
                   case "ItemPartBox":
-                    for (var subKey in formattedValue) {
-                      elementDiv.append(`<p>${formattedValue[subKey]}</p>`);
+                    for (var subKey in element.value) {
+                      elementDiv.append(`<p>${element.value[subKey]}</p>`);
                     }
                     break;
 
                   case "Progress":
-                    elementDiv.append(`<p>${formattedValue.title}: ${formattedValue.value}/${formattedValue.maximum}</p>`);
+                    elementDiv.append(`<p>${element.value.title}: ${element.value.value}/${element.value.maximum}</p>`);
                     break;
 
                   case "SetItemGroup":
-                    elementDiv.append(`<p>${formattedValue.firstMsg}</p>`);
-                    for (var itemKey in formattedValue.itemData) {
-                      var itemElement = formattedValue.itemData[itemKey];
+                    elementDiv.append(`<p>${element.value.firstMsg}</p>`);
+                    for (var itemKey in element.value.itemData) {
+                      var itemElement = element.value.itemData[itemKey];
                       elementDiv.append(`<img src="${itemElement.slotData.iconPath}" alt="Icon"> ${itemElement.label}`);
                     }
                     break;
 
                   case "IndentStringGroup":
-                    for (var groupKey in formattedValue) {
-                      var groupElement = formattedValue[groupKey];
+                    for (var groupKey in element.value) {
+                      var groupElement = element.value[groupKey];
                       elementDiv.append(`<p>${groupElement.topStr}</p>`);
                       for (var contentKey in groupElement.contentStr) {
                         var contentElement = groupElement.contentStr[contentKey];
@@ -1323,7 +1281,7 @@
                     break;
 
                   case "ShowMeTheMoney":
-                    elementDiv.append(`<p>${formattedValue}</p>`);
+                    elementDiv.append(`<p>${element.value}</p>`);
                     break;
 
                   default:
@@ -1338,7 +1296,7 @@
 
             return tooltipElement;
           }
-         */
+         
           
         //don't touch
         
