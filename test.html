@@ -1213,6 +1213,25 @@
           parseTooltip: function (tooltip) {
             var tooltipElement = $("<div></div>");
 
+              try {
+                // Replace the font size and color attributes with inline CSS
+                var formattedTooltipString = tooltipString.replace(/<font[^>]*>/gi, function(match){
+                  let newTag = '<span style=\'';
+                  let sizeMatch = match.match(/size='(\d+)'/i);
+                  let colorMatch = match.match(/color='([^']+)'/i);
+            
+                  if (sizeMatch) {
+                    newTag += `font-size:${sizeMatch[1]}px;`;
+                  }
+            
+                  if (colorMatch) {
+                    newTag += `color:${colorMatch[1]};`;
+                  }
+            
+                  newTag += '\'>';
+                  return newTag;
+                }).replace(/<\/font>/gi, "</span>");
+            /*
             try {
               // Replace the font size values with inline CSS
               var fixedTooltip = tooltip.replace(/<font size='(\d+)'>/gi, function(match, p1){
@@ -1220,7 +1239,7 @@
               }).replace(/<FONT SIZE='(\d+)'>/gi, function(match, p1){
                 return `<span style='font-size:${p1}px;'>`;
               }).replace(/<\/font>/gi, "</span>").replace(/<\/FONT>/gi, "</span>");
-              
+            */
               var parsedTooltip = JSON.parse(fixedTooltip);
               
               for (var key in parsedTooltip) {
