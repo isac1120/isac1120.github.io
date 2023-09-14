@@ -1209,7 +1209,7 @@
           },
 
           parseTooltip: function (tooltipString) {
-  try {
+
     
     // Replace the font size values to include 'px'
     var formattedTooltipString = tooltipString.replace(/<FONT SIZE='(\d+)'>/gi, function(match, p1){
@@ -1250,10 +1250,7 @@
     parsedTooltip += tooltipJson.Element_013.value;
 
     return parsedTooltip;
-  } catch (e) {
-    console.error("Failed to parse tooltip", e);
-    return "Failed to parse tooltip";
-  }
+  
 }
 
           /*
