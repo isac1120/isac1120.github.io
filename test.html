@@ -1216,52 +1216,57 @@
                 var element = parsedTooltip[key];
                 var elementDiv = $("<div></div>").addClass("tooltip-element");
 
+                var formattedValue = element.value;
+                if (typeof formattedValue === 'string') {
+                  formattedValue = formattedValue.replace(/FONT SIZE='(\d+)'/g, "style='font-size:$1px'");
+                }
+                
                 switch (element.type) {
                   case "NameTagBox":
-                    elementDiv.append(`<p>${element.value}</p>`);
+                    elementDiv.append(`<p>${formattedValue}</p>`);
                     break;
 
                   case "ItemTitle":
-                    elementDiv.append(`<p>${element.value.leftStr0}</p>`);
-                    elementDiv.append(`<p>${element.value.rightStr0}</p>`);
-                    elementDiv.append(`<p>${element.value.leftStr1}</p>`);
-                    elementDiv.append(`<p>${element.value.qualityValue}</p>`);
-                    elementDiv.append(`<p>${element.value.leftStr2}</p>`);
-                    elementDiv.append(`<img src="${element.value.slotData.iconPath}" alt="Icon">`);
+                    elementDiv.append(`<p>${formattedValue.leftStr0}</p>`);
+                    elementDiv.append(`<p>${formattedValue.rightStr0}</p>`);
+                    elementDiv.append(`<p>${formattedValue.leftStr1}</p>`);
+                    elementDiv.append(`<p>${formattedValue.qualityValue}</p>`);
+                    elementDiv.append(`<p>${formattedValue.leftStr2}</p>`);
+                    elementDiv.append(`<img src="${formattedValue.slotData.iconPath}" alt="Icon">`);
                     break;
 
                   case "SingleTextBox":
-                    elementDiv.append(`<p>${element.value}</p>`);
+                    elementDiv.append(`<p>${formattedValue}</p>`);
                     break;
 
                   case "MultiTextBox":
-                    var values = element.value.split('|');
+                    var values = formattedValue.split('|');
                     values.forEach(function(value) {
                       elementDiv.append(`<p>${value}</p>`);
                     });
                     break;
 
                   case "ItemPartBox":
-                    for (var subKey in element.value) {
-                      elementDiv.append(`<p>${element.value[subKey]}</p>`);
+                    for (var subKey in formattedValue) {
+                      elementDiv.append(`<p>${formattedValue[subKey]}</p>`);
                     }
                     break;
 
                   case "Progress":
-                    elementDiv.append(`<p>${element.value.title}: ${element.value.value}/${element.value.maximum}</p>`);
+                    elementDiv.append(`<p>${formattedValue.title}: ${formattedValue.value}/${formattedValue.maximum}</p>`);
                     break;
 
                   case "SetItemGroup":
-                    elementDiv.append(`<p>${element.value.firstMsg}</p>`);
-                    for (var itemKey in element.value.itemData) {
-                      var itemElement = element.value.itemData[itemKey];
+                    elementDiv.append(`<p>${formattedValue.firstMsg}</p>`);
+                    for (var itemKey in formattedValue.itemData) {
+                      var itemElement = formattedValue.itemData[itemKey];
                       elementDiv.append(`<img src="${itemElement.slotData.iconPath}" alt="Icon"> ${itemElement.label}`);
                     }
                     break;
 
                   case "IndentStringGroup":
-                    for (var groupKey in element.value) {
-                      var groupElement = element.value[groupKey];
+                    for (var groupKey in formattedValue) {
+                      var groupElement = formattedValue[groupKey];
                       elementDiv.append(`<p>${groupElement.topStr}</p>`);
                       for (var contentKey in groupElement.contentStr) {
                         var contentElement = groupElement.contentStr[contentKey];
@@ -1271,7 +1276,7 @@
                     break;
 
                   case "ShowMeTheMoney":
-                    elementDiv.append(`<p>${element.value}</p>`);
+                    elementDiv.append(`<p>${formattedValue}</p>`);
                     break;
 
                   default:
