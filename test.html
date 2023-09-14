@@ -1215,7 +1215,7 @@
 
             try {
               // Replace the font size values with inline CSS
-              var fixedTooltip = tooltipString.replace(/<font size='(\d+)'>/gi, function(match, p1){
+              var fixedTooltip = tooltip.replace(/<font size='(\d+)'>/gi, function(match, p1){
                 return `<span style='font-size:${p1}px;'>`;
               }).replace(/<FONT SIZE='(\d+)'>/gi, function(match, p1){
                 return `<span style='font-size:${p1}px;'>`;
