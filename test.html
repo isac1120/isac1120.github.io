@@ -151,7 +151,9 @@
         padding: 15px;
         margin: 10px;
       }
-
+      .spec-column {
+        width: 250px;
+      }
       .class-column {
         min-height: 80px;
       }
@@ -1200,12 +1202,8 @@
                       ${equipment.Name}
                     </div>
                     <div class="row">
-                      <div class="col-3">
-                        <img src=${equipment.Icon} style="width: 30px; height: 30px"> 
-                      </div>
-                      <div class="col-9">
+                        <img src=${equipment.Icon} style="width: 30px; height: 30px margin-right: 10px;"> 
                         ${equipment.Grade} ${equipment.Type}
-                      </div>
                   </div>
                 </div>`
                 );
