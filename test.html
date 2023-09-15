@@ -1194,11 +1194,9 @@
               var equipmentElement = $("<div></div>")
                 .addClass("spec-column")
                 .html(
-                  `<strong>Type:</strong> ${equipment.Type}<br>` +
-                    `<strong>Name:</strong> ${equipment.Name}<br>` +
-                    `<strong>Icon:</strong> ${equipment.Icon}<br>` +
-                    `<strong>Grade:</strong> ${equipment.Grade}<br>` +
-                    `<strong>Tooltip:</strong> `
+                  '<div class="container">
+                    <div class="row"><div class="col-3">${equipment.Icon}</div><div class="row">${equipment.Name}</div><div class="row"> ${equipment.Grade} ${equipment.Type}</div>
+                  </div>'           
                 );
               // Parse Tooltip and append to the equipment element
               var tooltipData = characterManager.parseTooltip(equipment.Tooltip);
@@ -1231,15 +1229,7 @@
                   newTag += '\'>';
                   return newTag;
                 }).replace(/<\/font>/gi, "</span>");
-            /*
-            try {
-              // Replace the font size values with inline CSS
-              var fixedTooltip = tooltip.replace(/<font size='(\d+)'>/gi, function(match, p1){
-                return `<span style='font-size:${p1}px;'>`;
-              }).replace(/<FONT SIZE='(\d+)'>/gi, function(match, p1){
-                return `<span style='font-size:${p1}px;'>`;
-              }).replace(/<\/font>/gi, "</span>").replace(/<\/FONT>/gi, "</span>");
-            */
+
               var parsedTooltip = JSON.parse(fixedTooltip);
               
               for (var key in parsedTooltip) {
