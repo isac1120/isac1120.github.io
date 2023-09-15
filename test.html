@@ -133,7 +133,8 @@
       /*  ====================================================  bottomLV contents layout module  ==================================================== */
 
       .class-column,
-      .synergy-column {
+      .synergy-column,
+      .spec-column {
         min-height: 150px;
         min-width: 250px;
         overflow-y: auto;
@@ -1196,12 +1197,14 @@
                 .html(
                   `<div class="container">
                     <div class="row">
+                      ${equipment.Name}
+                    </div>
+                    <div class="row">
                       <div class="col-3">
-                        <img src=${equipment.Icon}>
+                        <img src=${equipment.Icon} style="width: 30px; height: 30px"> 
                       </div>
                       <div class="col-9">
-                        <div class="row">${equipment.Name}</div>
-                        <div class="row">${equipment.Grade} ${equipment.Type}</div>
+                        ${equipment.Grade} ${equipment.Type}
                       </div>
                   </div>
                 </div>`
