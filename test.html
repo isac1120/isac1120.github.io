@@ -1194,9 +1194,17 @@
               var equipmentElement = $("<div></div>")
                 .addClass("spec-column")
                 .html(
-                  '<div class="container">
-                    <div class="row"><div class="col-3">${equipment.Icon}</div><div class="row">${equipment.Name}</div><div class="row"> ${equipment.Grade} ${equipment.Type}</div>
-                  </div>'           
+                  "<div class="container">
+                    <div class="row">
+                      <div class="col-3">
+                        <img src=${equipment.Icon}>
+                      </div>
+                      <div class="col-9">
+                        <div class="row">${equipment.Name}</div>
+                        <div class="row">${equipment.Grade} ${equipment.Type}</div>
+                      </div>
+                  </div>
+                </div>"        
                 );
               // Parse Tooltip and append to the equipment element
               var tooltipData = characterManager.parseTooltip(equipment.Tooltip);
