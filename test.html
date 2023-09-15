@@ -1191,7 +1191,7 @@
 
             // Clear the existing equipment data display
             $("#spec-columns").empty();
-
+  
             // Iterate through the equipment data and display it
             equipmentData.forEach(function (equipment) {
               var equipmentElement = $("<div></div>")
@@ -1202,14 +1202,14 @@
                       ${equipment.Name}
                     </div>
                     <div class="row">
-                        <img src=${equipment.Icon} style="width: 30px; height: 30px margin-right: 10px;"> 
+                        <img src=${equipment.Icon} style="width: 40px; height: 40px margin-right: 10px;"> 
                         ${equipment.Grade} ${equipment.Type}
                   </div>
                 </div>`
                 );
               // Parse Tooltip and append to the equipment element
               var tooltipData = characterManager.parseTooltip(equipment.Tooltip);
-              equipmentElement.append(tooltipData);
+              //equipmentElement.append(tooltipData);
               $("#spec-columns").append(equipmentElement);
               console.log(equipmentElement);
             });
