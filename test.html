@@ -129,7 +129,9 @@
         min-width: 320px;
         width: 100%;
       }
-
+      #spec-container {
+        width: 100%;
+      }
       /*  ====================================================  bottomLV contents layout module  ==================================================== */
 
       .class-column,
@@ -145,8 +147,29 @@
         background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
+      #equipment-column {
+        display: flex;
+        width: 600px;
+        height: 330px;
+        padding: 5px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        
+      }
+      .equipment-element.container {
+        width: 180px;
+        height: 50px;
+        padding: 5px;
+        justify-content: space-evenly;
+      }
       .spec-column {
-        width: 250px;
+        width: 100%;
+        height: 500px;
+      }
+      #spec-columns {
+        font-size: 13px;
+        height: 375px;
+        width: 100%;
       }
       .class-column {
         min-height: 80px;
@@ -393,6 +416,14 @@
         background-color: orange;
       }
 
+      .custom-tooltip {
+        text-align: left;
+        --bs-tooltip-max-width: 400px;
+      }
+
+      .tooltip-inner {
+        text-align: left;
+    }
       /* ==================================================== mediaquery layout module ==================================================== */
 
       @media (max-width: 1024px) {
@@ -1192,35 +1223,55 @@
 
             // Clear the existing equipment data display
             $("#spec-columns").empty();
-  
+            var equipmentColumn = $("<div id='equipment-column' class='spec-column'></div>");
+            $("#spec-columns").append(equipmentColumn);
+              
             // Iterate through the equipment data and display it
             equipmentData.forEach(function (equipment) {
+
+              // Parse Tooltip and get necessary data
+              var tooltipData = characterManager.parseTooltip(equipment.Tooltip);
+              var tooltipElement = tooltipData.tooltipElement;
+              var additionalInfo = tooltipData.additionalInfo;
+              var extraInfoDisplay = '';
+              if(additionalInfo.leftStr1 && additionalInfo.qualityValue) {
+                extraInfoDisplay = `[${additionalInfo.leftStr1} ${additionalInfo.qualityValue}]`;
+              }
               var equipmentElement = $("<div></div>")
-                .addClass("spec-column")
+                .addClass("equipment-element container")
                 .html(
-                  `<div class="container">
+                  `
                     <div class="row">
                       ${equipment.Name}
                     </div>
                     <div class="row">
-                        <img src=${equipment.Icon} style="width: 40px; height: 40px margin-right: 10px;"> 
-                        ${equipment.Grade} ${equipment.Type}
-                  </div>
-                </div>`
+                        <img src=${equipment.Icon} style="width: 20px; height: 20px; padding:0; margin: 5px;" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
+                        ${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}
+                    </div>
+                `
                 );
-              // Parse Tooltip and append to the equipment element
-              var tooltipData = characterManager.parseTooltip(equipment.Tooltip);
               //equipmentElement.append(tooltipData);
-              $("#spec-columns").append(equipmentElement);
-              console.log(equipmentElement);
+              equipmentColumn.append(equipmentElement);
+              // Parse Tooltip and append to the equipment element
+              //var tooltipElement = characterManager.parseTooltip(equipment.Tooltip);
+              console.log(tooltipElement);
+              $('[data-bs-toggle="tooltip"]').tooltip({
+                html: true,
+                title: tooltipElement,
+                trigger: 'click'
+              });
             });
+            console.log(equipmentColumn);
+            //$("#spec-columns").append(equipmentColumn);
           },
-
 
           
           parseTooltip: function (tooltip) {
             var tooltipElement = $("<div></div>");
-
+            var additionalInfo = {
+              leftStr1: null,
+              qualityValue: null
+            };
               try {
                 // Replace the font size and color attributes with inline CSS
                 var fixedTooltip = tooltip.replace(/<font[^>]*>/gi, function(match){
@@ -1244,7 +1295,7 @@
               
               for (var key in parsedTooltip) {
                 var element = parsedTooltip[key];
-                var elementDiv = $("<div></div>").addClass("tooltip-element");
+                var elementDiv = $("<div class='text-left'></div>").addClass("tooltip-element");
             
                 
                 switch (element.type) {
@@ -1253,13 +1304,32 @@
                     break;
 
                   case "ItemTitle":
-                    elementDiv.append(`<p>${element.value.leftStr0}</p>`);
-                    elementDiv.append(`<p>${element.value.rightStr0}</p>`);
-                    elementDiv.append(`<p>${element.value.leftStr1}</p>`);
-                    elementDiv.append(`<p>${element.value.qualityValue}</p>`);
-                    elementDiv.append(`<p>${element.value.leftStr2}</p>`);
-                    elementDiv.append(`<img src="${element.value.slotData.iconPath}" alt="Icon">`);
+                    additionalInfo.leftStr1 = $("<div>").html(element.value.leftStr1).text();
+                    additionalInfo.qualityValue = $("<div>").html(element.value.qualityValue).text();
+                    console.log(additionalInfo.leftStr1);
+                    console.log(additionalInfo.qualityValue);
+                    
+                    var itemTitleHtml = `
+                      <div class="container">
+                        <div class="row">
+                          <img src="${element.value.slotData.iconPath}" alt="Icon" style="width: 30px; height: 30px;">
+                          <div class="row">
+                            ${element.value.leftStr0} ${element.value.rightStr0}
+                          </div>
+                          <div class="row">
+                            ${element.value.leftStr2}
+                          </div>
+                          <div class="row">
+                            ${element.value.leftStr1}
+                            ${element.value.qualityValue}
+                          </div>
+                        </div>
+                      </div>
+                    `;
+
+                    elementDiv.append(itemTitleHtml);
                     break;
+
 
                   case "SingleTextBox":
                     elementDiv.append(`<p>${element.value}</p>`);
@@ -1284,10 +1354,15 @@
 
                   case "SetItemGroup":
                     elementDiv.append(`<p>${element.value.firstMsg}</p>`);
+                    var itemContainer = $("<div></div>").css({ "display": "flex", "justify-content": "space-around" ,"margin-bottom": "10px"});
                     for (var itemKey in element.value.itemData) {
                       var itemElement = element.value.itemData[itemKey];
-                      elementDiv.append(`<img src="${itemElement.slotData.iconPath}" alt="Icon"> ${itemElement.label}`);
+                      var itemSlot = $("<div></div>");
+                      itemSlot.append(`<img src="${itemElement.slotData.iconPath}" alt="Icon" style="width: 30px; height: 30px; display:block; margin:auto;">`);
+                      itemSlot.append(`<div style='text-align:center;'>${itemElement.label}</div>`);
+                      itemContainer.append(itemSlot);
                     }
+                    elementDiv.append(itemContainer);
                     break;
 
                   case "IndentStringGroup":
@@ -1315,7 +1390,7 @@
               console.error('Error parsing tooltip:', error);
             }
 
-            return tooltipElement;
+            return { tooltipElement, additionalInfo };
           }
          
           
