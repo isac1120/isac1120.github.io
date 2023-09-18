@@ -145,12 +145,6 @@
         background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-      .class-column.draggable {
-        width: 250px;
-        height: 100px;
-        padding: 15px;
-        margin: 10px;
-      }
       .spec-column {
         width: 250px;
       }
@@ -221,8 +215,6 @@
         width: 100%;
       }
 
-      /* ----------------- characterData layout module  -----------------------*/
-
       .nickname-input {
         margin-right: 10px;
       }
@@ -237,29 +229,32 @@
       }
 
       .draggable,
-      .droppable {
-        border: 1px solid #ccc;
-        padding: 5px 0;
-        margin: 5px auto;
-        border-radius: 3px;
-        text-align: center;
-        background-color: #f5f5f5;
-      }
-
-      .draggable {
+      .droppable{
         font-size: 15px;
         cursor: pointer;
-      }
-
-      .droppable {
-        width: 100%;
         border: 1px solid #ccc;
-        padding: 3px; /* Increase the padding */
-        margin: 3px;
         border-radius: 3px;
         text-align: center;
         background-color: #f5f5f5;
         min-height: 30px; /* Increase the min-height */
+        
+      }
+      .class-column.draggable {
+        width: 250px;
+        height: 100px;
+        padding: 15px;
+        margin: 10px;
+      }
+
+      .synergy-column.draggable,
+      .synergy-column.droppable {
+        padding: 5px 0;
+        margin: 5px auto;
+      }
+      .character-column.draggable,
+      .character-column.droppable {
+        padding: 10px 0;
+        margin: 10px auto;
       }
 
       .placeholder {
