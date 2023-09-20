@@ -1115,10 +1115,16 @@
             var characterName = $(this).text().split(" ")[0];
             characterManager.displayEquipmentData(characterName);
           });
+
+
+        
         // Create an object to encapsulate the functionality
         var characterManager = {
+
+          
           equipmentData: {}, // Store equipment data here
 
+          
           getCharacterData: function (nickname, section) {
             var url =
               "https://developer-lostark.game.onstove.com/characters/" +
@@ -1144,6 +1150,7 @@
             xhr.send();
           },
 
+          
           displayCharacterData: function (data, section) {
             section.empty();
             data.forEach(function (character) {
@@ -1411,8 +1418,53 @@
           }
          
           
-        //don't touch
+
+        getCharacterProfile: function (characterName) {
+          var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/profiles"; // Adjust URL as per API documentation
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", url, true);
+          xhr.setRequestHeader("accept", "application/json");
+          xhr.setRequestHeader("authorization", "bearer your_token_here"); // Put your token here
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                characterManager.characterData[characterName] = response;
+                console.log(characterManager.characterData[characterName]);
+              } else {
+                var errorCode = xhr.statusText;
+                console.log(errorCode);
+              }
+            }
+          };
+          xhr.send();
+        },
         
+        displayCharacterProfile: function (characterName) {
+          var characterData = this.characterData[characterName];
+          
+          // Clear the existing character data display
+          $("#character-info").empty();
+          
+          // Create a container to hold the data
+          var characterInfo = $("<div id='character-info'></div>");
+          
+          // Append each piece of data to the container
+          characterInfo.append(`<div>Server Name: ${characterData.ServerName}</div>`);
+          characterInfo.append(`<div>Character Name: ${characterData.CharacterName}</div>`);
+          characterInfo.append(`<div>Character Class Name: ${characterData.CharacterClassName}</div>`);
+          characterInfo.append(`<div>Character Level: ${characterData.CharacterLevel}</div>`);
+          characterInfo.append(`<div>Item Avg Level: ${characterData.ItemAvgLevel}</div>`);
+          
+          // For stats, you might need to iterate through an array if it's an array of objects
+          characterData.Stats.forEach(function(stat) {
+            characterInfo.append(`<div>Stat Type: ${stat.Type}, Stat Value: ${stat.Value}</div>`);
+          });
+          
+          // Append the container to a DOM element
+          $("#character-info-container").append(characterInfo);
+        },
+
         };
 
  
