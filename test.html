@@ -1312,26 +1312,23 @@
                     var itemTitleHtml = `
                       <div class="container">
                         <div class="row">
-                          <div class="col-3>
-                            <img src="${element.value.slotData.iconPath}" alt="Icon" style="width: 30px; height: 30px;"/>
+                          <div class="col-3">
+                            <img src="${element.value.slotData.iconPath}" alt="Icon" style="width: 30px; height: 30px;">
                           </div>
-                          <div class='col-9">
+                          <div class="col-9">
                             <div class="row">
-                              <div class='col'>
+                              <div class="col">
                                 ${element.value.leftStr0} ${element.value.rightStr0}
                               </div>
                             </div>
                             <div class="row">
-                              <div class='col'>
+                              <div class="col">
                                 ${element.value.leftStr2}
                               </div>
                             </div>
                             <div class="row">
-                              <div class='col-3'>
                                 ${element.value.leftStr1}
-                              </div>
-                              <div class='col-9'>
-                                ${element.value.qualityValue}
+                                <span>${element.value.qualityValue}</span>
                               </div>
                             </div>
                           </div>
