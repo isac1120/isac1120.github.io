@@ -304,8 +304,10 @@
       }
 
       .character-synergy{
+        
         overflow-x:scroll;
         width: 100%;
+        
       }
 
       /* ------------------------- synergy symbol ------------------------- */
@@ -1164,7 +1166,7 @@
               var shortSyn = getShortSynergyForClass(
                 character.CharacterClassName
               );
-              var wrapper = $("<div class="character-synergy"></div>");
+              var wrapper = $("<div class='character-synergy'></div>");
 
               color.forEach(function (colorElement, index) {
                 //make circle with colored corresponding to each class synergy
