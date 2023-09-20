@@ -1313,18 +1313,26 @@
                       <div class="container">
                         <div class="row">
                           <div class="col-3>
-                            <img src="${element.value.slotData.iconPath}" alt="Icon" style="width: 30px; height: 30px;">
+                            <img src="${element.value.slotData.iconPath}" alt="Icon" style="width: 30px; height: 30px;"/>
                           </div>
                           <div class='col-9">
                             <div class="row">
-                              ${element.value.leftStr0} ${element.value.rightStr0}
+                              <div class='col'>
+                                ${element.value.leftStr0} ${element.value.rightStr0}
+                              </div>
                             </div>
                             <div class="row">
-                              ${element.value.leftStr2}
+                              <div class='col'>
+                                ${element.value.leftStr2}
+                              </div>
                             </div>
                             <div class="row">
-                              ${element.value.leftStr1}
-                              ${element.value.qualityValue}
+                              <div class='col-3'>
+                                ${element.value.leftStr1}
+                              </div>
+                              <div class='col-9'>
+                                ${element.value.qualityValue}
+                              </div>
                             </div>
                           </div>
                         </div>
