@@ -1114,6 +1114,7 @@
         $(".character-section").on("click",".draggable",function(){
             var characterName = $(this).text().split(" ")[0];
             characterManager.displayEquipmentData(characterName);
+            characterManager.displayCharacterProfile(characterName);
           });
 
 
@@ -1121,7 +1122,7 @@
         // Create an object to encapsulate the functionality
         var characterManager = {
 
-          
+          characterProfile: {},
           equipmentData: {}, // Store equipment data here
 
           
@@ -1200,6 +1201,7 @@
               });
 
               characterManager.getEquipmentData(character.CharacterName);
+              characterManager.getCharacterProfile(character.CharacterName);
             });
           },
 
@@ -1233,6 +1235,7 @@
 
           displayEquipmentData: function (characterName) {
             var equipmentData = this.equipmentData[characterName];
+            
 
             // Clear the existing equipment data display
             $("#spec-columns").empty();
@@ -1415,55 +1418,55 @@
             }
 
             return { tooltipElement, additionalInfo };
-          }
+          },
          
           
 
-        getCharacterProfile: function (characterName) {
-          var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/profiles"; // Adjust URL as per API documentation
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", url, true);
-          xhr.setRequestHeader("accept", "application/json");
-          xhr.setRequestHeader("authorization", "bearer your_token_here"); // Put your token here
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-              if (xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
-                characterManager.characterData[characterName] = response;
-                console.log(characterManager.characterData[characterName]);
-              } else {
-                var errorCode = xhr.statusText;
-                console.log(errorCode);
+          getCharacterProfile: function (characterName) {
+            var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/profiles"; // Adjust URL as per API documentation
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader("authorization", "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"); // Put your token here
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  characterManager.characterProfile[characterName] = response;
+                  console.log(characterManager.characterProfile[characterName]);
+                } else {
+                  var errorCode = xhr.statusText;
+                  console.log(errorCode);
+                }
               }
-            }
-          };
-          xhr.send();
-        },
+            };
+            xhr.send();
+          },
         
-        displayCharacterProfile: function (characterName) {
-          var characterData = this.characterData[characterName];
-          
-          // Clear the existing character data display
-          $("#character-info").empty();
-          
-          // Create a container to hold the data
-          var characterInfo = $("<div id='character-info'></div>");
-          
-          // Append each piece of data to the container
-          characterInfo.append(`<div>Server Name: ${characterData.ServerName}</div>`);
-          characterInfo.append(`<div>Character Name: ${characterData.CharacterName}</div>`);
-          characterInfo.append(`<div>Character Class Name: ${characterData.CharacterClassName}</div>`);
-          characterInfo.append(`<div>Character Level: ${characterData.CharacterLevel}</div>`);
-          characterInfo.append(`<div>Item Avg Level: ${characterData.ItemAvgLevel}</div>`);
-          
-          // For stats, you might need to iterate through an array if it's an array of objects
-          characterData.Stats.forEach(function(stat) {
-            characterInfo.append(`<div>Stat Type: ${stat.Type}, Stat Value: ${stat.Value}</div>`);
-          });
-          
-          // Append the container to a DOM element
-          $("#character-info-container").append(characterInfo);
-        },
+          displayCharacterProfile: function (characterName) {
+            var characterProfile = this.characterProfile[characterName];
+            
+            // Clear the existing character data display
+            $("#profile-column").empty();
+            
+            // Create a container to hold the data
+            var profile = $("<div id='profile-column' class='spec-column'></div>");
+            
+            // Append each piece of data to the container
+            profile.append(`<div>Server Name: ${characterProfile.ServerName}</div>`);
+            profile.append(`<div>Character Name: ${characterProfile.CharacterName}</div>`);
+            profile.append(`<div>Character Class Name: ${characterProfile.CharacterClassName}</div>`);
+            profile.append(`<div>Character Level: ${characterProfile.CharacterLevel}</div>`);
+            profile.append(`<div>Item Avg Level: ${characterProfile.ItemAvgLevel}</div>`);
+            
+            // For stats, you might need to iterate through an array if it's an array of objects
+            characterProfile.Stats.forEach(function(stat) {
+              profile.append(`<div>Stat Type: ${stat.Type}, Stat Value: ${stat.Value}</div>`);
+            });
+            
+            // Append the container to a DOM element
+            $("#spec-columns").append(profile);
+          },
 
         };
 
