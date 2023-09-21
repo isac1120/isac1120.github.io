@@ -1451,18 +1451,42 @@
             
             // Create a container to hold the data
             var profile = $("<div id='profile-column' class='spec-column'></div>");
-            
+            var status = $("<div></div>");
+            var statCount = 0;
             // Append each piece of data to the container
-            profile.append(`<div>Server Name: ${characterProfile.ServerName}</div>`);
-            profile.append(`<div>Character Name: ${characterProfile.CharacterName}</div>`);
-            profile.append(`<div>Character Class Name: ${characterProfile.CharacterClassName}</div>`);
-            profile.append(`<div>Character Level: ${characterProfile.CharacterLevel}</div>`);
-            profile.append(`<div>Item Avg Level: ${characterProfile.ItemAvgLevel}</div>`);
+            profileHTML='
+              <div class="container">
+                <div class="row">
+                  <div class="col">원정대 레벨: ${characterProfile.ExpeditionLevel}</div>
+                  <div class="col">아이템 레벨: ${characterProfile.ItemAvgLevel}</div>
+                  <div class="col">전투 레벨: ${characterProfile.CharacterLevel}</div>
+                </div>
+                <div class="row">
+                  <div class="col">캐릭터 클래스: ${characterProfile.CharacterClassName}</div>
+                  <div class="col">캐릭터명: ${characterProfile.CharacterName}</div>
+                  <div class="col">서버명: ${characterProfile.ServerName}</div>
+                </div>
+              </div>
+            ';
             
+               
+            var basicStats = '<div class="row"></div>';
+            var mainStats = '<div class="row"></div>';
+            var subStats = '<div class="row"></div>';
             // For stats, you might need to iterate through an array if it's an array of objects
             characterProfile.Stats.forEach(function(stat) {
-              profile.append(`<div>Stat Type: ${stat.Type}, Stat Value: ${stat.Value}</div>`);
+              
+              if(${stat.Type} == '치명' || ${stat.Type}== '특화' || ${stat.Type} == '신속'){
+                mainStats.append('<div class="col">${stat.Type}, Stat Value: ${stat.Value}</div>`);
+              }
+              else if((${stat.Type} == '제압' || ${stat.Type} == '인내' || ${stat.Type} == '숙련'){
+                subStats.append('<div class="col">${stat.Type}, Stat Value: ${stat.Value}</div>`);
+              }
+              else{
+                basicStats.append('<div class="col">${stat.Type}, Stat Value: ${stat.Value}</div>`);
+              }
             });
+            profile.append(status);
             
             // Append the container to a DOM element
             $("#spec-columns").append(profile);
@@ -1470,88 +1494,7 @@
 
         };
 
- 
-    /*  ---------------------------------- functions --------------------------------------  */
 
-        /*
-        function getCharacterData(nickname, container) {
-          var url =
-            "https://developer-lostark.game.onstove.com/characters/" +
-            nickname +
-            "/siblings";
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", url, true);
-          xhr.setRequestHeader("accept", "application/json");
-          xhr.setRequestHeader(
-            "authorization",
-            "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
-          );
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-              if (xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
-                displayCharacterData(response, container);
-              } else {
-                console.log("Error:", xhr.statusText);
-              }
-            }
-          };
-          xhr.send();
-        }
-
-        function displayCharacterData(data, container) {
-          container.empty();
-          data.forEach(function (character) {
-            var element = $("<div></div>")
-              .text(
-                character.CharacterName +
-                  " (" +
-                  character.CharacterClassName +
-                  " " +
-                  character.ItemAvgLevel +
-                  ")"
-              )
-              .addClass("draggable")
-              .css("background-color", "white");
-            
-            var color = getColorForClass(character.CharacterClassName);
-            var synergy = getSynergyForClass(character.CharacterClassName);
-            var shortSyn = getShortSynergyForClass(
-              character.CharacterClassName
-            );
-            var wrapper = $("<div></div>");
-
-            color.forEach(function (colorElement, index) {
-              //make circle with colored corresponding to each class synergy
-              var circle = $("<div></div>")
-                .addClass("rounded-rectangle")
-                .css("background-color", colorElement);
-              circle.text(shortSyn[index]);
-              circle
-                .attr({
-                  "data-toggle": "tooltip",
-                  "data-placement": "bottom",
-                  title: synergy[index],
-                })
-                .tooltip();
-
-              wrapper.append(circle);
-            });
-
-
-            element.append(wrapper);
-            container.append(element);
-            element.draggable({
-              helper: "clone",
-              revert: "invalid",
-              appendTo: "body",
-              zIndex: 100,
-            });
-
-
-          });
-        }
-*/
         function getColorForClass(className) {
           var classColor = [];
           synergies.forEach(function (synergy) {
