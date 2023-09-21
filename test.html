@@ -1453,7 +1453,7 @@
             var profile = $("<div id='profile-column' class='spec-column'></div>");
 
             // Append each piece of data to the container
-            profileHTML='
+            profileHTML=`
               <div class="container">
                 <div class="row">
                   <div class="col">원정대 레벨: ${characterProfile.ExpeditionLevel}</div>
@@ -1466,7 +1466,7 @@
                   <div class="col">서버명: ${characterProfile.ServerName}</div>
                 </div>
               </div>
-            ';
+            `;
               
             profile.append(profileHTML);
                
