@@ -1451,8 +1451,7 @@
             
             // Create a container to hold the data
             var profile = $("<div id='profile-column' class='spec-column'></div>");
-            var status = $("<div></div>");
-            var statCount = 0;
+
             // Append each piece of data to the container
             profileHTML='
               <div class="container">
@@ -1468,7 +1467,8 @@
                 </div>
               </div>
             ';
-            
+              
+            profile.append(profileHTML);
                
             var basicStats = '<div class="row"></div>';
             var mainStats = '<div class="row"></div>';
@@ -1486,8 +1486,11 @@
                 basicStats.append('<div class="col">${stat.Type}, Stat Value: ${stat.Value}</div>`);
               }
             });
-            profile.append(status);
-            
+                
+            profile.append(basicStats);
+            profile.append(mainStats);
+            profile.append(subStats);
+                
             // Append the container to a DOM element
             $("#spec-columns").append(profile);
           },
