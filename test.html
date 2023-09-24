@@ -68,9 +68,16 @@
       ::-webkit-scrollbar-thumb:hover {
         background-color: #555;
       }
+      .class-synergy::-webkit-scrollbar {
+        width: 10px; /* Increase the width of the vertical scrollbar */
+        height: 12px; /* Increase the height of the horizontal scrollbar */
+      }
 
       /*  ====================================================  topLV title layout module  ==================================================== */
 
+      .h1,h2,h3,h4,h5,h6 {
+        margin-top: 0.5rem;
+      }
       .title {
         min-width: 320px;
         border: 1px solid #ccc;
@@ -134,44 +141,8 @@
         width: 100%;
       }
       /*  ====================================================  bottomLV contents layout module  ==================================================== */
-
-      .class-column,
-      .synergy-column,
-      .spec-column {
-        min-height: 150px;
-        min-width: 250px;
-        overflow: hidden;
-        border: 1px solid #ccc;
-        padding: 15px;
-        margin: 20px 10px;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      #equipment-column {
-        display: flex;
-        width: 600px;
-        height: 330px;
-        padding: 5px;
-        flex-direction: column;
-        flex-wrap: wrap;
-        
-      }
-      .equipment-element.container {
-        width: 180px;
-        height: 50px;
-        padding: 5px;
-        justify-content: space-evenly;
-      }
-
-      #spec-columns {
-        font-size: 13px;
-        height: 375px;
-        width: 100%;
-      }
-      .class-column {
-        min-height: 80px;
-      }
+      
+      /* columns */
 
       .base-columns {
         height: 300px;
@@ -186,13 +157,6 @@
         white-space: nowrap;
       }
 
-      #class-columns {
-        flex-direction: column;
-        flex-wrap: wrap;
-        overflow-y: auto;
-        padding: 15px;
-      }
-
       .base-grouping-columns {
         height: 300px;
         min-height: 250px;
@@ -200,6 +164,61 @@
         overflow-y: scroll;
         border: 1px solid #ccc;
         border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #synergy-columns{
+        flex-direction: column;
+        flex-wrap: wrap;
+        overflow-y: hidden;
+        padding: 10px;
+      }
+      
+      #class-columns {
+        flex-direction: column;
+        flex-wrap: wrap;
+        overflow-y: auto;
+        padding: 15px;
+      }
+
+      #character-columns {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: auto;
+        width: 100%;
+      }
+      #spec-columns {
+        font-size: 13px;
+        height: 375px;
+        width: 100%;
+      }
+
+
+      /* column */
+
+      .synergy-column{
+        width: 250px;
+        height: 250px;
+        overflow-x: hidden;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .class-column{
+        width: 250px;
+        height: 100px;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 5px;
+        background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
@@ -227,15 +246,6 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
-      #character-columns {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: auto;
-        width: 100%;
-      }
-
       .nickname-input {
         margin-right: 10px;
       }
@@ -248,6 +258,47 @@
         border-radius: 3px;
         cursor: pointer;
       }
+      
+      .spec-column{
+        min-height: 50px;
+        min-width: 250px;
+        overflow-x: hidden;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 20px 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #equipment-column {
+        display: flex;
+        width: 1000px;
+        height: 330px;
+        padding: 5px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        
+      }
+
+      #profile-column{
+        height: 180px;
+      }
+
+      #stat-column{
+        height: 80px;
+        margin: 10px auto;
+        padding: 10px;
+      }
+
+      .equipment-element.container {
+        width: 180px;
+        height: 50px;
+        padding: 5px;
+        justify-content: space-evenly;
+      }
+
+      /* draggable droppable */
 
       .draggable,
       .droppable{
@@ -257,31 +308,30 @@
         border-radius: 3px;
         text-align: center;
         background-color: #f5f5f5;
-        min-height: 30px; /* Increase the min-height */
+        min-height: 30px; 
         
-      }
-      .class-column.draggable {
-        width: 250px;
-        height: 100px;
-        padding: 15px;
-        margin: 5px;
       }
 
       .synergy-column .draggable{
+        width: auto;
         padding: 5px 0;
-        margin: 5px auto;
+        margin-bottom: 3px;
       }
+    
       
       .character-column .draggable{
+        height: auto;
         padding: 10px 0;
         margin: 10px auto;
       }
 
       .party-column .draggable{
+        width: auto;
         padding: 10px;
-
+        margin: 0;
       }
       .party-column .droppable{
+        flex-direction: column;
         margin: 10px;
       }
 
@@ -302,7 +352,7 @@
 
       .class-synergy,
       .character-synergy{
-        
+        white-space: nowrap;
         overflow-x: auto;
         width: 100%;
         
@@ -1114,16 +1164,19 @@
         $(".character-section").on("click",".draggable",function(){
             var characterName = $(this).text().split(" ")[0];
             characterManager.displayEquipmentData(characterName);
-            characterManager.displayCharacterProfile(characterName);
+            characterManager.displayProfileData(characterName);
+            characterManager.displayGemData(characterName);
           });
 
 
         
         // Create an object to encapsulate the functionality
         var characterManager = {
-
-          characterProfile: {},
+          
+          
           equipmentData: {}, // Store equipment data here
+          profileData: {},
+          gemData: {},
 
           
           getCharacterData: function (nickname, section) {
@@ -1201,7 +1254,8 @@
               });
 
               characterManager.getEquipmentData(character.CharacterName);
-              characterManager.getCharacterProfile(character.CharacterName);
+              characterManager.getProfileData(character.CharacterName);
+              characterManager.getGemData(character.CharacterName);
             });
           },
 
@@ -1422,7 +1476,7 @@
          
           
 
-          getCharacterProfile: function (characterName) {
+          getProfileData: function (characterName) {
             var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/profiles"; // Adjust URL as per API documentation
             var xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
@@ -1432,8 +1486,8 @@
               if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                   var response = JSON.parse(xhr.responseText);
-                  characterManager.characterProfile[characterName] = response;
-                  console.log(characterManager.characterProfile[characterName]);
+                  characterManager.profileData[characterName] = response;
+                  console.log(characterManager.profileData[characterName]);
                 } else {
                   var errorCode = xhr.statusText;
                   console.log(errorCode);
@@ -1442,60 +1496,110 @@
             };
             xhr.send();
           },
-        
-          displayCharacterProfile: function (characterName) {
-            var characterProfile = this.characterProfile[characterName];
+
+          displayProfileData: function (characterName) {
+            var profileData = this.profileData[characterName];
             
             // Clear the existing character data display
             $("#profile-column").empty();
-            
+            var profile = $('<div id="profile-column" class="spec-column"></div>');
             // Create a container to hold the data
-            var profile = $("<div id='profile-column' class='spec-column'></div>");
-
-            // Append each piece of data to the container
-            profileHTML=`
+            var profileHTML = $(`
               <div class="container">
                 <div class="row">
-                  <div class="col">원정대 레벨: ${characterProfile.ExpeditionLevel}</div>
-                  <div class="col">아이템 레벨: ${characterProfile.ItemAvgLevel}</div>
-                  <div class="col">전투 레벨: ${characterProfile.CharacterLevel}</div>
+                  <div class="col">원정대 레벨: ${profileData.ExpeditionLevel}</div>
+                  <div class="col">아이템 레벨: ${profileData.ItemAvgLevel}</div>
+                  <div class="col">전투 레벨: ${profileData.CharacterLevel}</div>
                 </div>
                 <div class="row">
-                  <div class="col">캐릭터 클래스: ${characterProfile.CharacterClassName}</div>
-                  <div class="col">캐릭터명: ${characterProfile.CharacterName}</div>
-                  <div class="col">서버명: ${characterProfile.ServerName}</div>
+                  <div class="col">서버명: ${profileData.ServerName}</div>
+                  <div class="col">캐릭터명: ${profileData.CharacterName}</div>
+                  <div class="col">캐릭터 클래스: ${profileData.CharacterClassName}</div>                  
                 </div>
               </div>
-            `;
-              
-            profile.append(profileHTML);
-               
-            var basicStats = '<div class="row"></div>';
-            var mainStats = '<div class="row"></div>';
-            var subStats = '<div class="row"></div>';
+            `);
+            
+            var stats = $('<div id="stat-column" class="spec-column"></div>')
+            var basicStats = $('<div class="row"></div>');
+            var mainStats = $('<div class="row"></div>');
+            var subStats = $('<div class="row"></div>');
+            
             // For stats, you might need to iterate through an array if it's an array of objects
-            characterProfile.Stats.forEach(function(stat) {
-              
-              if((${stat.Type}) == '치명' || (${stat.Type})== '특화' || (${stat.Type}) == '신속'){
-                mainStats.append('<div class="col">${stat.Type}, Stat Value: ${stat.Value}</div>`);
+            profileData.Stats.forEach(function(stat) {
+              if (stat.Type === '치명' || stat.Type === '특화' || stat.Type === '신속') {
+                mainStats.append(`<div class="col">${stat.Type} : ${stat.Value}</div>`);
               }
-              else if((${stat.Type}) == '제압' || (${stat.Type}) == '인내' || (${stat.Type}) == '숙련'){
-                subStats.append('<div class="col">${stat.Type}, Stat Value: ${stat.Value}</div>`);
+              else if (stat.Type === '제압' || stat.Type === '인내' || stat.Type === '숙련') {
+                subStats.append(`<div class="col">${stat.Type} : ${stat.Value}</div>`);
               }
-              else{
-                basicStats.append('<div class="col">${stat.Type}, Stat Value: ${stat.Value}</div>`);
+              else {
+                basicStats.append(`<div class="col">${stat.Type} : ${stat.Value}</div>`);
               }
             });
-                
-            profile.append(basicStats);
-            profile.append(mainStats);
-            profile.append(subStats);
-                
-            // Append the container to a DOM element
+
+            profile.append(profileHTML);
+            stats.append(basicStats);
+            stats.append(mainStats);
+            stats.append(subStats);
+
+            profile.append(stats);
             $("#spec-columns").append(profile);
+            
+            console.log($("#profile-column"));
+            
           },
 
-        };
+          getGemData: function (characterName) {
+            var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/gems"; // Adjust URL as per API documentation
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader("authorization", "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"); // Put your token here
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  characterManager.gemData[characterName] = response;
+                  console.log(characterManager.gemData[characterName]);
+                } else {
+                  var errorCode = xhr.statusText;
+                  console.log(errorCode);
+                }
+              }
+            };
+            xhr.send();
+          },
+          
+          displayGemData: function(characterName) {
+            var gemData = this.gemData[characterName];
+            var gemColumn = $("<div id='gem-column' class='spec-column'></div>");
+            
+            // Clear the existing character data display
+            gemColumn.empty();
+            
+            gemData.Gems.forEach(function(gem) {
+                var gemHTML = $(`
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">${gem.Slot}</div>
+                            <div class="col">${gem.Name}</div>
+                            <div class="col"><img src="${gem.Icon}" alt="${gem.Name}"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col">${gem.Level}</div>
+                            <div class="col">${gem.Grade}</div> 
+                            <div class="col">${gem.Tooltip}</div>              
+                        </div>
+                    </div>
+                `);
+                gemColumn.append(gemHTML);
+            });
+            $('#spec-columns').append(gemColumn);
+            console.log(gemColumn);
+        }
+
+
+        }
 
 
         function getColorForClass(className) {
