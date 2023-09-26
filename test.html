@@ -1300,7 +1300,7 @@
             equipmentData.forEach(function (equipment) {
 
               // Parse Tooltip and get necessary data
-              var tooltipData = characterManager.parseTooltip(equipment.Tooltip);
+              var tooltipData = characterManager.parseEquipmentTooltip(equipment.Tooltip);
               var tooltipElement = tooltipData.tooltipElement;
               var additionalInfo = tooltipData.additionalInfo;
               var extraInfoDisplay = '';
@@ -1323,7 +1323,6 @@
               //equipmentElement.append(tooltipData);
               equipmentColumn.append(equipmentElement);
               // Parse Tooltip and append to the equipment element
-              //var tooltipElement = characterManager.parseEquipmentTooltip(equipment.Tooltip);
               console.log(tooltipElement);
               $('[data-bs-toggle="tooltip"]').tooltip({
                 html: true,
@@ -1604,6 +1603,54 @@
             });
             $('#spec-columns').append(gemColumn);
             console.log(gemColumn);
+        },
+
+          parseGemTooltip: function(tooltipData) {
+            let tooltipHTML = '<div class="tooltip" role="tooltip">';
+
+            // Iterate over tooltip elements
+            for (const key in tooltipData) {
+                const element = tooltipData[key];
+
+                // Check element type
+                if (element.type === 'NameTagBox') {
+                    tooltipHTML += `<div class="tooltip-title">${element.value}</div>`;
+                } else if (element.type === 'ItemTitle') {
+                    // Handle ItemTitle element
+                    const leftStr0 = element.value.leftStr0;
+                    const leftStr2 = element.value.leftStr2;
+                    const rtString = element.value.slotData.rtString;
+
+                    tooltipHTML += `
+                        <div class="tooltip-item-title">
+                            <div class="left">${leftStr0}</div>
+                            <div class="center">${leftStr2}</div>
+                            <div class="right">${rtString}</div>
+                        </div>
+                    `;
+                } else if (element.type === 'ItemPartBox') {
+                    // Handle ItemPartBox element
+                    const partName = element.value.Element_000;
+                    const partValue = element.value.Element_001;
+
+                    tooltipHTML += `
+                        <div class="tooltip-item-part">
+                            <div class="part-name">${partName}</div>
+                            <div class="part-value">${partValue}</div>
+                        </div>
+                    `;
+                } else if (element.type === 'SingleTextBox') {
+                    // Handle SingleTextBox element
+                    tooltipHTML += `<div class="tooltip-single-text">${element.value}</div>`;
+                } else if (element.type === 'MultiTextBox') {
+                    // Handle MultiTextBox element
+                    tooltipHTML += `<div class="tooltip-multi-text">${element.value}</div>`;
+                }
+            }
+
+            tooltipHTML += '</div>';
+
+            return tooltipHTML;
         }
 
 
