@@ -1645,7 +1645,7 @@
                             break;
                         case 'ItemPartBox':
                             // Create an item part box element
-                            const itemPartBox = $('<div/>').addClass('item-part-box');
+                            const itemPartBox = $('<div><div/>').addClass('item-part-box');
                             itemPartBox.append(element.value.Element_000);
                             itemPartBox.append($('<br>'));
                             itemPartBox.append(element.value.Element_001);
