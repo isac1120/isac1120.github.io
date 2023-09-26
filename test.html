@@ -747,6 +747,10 @@
 
     <script>
       $(document).ready(function () {
+        /* 개인적인 깨달음. html->css->javascript 순으로 실행되며, 
+        javascript를 통해 나중에 html element를 생성해 기존DOM트리에 부착 후에야,eventlistener를 포함한 DOM조작이 해당 element에 가능해진다.
+        이는 새로 생성된 html element가 DOM 객체가 되면서,DOM 객체가 가진 property와 method를 이용가능해져서로 이해할 수 있다.
+        .*/
         /*  ==================================================== synergyData module ====================================================  */
 
         // Synergy data
@@ -1593,7 +1597,7 @@
                 `);
                            
               gemColumn.append(gemHTML);
-               var tooltipElement = '<div>hi</div>';
+               var tooltipElement = characterManager.parseGemTooltip(gem.Tooltip);
                $('[data-bs-toggle="tooltip"]').tooltip({
                 html: true,
                 title: tooltipElement
