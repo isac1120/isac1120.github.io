@@ -1622,7 +1622,8 @@
                     switch (element.type) {
                         case 'NameTagBox':
                             // Create a name tag box element
-                            const nameTagBox = $('<div><div/>').addClass('name-tag-box').html(element.value);
+                            const nameTagBox = $('<div><div/>').addClass('name-tag-box');
+                            nameTagBox.append(element.value);
                             tooltipContainer.append(nameTagBox);
                             break;
                         case 'ItemTitle':
@@ -1635,12 +1636,14 @@
                             break;
                         case 'MultiTextBox':
                             // Create a multi-text box element
-                            const multiTextBox = $('<div><div/>').addClass('multi-text-box').html(element.value);
+                            const multiTextBox = $('<div><div/>').addClass('multi-text-box');
+                            multiTextBox.append(element.value);
                             tooltipContainer.append(multiTextBox);
                             break;
                         case 'SingleTextBox':
                             // Create a single text box element
-                            const singleTextBox = $('<div><div/>').addClass('single-text-box').html(element.value);
+                            const singleTextBox = $('<div><div/>').addClass('single-text-box');
+                            singleTextBox.append(element.value);
                             tooltipContainer.append(singleTextBox);
                             break;
                         case 'ItemPartBox':
