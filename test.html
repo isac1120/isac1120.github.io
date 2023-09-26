@@ -1608,52 +1608,56 @@
             console.log(gemColumn);
         },
 
-          parseGemTooltip: function(tooltipData) {
-            let tooltipHTML = '<div class="tooltip" role="tooltip">';
-
-            // Iterate over tooltip elements
-            for (const key in tooltipData) {
-                const element = tooltipData[key];
-
-                // Check element type
-                if (element.type === 'NameTagBox') {
-                    tooltipHTML += `<div class="tooltip-title">${element.value}</div>`;
-                } else if (element.type === 'ItemTitle') {
-                    // Handle ItemTitle element
-                    const leftStr0 = element.value.leftStr0;
-                    const leftStr2 = element.value.leftStr2;
-                    const rtString = element.value.slotData.rtString;
-
-                    tooltipHTML += `
-                        <div class="tooltip-item-title">
-                            <div class="left">${leftStr0}</div>
-                            <div class="center">${leftStr2}</div>
-                            <div class="right">${rtString}</div>
-                        </div>
-                    `;
-                } else if (element.type === 'ItemPartBox') {
-                    // Handle ItemPartBox element
-                    const partName = element.value.Element_000;
-                    const partValue = element.value.Element_001;
-
-                    tooltipHTML += `
-                        <div class="tooltip-item-part">
-                            <div class="part-name">${partName}</div>
-                            <div class="part-value">${partValue}</div>
-                        </div>
-                    `;
-                } else if (element.type === 'SingleTextBox') {
-                    // Handle SingleTextBox element
-                    tooltipHTML += `<div class="tooltip-single-text">${element.value}</div>`;
-                } else if (element.type === 'MultiTextBox') {
-                    // Handle MultiTextBox element
-                    tooltipHTML += `<div class="tooltip-multi-text">${element.value}</div>`;
+        function parseGemTooltip(tooltipData) {
+            // Parse the JSON data from the tooltip string
+            const tooltip = JSON.parse(tooltipData);
+        
+            // Create a Bootstrap tooltip container element
+            const tooltipContainer = $('<div/>').addClass('tooltip');
+        
+            // Iterate through elements in the tooltip and create corresponding HTML
+            for (const key in tooltip) {
+                if (tooltip.hasOwnProperty(key)) {
+                    const element = tooltip[key];
+                    switch (element.type) {
+                        case 'NameTagBox':
+                            // Create a name tag box element
+                            const nameTagBox = $('<div/>').addClass('name-tag-box').html(element.value);
+                            tooltipContainer.append(nameTagBox);
+                            break;
+                        case 'ItemTitle':
+                            // Create an item title box element
+                            const itemTitleBox = $('<div/>').addClass('item-title-box');
+                            itemTitleBox.html(element.value.leftStr0);
+                            itemTitleBox.append($('<br>'));
+                            itemTitleBox.html(element.value.leftStr2);
+                            tooltipContainer.append(itemTitleBox);
+                            break;
+                        case 'MultiTextBox':
+                            // Create a multi-text box element
+                            const multiTextBox = $('<div/>').addClass('multi-text-box').html(element.value);
+                            tooltipContainer.append(multiTextBox);
+                            break;
+                        case 'SingleTextBox':
+                            // Create a single text box element
+                            const singleTextBox = $('<div/>').addClass('single-text-box').html(element.value);
+                            tooltipContainer.append(singleTextBox);
+                            break;
+                        case 'ItemPartBox':
+                            // Create an item part box element
+                            const itemPartBox = $('<div/>').addClass('item-part-box');
+                            itemPartBox.html(element.value.Element_000);
+                            itemPartBox.append($('<br>'));
+                            itemPartBox.html(element.value.Element_001);
+                            tooltipContainer.append(itemPartBox);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
-
-            tooltipHTML += '</div>';
-
-            return tooltipHTML;
+        
+            return tooltipContainer;
         }
 
 
