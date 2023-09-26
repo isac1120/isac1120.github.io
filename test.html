@@ -1323,7 +1323,7 @@
               //equipmentElement.append(tooltipData);
               equipmentColumn.append(equipmentElement);
               // Parse Tooltip and append to the equipment element
-              //var tooltipElement = characterManager.parseTooltip(equipment.Tooltip);
+              //var tooltipElement = characterManager.parseEquipmentTooltip(equipment.Tooltip);
               console.log(tooltipElement);
               $('[data-bs-toggle="tooltip"]').tooltip({
                 html: true,
@@ -1336,7 +1336,7 @@
           },
 
           
-          parseTooltip: function (tooltip) {
+          parseEquipmentTooltip: function (tooltip) {
             var tooltipElement = $("<div></div>");
             var additionalInfo = {
               leftStr1: null,
@@ -1583,15 +1583,23 @@
                         <div class="row">
                             <div class="col">${gem.Slot}</div>
                             <div class="col">${gem.Name}</div>
-                            <div class="col"><img src="${gem.Icon}" alt="${gem.Name}"></div>
+                            <div class="col"><img src="${gem.Icon}" alt="${gem.Name}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"></div>
                         </div>
                         <div class="row">
                             <div class="col">${gem.Level}</div>
                             <div class="col">${gem.Grade}</div> 
-                            <div class="col">${gem.Tooltip}</div>              
+                                        
                         </div>
                     </div>
                 `);
+              
+              var tooltipElement = characterManager.parseGemTooltip(gem.Tooltip);
+               $('[data-bs-toggle="tooltip"]').tooltip({
+                html: true,
+                title: tooltipElement,
+                trigger: 'click'
+              });
+              
                 gemColumn.append(gemHTML);
             });
             $('#spec-columns').append(gemColumn);
