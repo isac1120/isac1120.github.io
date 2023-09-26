@@ -1613,7 +1613,7 @@
             const tooltip = JSON.parse(tooltipData);
         
             // Create a Bootstrap tooltip container element
-            const tooltipContainer = $('<div/>').addClass('tooltip');
+            const tooltipContainer = $('<div><div/>').addClass('tooltip');
         
             // Iterate through elements in the tooltip and create corresponding HTML
             for (const key in tooltip) {
@@ -1622,33 +1622,33 @@
                     switch (element.type) {
                         case 'NameTagBox':
                             // Create a name tag box element
-                            const nameTagBox = $('<div/>').addClass('name-tag-box').html(element.value);
+                            const nameTagBox = $('<div><div/>').addClass('name-tag-box').html(element.value);
                             tooltipContainer.append(nameTagBox);
                             break;
                         case 'ItemTitle':
                             // Create an item title box element
-                            const itemTitleBox = $('<div/>').addClass('item-title-box');
-                            itemTitleBox.html(element.value.leftStr0);
+                            const itemTitleBox = $('<div><div/>').addClass('item-title-box');
+                            itemTitleBox.append(element.value.leftStr0);
                             itemTitleBox.append($('<br>'));
-                            itemTitleBox.html(element.value.leftStr2);
+                            itemTitleBox.append(element.value.leftStr2);
                             tooltipContainer.append(itemTitleBox);
                             break;
                         case 'MultiTextBox':
                             // Create a multi-text box element
-                            const multiTextBox = $('<div/>').addClass('multi-text-box').html(element.value);
+                            const multiTextBox = $('<div><div/>').addClass('multi-text-box').html(element.value);
                             tooltipContainer.append(multiTextBox);
                             break;
                         case 'SingleTextBox':
                             // Create a single text box element
-                            const singleTextBox = $('<div/>').addClass('single-text-box').html(element.value);
+                            const singleTextBox = $('<div><div/>').addClass('single-text-box').html(element.value);
                             tooltipContainer.append(singleTextBox);
                             break;
                         case 'ItemPartBox':
                             // Create an item part box element
                             const itemPartBox = $('<div/>').addClass('item-part-box');
-                            itemPartBox.html(element.value.Element_000);
+                            itemPartBox.append(element.value.Element_000);
                             itemPartBox.append($('<br>'));
-                            itemPartBox.html(element.value.Element_001);
+                            itemPartBox.append(element.value.Element_001);
                             tooltipContainer.append(itemPartBox);
                             break;
                         default:
