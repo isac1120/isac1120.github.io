@@ -1572,7 +1572,7 @@
           displayGemData: function(characterName) {
             var gemData = this.gemData[characterName];
             var gemColumn = $("<div id='gem-column' class='spec-column'></div>");
-            
+            $('#spec-columns').append(gemColumn);
             // Clear the existing character data display
             gemColumn.empty();
             
@@ -1591,16 +1591,15 @@
                         </div>
                     </div>
                 `);
-              
-              var tooltipElement = '<div>hi</div>';
+                           
+              gemColumn.append(gemHTML);
+               var tooltipElement = '<div>hi</div>';
                $('[data-bs-toggle="tooltip"]').tooltip({
                 html: true,
                 title: tooltipElement
               });
-              
-                gemColumn.append(gemHTML);
             });
-            $('#spec-columns').append(gemColumn);
+            
             console.log(gemColumn);
         },
 
