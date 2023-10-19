@@ -1138,12 +1138,10 @@
             "background-color",
             "#fff"
           );
-          var header = $("<h5></h5>").text(user);
           var form = $(
             '<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임을 입력하세요"><button type="submit" class="submit-button">Submit</button></form>'
           );
           var section = $('<div class="character-section"></div>');
-          column.append(header);
           column.append(form);
           column.append(section);
           $("#character-columns").append(column);
