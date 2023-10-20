@@ -650,8 +650,8 @@
       </div>
       <div id="synergy-info-container" class="info-container">
         <h4 class="text-center">시너지 정보</h4>
-        <div id="spec-columns" class="base-columns">
-          <!-- Add your spec columns here -->
+        <div id="synergy-info-columns" class="base-columns">
+          <!-- Add your synergy info columns here -->
         </div>
       </div>
 
@@ -687,8 +687,8 @@
       
       <div id="class-info-container" class="info-container">
         <h4 class="text-center">클래스 정보</h4>
-        <div id="spec-columns" class="base-columns">
-          <!-- Add your spec columns here -->
+        <div id="class-info-columns" class="base-columns">
+          <!-- Add your class info columns here -->
         </div>
       </div>
 
@@ -727,8 +727,8 @@
 
       <div id="character-info-container" class="info-container">
         <h4 class="text-center">캐릭터 정보</h4>
-        <div id="spec-columns" class="base-columns">
-          <!-- Add your spec columns here -->
+        <div id="character-info-columns" class="base-columns">
+          <!-- Add your character info columns here -->
         </div>
       </div>
     </div>
@@ -1314,9 +1314,9 @@
             
 
             // Clear the existing equipment data display
-            $("#spec-columns").empty();
+            $("#character-info-columns").empty();
             var equipmentColumn = $("<div id='equipment-column' class='spec-column'></div>");
-            $("#spec-columns").append(equipmentColumn);
+            $("#character-info-columns").append(equipmentColumn);
               
             // Iterate through the equipment data and display it
             equipmentData.forEach(function (equipment) {
@@ -1342,7 +1342,7 @@
                     </div>
                 `
                 );
-              //equipmentElement.append(tooltipData);
+
               equipmentColumn.append(equipmentElement);
               // Parse Tooltip and append to the equipment element
               console.log(tooltipElement);
@@ -1353,7 +1353,7 @@
               });
             });
             console.log(equipmentColumn);
-            //$("#spec-columns").append(equipmentColumn);
+
           },
 
           
@@ -1594,7 +1594,7 @@
           displayGemData: function(characterName) {
             var gemData = this.gemData[characterName];
             var gemColumn = $("<div id='gem-column' class='spec-column'></div>");
-            $('#spec-columns').append(gemColumn);
+            $('#character-info-columns').append(gemColumn);
             // Clear the existing character data display
             gemColumn.empty();
             
@@ -1682,8 +1682,8 @@
         }
 
 
-        }
-
+      }
+//end of charactermanager
 
         function getColorForClass(className) {
           var classColor = [];
