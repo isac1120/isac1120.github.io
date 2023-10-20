@@ -1025,7 +1025,8 @@
           $("#synergy-columns").append(column);
         });
 
-        /* ================================================ classData module(extraction from synergyData ==================================================== */
+        /* ================================================ classData build module ( extraction from synergyData ) ==================================================== */
+        
         // Create a dictionary to store class-centric data
         var classes = {};
 
@@ -1127,23 +1128,35 @@
             wrapper.append(circle);
           });
           column.append(wrapper);
+
+          column.click(function(){
+            alert("good");
+          });
           // Append the column to the appropriate container
+          
           $("#class-columns").append(column);
+          
         });
 
         /*  ==================================================== character display module ==================================================== */
+        
         /*structure : 
         main algorithm 
         -> user column 
         -> charManager.getCharacterData(all per nick) 
         -> charManager.displayCharacterData 
+        
         -> charMangaer.getEquipmentData(all per char)
         -> charManager.equipmentData
+        ...repeat
+        
         main algorithm
         -> user column
         -> event
         -> charManager.displayEquipmentData
+        ...repeat
         */
+        
         // Define user columns
         var users = [
           "유저1",
