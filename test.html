@@ -251,7 +251,7 @@
       }
 
       .submit-button {
-        font-size: 12px;
+        font-size: smaller;
         background-color: #63c5da;
         border: none;
         color: #fff;
@@ -1122,14 +1122,14 @@
         */
         // Define user columns
         var users = [
-          "유저 1",
-          "유저 2",
-          "유저 3",
-          "유저 4",
-          "유저 5",
-          "유저 6",
-          "유저 7",
-          "유저 8",
+          "유저1",
+          "유저2",
+          "유저3",
+          "유저4",
+          "유저5",
+          "유저6",
+          "유저7",
+          "유저8",
         ];
 
 
@@ -1140,7 +1140,7 @@
             "#fff"
           );
           var form = $(
-            `<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임을 입력하세요"><button type="submit" class="submit-button btn-sm">${user}등록</button></form>`
+            `<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임을 입력하세요"><button type="submit" class="submit-button btn-sm">${user} 등록</button></form>`
           );
           var section = $('<div class="character-section"></div>');
           column.append(form);
