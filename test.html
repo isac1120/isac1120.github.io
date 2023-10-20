@@ -137,7 +137,7 @@
         min-width: 320px;
         width: 100%;
       }
-      #spec-container {
+      .info-container {
         width: 100%;
       }
       /*  ====================================================  bottomLV contents layout module  ==================================================== */
@@ -644,7 +644,17 @@
           <!-- Add your grouping columns here -->
         </div>
       </div>
+      <div id="synergy-info-container" class="info-container">
+        <h4 class="text-center">시너지 정보</h4>
+        <div id="spec-columns" class="base-columns">
+          <!-- Add your spec columns here -->
+        </div>
+      </div>
 
+/*------------------------------class container--------------------------------*/
+
+
+      
       <div id="class-container" class="from-container" style="display: none">
         <div class="container-header">
           <h4 class="text-center">클래스</h4>
@@ -670,7 +680,17 @@
           <!-- Add your grouping columns here -->
         </div>
       </div>
+      
+      <div id="class-info-container" class="info-container">
+        <h4 class="text-center">클래스 정보</h4>
+        <div id="spec-columns" class="base-columns">
+          <!-- Add your spec columns here -->
+        </div>
+      </div>
 
+
+/*------------------------------charcter container--------------------------------------*/
+      
       <div
         id="character-container"
         class="from-container"
@@ -701,8 +721,8 @@
         </div>
       </div>
 
-      <div id="spec-container">
-        <h4 class="text-center">스펙</h4>
+      <div id="character-info-container" class="info-container">
+        <h4 class="text-center">캐릭터 정보</h4>
         <div id="spec-columns" class="base-columns">
           <!-- Add your spec columns here -->
         </div>
@@ -2518,8 +2538,10 @@
           const selectedComponentId = $(this).val();
           $(".from-container").hide(); // Hide all components
           $(".to-container").hide(); // Hide all components
+          $(".info-container").hide(); // Hide all components
           $("#" + selectedComponentId + "-container").show(); // Show the selected component
           $("#" + selectedComponentId + "-group-container").show(); // Show the selected component
+          $("#" + selectedComponentId + "-info-container").show(); // Show the selected component
         });
       });
       //end documnet
