@@ -137,6 +137,16 @@
         min-width: 320px;
         width: 100%;
       }
+      
+      #class-container,
+      #character-container,
+      #class-group-container,
+      #character-group-container,
+      #class-info-container,
+      #character-info-container {
+        display: none;
+      }
+      
       .info-container {
         width: 100%;
       }
@@ -659,7 +669,7 @@
 
 
       
-      <div id="class-container" class="from-container" style="display: none">
+      <div id="class-container" class="from-container">
         <div class="container-header">
           <h4 class="text-center">클래스</h4>
         </div>
@@ -668,11 +678,7 @@
         </div>
       </div>
 
-      <div
-        id="class-group-container"
-        class="to-container"
-        style="display: none"
-      >
+      <div id="class-group-container" class="to-container">
         <div class="container-header">
           <div class="button-container">
             <button id="class-copyBtn" class="copy-button">복사</button>
@@ -695,11 +701,7 @@
 
 <!-------------------------------- character container -------------------------------->
       
-      <div
-        id="character-container"
-        class="from-container"
-        style="display: none"
-      >
+      <div id="character-container" class="from-container">
         <div class="container-header">
           <h4 class="text-center">유저</h4>
         </div>
@@ -708,11 +710,7 @@
         </div>
       </div>
 
-      <div
-        id="character-group-container"
-        class="to-container"
-        style="display: none"
-      >
+      <div id="character-group-container" class="to-container">
         <div class="container-header">
           <div class="button-container">
             <button class="copy-button">복사</button>
