@@ -243,6 +243,11 @@
         padding: 10px;
       }
 
+      .class-info-column{
+        width: 33%;
+        height: 100%;
+      }
+
       .character-column {
         width: 300px;
         min-width: 250px;
@@ -1130,7 +1135,7 @@
           column.click(function(){
             $("#class-info-columns").empty();
             $("#class-info-columns").append(`
-              <div>
+              <div class="class-info-column">
                 <div class="header text-center">
                   <h5>직업 게시판</h5>
                 </div>
@@ -1140,7 +1145,7 @@
               </div>
               `);
             $("#class-info-columns").append(`
-              <div>
+              <div class="class-info-column">
                 <div class="header text-center">
                   <h5>직업각인1 가이드</h5>
                 </div>
@@ -1150,7 +1155,7 @@
               </div>
               `);
             $("#class-info-columns").append(`
-              <div>
+              <div class="class-info-column">
                 <div class="header text-center">
                   <h5>직업각인2 가이드</h5>
                 </div>
