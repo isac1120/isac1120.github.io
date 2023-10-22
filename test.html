@@ -82,10 +82,9 @@
         min-width: 320px;
         border: 1px solid #ccc;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-bottom: 1%;
+        margin-bottom: 5px;
         padding: 1% 0;
         width: 100%;
-        height: 8%;
         background-color: #63c5da;
         font-family: "Jua", sans-serif;
       }
@@ -112,7 +111,7 @@
       .switch-container {
         position: absolute;
         left: 0;
-        top: -5px;
+        top: 5px;
         z-index: 0;
       }
 
@@ -149,6 +148,7 @@
       
       .info-container {
         width: 100%;
+        margin: 20px 0;
       }
       /*  ====================================================  bottomLV contents layout module  ==================================================== */
       
@@ -199,13 +199,28 @@
         overflow-y: auto;
         width: 100%;
       }
-      #spec-columns {
+
+      #character-info-columns{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
         font-size: 13px;
         height: 375px;
         width: 100%;
       }
 
+      #synergy-info-columns,
+      #class-info-columns,
+      #character-info-columns{
+        width: 100%;
+        height: 400px;
+      }
 
+      #synergy-info-columns{
+        padding-top: 20px;
+      }
       /* column */
 
       .synergy-column{
@@ -244,8 +259,13 @@
       }
 
       .class-info-column{
-        width: 33%;
+        width: 100%;
         height: 100%;
+      }
+
+      .class-info-column .contents {
+        height: 100%;
+  
       }
 
       .character-column {
@@ -263,10 +283,11 @@
 
       .nickname-input {
         margin-right: 10px;
+        font-size: 15px;
       }
 
       .submit-button {
-        font-size: smaller;
+        font-size: 15px;
         background-color: #63c5da;
         border: none;
         color: #fff;
@@ -275,13 +296,13 @@
         cursor: pointer;
       }
       
-      .spec-column{
+      .character-info-column{
         min-height: 50px;
         min-width: 250px;
         overflow-x: hidden;
         border: 1px solid #ccc;
         padding: 15px;
-        margin: 20px 10px;
+        margin: 5px auto;
         border-radius: 5px;
         background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -289,26 +310,49 @@
 
       #equipment-column {
         display: flex;
-        width: 1000px;
-        height: 330px;
-        padding: 5px;
-        flex-direction: column;
+        width: 1250px;
+        height: 170px;
+        padding: 10px;
+        flex-direction: row;
         flex-wrap: wrap;
         
       }
 
       #profile-column{
-        height: 180px;
+        width: 500px;
+        height: 160px;
       }
 
       #stat-column{
         height: 80px;
-        margin: 10px auto;
+        margin: 5px 0 0 0;
+        padding: 10px;
+      }
+
+      #gem-column{
+        display: flex;
+        width: 700px;
+        height: 75px;
+        padding: 10px;
+      }
+
+      #card-column{
+        display: flex;
+        width: 700px;
+        height: 75px;
         padding: 10px;
       }
 
       .equipment-element.container {
         width: 180px;
+        height: 50px;
+        padding: 5px;
+        justify-content: space-evenly;
+      }
+
+      .gem-element.container {
+        display: inline-block;
+        width: 50px;
         height: 50px;
         padding: 5px;
         justify-content: space-evenly;
@@ -329,6 +373,7 @@
       }
 
       .synergy-column .draggable{
+        color: white;
         width: auto;
         padding: 5px 0;
         margin-bottom: 3px;
@@ -374,6 +419,9 @@
         
       }
 
+      .card{
+        --bs-card-img-overlay-padding: 3px;
+      }
       /* ------------------------- synergy symbol ------------------------- */
 
       .color-circle {
@@ -416,10 +464,7 @@
         cursor: pointer;
       }
 
-      .contents {
-        height: 100%;
-  
-      }
+
       /* ==================================================== sidebar layout module ========================================================*/
 
       /* The side navigation menu */
@@ -499,7 +544,9 @@
 
       .tooltip-inner {
         text-align: left;
-    }
+      }
+
+
       /* ==================================================== mediaquery layout module ==================================================== */
 
       @media (max-width: 1024px) {
@@ -557,7 +604,7 @@
   </head>
   <body>
     <div class="title text-center">
-      <h2 class="d-inline">공대 구성 시뮬레이터</h2>
+      <h3 class="d-inline">공대 구성 시뮬레이터</h3>
       <h6 class="d-inline align-bottom">2023.07ver</h6>
     </div>
     <div id="sideOpenBtn" onclick="openBar()">
@@ -668,7 +715,7 @@
         </div>
       </div>
       <div id="synergy-info-container" class="info-container">
-        <h4 class="text-center">시너지 정보</h4>
+        <h4 class="container-header">시너지 정보</h4>
         <div id="synergy-info-columns" class="base-columns">
           <!-- Add your synergy info columns here -->
         </div>
@@ -701,7 +748,7 @@
       </div>
       
       <div id="class-info-container" class="info-container">
-        <h4 class="text-center">클래스 정보</h4>
+        <h4 class="container-header">클래스 정보</h4>
         <div id="class-info-columns" class="base-columns">
           <!-- Add your class info columns here -->
         </div>
@@ -733,7 +780,7 @@
       </div>
 
       <div id="character-info-container" class="info-container">
-        <h4 class="text-center">캐릭터 정보</h4>
+        <h4 class="container-header">캐릭터 정보</h4>
         <div id="character-info-columns" class="base-columns">
           <!-- Add your character info columns here -->
         </div>
@@ -805,8 +852,8 @@
                 categoryName: "상시8%",
                 classes: ["창술사"],
                 color: "#DB7093",
-              },
-            ],
+              }
+            ]
           },
           {
             name: "받는 피해 증가",
@@ -821,11 +868,12 @@
                   "버서커",
                   "블레이드",
                   "슬레이어",
+                  "소울이터",
                 ],
                 color: "#FF1493",
               },
               {
-                categoryName: "상시3%",
+                categoryName: "순간4%",
                 classes: ["워로드"],
                 color: "#FF69B4",
               },
@@ -871,20 +919,20 @@
             color: "#FF4500",
           },
           {
-            name: "백헤드 피해 증가",
+            name: "백헤드 받는 피해 증가",
             categories: [
               {
                 categoryName: "상시9%",
                 classes: ["블레이드"],
-                color: "#BDB76B",
+                color: "#808000",
               },
               {
                 categoryName: "순간9%",
                 classes: ["워로드"],
-                color: "#FFFF00",
+                color: "#BDB76B",
               },
             ],
-            color: "#FFFF00",
+            color: "#808000",
           },
           {
             name: "공격력 감소",
@@ -956,15 +1004,15 @@
                   "[두동]호크아이",
                   "[질풍]기상술사",
                 ],
-                color: "#FFE4E1",
+                color: "#7CFC00",
               },
               {
                 categoryName: "서폿",
                 classes: ["도화가", "홀리나이트"],
-                color: "#FFFFF0",
+                color: "#90EE90",
               },
             ],
-            color: "FFFFF0",
+            color: "7CFC00",
           },
           {
             name: "정화",
@@ -993,14 +1041,41 @@
               {
                 categoryName: "서폿",
                 classes: ["바드", "도화가", "홀리나이트"],
-                color: "#DCDCDC",
+                color: "#B0C4DE",
               },
             ],
-            color: "#DCDCDC",
+            color: "#778899",
           },
         ];
 
         /*  ==================================================== synergyData display module ==================================================== */
+        var synergyData = {
+          "디스트로이어": "https://m.inven.co.kr/lostark/skill/?reqjob=103",
+          "워로드": "https://m.inven.co.kr/lostark/skill/?reqjob=104",
+          "버서커": "https://m.inven.co.kr/lostark/skill/?reqjob=102",
+          "홀리나이트": "https://m.inven.co.kr/lostark/skill/?reqjob=105",
+          "슬레이어": "https://m.inven.co.kr/lostark/skill/?reqjob=112",
+          "배틀마스터": "https://m.inven.co.kr/lostark/skill/?reqjob=302",
+          "인파이터": "https://m.inven.co.kr/lostark/skill/?reqjob=303",
+          "기공사": "https://m.inven.co.kr/lostark/skill/?reqjob=304",
+          "창술사": "https://m.inven.co.kr/lostark/skill/?reqjob=305",
+          "스트라이커": "https://m.inven.co.kr/lostark/skill/?reqjob=312",
+          "데빌헌터": "https://m.inven.co.kr/lostark/skill/?reqjob=503",
+          "블래스터": "https://m.inven.co.kr/lostark/skill/?reqjob=504",
+          "호크아이": "https://m.inven.co.kr/lostark/skill/?reqjob=502",
+          "스카우터": "https://m.inven.co.kr/lostark/skill/?reqjob=505",
+          "건슬링어": "https://m.inven.co.kr/lostark/skill/?reqjob=512",
+          "바드": "https://m.inven.co.kr/lostark/skill/?reqjob=204",
+          "서머너": "https://m.inven.co.kr/lostark/skill/?reqjob=203",
+          "아르카나": "https://m.inven.co.kr/lostark/skill/?reqjob=202",
+          "소서리스": "https://m.inven.co.kr/lostark/skill/?reqjob=205",
+          "블레이드": "https://m.inven.co.kr/lostark/skill/?reqjob=402",
+          "데모닉": "https://m.inven.co.kr/lostark/skill/?reqjob=403",
+          "리퍼": "https://m.inven.co.kr/lostark/skill/?reqjob=404",
+          "소울이터": "https://m.inven.co.kr/lostark/skill/?reqjob=405",
+          "도화가": "https://m.inven.co.kr/lostark/skill/?reqjob=602",
+          "기상술사": "https://m.inven.co.kr/lostark/skill/?reqjob=603",
+        };
 
         // Create synergy columns
         synergies.forEach(function (synergy) {
@@ -1020,15 +1095,20 @@
             category.classes.forEach(function (className) {
               var element = $("<div></div>")
                 .text(className)
-                .addClass("draggable")
+                .addClass("class-element draggable")
                 .css("background-color", category.color);
               /* Add the .class-element class and set the background color */
+              element.click(function(){
+                var synergyUrl = synergyData[className];
+                $("#synergy-info-columns").empty();
+                $("#synergy-info-columns").append(`<iframe src=${synergyUrl} width="100%" height="400px"></iframe>`);
+              });           
               subColumn.append(element);
             });
 
             column.append(subColumn);
           });
-
+          
           $("#synergy-columns").append(column);
         });
 
@@ -1100,6 +1180,184 @@
           });
         });
 
+        var classData = {
+            "디스트로이어": {
+                "boardUrl": "https://www.inven.co.kr/board/lostark/5343",
+                "guides": {
+                "중력 수련": "https://m.inven.co.kr/board/lostark/5343/88008",
+                "분노의망치": "https://m.inven.co.kr/board/lostark/5343/114997"
+                }
+            },
+            "워로드": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5339",
+                "guides": {
+                "고독한기사": "https://m.inven.co.kr/board/lostark/5339/112607",
+                "전투태세": "https://www.inven.co.kr/board/lostark/5339/156551"
+                }
+            },
+            "버서커": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5341",
+                "guides": {
+                "광전사의비기": "https://m.inven.co.kr/board/lostark/5341/63757",
+                "광기": "https://m.inven.co.kr/board/lostark/5341/73417"
+                }
+            },
+            "홀리나이트": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5558",
+                "guides": {
+                "심판자": "https://m.inven.co.kr/board/lostark/5558/64430",
+                "축복의오라": "https://m.inven.co.kr/board/lostark/5558/64685"
+                }
+            },
+            "슬레이어": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5995",
+                "guides": {
+                "포식자": "https://m.inven.co.kr/board/lostark/5995/17514",
+                "처단자": "https://m.inven.co.kr/board/lostark/5995/17514"
+                }
+            },
+            "배틀마스터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5342",
+                "guides": {
+                "오의강화": "https://m.inven.co.kr/board/lostark/5342/120545",
+                "초심": "https://m.inven.co.kr/board/lostark/5342/108964"
+                }
+            },
+            "인파이터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5340",
+                "guides": {
+                "충격단련": "https://m.inven.co.kr/board/lostark/5340/118132",
+                "극의체술": "https://m.inven.co.kr/board/lostark/5340/132161"
+                }
+            },
+            "기공사": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5344",
+                "guides": {
+                "세맥타통": "https://m.inven.co.kr/board/lostark/5344/88926",
+                "역천지체": "https://m.inven.co.kr/board/lostark/5344/104790"
+                }
+            },
+            "창술사": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5434",
+                "guides": {
+                "절제": "https://m.inven.co.kr/board/lostark/5434/72345",
+                "절정": "https://m.inven.co.kr/board/lostark/5434/93394"
+                }
+            },
+            "스트라이커": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5709",
+                "guides": {
+                "일격필살": "https://m.inven.co.kr/board/lostark/5709/24053",
+                "오의난무": "https://m.inven.co.kr/board/lostark/5709/73936"
+                }
+            },
+            "데빌헌터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5345",
+                "guides": {
+                "강화무기": "https://m.inven.co.kr/board/lostark/5345/89652",
+                "핸드거너": "https://m.inven.co.kr/board/lostark/5345/124168"
+                }
+            },
+            "블래스터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5349",
+                "guides": {
+                "화력강화": "https://m.inven.co.kr/board/lostark/5349/109256",
+                "포격강화": "https://www.inven.co.kr/board/lostark/5349/108171"
+                }
+            },
+            "호크아이": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5347",
+                "guides": {
+                "두번째동료": "https://m.inven.co.kr/board/lostark/5347/127725",
+                "죽음의습격": "https://m.inven.co.kr/board/lostark/5347/129320"
+                }
+            },
+            "스카우터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5631",
+                "guides": {
+                "진화의유산": "https://m.inven.co.kr/board/lostark/5631/40370",
+                "아르데타인의기술": "https://m.inven.co.kr/board/lostark/5631/68679"
+                }
+            },
+            "건슬링어": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5708",
+                "guides": {
+                "피스메이커": "https://m.inven.co.kr/board/lostark/5708/9071?my=con",
+                "사냥의시간": "https://m.inven.co.kr/board/lostark/5708/100540"
+                }
+            },
+            "바드": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5350",
+                "guides": {
+                "절실한구원": "https://m.inven.co.kr/board/lostark/5350/147445",
+                "진실된용맹": "https://m.inven.co.kr/board/lostark/5350/148485"
+                }
+            },
+            "서머너": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5348",
+                "guides": {
+                "상급소환사": "https://m.inven.co.kr/board/lostark/5348/112625",
+                "넘치는교감": "https://m.inven.co.kr/board/lostark/5348/112690"
+                }
+            },
+            "아르카나": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5346",
+                "guides": {
+                "황제의칙령": "https://m.inven.co.kr/board/lostark/5346/129763",
+                "황후의은총": "https://m.inven.co.kr/board/lostark/5346/134016"
+                }
+            },
+            "소서리스": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5770",
+                "guides": {
+                "점화": "https://m.inven.co.kr/board/lostark/5770/77602",
+                "환류": "https://m.inven.co.kr/board/lostark/5770/64875"
+                }
+            },
+            "블레이드": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5497",
+                "guides": {
+                "잔재된기운": "https://m.inven.co.kr/board/lostark/5497/69654",
+                "버스트": "https://m.inven.co.kr/board/lostark/5497/72325"
+                }
+            },
+            "데모닉": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5498",
+                "guides": {
+                "완벽한억제": "https://m.inven.co.kr/board/lostark/5498/47778",
+                "멈출수없는충동": "https://m.inven.co.kr/board/lostark/5498/25352"
+                }
+            },
+            "리퍼": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5647",
+                "guides": {
+                "달의소리": "https://m.inven.co.kr/board/lostark/5647/57881",
+                "갈증": "https://m.inven.co.kr/board/lostark/5647/86338"
+                }
+            },
+            "소울이터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5996",
+                "guides": {
+                "만월의집행자": "https://m.inven.co.kr/board/lostark/5996/3103",
+                "그믐의경계": "https://m.inven.co.kr/board/lostark/5996/3539"
+                }
+            },
+            "도화가": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5861",
+                "guides": {
+                "만개": "https://m.inven.co.kr/board/lostark/5861/3621",
+                "회귀": "https://m.inven.co.kr/board/lostark/5861/7361"
+                }
+            },
+            "기상술사": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5862",
+                "guides": {
+                "이슬비": "https://m.inven.co.kr/board/lostark/5862/2840",
+                "질풍노도": "https://m.inven.co.kr/board/lostark/5862/30062"
+                }
+            }
+        };
+
         /*  ==================================================== classData display module ==================================================== */
 
         // Now you have a classes dictionary where each key is a class name and its value is an array of synergies
@@ -1136,40 +1394,90 @@
           });
           column.append(wrapper);
 
-          column.click(function(){
+/*           column.click(function () {
+            // Clear existing data
             $("#class-info-columns").empty();
-            $("#class-info-columns").append(`
-              <div class="class-info-column">
-                <div class="header text-center">
-                  <h5>직업 게시판</h5>
-                </div>
-                <div class="contents">
-                  <iframe src="https://www.inven.co.kr/board/lostark/5343" width="100%" height="100%"></iframe>
-                </div>
-              </div>
-              `);
-            $("#class-info-columns").append(`
-              <div class="class-info-column">
-                <div class="header text-center">
-                  <h5>직업각인1 가이드</h5>
-                </div>
-                <div class="contents">
-                  <iframe src="https://m.inven.co.kr/board/lostark/5343/88008" width="100%" height="100%"></iframe>
-                </div>
-              </div>
-              `);
-            $("#class-info-columns").append(`
-              <div class="class-info-column">
-                <div class="header text-center">
-                  <h5>직업각인2 가이드</h5>
-                </div>
-                <div class="contents">
-                  <iframe src="https://m.inven.co.kr/board/lostark/5343/114997" width="100%" height="100%"></iframe>
-                </div>
-              </div>
-              `);
 
+            // Get class data
+            var classInfo = classData[className];
+
+            // Append class board
+            $("#class-info-columns").append(`
+            <div class="class-info-column">
+                <div class="header text-center">
+                <h5>${className} 게시판</h5>
+                </div>
+                <div class="contents">
+                <iframe src="${classInfo.boardUrl}" width="100%" height="100%"></iframe>
+                </div>
+            </div>
+            `);
+
+            // Append class guides
+            Object.keys(classInfo.guides).forEach(function (guideName) {
+            var guideUrl = classInfo.guides[guideName];
+            $("#class-info-columns").append(`
+                <div class="class-info-column">
+                <div class="header text-center">
+                    <h5>${guideName} 가이드</h5>
+                </div>
+                <div class="contents">
+                    <iframe src="${guideUrl}" width="100%" height="100%"></iframe>
+                </div>
+                </div>
+            `);
+            });
+        }); */
+
+          column.click(function () {
+            // Clear existing data
+            $("#class-info-columns").empty();
+
+            // Get class data
+            const baseClassName = className.replace(/\[.*?\]/, "");
+            var classInfo = classData[baseClassName];
+
+            // Append the tab structure
+            $("#class-info-columns").append(`
+              <div class="class-info-column">
+                  <ul class="nav nav-tabs" id="classTabs" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="classBoardTab" data-toggle="tab" href="#classBoard" role="tab">${baseClassName} 게시판</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="classTabContent">
+                    <div class="tab-pane fade show active" id="classBoard" role="tabpanel">
+                      <iframe src="${classInfo.boardUrl}" width="100%" height="350px"></iframe>
+                    </div>
+                  </div>
+              </div>
+            `);
+
+            // Append class guides as additional tabs
+            Object.keys(classInfo.guides).forEach(function (guideName) {
+              var guideUrl = classInfo.guides[guideName];
+              $("#classTabs").append(`
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#${guideName}Tab">${guideName} 가이드</a>
+                </li>
+              `);
+              
+              $("#classTabContent").append(`
+                <div class="tab-pane fade" id="${guideName}Tab" role="tabpanel">
+                  <iframe src="${guideUrl}" width="100%" height="350px"></iframe>
+                </div>
+              `);
+            });
+            
+            $('#classTabs a').each(function (index,element) {
+              var tab=$(element);
+              tab.on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+              });
+            });
           });
+
           // Append the column to the appropriate container
           
           $("#class-columns").append(column);
@@ -1238,18 +1546,19 @@
             var characterName = $(this).text().split(" ")[0];
             characterManager.displayEquipmentData(characterName);
             characterManager.displayProfileData(characterName);
-            characterManager.displayGemData(characterName);
+            characterManager.displayDuoData(characterName);
           });
 
 
         
-        // Create an object to encapsulate the functionality
-        var characterManager = {
+         // Create an object to encapsulate the functionality
+         var characterManager = {
           
           
           equipmentData: {}, // Store equipment data here
           profileData: {},
           gemData: {},
+          cardData: {},
 
           
           getCharacterData: function (nickname, section) {
@@ -1329,6 +1638,7 @@
               characterManager.getEquipmentData(character.CharacterName);
               characterManager.getProfileData(character.CharacterName);
               characterManager.getGemData(character.CharacterName);
+              characterManager.getCardData(character.CharacterName);
             });
           },
 
@@ -1366,7 +1676,7 @@
 
             // Clear the existing equipment data display
             $("#character-info-columns").empty();
-            var equipmentColumn = $("<div id='equipment-column' class='spec-column'></div>");
+            var equipmentColumn = $("<div id='equipment-column' class='character-info-column'></div>");
             $("#character-info-columns").append(equipmentColumn);
               
             // Iterate through the equipment data and display it
@@ -1393,7 +1703,7 @@
                     </div>
                 `
                 );
-
+              //equipmentElement.append(tooltipData);
               equipmentColumn.append(equipmentElement);
               // Parse Tooltip and append to the equipment element
               console.log(tooltipElement);
@@ -1404,7 +1714,7 @@
               });
             });
             console.log(equipmentColumn);
-
+            //$("#spec-columns").append(equipmentColumn);
           },
 
           
@@ -1569,12 +1879,21 @@
             xhr.send();
           },
 
+          displayDuoData: function(characterName){
+            $("#duo-column").empty();
+            var duo = $(`<div id="duo-column"></div>`);
+            $("#character-info-columns").append(duo);
+            this.displayGemData(characterName);
+            this.displayCardData(characterName);
+          },
+
           displayProfileData: function (characterName) {
             var profileData = this.profileData[characterName];
             
             // Clear the existing character data display
             $("#profile-column").empty();
-            var profile = $('<div id="profile-column" class="spec-column"></div>');
+            var profile = $('<div id="profile-column" class="character-info-column"></div>');
+            $("#character-info-columns").append(profile);
             // Create a container to hold the data
             var profileHTML = $(`
               <div class="container">
@@ -1591,7 +1910,7 @@
               </div>
             `);
             
-            var stats = $('<div id="stat-column" class="spec-column"></div>')
+            var stats = $('<div id="stat-column" class="character-info-column"></div>')
             var basicStats = $('<div class="row"></div>');
             var mainStats = $('<div class="row"></div>');
             var subStats = $('<div class="row"></div>');
@@ -1615,7 +1934,7 @@
             stats.append(subStats);
 
             profile.append(stats);
-            $("#spec-columns").append(profile);
+            
             
             console.log($("#profile-column"));
             
@@ -1644,45 +1963,55 @@
           
           displayGemData: function(characterName) {
             var gemData = this.gemData[characterName];
-            var gemColumn = $("<div id='gem-column' class='spec-column'></div>");
-            $('#character-info-columns').append(gemColumn);
+            var gemColumn = $("<div id='gem-column' class='character-info-column'></div>");
+            $('#duo-column').append(gemColumn);
             // Clear the existing character data display
             gemColumn.empty();
             
             gemData.Gems.forEach(function(gem) {
-                var gemHTML = $(`
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">${gem.Slot}</div>
-                            <div class="col">${gem.Name}</div>
-                            <div class="col"><img src="${gem.Icon}" alt="${gem.Name}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col">${gem.Level}</div>
-                            <div class="col">${gem.Grade}</div> 
-                                        
-                        </div>
+                var gemElement = $(`
+                    <div class="gem-element container position-relative">
+                            <img src="${gem.Icon}" alt="${gem.Name}" style="width: 100%; height: 100%; padding:0; " data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
+                            <div class="position-absolute bottom-0 end-0">${gem.Level}</div>
                     </div>
                 `);
-                           
-              gemColumn.append(gemHTML);
+              console.log("툴팁:"+gem.Tooltip);
+              gemColumn.append(gemElement);
                var tooltipElement = characterManager.parseGemTooltip(gem.Tooltip);
                $('[data-bs-toggle="tooltip"]').tooltip({
                 html: true,
                 title: tooltipElement,
-                trigger: 'click',
+                trigger: 'hover',
               });
             });
             
-            console.log(gemColumn);
+
         },
 
         parseGemTooltip: function(tooltipData) {
+
+            // Replace the font size and color attributes with inline CSS
+            var fixedTooltip = tooltipData.replace(/<font[^>]*>/gi, function(match){
+              let newTag = '<span style=\'';
+              let sizeMatch = match.match(/size='(\d+)'/i);
+              let colorMatch = match.match(/color='([^']+)'/i);
+        
+              if (sizeMatch) {
+                newTag += `font-size:${sizeMatch[1]}px;`;
+              }
+        
+              if (colorMatch) {
+                newTag += `color:${colorMatch[1]};`;
+              }
+        
+              newTag += '\'>';
+              return newTag;
+            }).replace(/<\/font>/gi, "</span>");
             // Parse the JSON data from the tooltip string
-            const tooltip = JSON.parse(tooltipData);
+            const tooltip = JSON.parse(fixedTooltip);
         
             // Create a Bootstrap tooltip container element
-            const tooltipContainer = $('<div><div/>').addClass('tooltip');
+            const tooltipContainer = $('<div></div>');
         
             // Iterate through elements in the tooltip and create corresponding HTML
             for (const key in tooltip) {
@@ -1691,33 +2020,52 @@
                     switch (element.type) {
                         case 'NameTagBox':
                             // Create a name tag box element
-                            const nameTagBox = $('<div><div/>').addClass('name-tag-box');
+                            const nameTagBox = $('<div></div>').addClass('name-tag-box');
                             nameTagBox.append(element.value);
                             tooltipContainer.append(nameTagBox);
                             break;
                         case 'ItemTitle':
                             // Create an item title box element
-                            const itemTitleBox = $('<div><div/>').addClass('item-title-box');
-                            itemTitleBox.append(element.value.leftStr0);
-                            itemTitleBox.append($('<br>'));
-                            itemTitleBox.append(element.value.leftStr2);
+                            const itemTitleBox = $('<div></div>').addClass('item-title-box');
+                            var itemTitleHtml = $(`
+                                <div class="container">
+                                  <div class="row">
+                                    <div class="col-3">
+                                      <img src="${element.value.slotData.iconPath}" alt="Icon">
+                                    </div>
+                                    <div class="col-9">
+                                      <div class="row">
+                                        <div class="col">
+                                          ${element.value.leftStr0}
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col">
+                                          ${element.value.leftStr2}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              `);
+                            itemTitleBox.append(itemTitleHtml);
                             tooltipContainer.append(itemTitleBox);
                             break;
                         case 'MultiTextBox':
                             // Create a multi-text box element
-                            const multiTextBox = $('<div><div/>').addClass('multi-text-box');
+                            const multiTextBox = $('<div></div>').addClass('multi-text-box');
                             multiTextBox.append(element.value);
                             tooltipContainer.append(multiTextBox);
                             break;
                         case 'SingleTextBox':
                             // Create a single text box element
-                            const singleTextBox = $('<div><div/>').addClass('single-text-box');
+                            const singleTextBox = $('<div></div>').addClass('single-text-box');
                             singleTextBox.append(element.value);
                             tooltipContainer.append(singleTextBox);
                             break;
                         case 'ItemPartBox':
                             // Create an item part box element
-                            const itemPartBox = $('<div><div/>').addClass('item-part-box');
+                            const itemPartBox = $('<div></div>').addClass('item-part-box');
                             itemPartBox.append(element.value.Element_000);
                             itemPartBox.append($('<br>'));
                             itemPartBox.append(element.value.Element_001);
@@ -1730,10 +2078,61 @@
             }
         
             return tooltipContainer;
+          },
+
+          getCardData: function (characterName) {
+            var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/cards"; // Adjust URL as per API documentation
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader("authorization", "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"); // Put your token here
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  characterManager.cardData[characterName] = response;
+                  console.log(characterManager.cardData[characterName]);
+                } else {
+                  var errorCode = xhr.statusText;
+                  console.log(errorCode);
+                }
+              }
+            };
+            xhr.send();
+          },
+
+          displayCardData: function(characterName) {
+            var cardData = this.cardData[characterName];
+            var cardColumn = $("<div id='card-column' class='character-info-column'></div>");
+            $('#duo-column').append(cardColumn);
+
+            cardData.Cards.forEach(function(card) {
+                var tooltip = JSON.parse(card.Tooltip);
+                var cardElement = `
+                    <div class="card text-bg-dark" style="margin: 0 5px;">
+                      <img src="${card.Icon}" class="card-img" alt="${card.Name}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
+                      <div class="card-img-overlay">
+                        <div class="card-title text-start">${card.Name}</div>
+                        <div class="card-text text-start">${tooltip.Element_002.value}</div>
+                        </div>
+                    </div>
+                `;
+                cardColumn.append(cardElement);
+            });
+
+            cardData.Effects.forEach(function(effect) {
+                var effectElement = `
+                    <div class="alert alert-info" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
+                        <strong>${effect.Items[effect.Items.length-1].Name}</strong>
+                        ${effect.Items.map(item => `<p>${item.Name}: ${item.Description}</p>`).join('')}
+                    </div>
+                `;
+                cardColumn.append(effectElement);
+            });
+
+          }
+
         }
-
-
-      }
 //end of charactermanager
 
         function getColorForClass(className) {
