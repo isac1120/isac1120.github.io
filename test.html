@@ -472,11 +472,11 @@
         justify-content: center;
         align-items: center;
         width: 30px;
-        height: 650px;
+        height: 88%;
         background-color: grey;
         position: fixed;
         left: 0;
-        top: 15%;
+        top: 10%;
         z-index: 1;
       }
       #sideOpenBtn:hover {
@@ -490,8 +490,8 @@
         border-radius: 0 10px 10px 0;
         position: fixed;
         left: 0;
-        top: 15%;
-        height: 650px; /* 100% Full-height */
+        top: 10%;
+        height: 88%; /* 100% Full-height */
         width: 0; /* 0 initial width - change this with JavaScript */
         z-index: 1; /* Stay on top */
         background-color: grey; /* Black*/
@@ -501,7 +501,7 @@
       }
       #sideCloseBtn {
         width: 40px;
-        height: 650px;
+        height: 88%;
         padding: 0 10px;
         display: flex;
         justify-content: center;
@@ -2761,6 +2761,7 @@
           .disableSelection();
 
         /*  ==================================================== copy/paste module ==================================================== */
+        /*
         // Add event listeners to copy buttons
         $("#class-copyBtn").click(function () {
           var containerId = $(this).closest(".to-container").attr("id");
@@ -2901,7 +2902,7 @@
             });
 
             // Initialize Handsontable
-
+            
             //prepare table data
             var container = document.getElementById("spreadsheet");
             existingData = [];
@@ -2995,13 +2996,13 @@
         });
 
         hot.render();
-
+        
         // Attach event listener to the paste button
         const pasteButton = document.getElementById("paste-button");
         pasteButton.addEventListener("click", function () {
           convertToTable(hot);
         });
-
+        */
         $('input[name="radioBtn"]').change(function () {
           const selectedComponentId = $(this).val();
           $(".from-container").hide(); // Hide all components
