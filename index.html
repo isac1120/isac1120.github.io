@@ -49,6 +49,8 @@
       rel="stylesheet"
     />
     <style>
+      /*  ====================================================  scrollbar layout  ==================================================== */
+
       /* For Webkit browsers (Chrome, Safari, etc.) */
       ::-webkit-scrollbar {
         width: 15px; /* Increase the width of the vertical scrollbar */
@@ -63,188 +65,371 @@
       ::-webkit-scrollbar-thumb:hover {
         background-color: #555;
       }
+      .class-synergy::-webkit-scrollbar {
+        width: 10px; /* Increase the width of the vertical scrollbar */
+        height: 12px; /* Increase the height of the horizontal scrollbar */
+      }
 
+      /*  ====================================================  topLV title layout module  ==================================================== */
+
+      .h1,h2,h3,h4,h5,h6 {
+        margin-top: 0.5rem;
+      }
       .title {
         min-width: 320px;
         border: 1px solid #ccc;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin: 1% auto;
-        padding: 0.5% 0;
+        margin-bottom: 5px;
+        padding: 1% 0;
         width: 100%;
-        height: 15%;
         background-color: #63c5da;
         font-family: "Jua", sans-serif;
       }
 
+      /*  ====================================================  topLV contents layout module  ==================================================== */
+
       body {
+        font-family: "Jua", sans-serif;
         background-color: #f5f5f5;
+        margin-bottom: 40px;
       }
 
       .container {
+      
         position: relative;
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        /* height: 100vh; */
-        font-family: "Jua", sans-serif;
       }
+
+      /*  ====================================================  middleLV contents switch layout module  ==================================================== */
+
       /* swithch */
       .switch-container {
         position: absolute;
-        float: left;
-      }
-
-      .switch {
-        position: relative;
-        display: inline-block;
-        width: 120px;
-        height: 28px;
-      }
-
-      .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: red;
-        transition: 0.4s;
+        top: 5px;
+        z-index: 0;
       }
 
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 20px;
-        width: 20px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: 0.4s;
-      }
-
-      input:checked + .slider {
-        background-color: #2196f3;
-      }
-
-      input:focus + .slider {
-        box-shadow: 0 0 1px #2196f3;
-      }
-
-      input:checked + .slider:before {
-        transform: translateX(90px);
-      }
-
-      .on {
-        display: none;
-      }
-
-      .on,
-      .off {
-        color: white;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
-        font-size: 10px;
-        font-family: Verdana, sans-serif;
-      }
-
-      input:checked + .slider .on {
-        display: block;
-      }
-
-      input:checked + .slider .off {
-        display: none;
-      }
-      /*--------- END --------*/
-
-      /* Rounded sliders */
-      .slider.round {
-        border-radius: 34px;
-      }
-
-      .slider.round:before {
-        border-radius: 50%;
-      }
-
-      /* switch end*/
+      /*  ====================================================   middleLV contents layout module  ==================================================== */
 
       .from-container {
-        width: 66%;
-        height: 700px;
+        width: 59%;
+        height: 100%;
       }
       .to-container {
-        width: 33%;
-        height: 700px;
+        width: 39%;
+        height: 100%;
       }
 
       .row {
         width: 100%;
       }
 
-      .class-column,
-      .synergy-column {
-        min-height: 150px;
-        min-width: 250px;
-        overflow-y: auto;
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin: 20px;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      .container-header {
+        display: flex;
+        justify-content: center;
+        min-width: 320px;
+        width: 100%;
       }
-
-      .class-column.draggable {
-        width: 250px;
-        height: 100px;
-        padding: 15px;
-        margin: 5px;
+      
+      #class-container,
+      #character-container,
+      #class-group-container,
+      #character-group-container,
+      #class-info-container,
+      #character-info-container {
+        display: none;
       }
-
-      .class-column {
-        min-height: 80px;
+      
+      .info-container {
+        width: 100%;
+        margin: 20px 0;
       }
+      /*  ====================================================  bottomLV contents layout module  ==================================================== */
+      
+      /* columns */
 
-      #class-columns,
-      #synergy-columns {
-        height: 650px;
-        min-height: 300px;
+      .base-columns {
+        height: 700px;
         min-width: 300px;
+        padding: 0 10px;
         border: 1px solid #ccc;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(255, 156, 156, 0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
         white-space: nowrap;
       }
 
+      .base-grouping-columns {
+        height: 700px;
+        min-height: 250px;
+        min-width: 300px;
+        overflow-y: scroll;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #synergy-columns{
+        flex-direction: column;
+        flex-wrap: wrap;
+        overflow-y: hidden;
+        padding: 10px;
+      }
+      
       #class-columns {
-        min-width: 250px;
         flex-direction: column;
         flex-wrap: wrap;
         overflow-y: auto;
+        padding: 15px;
       }
 
-      .container-header {
-        min-width: 320px;
+      #character-columns {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        overflow-x: auto;
+        overflow-y: auto;
         width: 100%;
-        padding: 0 40%;
       }
 
-      .container-header {
-        min-width: 320px;
+      #character-info-columns{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        font-size: 13px;
+      }
+
+      #synergy-info-columns,
+      #class-info-columns,
+      #character-info-columns{
         width: 100%;
-        padding: 0 40%;
+        background-color: lightgrey;
+      }
+
+      #synergy-info-columns{
+        padding-top: 20px;
+      }
+      /* column */
+
+      .synergy-column{
+        width: 250px;
+        height: 300px;
+        overflow-x: hidden;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .class-column{
+        width: 250px;
+        height: 100px;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .party-column {
+        min-width: 250px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 10px;
+      }
+
+      .class-info-column{
+        width: 100%;
+        height: 100%;
+      }
+
+      .class-info-column .contents {
+        height: 100%;
+  
+      }
+
+      .character-column {
+        width: 300px;
+        height: 300px;
+        min-width: 250px;
+        min-height: 150px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .nickname-input {
+        margin-right: 10px;
+        font-size: 15px;
+      }
+
+      .submit-button {
+        font-size: 15px;
+        background-color: #63c5da;
+        border: none;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      
+      .character-info-column{
+        min-height: 50px;
+        min-width: 250px;
+        overflow-x: hidden;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 5px auto;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #equipment-column {
+        display: flex;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        
+      }
+
+      #profile-column{
+        width: 100%;
+        height: 160px;
+      }
+
+      #stat-column{
+        height: 80px;
+        margin: 5px 0 0 0;
+        padding: 10px;
+      }
+
+      #gem-column{
+        display: flex;
+        width: 100%;
+        height: 75px;
+        padding: 10px;
+      }
+
+      #card-column{
+        display: flex;
+        width: 100%;
+        height: 75px;
+        padding: 10px;
+      }
+
+      #duo-column{
+        width: 100%;
+      }
+      .equipment-element.container {
+        width: 180px;
+        height: 50px;
+        padding: 5px;
+        justify-content: space-evenly;
+      }
+
+      .gem-element.container {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 5px;
+        justify-content: space-evenly;
+      }
+
+      /* draggable droppable */
+
+      .draggable,
+      .droppable{
+        font-size: 15px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        text-align: center;
+        background-color: #f5f5f5;
+        min-height: 30px; 
+        
+      }
+
+      .synergy-column .draggable{
+        color: white;
+        width: auto;
+        padding: 5px 0;
+        margin-bottom: 3px;
+      }
+    
+      
+      .character-column .draggable{
+        height: auto;
+        padding: 10px 0;
+        margin: 10px auto;
+      }
+
+      .party-column .draggable{
+        width: auto;
+        padding: 10px;
+        margin: 0;
+      }
+      .party-column .droppable{
+        flex-direction: column;
+        margin: 10px;
+      }
+
+      .placeholder {
+        border: 1px dashed #ccc;
+        min-height: 50px;
+        margin: 5px;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      button.delete {
+        float: right;
+        background-color: transparent;
+        border: none;
+        color: #f00;
+        font-weight: bold;
+      }
+
+      .class-synergy,
+      .character-synergy{
+        white-space: nowrap;
+        overflow-x: auto;
+        width: 100%;
+        
+      }
+
+      .card{
+        --bs-card-img-overlay-padding: 3px;
+      }
+      /* ------------------------- synergy symbol ------------------------- */
+
+      .color-circle {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin: auto 5px;
       }
 
       .rounded-rectangle {
@@ -257,122 +442,16 @@
         font-size: 14px;
       }
 
-      .grouping-columns {
-        height: 650px;
-        min-height: 250px;
-        min-width: 300px;
-        overflow-y: scroll;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .party-column {
-        min-width: 250px;
-        overflow-x: hidden;
-        overflow-y: hidden;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin: 35px auto;
-        padding: 10px 10px;
-      }
-
-      .user-column {
-        min-width: 250px;
-        min-height: 150px;
-        overflow-y: auto;
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin: 20px;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      #user-columns {
-        height: 650px;
-        min-height: 250px;
-        min-width: 300px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: auto;
-        width: 100%;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .nickname-input {
-        margin-right: 10px;
-      }
-
-      .submit-button {
-        margin: 4% auto;
-        background-color: #63c5da;
-        border: none;
-        color: #fff;
-        padding: 5px 10px;
-        border-radius: 3px;
-        cursor: pointer;
-      }
-
-      .draggable,
-      .droppable {
-        border: 1px solid #ccc;
-        padding: 5px 0;
-        margin: 5px auto;
-        border-radius: 3px;
-        text-align: center;
-        background-color: #f5f5f5;
-      }
-
-      .draggable {
-        font-size: 15px;
-        cursor: pointer;
-      }
-
-      .droppable {
-        width: 100%;
-        border: 1px solid #ccc;
-        padding: 3px; /* Increase the padding */
-        margin: 3px;
-        border-radius: 3px;
-        text-align: center;
-        background-color: #f5f5f5;
-        min-height: 30px; /* Increase the min-height */
-      }
-
-      button.delete {
-        float: right;
-        background-color: transparent;
-        border: none;
-        color: #f00;
-        font-weight: bold;
-      }
-
-      .placeholder {
-        border: 1px dashed #ccc;
-        min-height: 50px;
-        margin: 5px;
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-      .color-circle {
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        margin: auto 5px;
-      }
       .row.scrollable-row {
         overflow-x: hidden;
         white-space: nowrap;
       }
+
+      /* ------------------- copy&save button -------------------------- */
+
       .button-container {
         position: absolute;
-        right: 20px;
+        right: 0;
       }
       .copy-button,
       .save-button {
@@ -384,7 +463,103 @@
         border-radius: 3px;
         cursor: pointer;
       }
-      @media (max-width: 768px) {
+
+
+      /* ==================================================== sidebar layout module ========================================================*/
+
+      /* The side navigation menu */
+      #sideOpenBtn {
+        display: flex;
+        border-radius: 0 10px 10px 0;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 88%;
+        background-color: darkgrey;
+        position: fixed;
+        left: 0;
+        top: 10%;
+        z-index: 1;
+      }
+      #sideOpenBtn:hover {
+        background-color: grey;
+      }
+
+      .sidebar {
+        background-color: darkgrey;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        border-radius: 0 10px 10px 0;
+        position: fixed;
+        left: 0;
+        top: 10%;
+        height: 88%; /* 100% Full-height */
+        width: 0; /* 0 initial width - change this with JavaScript */
+        z-index: 1; /* Stay on top */
+        background-color: grey; /* Black*/
+        opacity: 97%;
+        overflow: hidden; /* Disable horizontal scroll */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+      }
+      #sideCloseBtn {
+        background-color: darkgrey;
+        border-color: grey;
+        width: 40px;
+        height: 100%;
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 0;
+      }
+      #sideCloseBtn:hover {
+        background-color: grey;
+      }
+
+      #side-container {
+        background-color: darkgrey;
+        width: 100%;
+        padding: 0 2%;
+        height: 100%;
+        overflow: auto;
+      }
+
+      #paste-button {
+        position: relative;
+        top: 3%;
+        left: 35%;
+        width: 80px;
+        height: 30px;
+      }
+
+      .handsontable .main-header {
+        background-color: orangered;
+      }
+      .handsontable .sub-header {
+        background-color: orange;
+      }
+
+      .custom-tooltip {
+        text-align: left;
+        --bs-tooltip-max-width: 400px;
+      }
+
+      .tooltip-inner {
+        width: 400px;
+        max-height: 600px;
+        overflow-y: auto;
+        text-align: left;
+      }
+
+      iframe {
+        width: 100%;
+        height: 700px;
+      }
+      /* ==================================================== mediaquery layout module ==================================================== */
+
+      @media (max-width: 1024px) {
         .from-container,
         .to-container {
           width: 100%;
@@ -392,93 +567,226 @@
           margin: 2%;
         }
         .draggable {
-          width: 200px;
+          min-width: 240px;
         }
         .class-column.draggable {
-          min-width: 200px;
-          width: 200px;
+          min-width: 240px;
+
         }
-        #synergy-columns,
-        #class-columns,
-        #user-columns,
-        .grouping-columns {
+        .base-columns {
           height: 300px;
         }
-      }
 
+        .sidebar {
+          height: 350px;
+        }
+        #sideOpenBtn {
+          height: 350px;
+        }
+      }
+      @media (max-width: 340px) {
+        .container {
+          width: 340px;
+        }
+
+        .from-container,
+        .to-container {
+          width: 100%;
+          height: 350px;
+          margin: 2%;
+        }
+        .draggable {
+          min-width: 240px;
+        }
+        .class-column.draggable {
+          min-width: 240px;
+
+        }
+        .base-columns {
+          height: 300px;
+        }
+        .sidebar {
+          height: 350px;
+        }
+      }
       /* Media query for mobile devices */
     </style>
   </head>
   <body>
     <div class="title text-center">
-        <h2 class="d-inline ">공대 구성 시뮬레이터</h2>
-        <h6 class="d-inline align-bottom">2023.10ver</h6>
+      <h3 class="d-inline">공대 구성 시뮬레이터</h3>
+      <h6 class="d-inline align-bottom">2023.07ver</h6>
+    </div>
+    <div id="sideOpenBtn" onclick="openBar()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        class="bi bi-chevron-right"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+        />
+      </svg>
+    </div>
+    <div id="table-sidebar" class="sidebar">
+      <div id="sideCloseBtn" onclick="closeBar()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-chevron-left"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+          />
+        </svg>
+      </div>
+      <div id="side-container">
+        <div id="synergy-info-container" class="info-container">
+          <h4 class="container-header">시너지 정보</h4>
+          <div id="synergy-info-columns" class="base-columns">
+          </div>
+        </div>
+        <div id="class-info-container" class="info-container">
+          <h4 class="container-header">클래스 정보</h4>
+          <div id="class-info-columns" class="base-columns">
+          </div>
+        </div>
+        <div id="character-info-container" class="info-container">
+          <h4 class="container-header">캐릭터 정보</h4>
+          <div id="character-info-columns" class="base-columns">
+          </div>
+        </div>
+        <!--
+        <div id="spreadsheet-header" class="container-header">
+          <h4>레이드 시트</h4>
+          <button id="paste-button" class="save-button">붙여넣기</button>
+        </div>
+        <div id="spreadsheet"></div>
+        -->
+        
+      </div>
     </div>
     <div class="container">
       <div class="switch-container">
-        <label class="switch">
-          <input type="checkbox" class="togBtn" />
-          <div class="slider round">
-            <!-- Added changes here -->
-            <span class="on">시너지순으로</span>
-            <span class="off">클래스</span>
-          </div>
-        </label>
+        <div
+          class="btn-group btn-group-sm"
+          role="group"
+          aria-label="radioBtnGroup"
+        >
+          <input
+            type="radio"
+            class="btn-check"
+            name="radioBtn"
+            id="radioBtn1"
+            value="synergy"
+            autocomplete="off"
+            checked
+          />
+          <label class="btn btn-outline-primary" for="radioBtn1"
+            >시너지순</label
+          >
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="radioBtn"
+            id="radioBtn2"
+            value="class"
+            autocomplete="off"
+          />
+          <label class="btn btn-outline-primary" for="radioBtn2"
+            >클래스순</label
+          >
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="radioBtn"
+            id="radioBtn3"
+            value="character"
+            autocomplete="off"
+          />
+          <label class="btn btn-outline-primary" for="radioBtn3">유저순</label>
+        </div>
       </div>
+
+<!-------------------------------- synergy container -------------------------------->
+
+      
       <div id="synergy-container" class="from-container">
         <div class="container-header">
           <h4 class="text-center">시너지</h4>
         </div>
-        <div id="synergy-columns">
-          <!-- Add your synergy columns here -->
+        <div id="synergy-columns" class="base-columns">
         </div>
       </div>
 
       <div id="synergy-group-container" class="to-container">
         <div class="container-header">
           <div class="button-container">
-            <button class="copy-button">복사</button>
-            <button class="save-button">저장</button>
+            <button id="synergy-copyBtn" class="copy-button">복사</button>
+            <button id="synergy-saveBtn" class="save-button">저장</button>
           </div>
           <h4 class="text-center">공대</h4>
         </div>
-        <div id="synergy-group" class="grouping-columns">
-          <!-- Add your grouping columns here -->
+        <div id="synergy-group" class="base-grouping-columns">
         </div>
       </div>
+      
+      <!--
+      <div id="synergy-info-container" class="info-container">
+        <h4 class="container-header">시너지 정보</h4>
+        <div id="synergy-info-columns" class="base-columns">
+        </div>
+      </div>
+      -->
+<!-------------------------------- class container -------------------------------->
 
-      <div id="class-container" class="from-container" style="display: none">
+
+      
+      <div id="class-container" class="from-container">
         <div class="container-header">
           <h4 class="text-center">클래스</h4>
         </div>
-        <div id="class-columns">
-          <!-- Add your class columns here -->
+        <div id="class-columns" class="base-columns">
         </div>
       </div>
 
-      <div
-        id="class-group-container"
-        class="to-container"
-        style="display: none"
-      >
+      <div id="class-group-container" class="to-container">
         <div class="container-header">
           <div class="button-container">
-            <button class="copy-button">복사</button>
-            <button class="save-button">저장</button>
+            <button id="class-copyBtn" class="copy-button">복사</button>
+            <button id="class-saveBtn" class="save-button">저장</button>
           </div>
           <h4 class="text-center">공대</h4>
         </div>
-        <div id="class-group" class="grouping-columns">
-          <!-- Add your grouping columns here -->
+        <div id="class-group" class="base-grouping-columns">
         </div>
       </div>
 
-      <div id="user-container" class="from-container">
+    <!--
+      <div id="class-info-container" class="info-container">
+        <h4 class="container-header">클래스 정보</h4>
+        <div id="class-info-columns" class="base-columns">
+        </div>
+      </div>
+    -->
+
+<!-------------------------------- character container -------------------------------->
+      
+      <div id="character-container" class="from-container">
         <div class="container-header">
           <h4 class="text-center">유저</h4>
         </div>
-        <div id="user-columns">
-          <!-- Add your user columns here -->
+        <div id="character-columns" class="base-columns">
         </div>
       </div>
 
@@ -490,12 +798,21 @@
           </div>
           <h4 class="text-center">공대</h4>
         </div>
-        <div id="character-group" class="grouping-columns">
-          <!-- Add your grouping columns here -->
+        <div id="character-group" class="base-grouping-columns">
         </div>
       </div>
-    </div>
+    
+      <!--
+      <div id="character-info-container" class="info-container">
+        <h4 class="container-header">캐릭터 정보</h4>
+        <div id="character-info-columns" class="base-columns">
+        </div>
+      </div>
+      -->
 
+    
+    </div>
+   
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -511,52 +828,36 @@
       gtag("config", "G-NY4TE8ZY84");
     </script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.0.5/js/tabulator.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.0.5/css/tabulator.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.0/papaparse.min.js"></script>
+
     <script>
       $(document).ready(function () {
-        // Add event listeners to copy buttons
-        $(".copy-button").click(function () {
-          var containerId = $(this).closest(".to-container").attr("id");
-          var container = $("#" + containerId + " .grouping-columns");
-          copyElement(container);
-        });
+        /* 개인적인 깨달음. html->css->javascript 순으로 실행되며, 
+        javascript를 통해 나중에 html element를 생성해 기존DOM트리에 부착 후에야,eventlistener를 포함한 DOM조작이 해당 element에 가능해진다.
+        이는 새로 생성된 html element가 DOM 객체가 되면서,DOM 객체가 가진 property와 method를 이용가능해져서로 이해할 수 있다.
+        .*/
+        /*  ==================================================== synergyData module ====================================================  */
 
-        // Add event listeners to save buttons
-        $(".save-button").click(function () {
-          var containerId = $(this).closest(".to-container").attr("id");
-          var container = $("#" + containerId + " .grouping-columns");
-          saveImage(container);
-        });
-
-        // Function to copy the content of an element as an image
-        function copyElement(element) {
-          html2canvas(element[0], { scrollY: -window.scrollY }).then(function (
-            canvas
-          ) {
-            var image = canvas.toDataURL("image/png");
-            navigator.clipboard.writeText(image).then(function () {
-              alert("Image copied to clipboard!");
-            });
-          });
-        }
-
-        // Function to save the content of an element as an image
-        function saveImage(element) {
-          html2canvas(element[0], { scrollY: -window.scrollY }).then(function (
-            canvas
-          ) {
-            var link = document.createElement("a");
-            link.href = canvas.toDataURL("image/png");
-            link.download = "image.png";
-            link.click();
-          });
-        }
         // Synergy data
         var synergies = [
           {
@@ -773,6 +1074,35 @@
           },
         ];
 
+        /*  ==================================================== synergyData display module ==================================================== */
+        var synergyData = {
+          "디스트로이어": "https://m.inven.co.kr/lostark/skill/?reqjob=103",
+          "워로드": "https://m.inven.co.kr/lostark/skill/?reqjob=104",
+          "버서커": "https://m.inven.co.kr/lostark/skill/?reqjob=102",
+          "홀리나이트": "https://m.inven.co.kr/lostark/skill/?reqjob=105",
+          "슬레이어": "https://m.inven.co.kr/lostark/skill/?reqjob=112",
+          "배틀마스터": "https://m.inven.co.kr/lostark/skill/?reqjob=302",
+          "인파이터": "https://m.inven.co.kr/lostark/skill/?reqjob=303",
+          "기공사": "https://m.inven.co.kr/lostark/skill/?reqjob=304",
+          "창술사": "https://m.inven.co.kr/lostark/skill/?reqjob=305",
+          "스트라이커": "https://m.inven.co.kr/lostark/skill/?reqjob=312",
+          "데빌헌터": "https://m.inven.co.kr/lostark/skill/?reqjob=503",
+          "블래스터": "https://m.inven.co.kr/lostark/skill/?reqjob=504",
+          "호크아이": "https://m.inven.co.kr/lostark/skill/?reqjob=502",
+          "스카우터": "https://m.inven.co.kr/lostark/skill/?reqjob=505",
+          "건슬링어": "https://m.inven.co.kr/lostark/skill/?reqjob=512",
+          "바드": "https://m.inven.co.kr/lostark/skill/?reqjob=204",
+          "서머너": "https://m.inven.co.kr/lostark/skill/?reqjob=203",
+          "아르카나": "https://m.inven.co.kr/lostark/skill/?reqjob=202",
+          "소서리스": "https://m.inven.co.kr/lostark/skill/?reqjob=205",
+          "블레이드": "https://m.inven.co.kr/lostark/skill/?reqjob=402",
+          "데모닉": "https://m.inven.co.kr/lostark/skill/?reqjob=403",
+          "리퍼": "https://m.inven.co.kr/lostark/skill/?reqjob=404",
+          "소울이터": "https://m.inven.co.kr/lostark/skill/?reqjob=405",
+          "도화가": "https://m.inven.co.kr/lostark/skill/?reqjob=602",
+          "기상술사": "https://m.inven.co.kr/lostark/skill/?reqjob=603",
+        };
+
         // Create synergy columns
         synergies.forEach(function (synergy) {
           var column = $('<div class="synergy-column"></div>').css(
@@ -791,18 +1121,26 @@
             category.classes.forEach(function (className) {
               var element = $("<div></div>")
                 .text(className)
-                .addClass("draggable")
-                .css({"background-color": category.color,"color": "#fff"});
+                .addClass("class-element draggable")
+                .css("background-color", category.color);
               /* Add the .class-element class and set the background color */
+              element.click(function(){
+                var synergyUrl = synergyData[className];
+                openBar();
+                $("#synergy-info-columns").empty();
+                $("#synergy-info-columns").append(`<iframe src=${synergyUrl} width="100%" height="400px"></iframe>`);
+              });           
               subColumn.append(element);
             });
 
             column.append(subColumn);
           });
-
+          
           $("#synergy-columns").append(column);
         });
 
+        /* ================================================ classData build module ( extraction from synergyData ) ==================================================== */
+        
         // Create a dictionary to store class-centric data
         var classes = {};
 
@@ -826,7 +1164,7 @@
             });
           });
         });
-        console.log(classes);
+
         // Iterate over synergies to build the classes dictionary
         synergies.forEach(function (synergy) {
           synergy.categories.forEach(function (category) {
@@ -869,6 +1207,186 @@
           });
         });
 
+        var classData = {
+            "디스트로이어": {
+                "boardUrl": "https://www.inven.co.kr/board/lostark/5343",
+                "guides": {
+                "중력 수련": "https://m.inven.co.kr/board/lostark/5343/88008",
+                "분노의망치": "https://m.inven.co.kr/board/lostark/5343/114997"
+                }
+            },
+            "워로드": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5339",
+                "guides": {
+                "고독한기사": "https://m.inven.co.kr/board/lostark/5339/112607",
+                "전투태세": "https://www.inven.co.kr/board/lostark/5339/156551"
+                }
+            },
+            "버서커": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5341",
+                "guides": {
+                "광전사의비기": "https://m.inven.co.kr/board/lostark/5341/63757",
+                "광기": "https://m.inven.co.kr/board/lostark/5341/73417"
+                }
+            },
+            "홀리나이트": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5558",
+                "guides": {
+                "심판자": "https://m.inven.co.kr/board/lostark/5558/64430",
+                "축복의오라": "https://m.inven.co.kr/board/lostark/5558/64685"
+                }
+            },
+            "슬레이어": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5995",
+                "guides": {
+                "포식자": "https://m.inven.co.kr/board/lostark/5995/17514",
+                "처단자": "https://m.inven.co.kr/board/lostark/5995/17514"
+                }
+            },
+            "배틀마스터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5342",
+                "guides": {
+                "오의강화": "https://m.inven.co.kr/board/lostark/5342/120545",
+                "초심": "https://m.inven.co.kr/board/lostark/5342/108964"
+                }
+            },
+            "인파이터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5340",
+                "guides": {
+                "충격단련": "https://m.inven.co.kr/board/lostark/5340/118132",
+                "극의체술": "https://m.inven.co.kr/board/lostark/5340/132161"
+                }
+            },
+            "기공사": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5344",
+                "guides": {
+                "세맥타통": "https://m.inven.co.kr/board/lostark/5344/88926",
+                "역천지체": "https://m.inven.co.kr/board/lostark/5344/104790"
+                }
+            },
+            "창술사": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5434",
+                "guides": {
+                "절제": "https://m.inven.co.kr/board/lostark/5434/72345",
+                "절정": "https://m.inven.co.kr/board/lostark/5434/93394"
+                }
+            },
+            "스트라이커": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5709",
+                "guides": {
+                "일격필살": "https://m.inven.co.kr/board/lostark/5709/24053",
+                "오의난무": "https://m.inven.co.kr/board/lostark/5709/73936"
+                }
+            },
+            "데빌헌터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5345",
+                "guides": {
+                "강화무기": "https://m.inven.co.kr/board/lostark/5345/89652",
+                "핸드거너": "https://m.inven.co.kr/board/lostark/5345/124168"
+                }
+            },
+            "블래스터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5349",
+                "guides": {
+                "화력강화": "https://m.inven.co.kr/board/lostark/5349/109256",
+                "포격강화": "https://www.inven.co.kr/board/lostark/5349/108171"
+                }
+            },
+            "호크아이": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5347",
+                "guides": {
+                "두번째동료": "https://m.inven.co.kr/board/lostark/5347/127725",
+                "죽음의습격": "https://m.inven.co.kr/board/lostark/5347/129320"
+                }
+            },
+            "스카우터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5631",
+                "guides": {
+                "진화의유산": "https://m.inven.co.kr/board/lostark/5631/40370",
+                "아르데타인의기술": "https://m.inven.co.kr/board/lostark/5631/68679"
+                }
+            },
+            "건슬링어": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5708",
+                "guides": {
+                "피스메이커": "https://m.inven.co.kr/board/lostark/5708/9071?my=con",
+                "사냥의시간": "https://m.inven.co.kr/board/lostark/5708/100540"
+                }
+            },
+            "바드": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5350",
+                "guides": {
+                "절실한구원": "https://m.inven.co.kr/board/lostark/5350/147445",
+                "진실된용맹": "https://m.inven.co.kr/board/lostark/5350/148485"
+                }
+            },
+            "서머너": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5348",
+                "guides": {
+                "상급소환사": "https://m.inven.co.kr/board/lostark/5348/112625",
+                "넘치는교감": "https://m.inven.co.kr/board/lostark/5348/112690"
+                }
+            },
+            "아르카나": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5346",
+                "guides": {
+                "황제의칙령": "https://m.inven.co.kr/board/lostark/5346/129763",
+                "황후의은총": "https://m.inven.co.kr/board/lostark/5346/134016"
+                }
+            },
+            "소서리스": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5770",
+                "guides": {
+                "점화": "https://m.inven.co.kr/board/lostark/5770/77602",
+                "환류": "https://m.inven.co.kr/board/lostark/5770/64875"
+                }
+            },
+            "블레이드": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5497",
+                "guides": {
+                "잔재된기운": "https://m.inven.co.kr/board/lostark/5497/69654",
+                "버스트": "https://m.inven.co.kr/board/lostark/5497/72325"
+                }
+            },
+            "데모닉": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5498",
+                "guides": {
+                "완벽한억제": "https://m.inven.co.kr/board/lostark/5498/47778",
+                "멈출수없는충동": "https://m.inven.co.kr/board/lostark/5498/25352"
+                }
+            },
+            "리퍼": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5647",
+                "guides": {
+                "달의소리": "https://m.inven.co.kr/board/lostark/5647/57881",
+                "갈증": "https://m.inven.co.kr/board/lostark/5647/86338"
+                }
+            },
+            "소울이터": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5996",
+                "guides": {
+                "만월의집행자": "https://m.inven.co.kr/board/lostark/5996/3103",
+                "그믐의경계": "https://m.inven.co.kr/board/lostark/5996/3539"
+                }
+            },
+            "도화가": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5861",
+                "guides": {
+                "만개": "https://m.inven.co.kr/board/lostark/5861/3621",
+                "회귀": "https://m.inven.co.kr/board/lostark/5861/7361"
+                }
+            },
+            "기상술사": {
+                "boardUrl": "https://m.inven.co.kr/board/lostark/5862",
+                "guides": {
+                "이슬비": "https://m.inven.co.kr/board/lostark/5862/2840",
+                "질풍노도": "https://m.inven.co.kr/board/lostark/5862/30062"
+                }
+            }
+        };
+
+        /*  ==================================================== classData display module ==================================================== */
+
         // Now you have a classes dictionary where each key is a class name and its value is an array of synergies
 
         // Create class columns
@@ -878,7 +1396,7 @@
             .addClass("draggable")
             .css("background-color", "#fff");
           // Create a circle with the first letter of synergyName
-          var wrapper = $("<div></div>");
+          var wrapper = $("<div class='class-synergy'></div>");
           classes[className].forEach(function (synergy) {
             var initials = synergy.synergyName
               .split(" ")
@@ -902,531 +1420,749 @@
             wrapper.append(circle);
           });
           column.append(wrapper);
-          // Append the column to the appropriate container
-          $("#class-columns").append(column);
-        });
 
-        // Define your parties here
-        var synergyGroup = ["1파티", "2파티"];
+/*           column.click(function () {
+            // Clear existing data
+            $("#class-info-columns").empty();
 
-        // Create grouping columns
-        synergyGroup.forEach(function (party, index) {
-          var column = $('<div class="party-column col-10"></div>').css(
-            "background-color",
-            "#fff"
-          );
-          var header = $("<h6></h6>").text(party);
-          column.append(header);
+            // Get class data
+            var classInfo = classData[className];
 
-          for (var i = 0; i < 4; i++) {
-            var element = $("<div></div>")
-              .addClass("droppable")
-              .css("min-height", "50px");
-            column.append(element);
-          }
+            // Append class board
+            $("#class-info-columns").append(`
+            <div class="class-info-column">
+                <div class="header text-center">
+                <h5>${className} 게시판</h5>
+                </div>
+                <div class="contents">
+                <iframe src="${classInfo.boardUrl}" width="100%" height="100%"></iframe>
+                </div>
+            </div>
+            `);
 
-          $("#synergy-group").append(column);
-        });
-
-        // Define your parties here
-        var classGroup = ["1파티", "2파티"];
-
-        // Create grouping columns
-        classGroup.forEach(function (party, index) {
-          var column = $('<div class="party-column col-10"></div>').css(
-            "background-color",
-            "#fff"
-          );
-          var header = $("<h6></h6>").text(party);
-          var colorCount = $("<span></span>")
-            .addClass("color-count")
-            .css("font-size", "13px");
-          header.append(colorCount);
-          column.append(header);
-
-          for (var i = 0; i < 4; i++) {
-            var element = $("<div></div>")
-              .addClass("droppable")
-              .css("min-height", "50px");
-            column.append(element);
-          }
-
-          $("#class-group").append(column);
-        });
-
-        // Draggable elements
-        $("#synergy-columns .draggable").draggable({
-          helper: "clone",
-          revert: "invalid",
-          appendTo: "body",
-          zIndex: 100,
-        });
-
-        // Droppable elements
-        $("#synergy-group .droppable").droppable({
-          accept: "#synergy-columns .draggable",
-          drop: function (event, ui) {
-            var dropped = ui.helper.clone();
-            dropped.removeClass("ui-draggable ui-draggable-handle");
-            dropped.css({ position: "static", left: "", top: "" });
-            // Add tooltips to the cloned draggable elements
-            dropped.find("[data-toggle='tooltip']").tooltip();
-            dropped.click(function () {
-              dropped.find("[data-toggle='tooltip']").tooltip("hide");
-              $(this).remove();
+            // Append class guides
+            Object.keys(classInfo.guides).forEach(function (guideName) {
+            var guideUrl = classInfo.guides[guideName];
+            $("#class-info-columns").append(`
+                <div class="class-info-column">
+                <div class="header text-center">
+                    <h5>${guideName} 가이드</h5>
+                </div>
+                <div class="contents">
+                    <iframe src="${guideUrl}" width="100%" height="100%"></iframe>
+                </div>
+                </div>
+            `);
             });
+        }); */
 
-            $(this).empty().append(dropped);
-          },
-        });
+          column.click(function () {
+            openBar();
+            // Clear existing data
+            $("#class-info-columns").empty();
 
-        // Sortable elements
-        $("#synergy-group .grouping-columns")
-          .sortable({
-            connectWith: "#synergy-group .grouping-columns",
-            items: ".droppable",
-            placeholder: "placeholder",
-            start: function (event, ui) {
-              ui.item.addClass("dragging");
+            // Get class data
+            const baseClassName = className.replace(/\[.*?\]/, "");
+            var classInfo = classData[baseClassName];
 
-              ui.item.data("fromIndex", ui.item.index());
-              ui.item.data("fromParent", ui.item.parent());
-            },
-            stop: function (event, ui) {
-              ui.item.removeClass("dragging");
+            // Append the tab structure
+            $("#class-info-columns").append(`
+              <div class="class-info-column">
+                  <ul class="nav nav-tabs" id="classTabs" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="classBoardTab" data-toggle="tab" href="#classBoard" role="tab">${baseClassName} 게시판</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="classTabContent">
+                    <div class="tab-pane fade show active" id="classBoard" role="tabpanel">
+                      <iframe src="${classInfo.boardUrl}"></iframe>
+                    </div>
+                  </div>
+              </div>
+            `);
 
-              ui.item.data("toIndex", ui.item.index());
-              ui.item.data("toParent", ui.item.parent());
-
-              var fromParent = ui.item.data("fromParent");
-              var fromIndex = ui.item.data("fromIndex");
-              var toParent = ui.item.data("toParent");
-              var toIndex = ui.item.data("toIndex");
-
-              if (fromParent[0] !== toParent[0]) {
-                var fromChild = fromParent.children().eq(fromIndex);
-                var toChild = toParent.children().eq(toIndex + 1);
-
-                fromChild.before(toChild);
-              }
-            },
-          })
-          .disableSelection();
-
-        // Draggable elements
-        $("#class-columns .draggable").draggable({
-          helper: "clone",
-          revert: "invalid",
-          appendTo: "body",
-          zIndex: 100,
-        });
-
-        // Droppable elements
-        $("#class-group .droppable").droppable({
-          accept: "#class-columns .draggable",
-          drop: function (event, ui) {
-            var dropped = ui.helper.clone();
-            dropped.removeClass("ui-draggable ui-draggable-handle");
-            dropped.css({ position: "static", left: "", top: "" });
-            // Add tooltips to the cloned draggable elements
-            dropped.find("[data-toggle='tooltip']").tooltip();
-            dropped.click(function () {
-              dropped.find("[data-toggle='tooltip']").tooltip("hide");
-              $(this).remove();
-              updateClassPartyStats();
+            // Append class guides as additional tabs
+            Object.keys(classInfo.guides).forEach(function (guideName) {
+              var guideUrl = classInfo.guides[guideName];
+              $("#classTabs").append(`
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#${guideName}Tab">${guideName} 가이드</a>
+                </li>
+              `);
+              
+              $("#classTabContent").append(`
+                <div class="tab-pane fade" id="${guideName}Tab" role="tabpanel">
+                  <iframe src="${guideUrl}"></iframe>
+                </div>
+              `);
             });
-
-            $(this).empty().append(dropped);
-            updateClassPartyStats();
-          },
-        });
-
-        // Sortable elements
-        $("#class-group .grouping-columns")
-          .sortable({
-            connectWith: "#class-group .grouping-columns",
-            items: ".droppable",
-            placeholder: "placeholder",
-            start: function (event, ui) {
-              ui.item.addClass("dragging");
-
-              ui.item.data("fromIndex", ui.item.index());
-              ui.item.data("fromParent", ui.item.parent());
-            },
-            stop: function (event, ui) {
-              ui.item.removeClass("dragging");
-
-              ui.item.data("toIndex", ui.item.index());
-              ui.item.data("toParent", ui.item.parent());
-
-              var fromParent = ui.item.data("fromParent");
-              var fromIndex = ui.item.data("fromIndex");
-              var toParent = ui.item.data("toParent");
-              var toIndex = ui.item.data("toIndex");
-
-              if (fromParent[0] !== toParent[0]) {
-                var fromChild = fromParent.children().eq(fromIndex);
-                var toChild = toParent.children().eq(toIndex + 1);
-
-                fromChild.before(toChild);
-              }
-            },
-          })
-          .disableSelection();
-
-        function updateClassPartyStats() {
-          $("#class-group .party-column").each(function (
-            elementIndex,
-            element
-          ) {
-            var totalItemLevel = 0;
-            var itemCount = 0;
-            var uniColor = [];
-            var uniShortSyn = [];
-            var uniSynergy = [];
-            var uniData = [];
-
-            //iterate every character element space.
-            $(element)
-              .find(".droppable")
-              .each(function (ElementIndex, Element) {
-                //check character element existence in a character element space.
-                if ($(this).find(".draggable").length) {
-                  //get character data from a characterElement
-                  console.log("shit");
-                  //get class name of a characterElement
-                  className = $(Element)[0].innerText.split("\n")[0];
-                  console.log(className);
-
-                  //get other data of characterElement using className
-                  var color = getColorForClass(className);
-                  var synergy = getSynergyForClass(className);
-                  var shortSyn = getShortSynergyForClass(className);
-
-                  //add unique data in a party from each character element
-                  color.forEach(function (item, index) {
-                    uniColor.push(item);
-                  });
-                  synergy.forEach(function (item, index) {
-                    uniSynergy.push(item);
-                  });
-                }
+            
+            $('#classTabs a').each(function (index,element) {
+              var tab=$(element);
+              tab.on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
               });
-
-            uniSynergy.forEach(function (item, index) {
-              uniShortSyn.push(
-                item
-                  .split("-")[0]
-                  .split(" ")
-                  .map((word) => word.charAt(0).toUpperCase())
-                  .join("")
-              );
             });
-
-            //rearrange uniData synergy in Korean alphabetical order
-            for (var i = 0; i < uniColor.length; i++) {
-              var data = {
-                color: uniColor[i],
-                shortSyn: uniShortSyn[i],
-                synergy: uniSynergy[i],
-              };
-              uniData.push(data);
-            }
-
-            uniData.sort(function (a, b) {
-              var synergyA = a.synergy.toUpperCase();
-              var synergyB = b.synergy.toUpperCase();
-              if (synergyA < synergyB) {
-                return -1;
-              }
-              if (synergyA > synergyB) {
-                return 1;
-              }
-              return 0;
-            });
-
-            //make colorCircles with tooltip
-            $(this).find(".colorCircles").remove();
-            var colorCircles = $("<div></div>")
-              .addClass("colorCircles")
-              .attr({ width: "100%" });
-            var prevSynergy = "";
-            for (var i = 0; i < Object.keys(uniData).length; i++) {
-              if (
-                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
-              ) {
-                counter = 0;
-              }
-              counter++;
-              var colorCircle = $("<span></span>")
-                .addClass("rounded-rectangle")
-                .css("background-color", uniData[i].color);
-              colorCircle.text(uniData[i].shortSyn);
-              colorCircle
-                .attr({
-                  "data-toggle": "tooltip",
-                  "data-placement": "bottom",
-                  title: uniData[i].synergy,
-                })
-                .tooltip();
-              // add '/' between colorCircles with successive same synergy
-              if (
-                i > 0 &&
-                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
-              ) {
-                colorCircles.append("<span> / </span>");
-              }
-              colorCircles.append(colorCircle);
-              prevSynergy = uniData[i].synergy;
-            }
-
-            //display party data except character data
-            var numSlash = colorCircles.text().split("/").length - 1;
-
-            //synergy number data
-            if (numSlash == 0 && Object.keys(uniData).length == 0) {
-              $(this)
-                .find(".color-count")
-                .text(
-                  " 시너지수:" +
-                    Object.keys(uniData).length +
-                    " (" +
-                    numSlash +
-                    ")"
-                );
-            } else if (numSlash == 0 && Object.keys(uniData).length != 0) {
-              numSlash++;
-              $(this)
-                .find(".color-count")
-                .text(
-                  " 시너지수:" +
-                    Object.keys(uniData).length +
-                    " (" +
-                    numSlash +
-                    ")"
-                );
-            } else {
-              numSlash++;
-              $(this)
-                .find(".color-count")
-                .text(
-                  " 시너지수:" +
-                    Object.keys(uniData).length +
-                    " (" +
-                    numSlash +
-                    ")"
-                );
-            }
-            //color circles
-            $(this).find(".color-count").after(colorCircles);
           });
-        }
 
-        $(".togBtn").change(function () {
-          if ($(this).is(":checked")) {
-            // Hide synergiesContainer and show classesContainer when the slider is on the right
-            $("#synergy-container").hide();
-            $("#class-container").show();
-            $("#synergy-group-container").hide();
-            $("#class-group-container").show();
-          } else {
-            // Show synergiesContainer and hide classesContainer when the slider is on the left
-            $("#synergy-container").show();
-            $("#class-container").hide();
-            $("#synergy-group-container").show();
-            $("#class-group-container").hide();
-          }
+          // Append the column to the appropriate container
+          
+          $("#class-columns").append(column);
+          
         });
 
+        /*  ==================================================== character display module ==================================================== */
+        
+        /*structure : 
+        main algorithm 
+        -> user column 
+        -> charManager.getCharacterData(all per nick) 
+        -> charManager.displayCharacterData 
+        
+        -> charMangaer.getEquipmentData(all per char)
+        -> charManager.equipmentData
+        ...repeat
+        
+        main algorithm
+        -> user column
+        -> event
+        -> charManager.displayEquipmentData
+        ...repeat
+        */
+        
         // Define user columns
         var users = [
-          "유저 1",
-          "유저 2",
-          "유저 3",
-          "유저 4",
-          "유저 5",
-          "유저 6",
-          "유저 7",
-          "유저 8",
+          "유저1",
+          "유저2",
+          "유저3",
+          "유저4",
+          "유저5",
+          "유저6",
+          "유저7",
+          "유저8",
         ];
+
 
         // Create user columns
         users.forEach(function (user) {
-          var column = $('<div class="user-column col-5"></div>').css(
+          var column = $('<div class="character-column"></div>').css(
             "background-color",
             "#fff"
           );
-          var header = $("<h5></h5>").text(user);
           var form = $(
-            '<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임을 입력하세요"><button type="submit" class="submit-button">Submit</button></form>'
+            `<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임을 입력하세요"><button type="submit" class="submit-button btn-sm">${user} 등록</button></form>`
           );
-          var container = $('<div class="character-container"></div>');
-          column.append(header);
+          var section = $('<div class="character-section"></div>');
           column.append(form);
-          column.append(container);
-          $("#user-columns").append(column);
+          column.append(section);
+          $("#character-columns").append(column);
 
           // Handle form submission
           form.submit(function (event) {
             event.preventDefault();
             var nickname = $(this).find(".nickname-input").val();
-            getCharacterData(nickname, container);
+            //getCharacterData(nickname, container);
+            // Call the getCharacterData function when the page loads
+            characterManager.getCharacterData(nickname, section);
           });
+
         });
 
-        function getCharacterData(nickname, container) {
-          var url =
-            "https://developer-lostark.game.onstove.com/characters/" +
-            nickname +
-            "/siblings";
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", url, true);
-          xhr.setRequestHeader("accept", "application/json");
-          xhr.setRequestHeader(
-            "authorization",
-            "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
-          );
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-              if (xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
-                displayCharacterData(response, container);
-              } else {
-                console.log("Error:", xhr.statusText);
-              }
-            }
-          };
-          xhr.send();
-        }
-
-        function displayCharacterData(data, container) {
-          container.empty();
-          data.forEach(function (character) {
-            var element = $("<div></div>")
-              .text(
-                character.CharacterName +
-                  " (" +
-                  character.CharacterClassName +
-                  " " +
-                  character.ItemAvgLevel +
-                  ")"
-              )
-              .addClass("draggable")
-              .css("background-color", "white");
-            var color = getColorForClass(character.CharacterClassName);
-            var synergy = getSynergyForClass(character.CharacterClassName);
-            var shortSyn = getShortSynergyForClass(
-              character.CharacterClassName
-            );
-            var wrapper = $("<div></div>");
-
-            color.forEach(function (colorElement, index) {
-              //make circle with colored corresponding to each class synergy
-              var circle = $("<div></div>")
-                .addClass("rounded-rectangle")
-                .css("background-color", colorElement);
-              circle.text(shortSyn[index]);
-              circle
-                .attr({
-                  "data-toggle": "tooltip",
-                  "data-placement": "bottom",
-                  title: synergy[index],
-                })
-                .tooltip();
-
-              wrapper.append(circle);
-            });
-
-            element.append(wrapper);
-            container.append(element);
-            element.draggable({
-              helper: "clone",
-              revert: "invalid",
-              appendTo: "body",
-              zIndex: 100,
-            });
+        
+        $(".character-section").on("click",".draggable",function(){
+            openBar();
+            var characterName = $(this).text().split(" ")[0];
+            characterManager.displayEquipmentData(characterName);
+            characterManager.displayProfileData(characterName);
+            characterManager.displayDuoData(characterName);
           });
-        }
 
-        // Define your parties here
-        var characterGroup = ["1파티", "2파티"];
-        // Create grouping columns
-        characterGroup.forEach(function (party, index) {
-          var column = $('<div class="party-column col-10"></div>').css(
-            "background-color",
-            "#fff"
-          );
-          var header = $("<h6></h6>").text(party);
-          var avgItemLevel = $("<span></span>")
-            .addClass("avg-item-level")
-            .css("font-size", "13px");
-          var colorCount = $("<span></span>")
-            .addClass("color-count")
-            .css("font-size", "13px");
-          header.append(avgItemLevel, colorCount);
-          column.append(header);
 
-          for (var i = 0; i < 4; i++) {
-            var element = $("<div></div>")
-              .addClass("droppable")
-              .css("min-height", "50px");
-            column.append(element);
+        
+         // Create an object to encapsulate the functionality
+         var characterManager = {
+          
+          
+          equipmentData: {}, // Store equipment data here
+          profileData: {},
+          gemData: {},
+          cardData: {},
+
+          
+          getCharacterData: function (nickname, section) {
+            var url =
+              "https://developer-lostark.game.onstove.com/characters/" +
+              nickname +
+              "/siblings";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader(
+              "authorization",
+              "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+            );
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  characterManager.displayCharacterData(response, section);
+                } else {
+                  console.log("Error:", xhr.statusText);
+                }
+              }
+            };
+            xhr.send();
+          },
+
+          
+          displayCharacterData: function (data, section) {
+            section.empty();
+            data.forEach(function (character) {
+              var element = $("<div></div>")
+                .text(
+                  character.CharacterName +
+                    " (" +
+                    character.CharacterClassName +
+                    " " +
+                    character.ItemAvgLevel +
+                    ")"
+                )
+                .addClass("draggable")
+                .css("background-color", "white");
+              // Add other character information as needed
+              var color = getColorForClass(character.CharacterClassName);
+              var synergy = getSynergyForClass(character.CharacterClassName);
+              var shortSyn = getShortSynergyForClass(
+                character.CharacterClassName
+              );
+              var wrapper = $("<div class='character-synergy'></div>");
+
+              color.forEach(function (colorElement, index) {
+                //make circle with colored corresponding to each class synergy
+                var circle = $("<div></div>")
+                  .addClass("rounded-rectangle")
+                  .css("background-color", colorElement);
+                circle.text(shortSyn[index]);
+                circle
+                  .attr({
+                    "data-toggle": "tooltip",
+                    "data-placement": "bottom",
+                    title: synergy[index],
+                  })
+                  .tooltip();
+
+                wrapper.append(circle);
+              });
+
+              element.append(wrapper);
+              section.append(element);
+              element.draggable({
+                helper: "clone",
+                revert: "invalid",
+                appendTo: "body",
+                zIndex: 100,
+              });
+
+              characterManager.getEquipmentData(character.CharacterName);
+              characterManager.getProfileData(character.CharacterName);
+              characterManager.getGemData(character.CharacterName);
+              characterManager.getCardData(character.CharacterName);
+            });
+          },
+
+          getEquipmentData: function (characterName) {
+            var url =
+              "https://developer-lostark.game.onstove.com/armories/characters/" +
+              characterName +
+              "/equipment";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader(
+              "authorization",
+              "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+            );
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  characterManager.equipmentData[characterName]=response;
+                  console.log(characterManager.equipmentData[characterName]);
+                } else {
+                  var errorCode = xhr.statusText;
+                  console.log(errorCode);
+                }
+              }
+            };
+            xhr.send();
+          },
+
+
+          displayEquipmentData: function (characterName) {
+            var equipmentData = this.equipmentData[characterName];
+            
+
+            // Clear the existing equipment data display
+            $("#character-info-columns").empty();
+            var equipmentColumn = $("<div id='equipment-column' class='character-info-column'></div>");
+            $("#character-info-columns").append(equipmentColumn);
+              
+            // Iterate through the equipment data and display it
+            equipmentData.forEach(function (equipment) {
+
+              // Parse Tooltip and get necessary data
+              var tooltipData = characterManager.parseEquipmentTooltip(equipment.Tooltip);
+              var tooltipElement = tooltipData.tooltipElement;
+              var additionalInfo = tooltipData.additionalInfo;
+              var extraInfoDisplay = '';
+              if(additionalInfo.leftStr1 && additionalInfo.qualityValue) {
+                extraInfoDisplay = `[${additionalInfo.leftStr1} ${additionalInfo.qualityValue}]`;
+              }
+              var equipmentElement = $("<div></div>")
+                .addClass("equipment-element container")
+                .html(
+                  `
+                    <div class="row">
+                      ${equipment.Name}
+                    </div>
+                    <div class="row">
+                        <img src=${equipment.Icon} style="width: 20px; height: 20px; padding:0; margin: 5px;" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
+                        ${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}
+                    </div>
+                `
+                );
+              //equipmentElement.append(tooltipData);
+              equipmentColumn.append(equipmentElement);
+              // Parse Tooltip and append to the equipment element
+              console.log(tooltipElement);
+              $('[data-bs-toggle="tooltip"]').tooltip({
+                html: true,
+                title: tooltipElement,
+                trigger: 'click'
+              });
+            });
+            console.log(equipmentColumn);
+            //$("#spec-columns").append(equipmentColumn);
+          },
+
+          
+          parseEquipmentTooltip: function (tooltip) {
+            var tooltipElement = $("<div></div>");
+            var additionalInfo = {
+              leftStr1: null,
+              qualityValue: null
+            };
+              try {
+                // Replace the font size and color attributes with inline CSS
+                var fixedTooltip = tooltip.replace(/<font[^>]*>/gi, function(match){
+                  let newTag = '<span style=\'';
+                  let sizeMatch = match.match(/size='(\d+)'/i);
+                  let colorMatch = match.match(/color='([^']+)'/i);
+            
+                  if (sizeMatch) {
+                    newTag += `font-size:${sizeMatch[1]}px;`;
+                  }
+            
+                  if (colorMatch) {
+                    newTag += `color:${colorMatch[1]};`;
+                  }
+            
+                  newTag += '\'>';
+                  return newTag;
+                }).replace(/<\/font>/gi, "</span>");
+
+              var parsedTooltip = JSON.parse(fixedTooltip);
+              
+              for (var key in parsedTooltip) {
+                var element = parsedTooltip[key];
+                var elementDiv = $("<div class='text-left'></div>").addClass("tooltip-element");
+            
+                
+                switch (element.type) {
+                  case "NameTagBox":
+                    elementDiv.append(`<p>${element.value}</p>`);
+                    break;
+
+                  case "ItemTitle":
+                    additionalInfo.leftStr1 = $("<div>").html(element.value.leftStr1).text();
+                    additionalInfo.qualityValue = $("<div>").html(element.value.qualityValue).text();
+                    console.log(additionalInfo.leftStr1);
+                    console.log(additionalInfo.qualityValue);
+                    
+                    var itemTitleHtml = `
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-3">
+                            <img src="${element.value.slotData.iconPath}" alt="Icon">
+                          </div>
+                          <div class="col-9">
+                            <div class="row">
+                              <div class="col">
+                                ${element.value.leftStr0} ${element.value.rightStr0}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                ${element.value.leftStr2}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                ${element.value.leftStr1}
+                                <span>${element.value.qualityValue}</span>
+                              </div>
+                             </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    `;
+
+                    elementDiv.append(itemTitleHtml);
+                    break;
+
+
+                  case "SingleTextBox":
+                    elementDiv.append(`<p>${element.value}</p>`);
+                    break;
+
+                  case "MultiTextBox":
+                    var values = element.value.split('|');
+                    values.forEach(function(value) {
+                      elementDiv.append(`<p>${value}</p>`);
+                    });
+                    break;
+
+                  case "ItemPartBox":
+                    for (var subKey in element.value) {
+                      elementDiv.append(`<p>${element.value[subKey]}</p>`);
+                    }
+                    break;
+
+                  case "Progress":
+                    elementDiv.append(`<p>${element.value.title}: ${element.value.value}/${element.value.maximum}</p>`);
+                    break;
+
+                  case "SetItemGroup":
+                    elementDiv.append(`<p>${element.value.firstMsg}</p>`);
+                    var itemContainer = $("<div></div>").css({ "display": "flex", "justify-content": "space-around" ,"margin-bottom": "10px"});
+                    for (var itemKey in element.value.itemData) {
+                      var itemElement = element.value.itemData[itemKey];
+                      var itemSlot = $("<div></div>");
+                      itemSlot.append(`<img src="${itemElement.slotData.iconPath}" alt="Icon" style="width: 30px; height: 30px; display:block; margin:auto;">`);
+                      itemSlot.append(`<div style='text-align:center;'>${itemElement.label}</div>`);
+                      itemContainer.append(itemSlot);
+                    }
+                    elementDiv.append(itemContainer);
+                    break;
+
+                  case "IndentStringGroup":
+                    for (var groupKey in element.value) {
+                      var groupElement = element.value[groupKey];
+                      elementDiv.append(`<p>${groupElement.topStr}</p>`);
+                      for (var contentKey in groupElement.contentStr) {
+                        var contentElement = groupElement.contentStr[contentKey];
+                        elementDiv.append(`<p>${contentElement.contentStr}</p>`);
+                      }
+                    }
+                    break;
+
+                  case "ShowMeTheMoney":
+                    elementDiv.append(`<p>${element.value}</p>`);
+                    break;
+
+                  default:
+                    break;
+                }
+
+                tooltipElement.append(elementDiv);
+              }
+            } catch (error) {
+              console.error('Error parsing tooltip:', error);
+            }
+
+            return { tooltipElement, additionalInfo };
+          },
+         
+          
+
+          getProfileData: function (characterName) {
+            var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/profiles"; // Adjust URL as per API documentation
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader("authorization", "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"); // Put your token here
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  characterManager.profileData[characterName] = response;
+                  console.log(characterManager.profileData[characterName]);
+                } else {
+                  var errorCode = xhr.statusText;
+                  console.log(errorCode);
+                }
+              }
+            };
+            xhr.send();
+          },
+
+          displayDuoData: function(characterName){
+            $("#duo-column").empty();
+            var duo = $(`<div id="duo-column"></div>`);
+            $("#character-info-columns").append(duo);
+            this.displayGemData(characterName);
+            this.displayCardData(characterName);
+          },
+
+          displayProfileData: function (characterName) {
+            var profileData = this.profileData[characterName];
+            
+            // Clear the existing character data display
+            $("#profile-column").empty();
+            var profile = $('<div id="profile-column" class="character-info-column"></div>');
+            $("#character-info-columns").append(profile);
+            // Create a container to hold the data
+            var profileHTML = $(`
+              <div class="container">
+                <div class="row">
+                  <div class="col">원정대 레벨: ${profileData.ExpeditionLevel}</div>
+                  <div class="col">아이템 레벨: ${profileData.ItemAvgLevel}</div>
+                  <div class="col">전투 레벨: ${profileData.CharacterLevel}</div>
+                </div>
+                <div class="row">
+                  <div class="col">서버명: ${profileData.ServerName}</div>
+                  <div class="col">캐릭터명: ${profileData.CharacterName}</div>
+                  <div class="col">캐릭터 클래스: ${profileData.CharacterClassName}</div>                  
+                </div>
+              </div>
+            `);
+            
+            var stats = $('<div id="stat-column" class="character-info-column"></div>')
+            var basicStats = $('<div class="row"></div>');
+            var mainStats = $('<div class="row"></div>');
+            var subStats = $('<div class="row"></div>');
+            
+            // For stats, you might need to iterate through an array if it's an array of objects
+            profileData.Stats.forEach(function(stat) {
+              if (stat.Type === '치명' || stat.Type === '특화' || stat.Type === '신속') {
+                mainStats.append(`<div class="col">${stat.Type} : ${stat.Value}</div>`);
+              }
+              else if (stat.Type === '제압' || stat.Type === '인내' || stat.Type === '숙련') {
+                subStats.append(`<div class="col">${stat.Type} : ${stat.Value}</div>`);
+              }
+              else {
+                basicStats.append(`<div class="col">${stat.Type} : ${stat.Value}</div>`);
+              }
+            });
+
+            profile.append(profileHTML);
+            stats.append(basicStats);
+            stats.append(mainStats);
+            stats.append(subStats);
+
+            profile.append(stats);
+            
+            
+            console.log($("#profile-column"));
+            
+          },
+
+          getGemData: function (characterName) {
+            var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/gems"; // Adjust URL as per API documentation
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader("authorization", "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"); // Put your token here
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  characterManager.gemData[characterName] = response;
+                  console.log(characterManager.gemData[characterName]);
+                } else {
+                  var errorCode = xhr.statusText;
+                  console.log(errorCode);
+                }
+              }
+            };
+            xhr.send();
+          },
+          
+          displayGemData: function(characterName) {
+            var gemData = this.gemData[characterName];
+            var gemColumn = $("<div id='gem-column' class='character-info-column'></div>");
+            $('#duo-column').append(gemColumn);
+            // Clear the existing character data display
+            gemColumn.empty();
+            
+            gemData.Gems.forEach(function(gem) {
+                var gemElement = $(`
+                    <div class="gem-element container position-relative">
+                            <img src="${gem.Icon}" alt="${gem.Name}" style="width: 100%; height: 100%; padding:0; " data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
+                            <div class="position-absolute bottom-0 end-0">${gem.Level}</div>
+                    </div>
+                `);
+              console.log("툴팁:"+gem.Tooltip);
+              gemColumn.append(gemElement);
+               var tooltipElement = characterManager.parseGemTooltip(gem.Tooltip);
+               $('[data-bs-toggle="tooltip"]').tooltip({
+                html: true,
+                title: tooltipElement,
+                trigger: 'hover',
+              });
+            });
+            
+
+        },
+
+        parseGemTooltip: function(tooltipData) {
+
+            // Replace the font size and color attributes with inline CSS
+            var fixedTooltip = tooltipData.replace(/<font[^>]*>/gi, function(match){
+              let newTag = '<span style=\'';
+              let sizeMatch = match.match(/size='(\d+)'/i);
+              let colorMatch = match.match(/color='([^']+)'/i);
+        
+              if (sizeMatch) {
+                newTag += `font-size:${sizeMatch[1]}px;`;
+              }
+        
+              if (colorMatch) {
+                newTag += `color:${colorMatch[1]};`;
+              }
+        
+              newTag += '\'>';
+              return newTag;
+            }).replace(/<\/font>/gi, "</span>");
+            // Parse the JSON data from the tooltip string
+            const tooltip = JSON.parse(fixedTooltip);
+        
+            // Create a Bootstrap tooltip container element
+            const tooltipContainer = $('<div></div>');
+        
+            // Iterate through elements in the tooltip and create corresponding HTML
+            for (const key in tooltip) {
+                if (tooltip.hasOwnProperty(key)) {
+                    const element = tooltip[key];
+                    switch (element.type) {
+                        case 'NameTagBox':
+                            // Create a name tag box element
+                            const nameTagBox = $('<div></div>').addClass('name-tag-box');
+                            nameTagBox.append(element.value);
+                            tooltipContainer.append(nameTagBox);
+                            break;
+                        case 'ItemTitle':
+                            // Create an item title box element
+                            const itemTitleBox = $('<div></div>').addClass('item-title-box');
+                            var itemTitleHtml = $(`
+                                <div class="container">
+                                  <div class="row">
+                                    <div class="col-3">
+                                      <img src="${element.value.slotData.iconPath}" alt="Icon">
+                                    </div>
+                                    <div class="col-9">
+                                      <div class="row">
+                                        <div class="col">
+                                          ${element.value.leftStr0}
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col">
+                                          ${element.value.leftStr2}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              `);
+                            itemTitleBox.append(itemTitleHtml);
+                            tooltipContainer.append(itemTitleBox);
+                            break;
+                        case 'MultiTextBox':
+                            // Create a multi-text box element
+                            const multiTextBox = $('<div></div>').addClass('multi-text-box');
+                            multiTextBox.append(element.value);
+                            tooltipContainer.append(multiTextBox);
+                            break;
+                        case 'SingleTextBox':
+                            // Create a single text box element
+                            const singleTextBox = $('<div></div>').addClass('single-text-box');
+                            singleTextBox.append(element.value);
+                            tooltipContainer.append(singleTextBox);
+                            break;
+                        case 'ItemPartBox':
+                            // Create an item part box element
+                            const itemPartBox = $('<div></div>').addClass('item-part-box');
+                            itemPartBox.append(element.value.Element_000);
+                            itemPartBox.append($('<br>'));
+                            itemPartBox.append(element.value.Element_001);
+                            tooltipContainer.append(itemPartBox);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        
+            return tooltipContainer;
+          },
+
+          getCardData: function (characterName) {
+            var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/cards"; // Adjust URL as per API documentation
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.setRequestHeader("accept", "application/json");
+            xhr.setRequestHeader("authorization", "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"); // Put your token here
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  characterManager.cardData[characterName] = response;
+                  console.log(characterManager.cardData[characterName]);
+                } else {
+                  var errorCode = xhr.statusText;
+                  console.log(errorCode);
+                }
+              }
+            };
+            xhr.send();
+          },
+
+          displayCardData: function(characterName) {
+            var cardData = this.cardData[characterName];
+            var cardColumn = $("<div id='card-column' class='character-info-column'></div>");
+            $('#duo-column').append(cardColumn);
+
+            cardData.Cards.forEach(function(card) {
+                var tooltip = JSON.parse(card.Tooltip);
+                var cardElement = `
+                    <div class="card border-dark" style="width: 40px; margin: 0 5px;">
+                      <img src="${card.Icon}" class="card-img" alt="${card.Name}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
+                      <div class="card-img-overlay">
+                        <div class="card-title text-start">${card.Name}</div>
+                        
+                        </div>
+                    </div>
+                `;
+                cardColumn.append(cardElement);
+            });
+
+            cardData.Effects.forEach(function(effect) {
+                var effectElement = `
+                    <button type="button" class="btn btn-dark" data-toggle="tooltip" style="margin: 0 auto;">
+                        <strong>${effect.Items[effect.Items.length-1].Name}</strong>
+                    </button>
+                `;
+                cardColumn.append(effectElement);
+                effectElement.tooltip('toggle');
+            });
+          /*${effect.Items.map(item => `<p>${item.Name}: ${item.Description}</p>`).join('')}*/
           }
 
-          $("#character-group").append(column);
-        });
-
-        $("#character-group .droppable").droppable({
-          accept: ".draggable",
-          drop: function (event, ui) {
-            var dropped = ui.helper.clone();
-            dropped.removeClass("ui-draggable ui-draggable-handle");
-            dropped.css({ position: "static", left: "", top: "" });
-            // Add tooltips to the cloned draggable elements
-            dropped.find("[data-toggle='tooltip']").tooltip();
-
-            dropped.click(function () {
-              dropped.find("[data-toggle='tooltip']").tooltip("hide");
-              $(this).remove();
-              updateCharacterPartyStats();
-            });
-
-            $(this).empty().append(dropped);
-            updateCharacterPartyStats();
-          },
-        });
-
-        $("#character-group")
-          .sortable({
-            connectWith: "#character-group",
-            items: ".droppable",
-            placeholder: "placeholder",
-            appendTo: "body",
-            helper: "clone",
-            start: function (event, ui) {
-              ui.item.addClass("dragging");
-              ui.item.data("fromIndex", ui.item.index());
-              ui.item.data("fromParent", ui.item.parent());
-            },
-            stop: function (event, ui) {
-              ui.item.removeClass("dragging");
-              ui.item.data("toIndex", ui.item.index());
-              ui.item.data("toParent", ui.item.parent());
-              var fromParent = ui.item.data("fromParent");
-              var fromIndex = ui.item.data("fromIndex");
-              var toParent = ui.item.data("toParent");
-              var toIndex = ui.item.data("toIndex");
-
-              if (fromParent[0] !== toParent[0]) {
-                var fromChild = fromParent.children().eq(fromIndex);
-                var toChild = toParent.children().eq(toIndex + 1);
-
-                fromChild.before(toChild);
-              }
-              updateCharacterPartyStats();
-            },
-          })
-          .disableSelection();
+        }
+//end of charactermanager
 
         function getColorForClass(className) {
           var classColor = [];
@@ -1457,6 +2193,7 @@
           });
           return classSynergy;
         }
+
         function getShortSynergyForClass(className) {
           var classSynergy = [];
           synergies.forEach(function (synergy) {
@@ -1640,7 +2377,671 @@
             $(this).find(".color-count").after(colorCircles);
           });
         }
+
+        /*  ==================================================== synergy grouping module ==================================================== */
+        // Define your parties here
+        var synergyGroup = ["1파티", "2파티"];
+
+        // Create grouping columns
+        synergyGroup.forEach(function (party, index) {
+          var column = $('<div class="party-column"></div>').css(
+            "background-color",
+            "#fff"
+          );
+          var header = $("<h6></h6>").text(party);
+          column.append(header);
+
+          for (var i = 0; i < 4; i++) {
+            var element = $("<div></div>")
+              .addClass("droppable")
+              .css("min-height", "50px");
+            column.append(element);
+          }
+
+          $("#synergy-group").append(column);
+        });
+
+        // Draggable elements
+        $("#synergy-columns .draggable").draggable({
+          helper: "clone",
+          revert: "invalid",
+          appendTo: "body",
+          zIndex: 100,
+        });
+
+        // Droppable elements
+        $("#synergy-group .droppable").droppable({
+          accept: "#synergy-columns .draggable",
+          drop: function (event, ui) {
+            var dropped = ui.helper.clone();
+            dropped.removeClass("ui-draggable ui-draggable-handle");
+            dropped.css({ position: "static", left: "", top: "" });
+            // Add tooltips to the cloned draggable elements
+            dropped.find("[data-toggle='tooltip']").tooltip();
+            dropped.click(function () {
+              dropped.find("[data-toggle='tooltip']").tooltip("hide");
+              $(this).remove();
+            });
+
+            $(this).empty().append(dropped);
+          },
+        });
+
+        // Sortable elements
+        $("#synergy-group .grouping-columns")
+          .sortable({
+            connectWith: "#synergy-group .grouping-columns",
+            items: ".droppable",
+            placeholder: "placeholder",
+            start: function (event, ui) {
+              ui.item.addClass("dragging");
+
+              ui.item.data("fromIndex", ui.item.index());
+              ui.item.data("fromParent", ui.item.parent());
+            },
+            stop: function (event, ui) {
+              ui.item.removeClass("dragging");
+
+              ui.item.data("toIndex", ui.item.index());
+              ui.item.data("toParent", ui.item.parent());
+
+              var fromParent = ui.item.data("fromParent");
+              var fromIndex = ui.item.data("fromIndex");
+              var toParent = ui.item.data("toParent");
+              var toIndex = ui.item.data("toIndex");
+
+              if (fromParent[0] !== toParent[0]) {
+                var fromChild = fromParent.children().eq(fromIndex);
+                var toChild = toParent.children().eq(toIndex + 1);
+
+                fromChild.before(toChild);
+              }
+            },
+          })
+          .disableSelection();
+
+        /*  ==================================================== class grouping module ==================================================== */
+        // Define your parties here
+        var classGroup = ["1파티", "2파티"];
+
+        // Create grouping columns
+        classGroup.forEach(function (party, index) {
+          var column = $('<div class="party-column"></div>').css(
+            "background-color",
+            "#fff"
+          );
+          var header = $("<h6></h6>").text(party);
+          var colorCount = $("<span></span>")
+            .addClass("color-count")
+            .css("font-size", "13px");
+          header.append(colorCount);
+          column.append(header);
+
+          for (var i = 0; i < 4; i++) {
+            var element = $("<div></div>")
+              .addClass("droppable")
+              .css("min-height", "50px");
+            column.append(element);
+          }
+
+          $("#class-group").append(column);
+        });
+
+        // Draggable elements
+        $("#class-columns .draggable").draggable({
+          helper: "clone",
+          revert: "invalid",
+          appendTo: "body",
+          zIndex: 100,
+        });
+
+        // Droppable elements
+        $("#class-group .droppable").droppable({
+          accept: "#class-columns .draggable",
+          drop: function (event, ui) {
+            var dropped = ui.helper.clone();
+            dropped.removeClass("ui-draggable ui-draggable-handle");
+            dropped.css({ position: "static", left: "", top: "" });
+            // Add tooltips to the cloned draggable elements
+            dropped.find("[data-toggle='tooltip']").tooltip();
+            dropped.click(function () {
+              dropped.find("[data-toggle='tooltip']").tooltip("hide");
+              $(this).remove();
+              updateClassPartyStats();
+            });
+
+            $(this).empty().append(dropped);
+            updateClassPartyStats();
+          },
+        });
+
+        // Sortable elements
+        $("#class-group .grouping-columns")
+          .sortable({
+            connectWith: "#class-group .grouping-columns",
+            items: ".droppable",
+            placeholder: "placeholder",
+            start: function (event, ui) {
+              ui.item.addClass("dragging");
+
+              ui.item.data("fromIndex", ui.item.index());
+              ui.item.data("fromParent", ui.item.parent());
+            },
+            stop: function (event, ui) {
+              ui.item.removeClass("dragging");
+
+              ui.item.data("toIndex", ui.item.index());
+              ui.item.data("toParent", ui.item.parent());
+
+              var fromParent = ui.item.data("fromParent");
+              var fromIndex = ui.item.data("fromIndex");
+              var toParent = ui.item.data("toParent");
+              var toIndex = ui.item.data("toIndex");
+
+              if (fromParent[0] !== toParent[0]) {
+                var fromChild = fromParent.children().eq(fromIndex);
+                var toChild = toParent.children().eq(toIndex + 1);
+
+                fromChild.before(toChild);
+              }
+            },
+          })
+          .disableSelection();
+
+        function updateClassPartyStats() {
+          $("#class-group .party-column").each(function (
+            elementIndex,
+            element
+          ) {
+            var totalItemLevel = 0;
+            var itemCount = 0;
+            var uniColor = [];
+            var uniShortSyn = [];
+            var uniSynergy = [];
+            var uniData = [];
+
+            //iterate every character element space.
+            $(element)
+              .find(".droppable")
+              .each(function (ElementIndex, Element) {
+                //check character element existence in a character element space.
+                if ($(this).find(".draggable").length) {
+                  //get class name of a characterElement
+                  className = $(Element)[0].innerText.split("\n")[0];
+
+                  //get other data of characterElement using className
+                  var color = getColorForClass(className);
+                  var synergy = getSynergyForClass(className);
+                  var shortSyn = getShortSynergyForClass(className);
+
+                  //add unique data in a party from each character element
+                  color.forEach(function (item, index) {
+                    uniColor.push(item);
+                  });
+                  synergy.forEach(function (item, index) {
+                    uniSynergy.push(item);
+                  });
+                }
+              });
+
+            uniSynergy.forEach(function (item, index) {
+              uniShortSyn.push(
+                item
+                  .split("-")[0]
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase())
+                  .join("")
+              );
+            });
+
+            //rearrange uniData synergy in Korean alphabetical order
+            for (var i = 0; i < uniColor.length; i++) {
+              var data = {
+                color: uniColor[i],
+                shortSyn: uniShortSyn[i],
+                synergy: uniSynergy[i],
+              };
+              uniData.push(data);
+            }
+
+            uniData.sort(function (a, b) {
+              var synergyA = a.synergy.toUpperCase();
+              var synergyB = b.synergy.toUpperCase();
+              if (synergyA < synergyB) {
+                return -1;
+              }
+              if (synergyA > synergyB) {
+                return 1;
+              }
+              return 0;
+            });
+
+            //make partySynergy with tooltip
+            $(this).find(".party-synergy").remove();
+            var partySynergy = $("<div></div>")
+              .addClass("party-synergy")
+              .attr({ width: "100%" });
+            var prevSynergy = "";
+            for (var i = 0; i < Object.keys(uniData).length; i++) {
+              if (
+                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
+              ) {
+                counter = 0;
+              }
+              counter++;
+              var synergySymbol = $("<span></span>")
+                .addClass("rounded-rectangle")
+                .css("background-color", uniData[i].color);
+              synergySymbol.text(uniData[i].shortSyn);
+              synergySymbol
+                .attr({
+                  "data-toggle": "tooltip",
+                  "data-placement": "bottom",
+                  title: uniData[i].synergy,
+                })
+                .tooltip();
+              // add '/' between colorCircles with successive same synergy
+              if (
+                i > 0 &&
+                uniData[i].synergy.split("-")[0] != prevSynergy.split("-")[0]
+              ) {
+                partySynergy.append("<span> / </span>");
+              }
+              partySynergy.append(synergySymbol);
+              prevSynergy = uniData[i].synergy;
+            }
+
+            //display party data except character data
+            var numSlash = partySynergy.text().split("/").length - 1;
+
+            //synergy number data
+            if (numSlash == 0 && Object.keys(uniData).length == 0) {
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else if (numSlash == 0 && Object.keys(uniData).length != 0) {
+              numSlash++;
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            } else {
+              numSlash++;
+              $(this)
+                .find(".color-count")
+                .text(
+                  " 시너지수:" +
+                    Object.keys(uniData).length +
+                    " (" +
+                    numSlash +
+                    ")"
+                );
+            }
+            //color circles
+            $(this).find(".color-count").after(partySynergy);
+          });
+        }
+
+        /*  ==================================================== character grouping module ==================================================== */
+
+        // Define your parties here
+        var characterGroup = ["1파티", "2파티"];
+        // Create grouping columns
+        characterGroup.forEach(function (party, index) {
+          var column = $('<div class="party-column"></div>').css(
+            "background-color",
+            "#fff"
+          );
+          var header = $("<h6></h6>").text(party);
+          var avgItemLevel = $("<span></span>")
+            .addClass("avg-item-level")
+            .css("font-size", "13px");
+          var colorCount = $("<span></span>")
+            .addClass("color-count")
+            .css("font-size", "13px");
+          header.append(avgItemLevel, colorCount);
+          column.append(header);
+
+          for (var i = 0; i < 4; i++) {
+            var element = $("<div></div>")
+              .addClass("droppable")
+              .css("min-height", "50px");
+            column.append(element);
+          }
+
+          $("#character-group").append(column);
+        });
+
+        $("#character-group .droppable").droppable({
+          accept: ".draggable",
+          drop: function (event, ui) {
+            var dropped = ui.helper.clone();
+            dropped.removeClass("ui-draggable ui-draggable-handle");
+            dropped.css({ position: "static", left: "", top: "" });
+            // Add tooltips to the cloned draggable elements
+            dropped.find("[data-toggle='tooltip']").tooltip();
+
+            dropped.click(function () {
+              dropped.find("[data-toggle='tooltip']").tooltip("hide");
+              $(this).remove();
+              updateCharacterPartyStats();
+            });
+
+            $(this).empty().append(dropped);
+            updateCharacterPartyStats();
+          },
+        });
+
+        $("#character-group")
+          .sortable({
+            connectWith: "#character-group",
+            items: ".droppable",
+            placeholder: "placeholder",
+            appendTo: "body",
+            helper: "clone",
+            start: function (event, ui) {
+              ui.item.addClass("dragging");
+              ui.item.data("fromIndex", ui.item.index());
+              ui.item.data("fromParent", ui.item.parent());
+            },
+            stop: function (event, ui) {
+              ui.item.removeClass("dragging");
+              ui.item.data("toIndex", ui.item.index());
+              ui.item.data("toParent", ui.item.parent());
+              var fromParent = ui.item.data("fromParent");
+              var fromIndex = ui.item.data("fromIndex");
+              var toParent = ui.item.data("toParent");
+              var toIndex = ui.item.data("toIndex");
+
+              if (fromParent[0] !== toParent[0]) {
+                var fromChild = fromParent.children().eq(fromIndex);
+                var toChild = toParent.children().eq(toIndex + 1);
+
+                fromChild.before(toChild);
+              }
+              updateCharacterPartyStats();
+            },
+          })
+          .disableSelection();
+
+        /*  ==================================================== copy/paste module ==================================================== */
+        /*
+        // Add event listeners to copy buttons
+        $("#class-copyBtn").click(function () {
+          var containerId = $(this).closest(".to-container").attr("id");
+          var dataElement = $("#" + containerId + " .grouping-columns");
+          openBar();
+          copyData(dataElement);
+        });
+
+        // Add event listeners to save buttons
+        $("#class-saveBtn").click(function () {
+          var containerId = $(this).closest(".to-container").attr("id");
+          var dataElement = $("#" + containerId + " .grouping-columns");
+          saveData(dataElement);
+        });
+
+        // Function to copy the content of an element as JSON or CSV
+        function copyData(element) {
+          var json = convertToJSON(element);
+          navigator.clipboard.writeText(json).then(function () {});
+        }
+
+        // Function to save the content of an element as JSON or CSV
+        function saveData(element) {
+          var json = convertToJSON(element);
+          var csv = convertToCSV(json);
+
+          var link = document.createElement("a");
+          link.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
+          link.download = "data.csv";
+          link.click();
+        }
+
+        // Function to convert the content of an element to JSON format
+        function convertToJSON(group) {
+          //get party columns css object from grouping column.
+          party = $(group).find(".party-column");
+
+          //prepare object to store grouping column data.
+          groupData = {};
+
+          //get text data from each party column objects.
+          party.each(function (partyIndex, partyElement) {
+            //get objects of each data element from party column.
+            classElements = $(partyElement).find(".draggable");
+            partySynNumElement = $(partyElement).find(".color-count");
+            partySynElements = $(partyElement).find(
+              ".party-synergy .rounded-rectangle"
+            );
+
+            //set partyName
+            partyName = partyIndex + 1 + "파티";
+            console.log("partyName:" + partyName);
+
+            //get data of partySynNum
+            partySynNumText = partySynNumElement.text();
+            regex = /\d+/g;
+            partySynNum = partySynNumText.match(regex);
+            console.log("partySynNum:" + partySynNum);
+
+            //prepare partySynArray to store partySyn data.
+            partySynArray = [];
+
+            //get data of partySyn
+            partySynElements.each(function (partysynIndex, partySynElement) {
+              //get data of each partySyns
+              partySynName = partySynElement.innerText;
+
+              //store data to partySynArray
+              partySynArray.push(partySynName);
+            });
+            //store party data in groupdata
+            groupData["Party" + (partyIndex + 1) + "Synergy"] = partySynArray;
+            groupData["Party" + (partyIndex + 1) + "SynNum"] = partySynNum;
+            console.log(groupData);
+
+            //get each data of class
+            partyArray = [];
+            if (classElements.length) {
+              classElements.each(function (classIndex, classElement) {
+                className = classElement.innerText.split("\n")[0];
+                console.log("className:" + className);
+
+                classSynergyWraper = $(classElement).find(".class-synergy");
+                classSynergyElements = classSynergyWraper.children();
+                synergyArray = [];
+
+                //get each data of class synergy
+                classSynergyElements.each(function (
+                  synergyIndex,
+                  synergyElement
+                ) {
+                  synergyName = synergyElement.innerText;
+                  console.log("synergyName:" + synergyName);
+                  synergyArray[synergyIndex] = synergyName;
+                });
+                //store each class&synergy data in partyArray
+                partyArray.push({ Class: className, Synergy: synergyArray });
+              });
+            }
+            //store each partyArray data in groupdata
+            groupData["Party" + (partyIndex + 1)] = partyArray;
+          });
+          //send groupdata as string
+          console.log("test:" + JSON.stringify(groupData));
+          return JSON.stringify(groupData);
+        }
+
+        function convertToTable(table) {
+          console.log("initiated");
+          //get table data from clipboard
+          navigator.clipboard.readText().then((data) => {
+            //parse JSON
+            const jsonData = JSON.parse(data);
+            //extract data from JSON
+            var newData = [];
+            newData.push(["1파티", "파티시너지수", "파티시너지"]);
+            newData.push([
+              "",
+              jsonData.Party1SynNum.join(","),
+              jsonData.Party1Synergy.join(","),
+            ]);
+            newData.push(["", "직업", "시너지"]);
+
+            jsonData.Party1.forEach(function (party) {
+              newData.push(["", party.Class, party.Synergy.join(",")]);
+            });
+            console.log(jsonData.Party1SynNum);
+            newData.push(["2파티", "파티시너지수", "파티시너지"]);
+            newData.push([
+              "",
+              jsonData.Party2SynNum.join(","),
+              jsonData.Party2Synergy.join(","),
+            ]);
+            newData.push(["", "직업", "시너지"]);
+
+            jsonData.Party2.forEach(function (party) {
+              newData.push(["", party.Class, party.Synergy.join(",")]);
+            });
+
+            // Initialize Handsontable
+            
+            //prepare table data
+            var container = document.getElementById("spreadsheet");
+            existingData = [];
+            existingData = table.getData();
+            sumData = [];
+            var countDataRows = table.countRows() - table.countEmptyRows();
+            //when table have no data
+            if (countDataRows == 0) {
+              //add new data to table
+              console.log("empty table");
+              sumData = [].concat(newData);
+              console.log(sumData);
+            }
+            //when table have data
+            else if (countDataRows > 0) {
+              //sum new data and existing data first, then add data to table
+              console.log("not empty table");
+              sumData = existingData.slice(0, countDataRows).concat(newData);
+              console.log(sumData);
+            }
+
+            var newBeginIndex = countDataRows;
+            console.log(newBeginIndex);
+
+            //display table data
+            table.updateData(sumData);
+
+            //set table header background color.
+            //party1
+            table.setCellMeta(newBeginIndex + 0, 0, "className", "main-header");
+            //party1 attribute
+            table.setCellMeta(newBeginIndex + 0, 1, "className", "sub-header");
+            table.setCellMeta(newBeginIndex + 0, 2, "className", "sub-header");
+            //character attribute
+            table.setCellMeta(newBeginIndex + 2, 1, "className", "sub-header");
+            table.setCellMeta(newBeginIndex + 2, 2, "className", "sub-header");
+
+            //party2
+            table.setCellMeta(
+              newBeginIndex + (3 + jsonData.Party1.length) + 0,
+              0,
+              "className",
+              "main-header"
+            );
+            //party2 attribute
+            table.setCellMeta(
+              newBeginIndex + (3 + jsonData.Party1.length) + 0,
+              1,
+              "className",
+              "sub-header"
+            );
+            table.setCellMeta(
+              newBeginIndex + (3 + jsonData.Party1.length) + 0,
+              2,
+              "className",
+              "sub-header"
+            );
+            //character attribute
+            table.setCellMeta(
+              newBeginIndex + (3 + jsonData.Party1.length) + 2,
+              1,
+              "className",
+              "sub-header"
+            );
+            table.setCellMeta(
+              newBeginIndex + (3 + jsonData.Party1.length) + 2,
+              2,
+              "className",
+              "sub-header"
+            );
+
+            //render table
+            table.render();
+
+            //merge cells
+            console.log("plugin:" + table.getPlugin("MergeCells"));
+          });
+        }
+
+        // Initialize Handsontable
+        var container = document.getElementById("spreadsheet");
+        var hot = new Handsontable(container, {
+          width: "100%",
+          startRows: 10,
+          startCols: 10,
+          mergeCells: true,
+          rowHeaders: true,
+          colHeaders: true,
+          contextMenu: true,
+          licenseKey: "non-commercial-and-evaluation",
+        });
+
+        hot.render();
+        
+        // Attach event listener to the paste button
+        const pasteButton = document.getElementById("paste-button");
+        pasteButton.addEventListener("click", function () {
+          convertToTable(hot);
+        });
+        */
+        $('input[name="radioBtn"]').change(function () {
+          const selectedComponentId = $(this).val();
+          $(".from-container").hide(); // Hide all components
+          $(".to-container").hide(); // Hide all components
+          $(".info-container").hide(); // Hide all components
+          $("#" + selectedComponentId + "-container").show(); // Show the selected component
+          $("#" + selectedComponentId + "-group-container").show(); // Show the selected component
+          $("#" + selectedComponentId + "-info-container").show(); // Show the selected component
+        });
       });
+      //end documnet
+      //extra function
+      function openBar() {
+        document.getElementById("table-sidebar").style.width = "60%";
+        document.getElementById("table-sidebar").style.paddingRight = "2%";
+        document.getElementById("sideOpenBtn").style.width = "0%";
+      }
+
+      /* Set the width of the side navigation to 0 */
+      function closeBar() {
+        document.getElementById("table-sidebar").style.width = "0";
+        document.getElementById("table-sidebar").style.paddingRight = "0";
+        document.getElementById("sideOpenBtn").style.width = "30px";
+      }
     </script>
   </body>
 </html>
