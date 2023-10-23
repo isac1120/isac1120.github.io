@@ -614,8 +614,8 @@
   </head>
   <body>
     <div class="title text-center">
-      <h3 class="d-inline">공대 구성 시뮬레이터</h3>
-      <h6 class="d-inline align-bottom">2023.07ver</h6>
+      <h3 class="d-inline">로모임</h3>
+      <h6 class="d-inline align-bottom">2023.10/beta_ver</h6>
     </div>
     <div id="sideOpenBtn" onclick="openBar()">
       <svg
@@ -2138,7 +2138,7 @@
             cardData.Cards.forEach(function(card) {
                 var tooltip = JSON.parse(card.Tooltip);
                 var cardElement = `
-                    <div class="card border-dark" style="width: 40px; margin: 0 5px;">
+                    <div class="card border-dark" style="width: 10%; margin: 0 5px;">
                       <img src="${card.Icon}" class="card-img" alt="${card.Name}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
                       <div class="card-img-overlay">
                         <div class="card-title text-start">${card.Name}</div>
