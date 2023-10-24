@@ -5,26 +5,26 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="레이더스 큐브 - 로아 공대/파티 시너지 시뮬레이터"
+      content="로모임 - 로아 공대/파티 시너지 조합 시뮬레이터"
     />
     <meta
       property="og:description"
-      content="'레이더스 큐브'는 로스트아크 게임의, 공대/파티 시너지 조합 시뮬레이터입니다. 공대나 파티를 구성할 때, 시너지 조합이 힘든 로아 유저들을 위해 제작되었습니다."
+      content="'로모임'은 로스트아크 게임의, 공대/파티 시너지 조합 시뮬레이터입니다. 공대나 파티를 구성할 때, 시너지 조합이 힘든 로아 유저들을 위해 제작되었습니다."
     />
     <meta
       property="og:image"
       content="https://isac1120.github.io/website image synergy.png"
     />
-    <meta property="og:site_name" content="레이더스 큐브" />
+    <meta property="og:site_name" content="로모임" />
     <meta property="og:locale" content="en_US" />
-    <meta name="Title" content="레이더스 큐브" />
+    <meta name="Title" content="로모임" />
     <meta
       name="Description"
-      content="'레이더스 큐브'는 로스트아크 게임의, 공대/파티 시너지 조합 시뮬레이터입니다. 공대나 파티를 구성할 때, 시너지 조합이 힘든 로아 유저들을 위해 제작되었습니다."
+      content="'로모임'은 로스트아크 게임의, 공대/파티 시너지 조합 시뮬레이터입니다. 공대나 파티를 구성할 때, 시너지 조합이 힘든 로아 유저들을 위해 제작되었습니다."
     />
     <meta
       name="Keywords"
-      content="raiders cube,로아,로스트아크,시너지,시너지표,공대장,공대,파티,시너지 조합,파티 시너지,공대 시너지,조합,레이더스 큐브,시뮬레이터,레이더스큐브"
+      content="로모임,로아,로스트아크,시너지,시너지표,공대장,공대,파티,시너지 조합,파티 시너지,공대 시너지,조합,시뮬레이터,Lomoim,lomoim"
     />
     <meta
       name="google-site-verification"
@@ -33,7 +33,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>레이더스 큐브 - 로아 공대/파티 시너지 시뮬레이터</title>
+    <title>로모임 - 로아 공대/파티 시너지 시뮬레이터</title>
 
     <link rel="icon" type="image/icon" href="favicon.ico" />
     <link rel="shortcut icon" type="image/icon" href="favicon.ico" />
@@ -41,10 +41,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="manifest" href="site.webmanifest" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -98,6 +95,7 @@
       }
 
       .container {
+      
         position: relative;
         width: 100%;
         display: flex;
@@ -119,11 +117,11 @@
 
       .from-container {
         width: 59%;
-        height: 650px;
+        height: 100%;
       }
       .to-container {
         width: 39%;
-        height: 650px;
+        height: 100%;
       }
 
       .row {
@@ -155,7 +153,7 @@
       /* columns */
 
       .base-columns {
-        height: 650px;
+        height: 700px;
         min-width: 300px;
         padding: 0 10px;
         border: 1px solid #ccc;
@@ -168,7 +166,7 @@
       }
 
       .base-grouping-columns {
-        height: 650px;
+        height: 700px;
         min-height: 250px;
         min-width: 300px;
         overflow-y: scroll;
@@ -193,8 +191,8 @@
 
       #character-columns {
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        flex-direction: column;
+        flex-wrap: wrap;
         overflow-x: auto;
         overflow-y: auto;
         width: 100%;
@@ -213,7 +211,7 @@
       #class-info-columns,
       #character-info-columns{
         width: 100%;
-        height: 600px;
+        background-color: lightgrey;
       }
 
       #synergy-info-columns{
@@ -223,7 +221,7 @@
 
       .synergy-column{
         width: 250px;
-        height: 650px;
+        height: 300px;
         overflow-x: hidden;
         border: 1px solid #ccc;
         padding: 15px;
@@ -268,12 +266,13 @@
 
       .character-column {
         width: 300px;
+        height: 300px;
         min-width: 250px;
         min-height: 150px;
         overflow-y: auto;
         border: 1px solid #ccc;
         padding: 15px;
-        margin: 20px 10px;
+        margin: 10px;
         border-radius: 5px;
         background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -308,8 +307,8 @@
 
       #equipment-column {
         display: flex;
-        width: 1250px;
-        height: 170px;
+        width: 100%;
+        height: auto;
         padding: 10px;
         flex-direction: row;
         flex-wrap: wrap;
@@ -317,7 +316,7 @@
       }
 
       #profile-column{
-        width: 500px;
+        width: 100%;
         height: 160px;
       }
 
@@ -329,18 +328,20 @@
 
       #gem-column{
         display: flex;
-        width: 700px;
+        width: 100%;
         height: 75px;
         padding: 10px;
       }
 
       #card-column{
         display: flex;
-        width: 700px;
-        height: 75px;
+        width: 100%;
         padding: 10px;
       }
 
+      #duo-column{
+        width: 100%;
+      }
       .equipment-element.container {
         width: 180px;
         height: 50px;
@@ -502,7 +503,7 @@
       }
       #sideCloseBtn {
         background-color: darkgrey;
-        boarder-color: grey;
+        border-color: grey;
         width: 40px;
         height: 100%;
         padding: 0 10px;
@@ -516,7 +517,7 @@
         background-color: grey;
       }
 
-      #spreadsheet-container {
+      #side-container {
         background-color: darkgrey;
         width: 100%;
         padding: 0 2%;
@@ -545,10 +546,16 @@
       }
 
       .tooltip-inner {
+        width: 400px;
+        max-height: 600px;
+        overflow-y: auto;
         text-align: left;
       }
 
-
+      iframe {
+        width: 100%;
+        height: 700px;
+      }
       /* ==================================================== mediaquery layout module ==================================================== */
 
       @media (max-width: 1024px) {
@@ -606,8 +613,8 @@
   </head>
   <body>
     <div class="title text-center">
-      <h3 class="d-inline">공대 구성 시뮬레이터</h3>
-      <h6 class="d-inline align-bottom">2023.07ver</h6>
+      <h1 class="d-inline">로모임</h1>
+      <h6 class="d-inline align-bottom">2023.10/beta_ver</h6>
     </div>
     <div id="sideOpenBtn" onclick="openBar()">
       <svg
@@ -640,7 +647,7 @@
           />
         </svg>
       </div>
-      <div id="spreadsheet-container">
+      <div id="side-container">
         <div id="synergy-info-container" class="info-container">
           <h4 class="container-header">시너지 정보</h4>
           <div id="synergy-info-columns" class="base-columns">
@@ -1118,6 +1125,7 @@
               /* Add the .class-element class and set the background color */
               element.click(function(){
                 var synergyUrl = synergyData[className];
+                openBar();
                 $("#synergy-info-columns").empty();
                 $("#synergy-info-columns").append(`<iframe src=${synergyUrl} width="100%" height="400px"></iframe>`);
               });           
@@ -1448,6 +1456,7 @@
         }); */
 
           column.click(function () {
+            openBar();
             // Clear existing data
             $("#class-info-columns").empty();
 
@@ -1465,7 +1474,7 @@
                   </ul>
                   <div class="tab-content" id="classTabContent">
                     <div class="tab-pane fade show active" id="classBoard" role="tabpanel">
-                      <iframe src="${classInfo.boardUrl}" width="100%" height="350px"></iframe>
+                      <iframe src="${classInfo.boardUrl}"></iframe>
                     </div>
                   </div>
               </div>
@@ -1482,7 +1491,7 @@
               
               $("#classTabContent").append(`
                 <div class="tab-pane fade" id="${guideName}Tab" role="tabpanel">
-                  <iframe src="${guideUrl}" width="100%" height="350px"></iframe>
+                  <iframe src="${guideUrl}"></iframe>
                 </div>
               `);
             });
@@ -1536,7 +1545,7 @@
 
         // Create user columns
         users.forEach(function (user) {
-          var column = $('<div class="character-column col-5"></div>').css(
+          var column = $('<div class="character-column"></div>').css(
             "background-color",
             "#fff"
           );
@@ -1561,6 +1570,7 @@
 
         
         $(".character-section").on("click",".draggable",function(){
+            openBar();
             var characterName = $(this).text().split(" ")[0];
             characterManager.displayEquipmentData(characterName);
             characterManager.displayProfileData(characterName);
@@ -2127,11 +2137,11 @@
             cardData.Cards.forEach(function(card) {
                 var tooltip = JSON.parse(card.Tooltip);
                 var cardElement = `
-                    <div class="card text-bg-dark" style="margin: 0 5px;">
+                    <div class="card border-dark" style="width: 10%; margin: 0 5px;">
                       <img src="${card.Icon}" class="card-img" alt="${card.Name}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
                       <div class="card-img-overlay">
                         <div class="card-title text-start">${card.Name}</div>
-                        <div class="card-text text-start">${tooltip.Element_002.value}</div>
+                        
                         </div>
                     </div>
                 `;
@@ -2140,14 +2150,14 @@
 
             cardData.Effects.forEach(function(effect) {
                 var effectElement = `
-                    <div class="alert alert-info" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
+                    <button type="button" class="btn btn-dark" data-toggle="tooltip" style="margin: 0 auto;">
                         <strong>${effect.Items[effect.Items.length-1].Name}</strong>
-                        ${effect.Items.map(item => `<p>${item.Name}: ${item.Description}</p>`).join('')}
-                    </div>
+                    </button>
                 `;
                 cardColumn.append(effectElement);
+                effectElement.tooltip('toggle');
             });
-
+          /*${effect.Items.map(item => `<p>${item.Name}: ${item.Description}</p>`).join('')}*/
           }
 
         }
