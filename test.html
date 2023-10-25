@@ -1749,10 +1749,10 @@
                 .html(
                   `
                       <img class="equipment-img" src=${equipment.Icon} data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
-                      <span>
-                        <h6 style="display:inline">${equipment.Name}</h6>
-                        <p>${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}</p>
-                      </span>
+                      <p>
+                        <h6 style="display:inline">${equipment.Name}</h6><br>
+                        ${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}
+                      </p>
                 `
                 );
               //equipmentElement.append(tooltipData);
