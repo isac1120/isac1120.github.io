@@ -1749,16 +1749,14 @@
                 extraInfoDisplay = `[${additionalInfo.leftStr1} ${additionalInfo.qualityValue}]`;
               }
               var equipmentElement = $("<div></div>")
-                .addClass("equipment-element container")
+                .addClass("equipment-element")
                 .html(
                   `
-                    <div class="row">
                       <img class="equipment-img" src=${equipment.Icon} data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
                       <span>
-                        <h6>${equipment.Name}</h>
+                        <h6>${equipment.Name}</h6>
                         ${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}
                       </span>
-                    </div>
                 `
                 );
               //equipmentElement.append(tooltipData);
