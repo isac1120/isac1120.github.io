@@ -362,6 +362,30 @@
         justify-content: space-evenly;
       }
 
+      
+      .card{
+        width: 100px;
+        --bs-card-img-overlay-padding: 3px;
+        margin: 0 5px;
+      }
+
+      .equipment-img{
+        width: 20px;
+        height: 20px;
+        padding:0;
+        margin: 5px;
+      }
+
+      .gem-img{
+        width: 100%;
+        height: 100%;
+        padding:0;
+      }
+
+      .card-img{
+
+      }
+
       /* draggable droppable */
 
       .draggable,
@@ -422,11 +446,7 @@
         width: 100%;
         
       }
-
-      .card{
-        width: 100px;
-        --bs-card-img-overlay-padding: 3px;
-      }
+      
       /* ------------------------- synergy symbol ------------------------- */
 
       .color-circle {
@@ -1733,7 +1753,7 @@
                       ${equipment.Name}
                     </div>
                     <div class="row">
-                        <img src=${equipment.Icon} style="width: 20px; height: 20px; padding:0; margin: 5px;" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
+                        <img class="equipment-img" src=${equipment.Icon} data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
                         ${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}
                     </div>
                 `
@@ -1800,7 +1820,7 @@
                       <div class="container">
                         <div class="row">
                           <div class="col-3">
-                            <img src="${element.value.slotData.iconPath}" alt="Icon">
+                            <img class="equipement-img" src="${element.value.slotData.iconPath}" alt="Icon">
                           </div>
                           <div class="col-9">
                             <div class="row">
@@ -2006,7 +2026,7 @@
             gemData.Gems.forEach(function(gem) {
                 var gemElement = $(`
                     <div class="gem-element container position-relative">
-                            <img src="${gem.Icon}" alt="${gem.Name}" style="width: 100%; height: 100%; padding:0; " data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
+                            <img class="gem-img" src="${gem.Icon}" alt="${gem.Name}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
                             <div class="position-absolute bottom-0 end-0">${gem.Level}</div>
                     </div>
                 `);
@@ -2066,7 +2086,7 @@
                                 <div class="container">
                                   <div class="row">
                                     <div class="col-3">
-                                      <img src="${element.value.slotData.iconPath}" alt="Icon">
+                                      <img class="gem-img" src="${element.value.slotData.iconPath}" alt="Icon">
                                     </div>
                                     <div class="col-9">
                                       <div class="row">
@@ -2144,7 +2164,7 @@
             cardData.Cards.forEach(function(card) {
                 var tooltip = JSON.parse(card.Tooltip);
                 var cardElement = `
-                    <div class="card border-dark" style="width: 10%; margin: 0 5px;">
+                    <div class="card border-dark">
                       <img src="${card.Icon}" class="card-img" alt="${card.Name}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
                       <div class="card-img-overlay">
                         <div class="card-title text-start">${card.Name}</div>
