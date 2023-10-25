@@ -369,15 +369,15 @@
 
       .equipment-img{
         float: left;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         padding:0;
-        margin: 5px;
+        margin: 10px;
       }
 
       .gem-img{
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         padding:0;
       }
 
@@ -2174,9 +2174,9 @@
 
             cardData.Effects.forEach(function(effect) {
                 var effectElement = `
-                    <button type="button" class="btn btn-dark" data-toggle="tooltip" style="margin: 0 auto;">
+                    <p data-toggle="tooltip" style="margin: 0 auto;">
                         <strong>${effect.Items[effect.Items.length-1].Name}</strong>
-                    </button>
+                    </p>
                 `;
                 cardColumn.append(effectElement);
                 effectElement.tooltip('toggle');
