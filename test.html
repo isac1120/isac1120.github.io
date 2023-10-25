@@ -1752,9 +1752,11 @@
                 .addClass("equipment-element container")
                 .html(
                   `
+                    <div class="row">
                       <img class="equipment-img" src=${equipment.Icon} data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
-                      <div class="row"> ${equipment.Name}</div>
+                      <h6>${equipment.Name}<h6> 
                       <div class="row">${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}</div>
+                    </div>
                 `
                 );
               //equipmentElement.append(tooltipData);
