@@ -368,7 +368,7 @@
       }
 
       .equipment-img{
-        align: left;
+        display: float;
         width: 30px;
         height: 30px;
         padding:0;
@@ -1750,10 +1750,10 @@
                 .html(
                   `
                       <img class="equipment-img" src=${equipment.Icon} data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
-                      <span>
-                        <h6 style="display:inline">${equipment.Name}</h6><br>
+                      <h6>${equipment.Name}</h6>
+                      <p>
                         ${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}
-                      </span>
+                      </p>
                 `
                 );
               //equipmentElement.append(tooltipData);
