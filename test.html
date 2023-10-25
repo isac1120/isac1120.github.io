@@ -344,8 +344,8 @@
       }
 
       .equipment-element {
-        width: 180px;
-        height: 50px;
+        width: 250px;
+        height: 60px;
         margin: 5px;
         padding: 5px;
         justify-content: space-evenly;
@@ -386,6 +386,10 @@
         height: auto;
       }
 
+      .equipement-header{
+        font-size: 15px;
+        font-weight: bold;
+      }
       /* draggable droppable */
 
       .draggable,
@@ -1750,7 +1754,7 @@
                 .html(
                   `
                       <img class="equipment-img" src=${equipment.Icon} data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
-                      <h6>${equipment.Name}</h6>
+                      <header class="equipment-header">${equipment.Name}</header>
                       <p>
                         ${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}
                       </p>
