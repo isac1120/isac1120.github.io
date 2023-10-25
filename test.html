@@ -349,7 +349,7 @@
       
       .equipment-element.container {
         width: 180px;
-        height: 70px;
+        height: 50px;
         margin: 5px;
         padding: 5px;
         justify-content: space-evenly;
@@ -365,27 +365,27 @@
 
       
       .card{
-        width: 70px;
+        width: 50px;
         height: auto;
         --bs-card-img-overlay-padding: 3px;
-        margin: 0 5px;
+        margin: 0 3px;
       }
 
       .equipment-img{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         padding:0;
         margin: 5px;
       }
 
       .gem-img{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         padding:0;
       }
 
       .card-img{
-        width: 70px;
+        width: 50px;
         height: auto;
       }
 
@@ -1752,13 +1752,9 @@
                 .addClass("equipment-element container")
                 .html(
                   `
-                    <div class="row">
-                      ${equipment.Name}
-                    </div>
-                    <div class="row">
-                        <img class="equipment-img" src=${equipment.Icon} data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
-                        ${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}
-                    </div>
+                      <img class="equipment-img" src=${equipment.Icon} data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
+                      <div class="row> ${equipment.Name}</div>
+                      <div class="row">${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}</div>
                 `
                 );
               //equipmentElement.append(tooltipData);
