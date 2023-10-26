@@ -352,7 +352,14 @@
       #duo-column {
         width: 100%;
       }
-
+      
+      .member-element {
+        background-color: grey;
+        padding: 15px;
+        color: white;
+        opacity: 0.5;
+      }
+      
       .equipment-element {
         width: 200px;
         height: 60px;
@@ -441,6 +448,7 @@
         margin: 10px auto;
       }
 
+      
       .party-column .draggable {
         width: auto;
         padding: 10px;
@@ -2597,7 +2605,7 @@
 
           for (var i = 0; i < 4; i++) {
             var element = $("<div></div>")
-              .addClass("droppable")
+              .addClass("member-element droppable")
               .css("min-height", "50px");
             column.append(element);
             element.addClass("text-start");
@@ -2701,7 +2709,7 @@
 
           for (var i = 0; i < 4; i++) {
             var element = $("<div></div>")
-              .addClass("droppable")
+              .addClass("member-element droppable")
               .css("min-height", "50px");
             column.append(element);
             element.addClass("text-start");
@@ -2955,7 +2963,7 @@
 
           for (var i = 0; i < 4; i++) {
             var element = $("<div></div>")
-              .addClass("droppable")
+              .addClass("member-element droppable")
               .css("min-height", "50px");
             column.append(element);
             element.addClass("text-start");
