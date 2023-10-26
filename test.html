@@ -361,6 +361,7 @@
 
       
       .card{
+        
         width: 50px;
         height: auto;
         --bs-card-img-overlay-padding: 3px;
@@ -369,21 +370,27 @@
 
       .equipment-img{
         float: left;
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         padding:0;
-        margin: 10px;
+        margin: 5px;
       }
 
       .gem-img{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         padding:0;
       }
 
       .card-img{
+        opacity: 0.8;
         width: 50px;
         height: auto;
+      }
+
+      .card-img-overlay{
+        color: black;
+        padding: 10%;
       }
 
       .equipment-header{
@@ -2162,6 +2169,7 @@
             var cardData = this.cardData[characterName];
             var cardColumn = $("<div id='card-column' class='character-info-column'></div>");
             $('#duo-column').append(cardColumn);
+          
 
             cardData.Cards.forEach(function(card) {
                 var tooltip = JSON.parse(card.Tooltip);
@@ -2179,7 +2187,8 @@
             cardData.Effects.forEach(function(effect) {
                 var effectElement = `
                     <p data-toggle="tooltip" style="margin: 0 auto;">
-                        <strong>${effect.Items[effect.Items.length-1].Name}</strong>
+                        <h6>${effect.Items[effect.Items.length-1].Name}</h6>
+                        ${effect.Items.map(item => `<p>${item.Name}: ${item.Description}</p>`).join('')}
                     </p>
                 `;
                 cardColumn.append(effectElement);
