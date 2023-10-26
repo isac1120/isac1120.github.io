@@ -626,7 +626,7 @@
 
         .sidebar {
           width: 100%;
-          height: 350px;
+          height: 400px;
         }
         #sideOpenBtn {
           height: 350px;
@@ -654,7 +654,7 @@
           height: 300px;
         }
         .sidebar {
-          height: 350px;
+          height: 400px;
         }
       }
       /* Media query for mobile devices */
@@ -3088,19 +3088,30 @@
         });
       });
       //end documnet
-      //extra function
-      function openBar() {
-        document.getElementById("table-sidebar").style.width = "60%";
-        document.getElementById("table-sidebar").style.paddingRight = "2%";
-        document.getElementById("sideOpenBtn").style.width = "0%";
+
+      if(window.matchMedia("(max-width: 1024)").matches) { 
+        function openBar() {
+          document.getElementById("table-sidebar").style.width = "60%";
+          document.getElementById("table-sidebar").style.paddingRight = "2%";
+          document.getElementById("sideOpenBtn").style.width = "0%";
+        }
+        function closeBar() {
+          document.getElementById("table-sidebar").style.width = "0";
+          document.getElementById("table-sidebar").style.paddingRight = "0";
+          document.getElementById("sideOpenBtn").style.width = "30px";
+      } else if(window.matchMedia("(max-width: 340px)").matches) { 
+        function openBar() {
+          document.getElementById("table-sidebar").style.width = "100%";
+          document.getElementById("table-sidebar").style.paddingRight = "2%";
+          document.getElementById("sideOpenBtn").style.width = "0%";
+        }
+        function closeBar() {
+          document.getElementById("table-sidebar").style.width = "0";
+          document.getElementById("table-sidebar").style.paddingRight = "0";
+          document.getElementById("sideOpenBtn").style.width = "30px";
+        }
       }
 
-      /* Set the width of the side navigation to 0 */
-      function closeBar() {
-        document.getElementById("table-sidebar").style.width = "0";
-        document.getElementById("table-sidebar").style.paddingRight = "0";
-        document.getElementById("sideOpenBtn").style.width = "30px";
-      }
     </script>
   </body>
 </html>
