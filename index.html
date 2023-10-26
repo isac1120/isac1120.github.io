@@ -2600,6 +2600,24 @@
               .addClass("droppable")
               .css("min-height", "50px");
             column.append(element);
+            element.addClass("text-start");
+            if (i == 0) {
+              element
+                .text("1번 추천 : 치명타 적중률 시너지를 가진 딜러")
+                .css("text-shadow", "10px 10px 5px #8B0000");
+            } else if (i == 1) {
+              element
+                .text("2번 추천 : 1번과 다른 시너지를 가진 딜러")
+                .css("text-shadow", "10px 10px 5px black");
+            } else if (i == 2) {
+              element
+                .text("3번 추천 : 1,2번과 다른 시너지를 가진 딜러")
+                .css("text-shadow", "10px 10px 5px black");
+            } else {
+              element
+                .text("4번 추천 : 서포터 (바드,도화가,홀리나이트)")
+                .css("text-shadow", "10px 10px 5px #00FFFF");
+            }
           }
 
           $("#synergy-group").append(column);
@@ -2686,6 +2704,24 @@
               .addClass("droppable")
               .css("min-height", "50px");
             column.append(element);
+            element.addClass("text-start");
+            if (i == 0) {
+              element
+                .text("1번 추천 : 치명타 적중률 시너지를 가진 딜러")
+                .css("text-shadow", "10px 10px 5px #8B0000");
+            } else if (i == 1) {
+              element
+                .text("2번 추천 : 1번과 다른 시너지를 가진 딜러")
+                .css("text-shadow", "10px 10px 5px black");
+            } else if (i == 2) {
+              element
+                .text("3번 추천 : 1,2번과 다른 시너지를 가진 딜러")
+                .css("text-shadow", "10px 10px 5px black");
+            } else {
+              element
+                .text("4번 추천 : 서포터 (바드,도화가,홀리나이트)")
+                .css("text-shadow", "10px 10px 5px #00FFFF");
+            }
           }
 
           $("#class-group").append(column);
@@ -2922,7 +2958,26 @@
               .addClass("droppable")
               .css("min-height", "50px");
             column.append(element);
+            element.addClass("text-start");
+            if (i == 0) {
+              element
+                .text("1번 추천 : 치명타 적중률 시너지를 가진 딜러")
+                .css("text-shadow", "10px 10px 5px #8B0000");
+            } else if (i == 1) {
+              element
+                .text("2번 추천 : 1번과 다른 시너지를 가진 딜러")
+                .css("text-shadow", "10px 10px 5px black");
+            } else if (i == 2) {
+              element
+                .text("3번 추천 : 1,2번과 다른 시너지를 가진 딜러")
+                .css("text-shadow", "10px 10px 5px black");
+            } else {
+              element
+                .text("4번 추천 : 서포터 (바드,도화가,홀리나이트)")
+                .css("text-shadow", "10px 10px 5px #00FFFF");
+            }
           }
+        }
 
           $("#character-group").append(column);
         });
