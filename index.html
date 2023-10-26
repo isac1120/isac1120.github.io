@@ -41,13 +41,24 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="manifest" href="site.webmanifest" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
       rel="stylesheet"
     />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
     <style>
       /*  ====================================================  scrollbar layout  ==================================================== */
 
@@ -72,7 +83,12 @@
 
       /*  ====================================================  topLV title layout module  ==================================================== */
 
-      .h1,h2,h3,h4,h5,h6 {
+      .h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
         margin-top: 0.5rem;
       }
       .title {
@@ -95,7 +111,6 @@
       }
 
       .container {
-      
         position: relative;
         width: 100%;
         display: flex;
@@ -134,22 +149,18 @@
         min-width: 320px;
         width: 100%;
       }
-      
-      #class-container,
-      #character-container,
-      #class-group-container,
-      #character-group-container,
+
       #class-info-container,
       #character-info-container {
         display: none;
       }
-      
+
       .info-container {
         width: 100%;
         margin: 20px 0;
       }
       /*  ====================================================  bottomLV contents layout module  ==================================================== */
-      
+
       /* columns */
 
       .base-columns {
@@ -175,13 +186,13 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
-      #synergy-columns{
+      #synergy-columns {
         flex-direction: column;
         flex-wrap: wrap;
         overflow-y: hidden;
         padding: 10px;
       }
-      
+
       #class-columns {
         flex-direction: column;
         flex-wrap: wrap;
@@ -198,7 +209,7 @@
         width: 100%;
       }
 
-      #character-info-columns{
+      #character-info-columns {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -209,17 +220,17 @@
 
       #synergy-info-columns,
       #class-info-columns,
-      #character-info-columns{
+      #character-info-columns {
         width: 100%;
         background-color: lightgrey;
       }
 
-      #synergy-info-columns{
+      #synergy-info-columns {
         padding-top: 20px;
       }
       /* column */
 
-      .synergy-column{
+      .synergy-column {
         width: 250px;
         height: 300px;
         overflow-x: hidden;
@@ -231,7 +242,7 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
-      .class-column{
+      .class-column {
         width: 250px;
         height: 100px;
         overflow: hidden;
@@ -254,14 +265,13 @@
         padding: 10px;
       }
 
-      .class-info-column{
+      .class-info-column {
         width: 100%;
         height: 100%;
       }
 
       .class-info-column .contents {
         height: 100%;
-  
       }
 
       .character-column {
@@ -292,8 +302,8 @@
         border-radius: 3px;
         cursor: pointer;
       }
-      
-      .character-info-column{
+
+      .character-info-column {
         min-height: 50px;
         min-width: 250px;
         overflow-x: hidden;
@@ -312,39 +322,41 @@
         padding: 10px;
         flex-direction: row;
         flex-wrap: wrap;
-        
       }
 
-      #profile-column{
+      #profile-column {
         width: 100%;
         height: 160px;
       }
 
-      #stat-column{
+      #stat-column {
         height: 80px;
         margin: 5px 0 0 0;
         padding: 10px;
       }
 
-      #gem-column{
+      #gem-column {
         display: flex;
         width: 100%;
         height: 75px;
         padding: 10px;
       }
 
-      #card-column{
+      #card-column {
         display: flex;
+        flex-wrap: wrap;
         width: 100%;
         padding: 10px;
       }
 
-      #duo-column{
+      #duo-column {
         width: 100%;
       }
-      .equipment-element.container {
-        width: 180px;
-        height: 50px;
+
+      .equipment-element {
+        width: 200px;
+        height: 60px;
+        margin: 5px;
         padding: 5px;
         justify-content: space-evenly;
       }
@@ -357,40 +369,84 @@
         justify-content: space-evenly;
       }
 
+      .effect-element {
+        width: 200px;
+      }
+
+      .card-deck-element {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: nowrap;
+        width: 100%;
+      }
+      .card {
+        min-width: 50px;
+        height: auto;
+        --bs-card-img-overlay-padding: 3px;
+        margin: 0 3px;
+      }
+
+      .equipment-img {
+        float: left;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        margin: 5px;
+      }
+
+      .gem-img {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+      }
+
+      .card-img {
+        opacity: 0.8;
+        min-width: 50px;
+        height: auto;
+      }
+
+      .card-img-overlay {
+        color: black;
+        padding: 10%;
+      }
+
+      .equipment-header {
+        font-size: 15px;
+        font-weight: bold;
+      }
       /* draggable droppable */
 
       .draggable,
-      .droppable{
+      .droppable {
         font-size: 15px;
         cursor: pointer;
         border: 1px solid #ccc;
         border-radius: 3px;
         text-align: center;
         background-color: #f5f5f5;
-        min-height: 30px; 
-        
+        min-height: 30px;
       }
 
-      .synergy-column .draggable{
+      .synergy-column .draggable {
         color: white;
         width: auto;
         padding: 5px 0;
         margin-bottom: 3px;
       }
-    
-      
-      .character-column .draggable{
+
+      .character-column .draggable {
         height: auto;
         padding: 10px 0;
         margin: 10px auto;
       }
 
-      .party-column .draggable{
+      .party-column .draggable {
         width: auto;
         padding: 10px;
         margin: 0;
       }
-      .party-column .droppable{
+      .party-column .droppable {
         flex-direction: column;
         margin: 10px;
       }
@@ -411,16 +467,12 @@
       }
 
       .class-synergy,
-      .character-synergy{
+      .character-synergy {
         white-space: nowrap;
         overflow-x: auto;
         width: 100%;
-        
       }
 
-      .card{
-        --bs-card-img-overlay-padding: 3px;
-      }
       /* ------------------------- synergy symbol ------------------------- */
 
       .color-circle {
@@ -462,7 +514,6 @@
         border-radius: 3px;
         cursor: pointer;
       }
-
 
       /* ==================================================== sidebar layout module ========================================================*/
 
@@ -547,6 +598,7 @@
 
       .tooltip-inner {
         width: 400px;
+        max-width: 400px;
         max-height: 600px;
         overflow-y: auto;
         text-align: left;
@@ -556,33 +608,22 @@
         width: 100%;
         height: 700px;
       }
+
+      i {
+        font-size: 30px;
+      }
+
+      #page-header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .page-name {
+        width: 200px;
+      }
       /* ==================================================== mediaquery layout module ==================================================== */
 
-      @media (max-width: 1024px) {
-        .from-container,
-        .to-container {
-          width: 100%;
-          height: 350px;
-          margin: 2%;
-        }
-        .draggable {
-          min-width: 240px;
-        }
-        .class-column.draggable {
-          min-width: 240px;
-
-        }
-        .base-columns {
-          height: 300px;
-        }
-
-        .sidebar {
-          height: 350px;
-        }
-        #sideOpenBtn {
-          height: 350px;
-        }
-      }
       @media (max-width: 340px) {
         .container {
           width: 340px;
@@ -594,18 +635,61 @@
           height: 350px;
           margin: 2%;
         }
-        .draggable {
-          min-width: 240px;
-        }
-        .class-column.draggable {
-          min-width: 240px;
 
-        }
         .base-columns {
           height: 300px;
         }
+        .base-grouping-columns {
+          height: 300px;
+        }
+
+        .draggable {
+          min-width: 240px;
+        }
+
+        .class-column.draggable {
+          min-width: 240px;
+        }
+
         .sidebar {
+          height: 400px;
+        }
+
+        #sideOpenBtn {
+          height: 400px;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .from-container,
+        .to-container {
+          width: 100%;
           height: 350px;
+          margin: 2%;
+        }
+
+        .base-columns {
+          height: 300px;
+        }
+
+        .base-grouping-columns {
+          height: 300px;
+        }
+
+        .draggable {
+          min-width: 240px;
+        }
+
+        .class-column.draggable {
+          min-width: 240px;
+        }
+
+        .sidebar {
+          height: 400px;
+        }
+
+        #sideOpenBtn {
+          height: 400px;
         }
       }
       /* Media query for mobile devices */
@@ -614,7 +698,7 @@
   <body>
     <div class="title text-center">
       <h1 class="d-inline">로모임</h1>
-      <h6 class="d-inline align-bottom">ver2.0beta</h6>
+      <h6 class="d-inline align-bottom">ver2beta</h6>
     </div>
     <div id="sideOpenBtn" onclick="openBar()">
       <svg
@@ -647,21 +731,19 @@
           />
         </svg>
       </div>
+
       <div id="side-container">
         <div id="synergy-info-container" class="info-container">
           <h4 class="container-header">시너지 정보</h4>
-          <div id="synergy-info-columns" class="base-columns">
-          </div>
+          <div id="synergy-info-columns" class="base-columns"></div>
         </div>
         <div id="class-info-container" class="info-container">
           <h4 class="container-header">클래스 정보</h4>
-          <div id="class-info-columns" class="base-columns">
-          </div>
+          <div id="class-info-columns" class="base-columns"></div>
         </div>
         <div id="character-info-container" class="info-container">
           <h4 class="container-header">캐릭터 정보</h4>
-          <div id="character-info-columns" class="base-columns">
-          </div>
+          <div id="character-info-columns" class="base-columns"></div>
         </div>
         <!--
         <div id="spreadsheet-header" class="container-header">
@@ -670,10 +752,10 @@
         </div>
         <div id="spreadsheet"></div>
         -->
-        
       </div>
     </div>
     <div class="container">
+      <!--
       <div class="switch-container">
         <div
           class="btn-group btn-group-sm"
@@ -716,30 +798,42 @@
           <label class="btn btn-outline-primary" for="radioBtn3">유저순</label>
         </div>
       </div>
-
-<!-------------------------------- synergy container -------------------------------->
-
-      
-      <div id="synergy-container" class="from-container">
-        <div class="container-header">
-          <h4 class="text-center">시너지</h4>
-        </div>
-        <div id="synergy-columns" class="base-columns">
-        </div>
+    -->
+      <div id="page-header">
+        <button id="prev-btn" type="button" class="btn page-btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <h3 class="page-name text-center">시너지순</h3>
+        <button id="next-btn" type="button" class="btn page-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
-
-      <div id="synergy-group-container" class="to-container">
-        <div class="container-header">
-          <div class="button-container">
-            <button id="synergy-copyBtn" class="copy-button">복사</button>
-            <button id="synergy-saveBtn" class="save-button">저장</button>
+      <!-------------------------------- synergy container -------------------------------->
+      <div id="synergy-page" class="container page">
+        <div id="synergy-container" class="from-container">
+          <!--
+          <div class="container-header">
+            <div class="d-flex justify-content-between">
+              <h4 class="text-center">시너지</h4>
+            </div>
           </div>
-          <h4 class="text-center">공대</h4>
+        -->
+          <div id="synergy-columns" class="base-columns"></div>
         </div>
-        <div id="synergy-group" class="base-grouping-columns">
+
+        <div id="synergy-group-container" class="to-container">
+          <!--
+          <div class="container-header">
+            <div class="button-container">
+              <button id="synergy-copyBtn" class="copy-button">복사</button>
+              <button id="synergy-saveBtn" class="save-button">저장</button>
+            </div>
+            <h4 class="text-center">공대</h4>
+          </div>
+          -->
+          <div id="synergy-group" class="base-grouping-columns"></div>
         </div>
       </div>
-      
       <!--
       <div id="synergy-info-container" class="info-container">
         <h4 class="container-header">시너지 정보</h4>
@@ -747,31 +841,31 @@
         </div>
       </div>
       -->
-<!-------------------------------- class container -------------------------------->
-
-
-      
-      <div id="class-container" class="from-container">
-        <div class="container-header">
-          <h4 class="text-center">클래스</h4>
-        </div>
-        <div id="class-columns" class="base-columns">
-        </div>
-      </div>
-
-      <div id="class-group-container" class="to-container">
-        <div class="container-header">
-          <div class="button-container">
-            <button id="class-copyBtn" class="copy-button">복사</button>
-            <button id="class-saveBtn" class="save-button">저장</button>
+      <!-------------------------------- class container -------------------------------->
+      <div id="class-page" class="container page" style="display: none">
+        <div id="class-container" class="from-container">
+          <!--
+          <div class="container-header">
+            <h4 class="text-center">클래스</h4>
           </div>
-          <h4 class="text-center">공대</h4>
+        -->
+          <div id="class-columns" class="base-columns"></div>
         </div>
-        <div id="class-group" class="base-grouping-columns">
+
+        <div id="class-group-container" class="to-container">
+          <!--
+          <div class="container-header">
+            <div class="button-container">
+              <button id="class-copyBtn" class="copy-button">복사</button>
+              <button id="class-saveBtn" class="save-button">저장</button>
+            </div>
+            <h4 class="text-center">공대</h4>
+          </div>
+        -->
+          <div id="class-group" class="base-grouping-columns"></div>
         </div>
       </div>
-
-    <!--
+      <!--
       <div id="class-info-container" class="info-container">
         <h4 class="container-header">클래스 정보</h4>
         <div id="class-info-columns" class="base-columns">
@@ -779,28 +873,30 @@
       </div>
     -->
 
-<!-------------------------------- character container -------------------------------->
-      
-      <div id="character-container" class="from-container">
-        <div class="container-header">
-          <h4 class="text-center">유저</h4>
-        </div>
-        <div id="character-columns" class="base-columns">
-        </div>
-      </div>
-
-      <div id="character-group-container" class="to-container">
-        <div class="container-header">
-          <div class="button-container">
-            <button class="copy-button">복사</button>
-            <button class="save-button">저장</button>
+      <!-------------------------------- character container -------------------------------->
+      <div id="character-page" class="container page" style="display: none">
+        <div id="character-container" class="from-container">
+          <!--
+          <div class="container-header">
+            <h4 class="text-center">유저</h4>
           </div>
-          <h4 class="text-center">공대</h4>
+        -->
+          <div id="character-columns" class="base-columns"></div>
         </div>
-        <div id="character-group" class="base-grouping-columns">
+
+        <div id="character-group-container" class="to-container">
+          <!--
+          <div class="container-header">
+            <div class="button-container">
+              <button class="copy-button">복사</button>
+              <button class="save-button">저장</button>
+            </div>
+            <h4 class="text-center">공대</h4>
+          </div>
+        -->
+          <div id="character-group" class="base-grouping-columns"></div>
         </div>
       </div>
-    
       <!--
       <div id="character-info-container" class="info-container">
         <h4 class="container-header">캐릭터 정보</h4>
@@ -808,10 +904,8 @@
         </div>
       </div>
       -->
-
-    
     </div>
-   
+
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -856,7 +950,42 @@
         이는 새로 생성된 html element가 DOM 객체가 되면서,DOM 객체가 가진 property와 method를 이용가능해져서로 이해할 수 있다.
         .*/
         /*  ==================================================== synergyData module ====================================================  */
+        var page = ["#synergy", "#class", "#character"];
+        var pageName = ["시너지순", "클래스순", "유저순"];
+        var currentPageIndex = 0;
 
+        $("#next-btn").click(function () {
+          /*           $(".from-container").hide(); // Hide all components
+          $(".to-container").hide(); // Hide all components
+          $(".info-container").hide(); // Hide all components
+          $("#" + selectedComponentId + "-container").show(); // Show the selected component
+          $("#" + selectedComponentId + "-group-container").show(); // Show the selected component
+          $("#" + selectedComponentId + "-info-container").show(); // Show the selected component
+ */
+          $(page[currentPageIndex] + "-info-container").hide();
+          $(page[currentPageIndex] + "-page").hide();
+          if (currentPageIndex == 2) {
+            currentPageIndex = 0;
+          } else {
+            currentPageIndex = currentPageIndex + 1;
+          }
+          $(page[currentPageIndex] + "-info-container").show();
+          $(page[currentPageIndex] + "-page").show();
+          $(".page-name").text(pageName[currentPageIndex]);
+        });
+
+        $("#prev-btn").click(function () {
+          $(page[currentPageIndex] + "-info-container").hide();
+          $(page[currentPageIndex] + "-page").hide();
+          if (currentPageIndex == 0) {
+            currentPageIndex = 2;
+          } else {
+            currentPageIndex = currentPageIndex - 1;
+          }
+          $(page[currentPageIndex] + "-info-container").show();
+          $(page[currentPageIndex] + "-page").show();
+          $(".page-name").text(pageName[currentPageIndex]);
+        });
         // Synergy data
         var synergies = [
           {
@@ -864,7 +993,14 @@
             categories: [
               {
                 categoryName: "상시10%",
-                classes: ["건슬링어", "아르카나", "데빌헌터", "기상술사","스트라이커","배틀마스터"],
+                classes: [
+                  "건슬링어",
+                  "아르카나",
+                  "데빌헌터",
+                  "기상술사",
+                  "스트라이커",
+                  "배틀마스터",
+                ],
                 color: "#8B0000",
               },
             ],
@@ -877,8 +1013,8 @@
                 categoryName: "상시8%",
                 classes: ["창술사"],
                 color: "#DB7093",
-              }
-            ]
+              },
+            ],
           },
           {
             name: "받는 피해 증가",
@@ -1075,31 +1211,31 @@
 
         /*  ==================================================== synergyData display module ==================================================== */
         var synergyData = {
-          "디스트로이어": "https://m.inven.co.kr/lostark/skill/?reqjob=103",
-          "워로드": "https://m.inven.co.kr/lostark/skill/?reqjob=104",
-          "버서커": "https://m.inven.co.kr/lostark/skill/?reqjob=102",
-          "홀리나이트": "https://m.inven.co.kr/lostark/skill/?reqjob=105",
-          "슬레이어": "https://m.inven.co.kr/lostark/skill/?reqjob=112",
-          "배틀마스터": "https://m.inven.co.kr/lostark/skill/?reqjob=302",
-          "인파이터": "https://m.inven.co.kr/lostark/skill/?reqjob=303",
-          "기공사": "https://m.inven.co.kr/lostark/skill/?reqjob=304",
-          "창술사": "https://m.inven.co.kr/lostark/skill/?reqjob=305",
-          "스트라이커": "https://m.inven.co.kr/lostark/skill/?reqjob=312",
-          "데빌헌터": "https://m.inven.co.kr/lostark/skill/?reqjob=503",
-          "블래스터": "https://m.inven.co.kr/lostark/skill/?reqjob=504",
-          "호크아이": "https://m.inven.co.kr/lostark/skill/?reqjob=502",
-          "스카우터": "https://m.inven.co.kr/lostark/skill/?reqjob=505",
-          "건슬링어": "https://m.inven.co.kr/lostark/skill/?reqjob=512",
-          "바드": "https://m.inven.co.kr/lostark/skill/?reqjob=204",
-          "서머너": "https://m.inven.co.kr/lostark/skill/?reqjob=203",
-          "아르카나": "https://m.inven.co.kr/lostark/skill/?reqjob=202",
-          "소서리스": "https://m.inven.co.kr/lostark/skill/?reqjob=205",
-          "블레이드": "https://m.inven.co.kr/lostark/skill/?reqjob=402",
-          "데모닉": "https://m.inven.co.kr/lostark/skill/?reqjob=403",
-          "리퍼": "https://m.inven.co.kr/lostark/skill/?reqjob=404",
-          "소울이터": "https://m.inven.co.kr/lostark/skill/?reqjob=405",
-          "도화가": "https://m.inven.co.kr/lostark/skill/?reqjob=602",
-          "기상술사": "https://m.inven.co.kr/lostark/skill/?reqjob=603",
+          디스트로이어: "https://m.inven.co.kr/lostark/skill/?reqjob=103",
+          워로드: "https://m.inven.co.kr/lostark/skill/?reqjob=104",
+          버서커: "https://m.inven.co.kr/lostark/skill/?reqjob=102",
+          홀리나이트: "https://m.inven.co.kr/lostark/skill/?reqjob=105",
+          슬레이어: "https://m.inven.co.kr/lostark/skill/?reqjob=112",
+          배틀마스터: "https://m.inven.co.kr/lostark/skill/?reqjob=302",
+          인파이터: "https://m.inven.co.kr/lostark/skill/?reqjob=303",
+          기공사: "https://m.inven.co.kr/lostark/skill/?reqjob=304",
+          창술사: "https://m.inven.co.kr/lostark/skill/?reqjob=305",
+          스트라이커: "https://m.inven.co.kr/lostark/skill/?reqjob=312",
+          데빌헌터: "https://m.inven.co.kr/lostark/skill/?reqjob=503",
+          블래스터: "https://m.inven.co.kr/lostark/skill/?reqjob=504",
+          호크아이: "https://m.inven.co.kr/lostark/skill/?reqjob=502",
+          스카우터: "https://m.inven.co.kr/lostark/skill/?reqjob=505",
+          건슬링어: "https://m.inven.co.kr/lostark/skill/?reqjob=512",
+          바드: "https://m.inven.co.kr/lostark/skill/?reqjob=204",
+          서머너: "https://m.inven.co.kr/lostark/skill/?reqjob=203",
+          아르카나: "https://m.inven.co.kr/lostark/skill/?reqjob=202",
+          소서리스: "https://m.inven.co.kr/lostark/skill/?reqjob=205",
+          블레이드: "https://m.inven.co.kr/lostark/skill/?reqjob=402",
+          데모닉: "https://m.inven.co.kr/lostark/skill/?reqjob=403",
+          리퍼: "https://m.inven.co.kr/lostark/skill/?reqjob=404",
+          소울이터: "https://m.inven.co.kr/lostark/skill/?reqjob=405",
+          도화가: "https://m.inven.co.kr/lostark/skill/?reqjob=602",
+          기상술사: "https://m.inven.co.kr/lostark/skill/?reqjob=603",
         };
 
         // Create synergy columns
@@ -1123,23 +1259,25 @@
                 .addClass("class-element draggable")
                 .css("background-color", category.color);
               /* Add the .class-element class and set the background color */
-              element.click(function(){
+              element.click(function () {
                 var synergyUrl = synergyData[className];
                 openBar();
                 $("#synergy-info-columns").empty();
-                $("#synergy-info-columns").append(`<iframe src=${synergyUrl} width="100%" height="400px"></iframe>`);
-              });           
+                $("#synergy-info-columns").append(
+                  `<iframe src=${synergyUrl} width="100%" height="400px"></iframe>`
+                );
+              });
               subColumn.append(element);
             });
 
             column.append(subColumn);
           });
-          
+
           $("#synergy-columns").append(column);
         });
 
         /* ================================================ classData build module ( extraction from synergyData ) ==================================================== */
-        
+
         // Create a dictionary to store class-centric data
         var classes = {};
 
@@ -1207,181 +1345,183 @@
         });
 
         var classData = {
-            "디스트로이어": {
-                "boardUrl": "https://www.inven.co.kr/board/lostark/5343",
-                "guides": {
-                "중력 수련": "https://m.inven.co.kr/board/lostark/5343/88008",
-                "분노의망치": "https://m.inven.co.kr/board/lostark/5343/114997"
-                }
+          디스트로이어: {
+            boardUrl: "https://www.inven.co.kr/board/lostark/5343",
+            guides: {
+              "중력 수련": "https://m.inven.co.kr/board/lostark/5343/88008",
+              분노의망치: "https://m.inven.co.kr/board/lostark/5343/114997",
             },
-            "워로드": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5339",
-                "guides": {
-                "고독한기사": "https://m.inven.co.kr/board/lostark/5339/112607",
-                "전투태세": "https://www.inven.co.kr/board/lostark/5339/156551"
-                }
+          },
+          워로드: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5339",
+            guides: {
+              고독한기사: "https://m.inven.co.kr/board/lostark/5339/112607",
+              전투태세: "https://www.inven.co.kr/board/lostark/5339/156551",
             },
-            "버서커": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5341",
-                "guides": {
-                "광전사의비기": "https://m.inven.co.kr/board/lostark/5341/63757",
-                "광기": "https://m.inven.co.kr/board/lostark/5341/73417"
-                }
+          },
+          버서커: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5341",
+            guides: {
+              광전사의비기: "https://m.inven.co.kr/board/lostark/5341/63757",
+              광기: "https://m.inven.co.kr/board/lostark/5341/73417",
             },
-            "홀리나이트": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5558",
-                "guides": {
-                "심판자": "https://m.inven.co.kr/board/lostark/5558/64430",
-                "축복의오라": "https://m.inven.co.kr/board/lostark/5558/64685"
-                }
+          },
+          홀리나이트: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5558",
+            guides: {
+              심판자: "https://m.inven.co.kr/board/lostark/5558/64430",
+              축복의오라: "https://m.inven.co.kr/board/lostark/5558/64685",
             },
-            "슬레이어": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5995",
-                "guides": {
-                "포식자": "https://m.inven.co.kr/board/lostark/5995/17514",
-                "처단자": "https://m.inven.co.kr/board/lostark/5995/17514"
-                }
+          },
+          슬레이어: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5995",
+            guides: {
+              포식자: "https://m.inven.co.kr/board/lostark/5995/17514",
+              처단자: "https://m.inven.co.kr/board/lostark/5995/17514",
             },
-            "배틀마스터": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5342",
-                "guides": {
-                "오의강화": "https://m.inven.co.kr/board/lostark/5342/120545",
-                "초심": "https://m.inven.co.kr/board/lostark/5342/108964"
-                }
+          },
+          배틀마스터: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5342",
+            guides: {
+              오의강화: "https://m.inven.co.kr/board/lostark/5342/120545",
+              초심: "https://m.inven.co.kr/board/lostark/5342/108964",
             },
-            "인파이터": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5340",
-                "guides": {
-                "충격단련": "https://m.inven.co.kr/board/lostark/5340/118132",
-                "극의체술": "https://m.inven.co.kr/board/lostark/5340/132161"
-                }
+          },
+          인파이터: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5340",
+            guides: {
+              충격단련: "https://m.inven.co.kr/board/lostark/5340/118132",
+              극의체술: "https://m.inven.co.kr/board/lostark/5340/132161",
             },
-            "기공사": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5344",
-                "guides": {
-                "세맥타통": "https://m.inven.co.kr/board/lostark/5344/88926",
-                "역천지체": "https://m.inven.co.kr/board/lostark/5344/104790"
-                }
+          },
+          기공사: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5344",
+            guides: {
+              세맥타통: "https://m.inven.co.kr/board/lostark/5344/88926",
+              역천지체: "https://m.inven.co.kr/board/lostark/5344/104790",
             },
-            "창술사": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5434",
-                "guides": {
-                "절제": "https://m.inven.co.kr/board/lostark/5434/72345",
-                "절정": "https://m.inven.co.kr/board/lostark/5434/93394"
-                }
+          },
+          창술사: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5434",
+            guides: {
+              절제: "https://m.inven.co.kr/board/lostark/5434/72345",
+              절정: "https://m.inven.co.kr/board/lostark/5434/93394",
             },
-            "스트라이커": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5709",
-                "guides": {
-                "일격필살": "https://m.inven.co.kr/board/lostark/5709/24053",
-                "오의난무": "https://m.inven.co.kr/board/lostark/5709/73936"
-                }
+          },
+          스트라이커: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5709",
+            guides: {
+              일격필살: "https://m.inven.co.kr/board/lostark/5709/24053",
+              오의난무: "https://m.inven.co.kr/board/lostark/5709/73936",
             },
-            "데빌헌터": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5345",
-                "guides": {
-                "강화무기": "https://m.inven.co.kr/board/lostark/5345/89652",
-                "핸드거너": "https://m.inven.co.kr/board/lostark/5345/124168"
-                }
+          },
+          데빌헌터: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5345",
+            guides: {
+              강화무기: "https://m.inven.co.kr/board/lostark/5345/89652",
+              핸드거너: "https://m.inven.co.kr/board/lostark/5345/124168",
             },
-            "블래스터": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5349",
-                "guides": {
-                "화력강화": "https://m.inven.co.kr/board/lostark/5349/109256",
-                "포격강화": "https://www.inven.co.kr/board/lostark/5349/108171"
-                }
+          },
+          블래스터: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5349",
+            guides: {
+              화력강화: "https://m.inven.co.kr/board/lostark/5349/109256",
+              포격강화: "https://www.inven.co.kr/board/lostark/5349/108171",
             },
-            "호크아이": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5347",
-                "guides": {
-                "두번째동료": "https://m.inven.co.kr/board/lostark/5347/127725",
-                "죽음의습격": "https://m.inven.co.kr/board/lostark/5347/129320"
-                }
+          },
+          호크아이: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5347",
+            guides: {
+              두번째동료: "https://m.inven.co.kr/board/lostark/5347/127725",
+              죽음의습격: "https://m.inven.co.kr/board/lostark/5347/129320",
             },
-            "스카우터": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5631",
-                "guides": {
-                "진화의유산": "https://m.inven.co.kr/board/lostark/5631/40370",
-                "아르데타인의기술": "https://m.inven.co.kr/board/lostark/5631/68679"
-                }
+          },
+          스카우터: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5631",
+            guides: {
+              진화의유산: "https://m.inven.co.kr/board/lostark/5631/40370",
+              아르데타인의기술:
+                "https://m.inven.co.kr/board/lostark/5631/68679",
             },
-            "건슬링어": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5708",
-                "guides": {
-                "피스메이커": "https://m.inven.co.kr/board/lostark/5708/9071?my=con",
-                "사냥의시간": "https://m.inven.co.kr/board/lostark/5708/100540"
-                }
+          },
+          건슬링어: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5708",
+            guides: {
+              피스메이커:
+                "https://m.inven.co.kr/board/lostark/5708/9071?my=con",
+              사냥의시간: "https://m.inven.co.kr/board/lostark/5708/100540",
             },
-            "바드": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5350",
-                "guides": {
-                "절실한구원": "https://m.inven.co.kr/board/lostark/5350/147445",
-                "진실된용맹": "https://m.inven.co.kr/board/lostark/5350/148485"
-                }
+          },
+          바드: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5350",
+            guides: {
+              절실한구원: "https://m.inven.co.kr/board/lostark/5350/147445",
+              진실된용맹: "https://m.inven.co.kr/board/lostark/5350/148485",
             },
-            "서머너": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5348",
-                "guides": {
-                "상급소환사": "https://m.inven.co.kr/board/lostark/5348/112625",
-                "넘치는교감": "https://m.inven.co.kr/board/lostark/5348/112690"
-                }
+          },
+          서머너: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5348",
+            guides: {
+              상급소환사: "https://m.inven.co.kr/board/lostark/5348/112625",
+              넘치는교감: "https://m.inven.co.kr/board/lostark/5348/112690",
             },
-            "아르카나": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5346",
-                "guides": {
-                "황제의칙령": "https://m.inven.co.kr/board/lostark/5346/129763",
-                "황후의은총": "https://m.inven.co.kr/board/lostark/5346/134016"
-                }
+          },
+          아르카나: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5346",
+            guides: {
+              황제의칙령: "https://m.inven.co.kr/board/lostark/5346/129763",
+              황후의은총: "https://m.inven.co.kr/board/lostark/5346/134016",
             },
-            "소서리스": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5770",
-                "guides": {
-                "점화": "https://m.inven.co.kr/board/lostark/5770/77602",
-                "환류": "https://m.inven.co.kr/board/lostark/5770/64875"
-                }
+          },
+          소서리스: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5770",
+            guides: {
+              점화: "https://m.inven.co.kr/board/lostark/5770/77602",
+              환류: "https://m.inven.co.kr/board/lostark/5770/64875",
             },
-            "블레이드": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5497",
-                "guides": {
-                "잔재된기운": "https://m.inven.co.kr/board/lostark/5497/69654",
-                "버스트": "https://m.inven.co.kr/board/lostark/5497/72325"
-                }
+          },
+          블레이드: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5497",
+            guides: {
+              잔재된기운: "https://m.inven.co.kr/board/lostark/5497/69654",
+              버스트: "https://m.inven.co.kr/board/lostark/5497/72325",
             },
-            "데모닉": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5498",
-                "guides": {
-                "완벽한억제": "https://m.inven.co.kr/board/lostark/5498/47778",
-                "멈출수없는충동": "https://m.inven.co.kr/board/lostark/5498/25352"
-                }
+          },
+          데모닉: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5498",
+            guides: {
+              완벽한억제: "https://m.inven.co.kr/board/lostark/5498/47778",
+              멈출수없는충동: "https://m.inven.co.kr/board/lostark/5498/25352",
             },
-            "리퍼": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5647",
-                "guides": {
-                "달의소리": "https://m.inven.co.kr/board/lostark/5647/57881",
-                "갈증": "https://m.inven.co.kr/board/lostark/5647/86338"
-                }
+          },
+          리퍼: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5647",
+            guides: {
+              달의소리: "https://m.inven.co.kr/board/lostark/5647/57881",
+              갈증: "https://m.inven.co.kr/board/lostark/5647/86338",
             },
-            "소울이터": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5996",
-                "guides": {
-                "만월의집행자": "https://m.inven.co.kr/board/lostark/5996/3103",
-                "그믐의경계": "https://m.inven.co.kr/board/lostark/5996/3539"
-                }
+          },
+          소울이터: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5996",
+            guides: {
+              만월의집행자: "https://m.inven.co.kr/board/lostark/5996/3103",
+              그믐의경계: "https://m.inven.co.kr/board/lostark/5996/3539",
             },
-            "도화가": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5861",
-                "guides": {
-                "만개": "https://m.inven.co.kr/board/lostark/5861/3621",
-                "회귀": "https://m.inven.co.kr/board/lostark/5861/7361"
-                }
+          },
+          도화가: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5861",
+            guides: {
+              만개: "https://m.inven.co.kr/board/lostark/5861/3621",
+              회귀: "https://m.inven.co.kr/board/lostark/5861/7361",
             },
-            "기상술사": {
-                "boardUrl": "https://m.inven.co.kr/board/lostark/5862",
-                "guides": {
-                "이슬비": "https://m.inven.co.kr/board/lostark/5862/2840",
-                "질풍노도": "https://m.inven.co.kr/board/lostark/5862/30062"
-                }
-            }
+          },
+          기상술사: {
+            boardUrl: "https://m.inven.co.kr/board/lostark/5862",
+            guides: {
+              이슬비: "https://m.inven.co.kr/board/lostark/5862/2840",
+              질풍노도: "https://m.inven.co.kr/board/lostark/5862/30062",
+            },
+          },
         };
 
         /*  ==================================================== classData display module ==================================================== */
@@ -1420,7 +1560,7 @@
           });
           column.append(wrapper);
 
-/*           column.click(function () {
+          /*           column.click(function () {
             // Clear existing data
             $("#class-info-columns").empty();
 
@@ -1488,31 +1628,30 @@
                   <a class="nav-link" data-toggle="tab" href="#${guideName}Tab">${guideName} 가이드</a>
                 </li>
               `);
-              
+
               $("#classTabContent").append(`
                 <div class="tab-pane fade" id="${guideName}Tab" role="tabpanel">
                   <iframe src="${guideUrl}"></iframe>
                 </div>
               `);
             });
-            
-            $('#classTabs a').each(function (index,element) {
-              var tab=$(element);
-              tab.on('click', function (e) {
+
+            $("#classTabs a").each(function (index, element) {
+              var tab = $(element);
+              tab.on("click", function (e) {
                 e.preventDefault();
-                $(this).tab('show');
+                $(this).tab("show");
               });
             });
           });
 
           // Append the column to the appropriate container
-          
+
           $("#class-columns").append(column);
-          
         });
 
         /*  ==================================================== character display module ==================================================== */
-        
+
         /*structure : 
         main algorithm 
         -> user column 
@@ -1529,7 +1668,7 @@
         -> charManager.displayEquipmentData
         ...repeat
         */
-        
+
         // Define user columns
         var users = [
           "유저1",
@@ -1541,7 +1680,6 @@
           "유저7",
           "유저8",
         ];
-
 
         // Create user columns
         users.forEach(function (user) {
@@ -1565,30 +1703,23 @@
             // Call the getCharacterData function when the page loads
             characterManager.getCharacterData(nickname, section);
           });
-
         });
 
-        
-        $(".character-section").on("click",".draggable",function(){
-            openBar();
-            var characterName = $(this).text().split(" ")[0];
-            characterManager.displayEquipmentData(characterName);
-            characterManager.displayProfileData(characterName);
-            characterManager.displayDuoData(characterName);
-          });
+        $(".character-section").on("click", ".draggable", function () {
+          openBar();
+          var characterName = $(this).text().split(" ")[0];
+          characterManager.displayEquipmentData(characterName);
+          characterManager.displayProfileData(characterName);
+          characterManager.displayDuoData(characterName);
+        });
 
-
-        
-         // Create an object to encapsulate the functionality
-         var characterManager = {
-          
-          
+        // Create an object to encapsulate the functionality
+        var characterManager = {
           equipmentData: {}, // Store equipment data here
           profileData: {},
           gemData: {},
           cardData: {},
 
-          
           getCharacterData: function (nickname, section) {
             var url =
               "https://developer-lostark.game.onstove.com/characters/" +
@@ -1614,7 +1745,6 @@
             xhr.send();
           },
 
-          
           displayCharacterData: function (data, section) {
             section.empty();
             data.forEach(function (character) {
@@ -1686,7 +1816,7 @@
               if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                   var response = JSON.parse(xhr.responseText);
-                  characterManager.equipmentData[characterName]=response;
+                  characterManager.equipmentData[characterName] = response;
                   console.log(characterManager.equipmentData[characterName]);
                 } else {
                   var errorCode = xhr.statusText;
@@ -1697,38 +1827,37 @@
             xhr.send();
           },
 
-
           displayEquipmentData: function (characterName) {
             var equipmentData = this.equipmentData[characterName];
-            
 
             // Clear the existing equipment data display
             $("#character-info-columns").empty();
-            var equipmentColumn = $("<div id='equipment-column' class='character-info-column'></div>");
+            var equipmentColumn = $(
+              "<div id='equipment-column' class='character-info-column'></div>"
+            );
             $("#character-info-columns").append(equipmentColumn);
-              
+
             // Iterate through the equipment data and display it
             equipmentData.forEach(function (equipment) {
-
               // Parse Tooltip and get necessary data
-              var tooltipData = characterManager.parseEquipmentTooltip(equipment.Tooltip);
+              var tooltipData = characterManager.parseEquipmentTooltip(
+                equipment.Tooltip
+              );
               var tooltipElement = tooltipData.tooltipElement;
               var additionalInfo = tooltipData.additionalInfo;
-              var extraInfoDisplay = '';
-              if(additionalInfo.leftStr1 && additionalInfo.qualityValue) {
+              var extraInfoDisplay = "";
+              if (additionalInfo.leftStr1 && additionalInfo.qualityValue) {
                 extraInfoDisplay = `[${additionalInfo.leftStr1} ${additionalInfo.qualityValue}]`;
               }
               var equipmentElement = $("<div></div>")
-                .addClass("equipment-element container")
+                .addClass("equipment-element")
                 .html(
                   `
-                    <div class="row">
-                      ${equipment.Name}
-                    </div>
-                    <div class="row">
-                        <img src=${equipment.Icon} style="width: 20px; height: 20px; padding:0; margin: 5px;" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
+                      <img class="equipment-img" src=${equipment.Icon} data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"> 
+                      <header class="equipment-header">${equipment.Name}</header>
+                      <p>
                         ${equipment.Grade} ${equipment.Type} ${extraInfoDisplay}
-                    </div>
+                      </p>
                 `
                 );
               //equipmentElement.append(tooltipData);
@@ -1738,62 +1867,68 @@
               $('[data-bs-toggle="tooltip"]').tooltip({
                 html: true,
                 title: tooltipElement,
-                trigger: 'click'
+                trigger: "click",
               });
             });
             console.log(equipmentColumn);
             //$("#spec-columns").append(equipmentColumn);
           },
 
-          
           parseEquipmentTooltip: function (tooltip) {
             var tooltipElement = $("<div></div>");
             var additionalInfo = {
               leftStr1: null,
-              qualityValue: null
+              qualityValue: null,
             };
-              try {
-                // Replace the font size and color attributes with inline CSS
-                var fixedTooltip = tooltip.replace(/<font[^>]*>/gi, function(match){
-                  let newTag = '<span style=\'';
+            try {
+              // Replace the font size and color attributes with inline CSS
+              var fixedTooltip = tooltip
+                .replace(/<font[^>]*>/gi, function (match) {
+                  let newTag = "<span style='";
                   let sizeMatch = match.match(/size='(\d+)'/i);
                   let colorMatch = match.match(/color='([^']+)'/i);
-            
+
                   if (sizeMatch) {
                     newTag += `font-size:${sizeMatch[1]}px;`;
                   }
-            
+
                   if (colorMatch) {
                     newTag += `color:${colorMatch[1]};`;
                   }
-            
-                  newTag += '\'>';
+
+                  newTag += "'>";
                   return newTag;
-                }).replace(/<\/font>/gi, "</span>");
+                })
+                .replace(/<\/font>/gi, "</span>");
 
               var parsedTooltip = JSON.parse(fixedTooltip);
-              
+
               for (var key in parsedTooltip) {
                 var element = parsedTooltip[key];
-                var elementDiv = $("<div class='text-left'></div>").addClass("tooltip-element");
-            
-                
+                var elementDiv = $("<div class='text-left'></div>").addClass(
+                  "tooltip-element"
+                );
+
                 switch (element.type) {
                   case "NameTagBox":
                     elementDiv.append(`<p>${element.value}</p>`);
                     break;
 
                   case "ItemTitle":
-                    additionalInfo.leftStr1 = $("<div>").html(element.value.leftStr1).text();
-                    additionalInfo.qualityValue = $("<div>").html(element.value.qualityValue).text();
+                    additionalInfo.leftStr1 = $("<div>")
+                      .html(element.value.leftStr1)
+                      .text();
+                    additionalInfo.qualityValue = $("<div>")
+                      .html(element.value.qualityValue)
+                      .text();
                     console.log(additionalInfo.leftStr1);
                     console.log(additionalInfo.qualityValue);
-                    
+
                     var itemTitleHtml = `
                       <div class="container">
                         <div class="row">
                           <div class="col-3">
-                            <img src="${element.value.slotData.iconPath}" alt="Icon">
+                            <img class="equipement-img" src="${element.value.slotData.iconPath}" alt="Icon">
                           </div>
                           <div class="col-9">
                             <div class="row">
@@ -1821,14 +1956,13 @@
                     elementDiv.append(itemTitleHtml);
                     break;
 
-
                   case "SingleTextBox":
                     elementDiv.append(`<p>${element.value}</p>`);
                     break;
 
                   case "MultiTextBox":
-                    var values = element.value.split('|');
-                    values.forEach(function(value) {
+                    var values = element.value.split("|");
+                    values.forEach(function (value) {
                       elementDiv.append(`<p>${value}</p>`);
                     });
                     break;
@@ -1840,17 +1974,27 @@
                     break;
 
                   case "Progress":
-                    elementDiv.append(`<p>${element.value.title}: ${element.value.value}/${element.value.maximum}</p>`);
+                    elementDiv.append(
+                      `<p>${element.value.title}: ${element.value.value}/${element.value.maximum}</p>`
+                    );
                     break;
 
                   case "SetItemGroup":
                     elementDiv.append(`<p>${element.value.firstMsg}</p>`);
-                    var itemContainer = $("<div></div>").css({ "display": "flex", "justify-content": "space-around" ,"margin-bottom": "10px"});
+                    var itemContainer = $("<div></div>").css({
+                      display: "flex",
+                      "justify-content": "space-around",
+                      "margin-bottom": "10px",
+                    });
                     for (var itemKey in element.value.itemData) {
                       var itemElement = element.value.itemData[itemKey];
                       var itemSlot = $("<div></div>");
-                      itemSlot.append(`<img src="${itemElement.slotData.iconPath}" alt="Icon" style="width: 30px; height: 30px; display:block; margin:auto;">`);
-                      itemSlot.append(`<div style='text-align:center;'>${itemElement.label}</div>`);
+                      itemSlot.append(
+                        `<img src="${itemElement.slotData.iconPath}" alt="Icon" style="width: 30px; height: 30px; display:block; margin:auto;">`
+                      );
+                      itemSlot.append(
+                        `<div style='text-align:center;'>${itemElement.label}</div>`
+                      );
                       itemContainer.append(itemSlot);
                     }
                     elementDiv.append(itemContainer);
@@ -1861,8 +2005,11 @@
                       var groupElement = element.value[groupKey];
                       elementDiv.append(`<p>${groupElement.topStr}</p>`);
                       for (var contentKey in groupElement.contentStr) {
-                        var contentElement = groupElement.contentStr[contentKey];
-                        elementDiv.append(`<p>${contentElement.contentStr}</p>`);
+                        var contentElement =
+                          groupElement.contentStr[contentKey];
+                        elementDiv.append(
+                          `<p>${contentElement.contentStr}</p>`
+                        );
                       }
                     }
                     break;
@@ -1878,20 +2025,24 @@
                 tooltipElement.append(elementDiv);
               }
             } catch (error) {
-              console.error('Error parsing tooltip:', error);
+              console.error("Error parsing tooltip:", error);
             }
 
             return { tooltipElement, additionalInfo };
           },
-         
-          
 
           getProfileData: function (characterName) {
-            var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/profiles"; // Adjust URL as per API documentation
+            var url =
+              "https://developer-lostark.game.onstove.com/armories/characters/" +
+              characterName +
+              "/profiles"; // Adjust URL as per API documentation
             var xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
             xhr.setRequestHeader("accept", "application/json");
-            xhr.setRequestHeader("authorization", "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"); // Put your token here
+            xhr.setRequestHeader(
+              "authorization",
+              "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+            ); // Put your token here
             xhr.onreadystatechange = function () {
               if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
@@ -1907,7 +2058,7 @@
             xhr.send();
           },
 
-          displayDuoData: function(characterName){
+          displayDuoData: function (characterName) {
             $("#duo-column").empty();
             var duo = $(`<div id="duo-column"></div>`);
             $("#character-info-columns").append(duo);
@@ -1917,10 +2068,12 @@
 
           displayProfileData: function (characterName) {
             var profileData = this.profileData[characterName];
-            
+
             // Clear the existing character data display
             $("#profile-column").empty();
-            var profile = $('<div id="profile-column" class="character-info-column"></div>');
+            var profile = $(
+              '<div id="profile-column" class="character-info-column"></div>'
+            );
             $("#character-info-columns").append(profile);
             // Create a container to hold the data
             var profileHTML = $(`
@@ -1937,22 +2090,36 @@
                 </div>
               </div>
             `);
-            
-            var stats = $('<div id="stat-column" class="character-info-column"></div>')
+
+            var stats = $(
+              '<div id="stat-column" class="character-info-column"></div>'
+            );
             var basicStats = $('<div class="row"></div>');
             var mainStats = $('<div class="row"></div>');
             var subStats = $('<div class="row"></div>');
-            
+
             // For stats, you might need to iterate through an array if it's an array of objects
-            profileData.Stats.forEach(function(stat) {
-              if (stat.Type === '치명' || stat.Type === '특화' || stat.Type === '신속') {
-                mainStats.append(`<div class="col">${stat.Type} : ${stat.Value}</div>`);
-              }
-              else if (stat.Type === '제압' || stat.Type === '인내' || stat.Type === '숙련') {
-                subStats.append(`<div class="col">${stat.Type} : ${stat.Value}</div>`);
-              }
-              else {
-                basicStats.append(`<div class="col">${stat.Type} : ${stat.Value}</div>`);
+            profileData.Stats.forEach(function (stat) {
+              if (
+                stat.Type === "치명" ||
+                stat.Type === "특화" ||
+                stat.Type === "신속"
+              ) {
+                mainStats.append(
+                  `<div class="col">${stat.Type} : ${stat.Value}</div>`
+                );
+              } else if (
+                stat.Type === "제압" ||
+                stat.Type === "인내" ||
+                stat.Type === "숙련"
+              ) {
+                subStats.append(
+                  `<div class="col">${stat.Type} : ${stat.Value}</div>`
+                );
+              } else {
+                basicStats.append(
+                  `<div class="col">${stat.Type} : ${stat.Value}</div>`
+                );
               }
             });
 
@@ -1962,18 +2129,22 @@
             stats.append(subStats);
 
             profile.append(stats);
-            
-            
+
             console.log($("#profile-column"));
-            
           },
 
           getGemData: function (characterName) {
-            var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/gems"; // Adjust URL as per API documentation
+            var url =
+              "https://developer-lostark.game.onstove.com/armories/characters/" +
+              characterName +
+              "/gems"; // Adjust URL as per API documentation
             var xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
             xhr.setRequestHeader("accept", "application/json");
-            xhr.setRequestHeader("authorization", "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"); // Put your token here
+            xhr.setRequestHeader(
+              "authorization",
+              "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+            ); // Put your token here
             xhr.onreadystatechange = function () {
               if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
@@ -1988,78 +2159,83 @@
             };
             xhr.send();
           },
-          
-          displayGemData: function(characterName) {
+
+          displayGemData: function (characterName) {
             var gemData = this.gemData[characterName];
-            var gemColumn = $("<div id='gem-column' class='character-info-column'></div>");
-            $('#duo-column').append(gemColumn);
+            var gemColumn = $(
+              "<div id='gem-column' class='character-info-column'></div>"
+            );
+            $("#duo-column").append(gemColumn);
             // Clear the existing character data display
             gemColumn.empty();
-            
-            gemData.Gems.forEach(function(gem) {
-                var gemElement = $(`
+
+            gemData.Gems.forEach(function (gem) {
+              var gemElement = $(`
                     <div class="gem-element container position-relative">
-                            <img src="${gem.Icon}" alt="${gem.Name}" style="width: 100%; height: 100%; padding:0; " data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
+                            <img class="gem-img" src="${gem.Icon}" alt="${gem.Name}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
                             <div class="position-absolute bottom-0 end-0">${gem.Level}</div>
                     </div>
                 `);
-              console.log("툴팁:"+gem.Tooltip);
+              console.log("툴팁:" + gem.Tooltip);
               gemColumn.append(gemElement);
-               var tooltipElement = characterManager.parseGemTooltip(gem.Tooltip);
-               $('[data-bs-toggle="tooltip"]').tooltip({
+              var tooltipElement = characterManager.parseGemTooltip(
+                gem.Tooltip
+              );
+              $('[data-bs-toggle="tooltip"]').tooltip({
                 html: true,
                 title: tooltipElement,
-                trigger: 'hover',
+                trigger: "hover",
               });
             });
-            
+          },
 
-        },
-
-        parseGemTooltip: function(tooltipData) {
-
+          parseGemTooltip: function (tooltipData) {
             // Replace the font size and color attributes with inline CSS
-            var fixedTooltip = tooltipData.replace(/<font[^>]*>/gi, function(match){
-              let newTag = '<span style=\'';
-              let sizeMatch = match.match(/size='(\d+)'/i);
-              let colorMatch = match.match(/color='([^']+)'/i);
-        
-              if (sizeMatch) {
-                newTag += `font-size:${sizeMatch[1]}px;`;
-              }
-        
-              if (colorMatch) {
-                newTag += `color:${colorMatch[1]};`;
-              }
-        
-              newTag += '\'>';
-              return newTag;
-            }).replace(/<\/font>/gi, "</span>");
+            var fixedTooltip = tooltipData
+              .replace(/<font[^>]*>/gi, function (match) {
+                let newTag = "<span style='";
+                let sizeMatch = match.match(/size='(\d+)'/i);
+                let colorMatch = match.match(/color='([^']+)'/i);
+
+                if (sizeMatch) {
+                  newTag += `font-size:${sizeMatch[1]}px;`;
+                }
+
+                if (colorMatch) {
+                  newTag += `color:${colorMatch[1]};`;
+                }
+
+                newTag += "'>";
+                return newTag;
+              })
+              .replace(/<\/font>/gi, "</span>");
             // Parse the JSON data from the tooltip string
             const tooltip = JSON.parse(fixedTooltip);
-        
+
             // Create a Bootstrap tooltip container element
-            const tooltipContainer = $('<div></div>');
-        
+            const tooltipContainer = $("<div></div>");
+
             // Iterate through elements in the tooltip and create corresponding HTML
             for (const key in tooltip) {
-                if (tooltip.hasOwnProperty(key)) {
-                    const element = tooltip[key];
-                    switch (element.type) {
-                        case 'NameTagBox':
-                            // Create a name tag box element
-                            const nameTagBox = $('<div></div>').addClass('name-tag-box');
-                            nameTagBox.append(element.value);
-                            tooltipContainer.append(nameTagBox);
-                            break;
-                        case 'ItemTitle':
-                            // Create an item title box element
-                            const itemTitleBox = $('<div></div>').addClass('item-title-box');
-                            var itemTitleHtml = $(`
+              if (tooltip.hasOwnProperty(key)) {
+                const element = tooltip[key];
+                switch (element.type) {
+                  case "NameTagBox":
+                    // Create a name tag box element
+                    const nameTagBox =
+                      $("<div></div>").addClass("name-tag-box");
+                    nameTagBox.append(element.value);
+                    tooltipContainer.append(nameTagBox);
+                    break;
+                  case "ItemTitle":
+                    // Create an item title box element
+                    const itemTitleBox =
+                      $("<div></div>").addClass("item-title-box");
+                    var itemTitleHtml = $(`
                                 <div class="container">
                                   <div class="row">
                                     <div class="col-3">
-                                      <img src="${element.value.slotData.iconPath}" alt="Icon">
+                                      <img class="gem-img" src="${element.value.slotData.iconPath}" alt="Icon">
                                     </div>
                                     <div class="col-9">
                                       <div class="row">
@@ -2076,44 +2252,53 @@
                                   </div>
                                 </div>
                               `);
-                            itemTitleBox.append(itemTitleHtml);
-                            tooltipContainer.append(itemTitleBox);
-                            break;
-                        case 'MultiTextBox':
-                            // Create a multi-text box element
-                            const multiTextBox = $('<div></div>').addClass('multi-text-box');
-                            multiTextBox.append(element.value);
-                            tooltipContainer.append(multiTextBox);
-                            break;
-                        case 'SingleTextBox':
-                            // Create a single text box element
-                            const singleTextBox = $('<div></div>').addClass('single-text-box');
-                            singleTextBox.append(element.value);
-                            tooltipContainer.append(singleTextBox);
-                            break;
-                        case 'ItemPartBox':
-                            // Create an item part box element
-                            const itemPartBox = $('<div></div>').addClass('item-part-box');
-                            itemPartBox.append(element.value.Element_000);
-                            itemPartBox.append($('<br>'));
-                            itemPartBox.append(element.value.Element_001);
-                            tooltipContainer.append(itemPartBox);
-                            break;
-                        default:
-                            break;
-                    }
+                    itemTitleBox.append(itemTitleHtml);
+                    tooltipContainer.append(itemTitleBox);
+                    break;
+                  case "MultiTextBox":
+                    // Create a multi-text box element
+                    const multiTextBox =
+                      $("<div></div>").addClass("multi-text-box");
+                    multiTextBox.append(element.value);
+                    tooltipContainer.append(multiTextBox);
+                    break;
+                  case "SingleTextBox":
+                    // Create a single text box element
+                    const singleTextBox =
+                      $("<div></div>").addClass("single-text-box");
+                    singleTextBox.append(element.value);
+                    tooltipContainer.append(singleTextBox);
+                    break;
+                  case "ItemPartBox":
+                    // Create an item part box element
+                    const itemPartBox =
+                      $("<div></div>").addClass("item-part-box");
+                    itemPartBox.append(element.value.Element_000);
+                    itemPartBox.append($("<br>"));
+                    itemPartBox.append(element.value.Element_001);
+                    tooltipContainer.append(itemPartBox);
+                    break;
+                  default:
+                    break;
                 }
+              }
             }
-        
+
             return tooltipContainer;
           },
 
           getCardData: function (characterName) {
-            var url = "https://developer-lostark.game.onstove.com/armories/characters/" + characterName + "/cards"; // Adjust URL as per API documentation
+            var url =
+              "https://developer-lostark.game.onstove.com/armories/characters/" +
+              characterName +
+              "/cards"; // Adjust URL as per API documentation
             var xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
             xhr.setRequestHeader("accept", "application/json");
-            xhr.setRequestHeader("authorization", "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"); // Put your token here
+            xhr.setRequestHeader(
+              "authorization",
+              "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAxNzQ1MjAifQ.ZT_vbQ4k1kYAXqUGI4UyodNb1EYNE7hXJKA2wv8d9-nweEp6bpFzyFJK0zpL46Ic1zdnXo2fdlTCxfLd0l8NlZtVHSGMNL0FpViFUYvOed1h_Dm0J2LQb4q3dAtLFnSqGPJbHfa7h-uY5z0LN5RhIc7l9QFt4o7atVtfejVub7unMjM5ajZdfeIZxEbzUFzLQ5OtS1cpP6f3VY6_yK0w2_waf6ZnMKy_fVcWVjP5U3IsaxQ-ErG5iWYb9B6XA5swW_KUe2qOW4KG7D0dZRzYiGrkFi5eI87G6Mfv7EN5PJzSgTEa4bnzYlyvMcVuK6Hey00E1DWKca6L8na2nyACaw"
+            ); // Put your token here
             xhr.onreadystatechange = function () {
               if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
@@ -2129,39 +2314,59 @@
             xhr.send();
           },
 
-          displayCardData: function(characterName) {
+          displayCardData: function (characterName) {
             var cardData = this.cardData[characterName];
-            var cardColumn = $("<div id='card-column' class='character-info-column'></div>");
-            $('#duo-column').append(cardColumn);
+            var cardColumn = $(
+              "<div id='card-column' class='character-info-column'></div>"
+            );
+            $("#duo-column").append(cardColumn);
 
-            cardData.Cards.forEach(function(card) {
-                var tooltip = JSON.parse(card.Tooltip);
-                var cardElement = `
-                    <div class="card border-dark" style="width: 10%; margin: 0 5px;">
+            cardData.Effects.forEach(function (effect) {
+              var effectElement = `
+                    <div class="effect-element" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" style="margin: auto;">
+                        <h6><strong>${
+                          effect.Items[effect.Items.length - 1].Name
+                        }</strong></h6>
+                    </div>
+                `;
+              cardColumn.append(effectElement);
+              var tooltipElement = `
+                  <div>
+                    <h6 class="text-center"><strong>${
+                      effect.Items[effect.Items.length - 1].Name
+                    }</strong></h6><br>
+                     ${effect.Items.map(
+                       (item) => `<p>${item.Name}: ${item.Description}</p>`
+                     ).join("")}
+                  </div>`;
+
+              $('[data-bs-toggle="tooltip"]').tooltip({
+                html: true,
+                title: tooltipElement,
+                trigger: "hover",
+              });
+            });
+
+            var cardDeck = $(`<div class="card-deck-element"></div>`);
+
+            cardData.Cards.forEach(function (card) {
+              var tooltip = JSON.parse(card.Tooltip);
+
+              var cardElement = `
+                    <div class="card border-dark">
                       <img src="${card.Icon}" class="card-img" alt="${card.Name}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip">
                       <div class="card-img-overlay">
                         <div class="card-title text-start">${card.Name}</div>
-                        
                         </div>
                     </div>
                 `;
-                cardColumn.append(cardElement);
+              cardDeck.append(cardElement);
             });
-
-            cardData.Effects.forEach(function(effect) {
-                var effectElement = `
-                    <button type="button" class="btn btn-dark" data-toggle="tooltip" style="margin: 0 auto;">
-                        <strong>${effect.Items[effect.Items.length-1].Name}</strong>
-                    </button>
-                `;
-                cardColumn.append(effectElement);
-                effectElement.tooltip('toggle');
-            });
-          /*${effect.Items.map(item => `<p>${item.Name}: ${item.Description}</p>`).join('')}*/
-          }
-
-        }
-//end of charactermanager
+            cardColumn.append(cardDeck);
+            /*${effect.Items.map(item => `<p>${item.Name}: ${item.Description}</p>`).join('')}*/
+          },
+        };
+        //end of charactermanager
 
         function getColorForClass(className) {
           var classColor = [];
@@ -3028,14 +3233,23 @@
         });
       });
       //end documnet
-      //extra function
+
       function openBar() {
-        document.getElementById("table-sidebar").style.width = "60%";
-        document.getElementById("table-sidebar").style.paddingRight = "2%";
-        document.getElementById("sideOpenBtn").style.width = "0%";
+        if (window.matchMedia("(max-width: 340px)").matches) {
+          document.getElementById("table-sidebar").style.width = "100%";
+          document.getElementById("table-sidebar").style.paddingRight = "2%";
+          document.getElementById("sideOpenBtn").style.width = "0%";
+        } else if (window.matchMedia("(max-width: 1024px)").matches) {
+          document.getElementById("table-sidebar").style.width = "100%";
+          document.getElementById("table-sidebar").style.paddingRight = "2%";
+          document.getElementById("sideOpenBtn").style.width = "0%";
+        } else {
+          document.getElementById("table-sidebar").style.width = "60%";
+          document.getElementById("table-sidebar").style.paddingRight = "2%";
+          document.getElementById("sideOpenBtn").style.width = "0%";
+        }
       }
 
-      /* Set the width of the side navigation to 0 */
       function closeBar() {
         document.getElementById("table-sidebar").style.width = "0";
         document.getElementById("table-sidebar").style.paddingRight = "0";
