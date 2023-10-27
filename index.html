@@ -157,6 +157,43 @@
         width: 100%;
       }
 
+      #synergy-group .droppable{
+        color: white;
+      }
+      
+      #class-group .droppable{
+        color: black;
+      }
+      
+      #character-group .droppable{
+        color: black;
+      }
+      
+      .member-guide{
+        margin: 5%;
+        width: 90%;
+        height: 90%;
+        border-radius: 5px;
+        color: white;
+        opacity: 0.5;
+        
+      }
+      .member1-guide{
+        background-color: #8B0000;
+        box-shadow: 0 0 10px 10px #8B0000;
+      }
+      .member2-guide{
+        background-color: #FF1493;
+        box-shadow: 0 0 10px 10px #FF1493;
+      }
+      .member3-guide{
+        background-color: #FF4500;
+        box-shadow: 0 0 10px 10px #FF4500;
+      }
+      .member4-guide{
+        background-color: #00FFFF;
+        box-shadow: 0 0 10px 10px #00FFFF ;
+      }
       #class-info-container,
       #character-info-container {
         display: none;
@@ -436,6 +473,7 @@
         border-radius: 3px;
         text-align: center;
         min-height: 30px;
+        background-color: lightgrey;
       }
 
       .synergy-column .draggable {
@@ -2614,7 +2652,29 @@
             var element = $("<div></div>")
               .addClass("droppable")
               .css("min-height", "50px");
+            
             column.append(element);
+            if( i == 0 ){
+              var defaultContent = `<div class="member1-guide member-guide">1번 추천:치명타 적중률 증가 딜러</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
+            else if( i == 1 ){
+              var defaultContent = `<div class="member2-guide member-guide">2번 추천:1번과 다른 시너지의 딜러</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
+            else if( i ==2 ){
+              var defaultContent = `<div class="member3-guide member-guide">3번 추천:1,2번과 다른 시너지의 딜러</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
+            else{
+              var defaultContent = `<div class="member4-guide member-guide">4번 추천:서포터(바드,도화가,홀리나이트)</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
+            
 
           }
 
@@ -2640,7 +2700,11 @@
             dropped.find("[data-toggle='tooltip']").tooltip();
             dropped.click(function () {
               dropped.find("[data-toggle='tooltip']").tooltip("hide");
+              // Reset the droppable element to its default content
+              var defaultContent = $(this).parent().data("default-content");
+              $(this).parent().empty().append(defaultContent);
               $(this).remove();
+              
             });
 
             $(this).empty().append(dropped);
@@ -2702,6 +2766,26 @@
               .addClass("droppable")
               .css("min-height", "50px");
             column.append(element);
+            if( i == 0 ){
+              var defaultContent = `<div class="member1-guide member-guide">1번 추천:치명타 적중률 증가 딜러</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
+            else if( i == 1 ){
+              var defaultContent = `<div class="member2-guide member-guide">2번 추천:1번과 다른 시너지의 딜러</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
+            else if( i ==2 ){
+              var defaultContent = `<div class="member3-guide member-guide">3번 추천:1,2번과 다른 시너지의 딜러</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
+            else{
+              var defaultContent = `<div class="member4-guide member-guide">4번 추천:서포터(바드,도화가,홀리나이트)</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
 
           }
 
@@ -2727,6 +2811,9 @@
             dropped.find("[data-toggle='tooltip']").tooltip();
             dropped.click(function () {
               dropped.find("[data-toggle='tooltip']").tooltip("hide");
+              // Reset the droppable element to its default content
+              var defaultContent = $(this).parent().data("default-content");
+              $(this).parent().empty().append(defaultContent);
               $(this).remove();
               updateClassPartyStats();
             });
@@ -2939,7 +3026,26 @@
               .addClass("droppable")
               .css("min-height", "50px");
             column.append(element);
-          
+            if( i == 0 ){
+              var defaultContent = `<div class="member1-guide member-guide">1번 추천:치명타 적중률 증가 딜러</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
+            else if( i == 1 ){
+              var defaultContent = `<div class="member2-guide member-guide">2번 추천:1번과 다른 시너지의 딜러</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
+            else if( i ==2 ){
+              var defaultContent = `<div class="member3-guide member-guide">3번 추천:1,2번과 다른 시너지의 딜러</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
+            else{
+              var defaultContent = `<div class="member4-guide member-guide">4번 추천:서포터(바드,도화가,홀리나이트)</div>`;
+              element.data('default-content',defaultContent);
+              element.append(defaultContent);
+            }
           }
 
           $("#character-group").append(column);
@@ -2956,6 +3062,9 @@
 
             dropped.click(function () {
               dropped.find("[data-toggle='tooltip']").tooltip("hide");
+              // Reset the droppable element to its default content
+              var defaultContent = $(this).parent().data("default-content");
+              $(this).parent().empty().append(defaultContent);
               $(this).remove();
               updateCharacterPartyStats();
             });
