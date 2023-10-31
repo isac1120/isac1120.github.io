@@ -242,8 +242,7 @@
         white-space: nowrap;
       }
       
-      .base-info-columns {
-        
+      .base-info-columns {    
         height: 750px;
         min-width: 300px;
         padding: 0 10px;
@@ -255,6 +254,7 @@
         overflow-x: auto;
         white-space: nowrap;
       }
+      
       .base-grouping-columns {
         height: 350px;
         min-height: 250px;
@@ -304,9 +304,6 @@
         overflow: hidden;
       }
 
-      #synergy-info-columns {
-        padding-top: 20px;
-      }
       /* column */
 
       .synergy-column {
@@ -941,60 +938,64 @@
 
       <!-------------------------------- class container -------------------------------->
       <div id="class-page" class="container page" style="display: none">
-        <div id="class-container" class="from-container">
-          <!--
-          <div class="container-header">
-            <h4 class="text-center">클래스</h4>
-          </div>
-        -->
-          <div id="class-columns" class="base-columns"></div>
-        </div>
-
-        <div id="class-group-container" class="to-container">
-          <!--
-          <div class="container-header">
-            <div class="button-container">
-              <button id="class-copyBtn" class="copy-button">복사</button>
-              <button id="class-saveBtn" class="save-button">저장</button>
+        <div class="section">
+          <div id="class-container" class="from-container">
+            <!--
+            <div class="container-header">
+              <h4 class="text-center">클래스</h4>
             </div>
-            <h4 class="text-center">공대</h4>
+          -->
+            <div id="class-columns" class="base-columns"></div>
           </div>
-        -->
-          <div id="class-group" class="base-grouping-columns"></div>
+  
+          <div id="class-group-container" class="to-container">
+            <!--
+            <div class="container-header">
+              <div class="button-container">
+                <button id="class-copyBtn" class="copy-button">복사</button>
+                <button id="class-saveBtn" class="save-button">저장</button>
+              </div>
+              <h4 class="text-center">공대</h4>
+            </div>
+          -->
+            <div id="class-group" class="base-grouping-columns"></div>
+          </div>
         </div>
       </div>
       <div id="class-info-container" class="info-container">
         <h4 class="container-header">클래스 정보</h4>
-        <div id="class-info-columns" class="base-columns"></div>
+        <div id="class-info-columns" class="base-info-columns"></div>
       </div>
 
       <!-------------------------------- character container -------------------------------->
       <div id="character-page" class="container page" style="display: none">
-        <div id="character-container" class="from-container">
-          <!--
-          <div class="container-header">
-            <h4 class="text-center">유저</h4>
-          </div>
-        -->
-          <div id="character-columns" class="base-columns"></div>
-        </div>
-
-        <div id="character-group-container" class="to-container">
-          <!--
-          <div class="container-header">
-            <div class="button-container">
-              <button class="copy-button">복사</button>
-              <button class="save-button">저장</button>
+        <div class="section">
+          <div id="character-container" class="from-container">
+            <!--
+            <div class="container-header">
+              <h4 class="text-center">유저</h4>
             </div>
-            <h4 class="text-center">공대</h4>
+          -->
+            <div id="character-columns" class="base-columns"></div>
           </div>
-        -->
-          <div id="character-group" class="base-grouping-columns"></div>
+  
+          <div id="character-group-container" class="to-container">
+            <!--
+            <div class="container-header">
+              <div class="button-container">
+                <button class="copy-button">복사</button>
+                <button class="save-button">저장</button>
+              </div>
+              <h4 class="text-center">공대</h4>
+            </div>
+          -->
+            <div id="character-group" class="base-grouping-columns"></div>
+          </div>
         </div>
       </div>
       <div id="character-info-container" class="info-container">
         <h4 class="container-header">캐릭터 정보</h4>
-        <div id="character-info-columns" class="base-columns"></div>
+        <div id="character-info-columns" class="base-info-columns"></div>
       </div>
     </div>
 
