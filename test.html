@@ -209,6 +209,8 @@
         width: 100%;
         margin: 20px 0;
       }
+
+      #character-info-container
       /*  ====================================================  bottomLV contents layout module  ==================================================== */
 
       /* columns */
@@ -249,7 +251,14 @@
         overflow-y: auto;
         padding: 15px;
       }
-
+      
+      #synergy-info-columns,
+      #class-info-columns,
+      #character-info-columns {
+        width: 100%;
+        overflow: hidden;
+      }
+      
       #character-columns {
         display: flex;
         flex-direction: column;
@@ -261,6 +270,7 @@
 
       #character-info-columns {
         display: flex;
+        overflow-y: scroll;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: flex-start;
@@ -268,12 +278,6 @@
         font-size: 13px;
       }
 
-      #synergy-info-columns,
-      #class-info-columns,
-      #character-info-columns {
-        width: 100%;
-        overflow: hidden;
-      }
 
       #synergy-info-columns {
         padding-top: 20px;
