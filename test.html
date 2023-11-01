@@ -237,6 +237,19 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
+      .base-info-columns {
+        height: 400px;
+        min-width: 300px;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
       #synergy-columns {
         flex-direction: column;
         flex-wrap: wrap;
@@ -398,13 +411,14 @@
       #gem-column {
         display: flex;
         width: 100%;
-        height: 80px;
-        padding: auto;
+        height: 70px;
+        padding: 5 auto;
         overflow-x: scroll;
         overflow-y: hidden;
       }
 
       #card-column {
+        position: relative;
         display: flex;
         flex-wrap: wrap;
         width: 100%;
@@ -435,7 +449,11 @@
       }
 
       .effect-element {
+        position: absolute;
         width: 200px;
+        z-index: 100;
+        top: 30%;
+        left: 25%;
       }
 
       .card-deck-element {
@@ -913,7 +931,7 @@
       </div>
       <div id="synergy-info-container" class="info-container">
         <h4 class="container-header">시너지 정보</h4>
-        <div id="synergy-info-columns" class="base-columns"></div>
+        <div id="synergy-info-columns" class="base-info-columns"></div>
       </div>
 
       <!-------------------------------- class container -------------------------------->
@@ -942,7 +960,7 @@
       </div>
       <div id="class-info-container" class="info-container">
         <h4 class="container-header">클래스 정보</h4>
-        <div id="class-info-columns" class="base-columns"></div>
+        <div id="class-info-columns" class="base-info-columns"></div>
       </div>
 
       <!-------------------------------- character container -------------------------------->
@@ -971,7 +989,7 @@
       </div>
       <div id="character-info-container" class="info-container">
         <h4 class="container-header">캐릭터 정보</h4>
-        <div id="character-info-columns" class="base-columns"></div>
+        <div id="character-info-columns" class="base-info-columns"></div>
       </div>
     </div>
 
