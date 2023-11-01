@@ -293,7 +293,7 @@
 
 
       #synergy-info-columns {
-        padding-top: 20px;
+        padding: 20px;
       }
       
       /*------------------------------------------ column ------------------------------------------*/
@@ -1332,6 +1332,7 @@
           기상술사: "https://m.inven.co.kr/lostark/skill/?reqjob=603",
         };
 
+        var synergyInfoFlag = false;
         // Create synergy columns
         synergies.forEach(function (synergy) {
           var column = $('<div class="synergy-column"></div>').css(
@@ -1353,6 +1354,8 @@
                 .addClass("class-element draggable")
                 .css("background-color", category.color);
               /* Add the .class-element class and set the background color */
+
+              
               element.click(function () {
                 var synergyUrl = synergyData[className];
 
@@ -1364,6 +1367,20 @@
               subColumn.append(element);
             });
 
+            if(synergyInfoFlag==false){
+                synergyInfoFlag = true;
+                var defaultClassName = "건슬링어";
+                var synergyUrl = synergyData[defaultClassName];
+
+                $("#synergy-info-columns").empty();
+                $("#synergy-info-columns").append(
+                  `<iframe src=${synergyUrl} width="100%" height="400px"></iframe>`
+                );
+              });
+              subColumn.append(element);
+            }
+
+            
             column.append(subColumn);
           });
 
@@ -1621,7 +1638,7 @@
         /*  ==================================================== classData display module ==================================================== */
 
         // Now you have a classes dictionary where each key is a class name and its value is an array of synergies
-
+        var classInfoFlag=false;
         // Create class columns
         Object.keys(classes).forEach(function (className) {
           var column = $('<div class="class-column"></div>')
@@ -1688,6 +1705,7 @@
                        `);
                        });
                    }); */
+          
 
           column.click(function () {
             // Clear existing data
@@ -1729,6 +1747,49 @@
                          `);
             });
 
+          if(classInfoFlag==false){
+            var defaultClassName = "건슬링어"; 
+            classInfoflag=true;
+            // Clear existing data
+            $("#class-info-columns").empty();
+
+            // Get class data
+            const baseClassName = defaultClassName.replace(/\[.*?\]/, "");
+            var classInfo = classData[baseClassName];
+
+            // Append the tab structure
+            $("#class-info-columns").append(`
+                         <div class="class-info-column">
+                             <ul class="nav nav-tabs" id="classTabs" role="tablist">
+                               <li class="nav-item">
+                                 <a class="nav-link active" id="classBoardTab" data-toggle="tab" href="#classBoard" role="tab">${baseClassName} 게시판</a>
+                               </li>
+                             </ul>
+                             <div class="tab-content" id="classTabContent">
+                               <div class="tab-pane fade show active" id="classBoard" role="tabpanel">
+                                 <iframe src="${classInfo.boardUrl}"></iframe>
+                               </div>
+                             </div>
+                         </div>
+                       `);
+
+            // Append class guides as additional tabs
+            Object.keys(classInfo.guides).forEach(function (guideName) {
+              var guideUrl = classInfo.guides[guideName];
+              $("#classTabs").append(`
+                           <li class="nav-item">
+                             <a class="nav-link" data-toggle="tab" href="#${guideName}Tab">${guideName} 가이드</a>
+                           </li>
+                         `);
+
+              $("#classTabContent").append(`
+                           <div class="tab-pane fade" id="${guideName}Tab" role="tabpanel">
+                             <iframe src="${guideUrl}"></iframe>
+                           </div>
+                         `);
+            });
+            
+          }
             $("#classTabs a").each(function (index, element) {
               var tab = $(element);
               tab.on("click", function (e) {
