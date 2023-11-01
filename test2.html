@@ -289,6 +289,13 @@
         width: 100%;
       }
 
+      #synergy-info-columns,
+      #class-info-columns,
+      #character-info-columns {
+        width: 100%;
+        overflow: hidden;
+      }
+
       #character-info-columns {
         display: flex;
         flex-direction: row;
@@ -296,13 +303,7 @@
         justify-content: flex-start;
         align-items: flex-start;
         font-size: 13px;
-      }
-
-      #synergy-info-columns,
-      #class-info-columns,
-      #character-info-columns {
-        width: 100%;
-        overflow: hidden;
+        overflow-y: scroll;
       }
 
       /* column */
