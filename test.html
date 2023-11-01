@@ -74,7 +74,7 @@
     />
 
     <style>
-      /*  ====================================================  scrollbar layout  ==================================================== */
+      /*  ========================================  scrollbar layout  ==================================================== */
 
       /* For Webkit browsers (Chrome, Safari, etc.) */
       ::-webkit-scrollbar {
@@ -95,7 +95,7 @@
         height: 12px; /* Increase the height of the horizontal scrollbar */
       }
 
-      /*  ====================================================  topLV title layout module  ==================================================== */
+      /*  ====================================  topLV title layout module  ======================================= */
 
       .h1,
       h2,
@@ -116,7 +116,7 @@
         font-family: "Jua", sans-serif;
       }
 
-      /*  ====================================================  topLV contents layout module  ==================================================== */
+      /*  ====================================  topLV contents layout module  ======================================= */
 
       body {
         font-family: "Jua", sans-serif;
@@ -132,7 +132,7 @@
         justify-content: space-between;
       }
 
-      /*  ====================================================  middleLV contents switch layout module  ==================================================== */
+      /*  ===============================  middleLV contents switch layout module  ========================================= */
 
       /* swithch */
       .switch-container {
@@ -142,7 +142,7 @@
         z-index: 0;
       }
 
-      /*  ====================================================   middleLV contents layout module  ==================================================== */
+      /*  ========================================   middleLV contents layout module  ===================================== */
 
       .from-container {
         width: 59%;
@@ -210,9 +210,9 @@
         margin: 20px 0;
       }
 
-      /*  ====================================================  bottomLV contents layout module  ==================================================== */
+      /*  ======================================  bottomLV contents layout module  ============================================ */
 
-      /* columns */
+      /* ------------------------------------------columns -------------------------------*/
 
       .base-columns {
         height: 350px;
@@ -281,7 +281,8 @@
       #synergy-info-columns {
         padding-top: 20px;
       }
-      /* column */
+      
+      /*------------------------------------------ column ------------------------------------------*/
 
       .synergy-column {
         width: 250px;
@@ -369,18 +370,23 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
+      #section-column {
+        width: 500px;
+      }
+      
       #equipment-column {
         display: flex;
-        width: 100%;
-        height: auto;
+        width: 700px;
+        height: 100%;
         padding: 10px;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
       }
 
       #profile-column {
         width: 100%;
         height: 160px;
+        padding: 10px auto;
       }
 
       #stat-column {
@@ -392,8 +398,10 @@
       #gem-column {
         display: flex;
         width: 100%;
-        height: 75px;
-        padding: 10px;
+        height: 80px;
+        padding: auto;
+        overflow-x: scroll;
+        overflow-y: hidden;
       }
 
       #card-column {
@@ -403,19 +411,18 @@
         padding: 10px;
       }
 
-      #duo-column {
-        width: 100%;
-      }
-
+      
+    /*------------------------------------element------------------------------------------*/
+      
       .member-element {
         background-color: grey;
       }
 
       .equipment-element {
         width: 200px;
-        height: 60px;
-        margin: 5px;
-        padding: 5px;
+        height: 45px;
+        margin: 3px;
+        padding: 3px;
         justify-content: space-evenly;
       }
 
@@ -436,6 +443,7 @@
         justify-content: space-evenly;
         flex-wrap: nowrap;
         width: 100%;
+        opacity: 0.6;
       }
       .card {
         min-width: 50px;
@@ -473,7 +481,7 @@
         font-size: 15px;
         font-weight: bold;
       }
-      /* draggable droppable */
+      /*---------------------------------- draggable droppable ------------------------------*/
 
       .draggable,
       .droppable {
@@ -1768,8 +1776,7 @@
         $(".character-section").on("click", ".draggable", function () {
           var characterName = $(this).text().split(" ")[0];
           characterManager.displayEquipmentData(characterName);
-          characterManager.displayProfileData(characterName);
-          characterManager.displayDuoData(characterName);
+          characterManager.displaySectionData(characterName);
         });
 
         // Create an object to encapsulate the functionality
@@ -2117,12 +2124,14 @@
             xhr.send();
           },
 
-          displayDuoData: function (characterName) {
-            $("#duo-column").empty();
-            var duo = $(`<div id="duo-column"></div>`);
+          displaySectionData: function (characterName) {
+            $("#section-column").empty();
+            var duo = $(`<div id="section-column"></div>`);
             $("#character-info-columns").append(duo);
+            this.displayProfileData(characterName);
             this.displayGemData(characterName);
             this.displayCardData(characterName);
+            
           },
 
           displayProfileData: function (characterName) {
@@ -2133,7 +2142,7 @@
             var profile = $(
               '<div id="profile-column" class="character-info-column"></div>'
             );
-            $("#character-info-columns").append(profile);
+            $("#section-column").append(profile);
             // Create a container to hold the data
             var profileHTML = $(`
                          <div class="container">
@@ -2224,7 +2233,7 @@
             var gemColumn = $(
               "<div id='gem-column' class='character-info-column'></div>"
             );
-            $("#duo-column").append(gemColumn);
+            $("#section-column").append(gemColumn);
             // Clear the existing character data display
             gemColumn.empty();
 
@@ -2378,7 +2387,7 @@
             var cardColumn = $(
               "<div id='card-column' class='character-info-column'></div>"
             );
-            $("#duo-column").append(cardColumn);
+            $("#section-column").append(cardColumn);
 
             cardData.Effects.forEach(function (effect) {
               var effectElement = `
