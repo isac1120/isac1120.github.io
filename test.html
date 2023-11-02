@@ -385,13 +385,20 @@
       }
 
       #section-column {
+        display: flex;
+        flex-direction: column;
+        justify-contents: space-evenly;
+        margin: 0 auto;
         width: 500px;
+        height: 95%;
+        margin: auto;
       }
       
       #equipment-column {
         display: flex;
+        margin: auto;
         width: 700px;
-        height: 100%;
+        height: 95%;
         padding: 10px;
         flex-direction: column;
         flex-wrap: wrap;
@@ -412,8 +419,8 @@
       #gem-column {
         display: flex;
         width: 100%;
-        height: 70px;
-        padding: 5 auto;
+        height: 80px;
+        padding: 10px;
         overflow-x: scroll;
         overflow-y: hidden;
       }
@@ -435,7 +442,7 @@
 
       .equipment-element {
         width: 200px;
-        height: 45px;
+        height: 50px;
         margin: 3px;
         padding: 3px;
         justify-content: space-evenly;
@@ -463,6 +470,7 @@
         flex-wrap: nowrap;
         width: 100%;
         opacity: 0.6;
+       
       }
       .card {
         min-width: 50px;
@@ -1364,11 +1372,9 @@
                   `<iframe src=${synergyUrl} width="100%" height="400px"></iframe>`
                 );
               });
-              subColumn.append(element);
-            });
-
-            if(synergyInfoFlag==false){
-                synergyInfoFlag = true;
+              
+               if(synergyInfoFlag==false) {
+                 synergyInfoFlag=true;
                 var defaultClassName = "건슬링어";
                 var synergyUrl = synergyData[defaultClassName];
 
@@ -1376,10 +1382,9 @@
                 $("#synergy-info-columns").append(
                   `<iframe src=${synergyUrl} width="100%" height="400px"></iframe>`
                 );
-              });
+              }
               subColumn.append(element);
-            }
-
+            });
             
             column.append(subColumn);
           });
@@ -1746,10 +1751,21 @@
                            </div>
                          `);
             });
+            
+            $("#classTabs a").each(function (index, element) {
+              var tab = $(element);
+              tab.on("click", function (e) {
+                e.preventDefault();
+                $(this).tab("show");
+              });
+            });
+          });
 
+          
           if(classInfoFlag==false){
-            var defaultClassName = "건슬링어"; 
             classInfoflag=true;
+            var defaultClassName = "건슬링어"; 
+            
             // Clear existing data
             $("#class-info-columns").empty();
 
@@ -1790,15 +1806,6 @@
             });
             
           }
-            $("#classTabs a").each(function (index, element) {
-              var tab = $(element);
-              tab.on("click", function (e) {
-                e.preventDefault();
-                $(this).tab("show");
-              });
-            });
-          });
-
           // Append the column to the appropriate container
 
           $("#class-columns").append(column);
@@ -1901,13 +1908,13 @@
             section.empty();
             data.forEach(function (character) {
               var element = $("<div></div>")
-                .text(
-                  character.CharacterName +
-                    " (" +
+                .html(
+                  character.CharacterName + "<br>" +
+                    " [" +
                     character.CharacterClassName +
                     " " +
                     character.ItemAvgLevel +
-                    ")"
+                    " ]"
                 )
                 .addClass("draggable")
                 .css("background-color", "white");
