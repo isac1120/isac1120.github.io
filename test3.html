@@ -565,27 +565,11 @@
       }
 
       /* Styling for the button */
-      .add-button {
-          position: absolute;
-          border: grey;
-          height: 100%;
-          border-radius: 50%;
-          top: 0;
-          right: 0;
-          background-color: white;
-          color: black;
-          padding: 5px;
-          cursor: pointer;
-          z-index: 1;
-      }
-
-      .remove-button {
+      .info-button {
           position: absolute;
           top: 0;
           right: 0;
-          background-color: red;
-          color: white;
-          padding: 5px;
+          width: 20px;
           cursor: pointer;
           z-index: 1;
       }
@@ -1388,8 +1372,8 @@
               /* Add the .class-element class and set the background color */
 
               // Create the '+' icon button
-              var plusButton = $('<button class="btn btn-primary btn-sm add-button">+</button>');
-              element.append(plusButton);
+              var infoButton = $('<button class="btn btn-light btn-sm info-button">i</button>');
+              element.append(infoButton);
        
               element.click(function () {
                 var synergyUrl = synergyData[className];
@@ -1420,39 +1404,8 @@
         });
         // Event handler for the '+' icon button
         // Event handler for the '+' icon button
-        $(".add-button").click(function (event) {
+        $("#synergy-columns .info-button").click(function (event) {
             event.stopPropagation(); // Prevent the click event from propagating to the element itself
-
-            var draggableElement = $(this).parent(); // Get the parent draggable element
-            var droppableElements = $("#synergy-group .droppable").not(":has(.draggable)");
-
-            if (droppableElements.length > 0) {
-                // Get the first empty droppable element
-                var firstEmptyDroppable = droppableElements.first();
-
-                // Clone the draggable element and add it to the empty droppable
-                var clonedElement = draggableElement.clone();
-                firstEmptyDroppable.empty().append(clonedElement);
-
-                clonedElement.draggable({
-                    helper: "clone",
-                    revert: "invalid",
-                    appendTo: "body",
-                    zIndex: 100,
-                });
-
-                // Change the button to "-"
-                var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
-                clonedElement.find(".add-button").replaceWith(removeButton);
-
-                // Handle click event for the "-" button (removal)
-                removeButton.click(function () {
-                    var parentDroppable = $(this).closest(".droppable");
-                    var defaultContent = parentDroppable.data("default-content");
-
-                    parentDroppable.empty().append(defaultContent);
-                });
-            }
         });
 
         /* ================================================ classData build module ( extraction from synergyData ) ==================================================== */
@@ -2911,7 +2864,7 @@
           .disableSelection();
 */
         // Double-click functionality for draggable elements
-$("#synergy-columns .draggable").on("dblclick", function () {
+$("#synergy-columns .draggable").on("click", function () {
   var draggableElement = $(this);
   var droppableElements = $("#synergy-group .droppable").not(":has(.draggable)");
 
@@ -2934,7 +2887,7 @@ $("#synergy-columns .draggable").on("dblclick", function () {
 });
 
 // Click functionality to remove draggable element from droppable
-$("#synergy-group .droppable").on("dblclick", ".draggable", function () {
+$("#synergy-group .droppable").on("click", ".draggable", function () {
   var draggableElement = $(this);
   var defaultContent = draggableElement.parent().data("default-content");
 
