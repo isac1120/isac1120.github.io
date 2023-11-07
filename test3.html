@@ -384,9 +384,9 @@
         display: flex;
         flex-direction: column;
         justify-contents: space-evenly;
-        margin: auto;
+        margin: 0 auto;
         width: 500px;
-        height: 98%;
+        height: 95%;
         margin: auto;
       }
       
@@ -394,7 +394,7 @@
         display: flex;
         margin: auto;
         width: 700px;
-        height: 98%;
+        height: 95%;
         padding: 10px;
         flex-direction: column;
         flex-wrap: wrap;
@@ -565,11 +565,27 @@
       }
 
       /* Styling for the button */
-      .info-button {
+      .add-button {
+          position: absolute;
+          border: grey;
+          height: 100%;
+          border-radius: 50%;
+          top: 0;
+          right: 0;
+          background-color: white;
+          color: black;
+          padding: 5px;
+          cursor: pointer;
+          z-index: 1;
+      }
+
+      .remove-button {
           position: absolute;
           top: 0;
           right: 0;
-          width: 20px;
+          background-color: red;
+          color: white;
+          padding: 5px;
           cursor: pointer;
           z-index: 1;
       }
@@ -1372,8 +1388,8 @@
               /* Add the .class-element class and set the background color */
 
               // Create the '+' icon button
-              var infoButton = $('<button class="btn btn-light btn-sm info-button">i</button>');
-              element.append(infoButton);
+              var plusButton = $('<button class="btn btn-primary btn-sm add-button">+</button>');
+              element.append(plusButton);
        
               element.click(function () {
                 var synergyUrl = synergyData[className];
@@ -1402,10 +1418,41 @@
 
           $("#synergy-columns").append(column);
         });
+
         // Event handler for the '+' icon button
-        // Event handler for the '+' icon button
-        $("#synergy-columns .info-button").click(function (event) {
+        $(".add-button").click(function (event) {
             event.stopPropagation(); // Prevent the click event from propagating to the element itself
+
+            var draggableElement = $(this).parent(); // Get the parent draggable element
+            var droppableElements = $("#synergy-group .droppable").not(":has(.draggable)");
+
+            if (droppableElements.length > 0) {
+                // Get the first empty droppable element
+                var firstEmptyDroppable = droppableElements.first();
+
+                // Clone the draggable element and add it to the empty droppable
+                var clonedElement = draggableElement.clone();
+                firstEmptyDroppable.empty().append(clonedElement);
+
+                clonedElement.draggable({
+                    helper: "clone",
+                    revert: "invalid",
+                    appendTo: "body",
+                    zIndex: 100,
+                });
+
+                // Change the button to "-"
+                var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
+                clonedElement.find(".add-button").replaceWith(removeButton);
+
+                // Handle click event for the "-" button (removal)
+                removeButton.click(function () {
+                    var parentDroppable = $(this).closest(".droppable");
+                    var defaultContent = parentDroppable.data("default-content");
+
+                    parentDroppable.empty().append(defaultContent);
+                });
+            }
         });
 
         /* ================================================ classData build module ( extraction from synergyData ) ==================================================== */
@@ -2863,37 +2910,7 @@
           })
           .disableSelection();
 */
-        // Double-click functionality for draggable elements
-$("#synergy-columns .draggable").on("click", function () {
-  var draggableElement = $(this);
-  var droppableElements = $("#synergy-group .droppable").not(":has(.draggable)");
 
-  if (droppableElements.length > 0) {
-    // Get the first empty droppable element
-    var firstEmptyDroppable = droppableElements.first();
-
-    // Clone the draggable element and add it to the empty droppable
-    var clonedElement = draggableElement.clone();
-    firstEmptyDroppable.empty().append(clonedElement);
-
-    // Make the cloned element draggable again
-    clonedElement.draggable({
-      helper: "clone",
-      revert: "invalid",
-      appendTo: "body",
-      zIndex: 100,
-    });
-  }
-});
-
-// Click functionality to remove draggable element from droppable
-$("#synergy-group .droppable").on("click", ".draggable", function () {
-  var draggableElement = $(this);
-  var defaultContent = draggableElement.parent().data("default-content");
-
-  // Reset the droppable element to its default content
-  draggableElement.parent().empty().append(defaultContent);
-});
         /*  ==================================================== class grouping module ==================================================== */
         // Define your parties here
         var classGroup = ["1파티", "2파티"];
