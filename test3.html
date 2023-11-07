@@ -295,6 +295,7 @@
       /*------------------------------------------ column ------------------------------------------*/
 
       .synergy-column {
+        position: relative;
         width: 250px;
         height: 300px;
         overflow-x: hidden;
@@ -307,6 +308,7 @@
       }
 
       .class-column {
+        position : relative;
         width: 250px;
         height: 100px;
         overflow: hidden;
@@ -434,6 +436,11 @@
       .class-element{
         position: relative;
       }
+      
+      .character-element{
+        position: relative;
+      }
+      
       .member-element {
         background-color: grey;
       }
@@ -568,30 +575,29 @@
       .add-button {
           position: absolute;
           border: grey;
+          width: 40px;
           height: 100%;
-          border-radius: 50%;
           top: 0;
           right: 0;
-          background-color: white;
-          color: black;
-          padding: 5px;
           cursor: pointer;
-          z-index: 1;
+          z-index: auto;
       }
 
       .remove-button {
           position: absolute;
           top: 0;
           right: 0;
+          width: 40px;
+          height: 100%;
           background-color: red;
           color: white;
-          padding: 5px;
           cursor: pointer;
-          z-index: 1;
+          z-index: auto;
       }
       
       /* ------------------------- synergy symbol ------------------------- */
 
+      
       .color-circle {
         display: inline-block;
         width: 15px;
@@ -1388,7 +1394,7 @@
               /* Add the .class-element class and set the background color */
 
               // Create the '+' icon button
-              var plusButton = $('<button class="btn btn-primary btn-sm add-button">+</button>');
+              var plusButton = $('<button class="btn btn-dark btn-sm add-button">+</button>');
               element.append(plusButton);
        
               element.click(function () {
@@ -1420,7 +1426,7 @@
         });
 
         // Event handler for the '+' icon button
-        $(".add-button").click(function (event) {
+        $("#synergy-columns .add-button").click(function (event) {
             event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
             var draggableElement = $(this).parent(); // Get the parent draggable element
@@ -1713,6 +1719,8 @@
             .text(className)
             .addClass("draggable")
             .css("background-color", "#fff");
+          var plusButton = $('<button class="btn btn-dark btn-sm add-button">+</button>');
+          column.append(plusButton);
           // Create a circle with the first letter of synergyName
           var wrapper = $("<div class='class-synergy'></div>");
           classes[className].forEach(function (synergy) {
@@ -1774,7 +1782,6 @@
                        });
                    }); */
           
-
           column.click(function () {
             // Clear existing data
             $("#class-info-columns").empty();
@@ -1873,6 +1880,43 @@
 
           $("#class-columns").append(column);
         });
+        
+                // Event handler for the '+' icon button
+        $("#class-columns .add-button").click(function (event) {
+            event.stopPropagation(); // Prevent the click event from propagating to the element itself
+
+            var draggableElement = $(this).parent(); // Get the parent draggable element
+            var droppableElements = $("#class-group .droppable").not(":has(.draggable)");
+
+            if (droppableElements.length > 0) {
+                // Get the first empty droppable element
+                var firstEmptyDroppable = droppableElements.first();
+
+                // Clone the draggable element and add it to the empty droppable
+                var clonedElement = draggableElement.clone();
+                firstEmptyDroppable.empty().append(clonedElement);
+
+                clonedElement.draggable({
+                    helper: "clone",
+                    revert: "invalid",
+                    appendTo: "body",
+                    zIndex: 100,
+                });
+
+                // Change the button to "-"
+                var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
+                clonedElement.find(".add-button").replaceWith(removeButton);
+
+                // Handle click event for the "-" button (removal)
+                removeButton.click(function () {
+                    var parentDroppable = $(this).closest(".droppable");
+                    var defaultContent = parentDroppable.data("default-content");
+
+                    parentDroppable.empty().append(defaultContent);
+                });
+            }
+        });
+
 
         /*  ==================================================== character display module ==================================================== */
 
@@ -1970,7 +2014,7 @@
           displayCharacterData: function (data, section) {
             section.empty();
             data.forEach(function (character) {
-              var element = $("<div></div>")
+              var element = $("<div class='character-element'></div>")
                 .html(
                   character.CharacterName + "<br>" +
                     " [" +
@@ -1981,6 +2025,8 @@
                 )
                 .addClass("draggable")
                 .css("background-color", "white");
+              var plusButton = $('<button class="btn btn-dark btn-sm add-button">+</button>');
+              element.append(plusButton);
               // Add other character information as needed
               var color = getColorForClass(character.CharacterClassName);
               var synergy = getSynergyForClass(character.CharacterClassName);
@@ -2020,6 +2066,42 @@
               characterManager.getGemData(character.CharacterName);
               characterManager.getCardData(character.CharacterName);
             });
+            
+        // Event handler for the '+' icon button
+        $("#character-columns .add-button").click(function (event) {
+            event.stopPropagation(); // Prevent the click event from propagating to the element itself
+
+            var draggableElement = $(this).parent(); // Get the parent draggable element
+            var droppableElements = $("#character-group .droppable").not(":has(.draggable)");
+
+            if (droppableElements.length > 0) {
+                // Get the first empty droppable element
+                var firstEmptyDroppable = droppableElements.first();
+
+                // Clone the draggable element and add it to the empty droppable
+                var clonedElement = draggableElement.clone();
+                firstEmptyDroppable.empty().append(clonedElement);
+
+                clonedElement.draggable({
+                    helper: "clone",
+                    revert: "invalid",
+                    appendTo: "body",
+                    zIndex: 100,
+                });
+
+                // Change the button to "-"
+                var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
+                clonedElement.find(".add-button").replaceWith(removeButton);
+
+                // Handle click event for the "-" button (removal)
+                removeButton.click(function () {
+                    var parentDroppable = $(this).closest(".droppable");
+                    var defaultContent = parentDroppable.data("default-content");
+
+                    parentDroppable.empty().append(defaultContent);
+                });
+            }
+        });
           },
 
           getEquipmentData: function (characterName) {
