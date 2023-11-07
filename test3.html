@@ -1911,9 +1911,11 @@
                 removeButton.click(function () {
                     var parentDroppable = $(this).closest(".droppable");
                     var defaultContent = parentDroppable.data("default-content");
-
                     parentDroppable.empty().append(defaultContent);
+                    updateClassPartyStats();
                 });
+              
+              updateClassPartyStats();
             }
         });
 
@@ -2081,13 +2083,14 @@
                 // Clone the draggable element and add it to the empty droppable
                 var clonedElement = draggableElement.clone();
                 firstEmptyDroppable.empty().append(clonedElement);
-
                 clonedElement.draggable({
                     helper: "clone",
                     revert: "invalid",
                     appendTo: "body",
                     zIndex: 100,
                 });
+              
+                
 
                 // Change the button to "-"
                 var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
@@ -2099,7 +2102,10 @@
                     var defaultContent = parentDroppable.data("default-content");
 
                     parentDroppable.empty().append(defaultContent);
+                    updateCharacterPartyStats();
                 });
+              
+              updateCharacterPartyStats();
             }
         });
           },
@@ -2748,9 +2754,11 @@
                   //get class name of a characterElement
                   className = $(Element)
                     .text()
-                    .match(/\(([^)]+)\)/)[1]
+                    .match(/\[ ([^\]]+) \]/)[1]
                     .split(" ")[0]
                     .trim();
+                  console.log("test");
+                  console.log(className);
                   //get other data of characterElement using className
                   var color = getColorForClass(className);
                   var synergy = getSynergyForClass(className);
