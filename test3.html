@@ -1397,7 +1397,7 @@
               var plusButton = $('<button class="btn btn-dark btn-sm add-button">+</button>');
               element.append(plusButton);
        
-              element.click(function () {
+              element.on("click touchstart",function () {
                 var synergyUrl = synergyData[className];
 
                 $("#synergy-info-columns").empty();
