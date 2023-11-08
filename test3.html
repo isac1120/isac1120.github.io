@@ -1396,7 +1396,7 @@
               var plusButton = $('<button class="btn btn-dark btn-sm add-button">+</button>');
               element.append(plusButton);
        
-              element.on("click touchend",function () {
+              element.on("click",function () {
                 var synergyUrl = synergyData[className];
 
                 $("#synergy-info-columns").empty();
@@ -1425,7 +1425,7 @@
         });
 
         // Event handler for the '+' icon button
-        $("#synergy-columns .add-button").on("click touchend",function (event) {
+        $("#synergy-columns .add-button").on("click",function (event) {
             event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
             var draggableElement = $(this).parent(); // Get the parent draggable element
@@ -1451,7 +1451,7 @@
                 clonedElement.find(".add-button").replaceWith(removeButton);
 
                 // Handle click event for the "-" button (removal)
-                removeButton.on("click touchend",function () {
+                removeButton.on("click",function () {
                     var parentDroppable = $(this).closest(".droppable");
                     var defaultContent = parentDroppable.data("default-content");
 
