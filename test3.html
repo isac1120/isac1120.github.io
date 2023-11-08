@@ -1781,7 +1781,7 @@
                        });
                    }); */
           
-          column.click(function () {
+          column.on("click",function () {
             // Clear existing data
             $("#class-info-columns").empty();
 
@@ -1881,7 +1881,7 @@
         });
         
                 // Event handler for the '+' icon button
-        $("#class-columns .add-button").click(function (event) {
+        $("#class-columns .add-button").on("click",function (event) {
             event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
             var draggableElement = $(this).parent(); // Get the parent draggable element
@@ -1907,7 +1907,7 @@
                 clonedElement.find(".add-button").replaceWith(removeButton);
 
                 // Handle click event for the "-" button (removal)
-                removeButton.click(function () {
+                removeButton.on("click",function () {
                     var parentDroppable = $(this).closest(".droppable");
                     var defaultContent = parentDroppable.data("default-content");
                     parentDroppable.empty().append(defaultContent);
@@ -2069,7 +2069,7 @@
             });
             
         // Event handler for the '+' icon button
-        $("#character-columns .add-button").click(function (event) {
+        $("#character-columns .add-button").on("click",function (event) {
             event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
             var draggableElement = $(this).parent(); // Get the parent draggable element
@@ -2096,7 +2096,7 @@
                 clonedElement.find(".add-button").replaceWith(removeButton);
 
                 // Handle click event for the "-" button (removal)
-                removeButton.click(function () {
+                removeButton.on("click",function () {
                     var parentDroppable = $(this).closest(".droppable");
                     var defaultContent = parentDroppable.data("default-content");
 
