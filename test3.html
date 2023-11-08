@@ -1426,7 +1426,7 @@
         });
 
         // Event handler for the '+' icon button
-        $("#synergy-columns .add-button").click(function (event) {
+        $("#synergy-columns .add-button").on("click touchstart",function (event) {
             event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
             var draggableElement = $(this).parent(); // Get the parent draggable element
