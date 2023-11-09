@@ -2747,26 +2747,26 @@
               .find(".droppable")
               .each(function (ElementIndex, Element) {
                 //check character element existence in a character element space.
+              
                 if ($(this).find(".draggable").length) {
                   //get character data from a characterElement
 
                   //get class name of a characterElement
                   className = $(Element)
                     .text()
-                    .match(/\[ ([^\]]+) \]/)[1]
+                    .match(/\[(.*?)\s\d+,\d+\.\d+\s\]/)[1]
                     .split(" ")[0]
                     .trim();
-                  console.log("test");
-                  console.log(className);
                   //get other data of characterElement using className
                   var color = getColorForClass(className);
                   var synergy = getSynergyForClass(className);
                   var shortSyn = getShortSynergyForClass(className);
-                  var itemLevel = Number(
+                  var itemLevel = parseFloat(
                     $(Element)
                       .text()
-                      .split("(")[1]
-                      .replace(/[^0-9.-]+/g, "")
+                      .match(/\[([^\]]+)\s([\d,\.]+)\s\]/)[2]
+                      .trim()
+                      .replace(/,/g, '')
                   );
 
                   //add unique data in a party from each character element
