@@ -1397,6 +1397,7 @@
               element.append(plusButton);
        
               element.on("click",function () {
+                
                 var synergyUrl = synergyData[className];
 
                 $("#synergy-info-columns").empty();
@@ -1901,7 +1902,9 @@
                     appendTo: "body",
                     zIndex: 100,
                 });
-
+                clonedElement.find("[data-toggle='tooltip']").tooltip();
+                clonedElement.removeClass("ui-draggable ui-draggable-handle");
+                clonedElement.css({ position: "sticky", left: "", top: "" });
                 // Change the button to "-"
                 var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
                 clonedElement.find(".add-button").replaceWith(removeButton);
@@ -1911,10 +1914,11 @@
                     var parentDroppable = $(this).closest(".droppable");
                     var defaultContent = parentDroppable.data("default-content");
                     parentDroppable.empty().append(defaultContent);
-                    updateClassPartyStats();
+                  
+                    updateClassParty();
                 });
               
-              updateClassPartyStats();
+              updateClassParty();
             }
         });
 
@@ -2068,7 +2072,6 @@
               characterManager.getCardData(character.CharacterName);
             });
             
-        // Event handler for the '+' icon button
         $("#character-columns .add-button").on("click",function (event) {
             event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
@@ -2082,15 +2085,16 @@
                 // Clone the draggable element and add it to the empty droppable
                 var clonedElement = draggableElement.clone();
                 firstEmptyDroppable.empty().append(clonedElement);
+
                 clonedElement.draggable({
                     helper: "clone",
                     revert: "invalid",
                     appendTo: "body",
                     zIndex: 100,
                 });
-              
-                
-
+                clonedElement.find("[data-toggle='tooltip']").tooltip();
+                clonedElement.removeClass("ui-draggable ui-draggable-handle");
+                clonedElement.css({ position: "sticky", left: "", top: "" });
                 // Change the button to "-"
                 var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
                 clonedElement.find(".add-button").replaceWith(removeButton);
@@ -2099,14 +2103,14 @@
                 removeButton.on("click",function () {
                     var parentDroppable = $(this).closest(".droppable");
                     var defaultContent = parentDroppable.data("default-content");
-
                     parentDroppable.empty().append(defaultContent);
-                    updateCharacterPartyStats();
+                  
+                    updateCharacterParty();
                 });
               
-              updateCharacterPartyStats();
-            }
-        });
+              updateCharacterParty();
+              }
+            });
           },
 
           getEquipmentData: function (characterName) {
@@ -2730,7 +2734,7 @@
           return classSynergy;
         }
 
-        function updateCharacterPartyStats() {
+        function updateCharacterParty() {
           $("#character-group .party-column").each(function (
             elementIndex,
             element
@@ -2749,6 +2753,7 @@
                 //check character element existence in a character element space.
               
                 if ($(this).find(".draggable").length) {
+                  $(this).find("[data-toggle='tooltip']").tooltip();
                   //get character data from a characterElement
 
                   //get class name of a characterElement
@@ -3058,20 +3063,22 @@
           drop: function (event, ui) {
             var dropped = ui.helper.clone();
             dropped.removeClass("ui-draggable ui-draggable-handle");
-            dropped.css({ position: "static", left: "", top: "" });
+            dropped.css({ position: "sticky",left: "", top: "" });
             // Add tooltips to the cloned draggable elements
             dropped.find("[data-toggle='tooltip']").tooltip();
-            dropped.click(function () {
-              dropped.find("[data-toggle='tooltip']").tooltip("hide");
-              // Reset the droppable element to its default content
-              var defaultContent = $(this).parent().data("default-content");
-              $(this).parent().empty().append(defaultContent);
-              $(this).remove();
-              updateClassPartyStats();
-            });
+            var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
+            dropped.find(".add-button").replaceWith(removeButton);
 
+            // Handle click event for the "-" button (removal)
+            removeButton.on("click",function () {
+              var parentDroppable = $(this).closest(".droppable");
+              var defaultContent = parentDroppable.data("default-content");
+              parentDroppable.empty().append(defaultContent);
+              updateClassParty();
+            });
+            
             $(this).empty().append(dropped);
-            updateClassPartyStats();
+            updateClassParty();
           },
         });
 
@@ -3108,7 +3115,8 @@
           })
           .disableSelection();
 
-        function updateClassPartyStats() {
+
+        function updateClassParty() {
           $("#class-group .party-column").each(function (
             elementIndex,
             element
@@ -3126,6 +3134,7 @@
               .each(function (ElementIndex, Element) {
                 //check character element existence in a character element space.
                 if ($(this).find(".draggable").length) {
+                  
                   //get class name of a characterElement
                   className = $(Element)[0].innerText.split("\n")[0];
 
@@ -3300,26 +3309,28 @@
           $("#character-group").append(column);
         });
 
+        // Droppable elements
         $("#character-group .droppable").droppable({
-          accept: ".draggable",
+          accept: "#character-columns .draggable",
           drop: function (event, ui) {
             var dropped = ui.helper.clone();
             dropped.removeClass("ui-draggable ui-draggable-handle");
-            dropped.css({ position: "static", left: "", top: "" });
+            dropped.css({ position: "sticky",left: "", top: "" });
             // Add tooltips to the cloned draggable elements
             dropped.find("[data-toggle='tooltip']").tooltip();
+            var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
+            dropped.find(".add-button").replaceWith(removeButton);
 
-            dropped.click(function () {
-              dropped.find("[data-toggle='tooltip']").tooltip("hide");
-              // Reset the droppable element to its default content
-              var defaultContent = $(this).parent().data("default-content");
-              $(this).parent().empty().append(defaultContent);
-              $(this).remove();
-              updateCharacterPartyStats();
+            // Handle click event for the "-" button (removal)
+            removeButton.on("click",function () {
+              var parentDroppable = $(this).closest(".droppable");
+              var defaultContent = parentDroppable.data("default-content");
+              parentDroppable.empty().append(defaultContent);
+              updateCharacterParty();
             });
-
+            
             $(this).empty().append(dropped);
-            updateCharacterPartyStats();
+            updateCharacterParty();
           },
         });
 
@@ -3350,7 +3361,7 @@
 
                 fromChild.before(toChild);
               }
-              updateCharacterPartyStats();
+              updateCharacterParty();
             },
           })
           .disableSelection();
