@@ -106,7 +106,7 @@
         margin-top: 0.5rem;
       }
       .title {
-        min-width: 320px;
+        min-width: 200px;
         border: 1px solid #ccc;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         margin-bottom: 5px;
@@ -161,7 +161,7 @@
         display: none;
         display: flex;
         justify-content: center;
-        min-width: 320px;
+        min-width: 200px;
         width: 100%;
       }
 
@@ -217,7 +217,7 @@
 
       .base-columns {
         height: 350px;
-        min-width: 300px;
+        min-width: 200px;
         padding: 0 10px;
         border: 1px solid #ccc;
         border-radius: 10px;
@@ -229,9 +229,12 @@
       }
 
       .base-grouping-columns {
+        flex-wrap: wrap;
+        display: flex;
+        width: 100%;
         height: 350px;
         min-height: 250px;
-        min-width: 300px;
+        min-width: 200px;
         overflow-y: scroll;
         border: 1px solid #ccc;
         border-radius: 10px;
@@ -239,13 +242,13 @@
       }
 
       .base-info-columns {
+        display: flex;
         height: 400px;
-        min-width: 300px;
+        min-width: 200px;
         padding: 20px;
         border: 1px solid #ccc;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
         white-space: nowrap;
@@ -294,9 +297,23 @@
       
       /*------------------------------------------ column ------------------------------------------*/
 
+      .base-column{
+        position: relative;   
+        width: 40%;
+        min-width: 200px;
+        height: 300px;
+        overflow-x: hidden;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
       .synergy-column {
-        position: relative;
-        width: 280px;
+        position: relative;   
+        min-width: 200px;
         height: 300px;
         overflow-x: hidden;
         border: 1px solid #ccc;
@@ -308,25 +325,16 @@
       }
 
       .class-column {
-        position : relative;
-        width: 240px;
+
+        width: 40%;
         height: 100px;
-        overflow: hidden;
-        border: 1px solid #ccc;
-        padding: 15px;
-        margin: 10px;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
       }
 
       .party-column {
-        min-width: 250px;
+        width: 100%;
         overflow-x: hidden;
         overflow-y: hidden;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         margin: 20px;
         padding: 10px;
       }
@@ -342,17 +350,11 @@
       }
 
       .character-column {
-        width: 300px;
+        width: 40%;
         height: 300px;
-        min-width: 250px;
         min-height: 150px;
         overflow-y: auto;
-        border: 1px solid #ccc;
-        padding: 15px;
-        margin: 10px;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
       }
 
       .nickname-input {
@@ -372,14 +374,9 @@
 
       .character-info-column {
         min-height: 50px;
-        min-width: 250px;
-        overflow-x: hidden;
-        border: 1px solid #ccc;
         padding: 15px;
         margin: 5px auto;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
       }
 
       #section-column {
@@ -750,45 +747,11 @@
       .page-name {
         width: 200px;
       }
-      /* ==================================================== mediaquery layout module ==================================================== */
-
-      @media (max-width: 340px) {
-        .container {
-          width: 100%;
-        }
-
-        .from-container,
-        .to-container {
-          width: 98%;
-          height: 350px;
-          margin: 1%;
-        }
-
-        .base-columns {
-          width: 95%;
-          height: 300px;
-        }
-        .base-grouping-columns {
-          width: 95%;
-          height: 300px;
-        }
-
-        .draggable {
-          min-width: 200px;
-        }
-
-        .class-column.draggable {
-          min-width: 200px;
-        }
-
-        .sidebar {
-          height: 400px;
-        }
-
-        #sideOpenBtn {
-          height: 400px;
-        }
+      
+      .nickname-input{
+        min-width: 150px;
       }
+      /* ==================================================== mediaquery layout module ==================================================== */
 
       @media (max-width: 1024px) {
         .from-container,
@@ -803,15 +766,46 @@
         }
 
         .base-grouping-columns {
+          flex-wrap: nowrap;
           height: 300px;
         }
 
-        .draggable {
-          min-width: 240px;
+        .sidebar {
+          height: 400px;
         }
 
-        .class-column.draggable {
-          min-width: 240px;
+        #sideOpenBtn {
+          height: 400px;
+        }
+      }
+      
+      @media (max-width: 425px) {
+        .container {
+          width: 100%;
+          padding: 0;
+        }
+
+        .from-container,
+        .to-container {
+          width: 98%;
+          height: 350px;
+          margin: 1%;
+        }
+
+        .base-columns {
+          width: 95%;
+          height: 300px;
+        }
+        
+        .base-grouping-columns {
+          flex-wrap:wrap;
+          width: 95%;
+          height: 300px;
+        }
+
+        .base-column{
+          width: 100%;
+          margin: 10px;
         }
 
         .sidebar {
@@ -1378,7 +1372,7 @@
         var synergyInfoFlag = false;
         // Create synergy columns
         synergies.forEach(function (synergy) {
-          var column = $('<div class="synergy-column"></div>').css(
+          var column = $('<div class="synergy-column base-column"></div>').css(
             "background-color",
             "#fff"
           ); /* Change the background color to white */
@@ -1408,7 +1402,7 @@
 
                 $("#synergy-info-columns").empty();
                 $("#synergy-info-columns").append(
-                  `<iframe src=${synergyUrl} width="100%" height="400px"></iframe>`
+                  `<iframe src=${synergyUrl}></iframe>`
                 );
               });
               
@@ -1419,7 +1413,7 @@
 
                 $("#synergy-info-columns").empty();
                 $("#synergy-info-columns").append(
-                  `<iframe src=${synergyUrl} width="100%" height="400px"></iframe>`
+                  `<iframe src=${synergyUrl}></iframe>`
                 );
               }
               subColumn.append(element);
@@ -1721,7 +1715,7 @@
         var classInfoFlag=false;
         // Create class columns
         Object.keys(classes).forEach(function (className) {
-          var column = $('<div class="class-column"></div>')
+          var column = $('<div class="class-column base-column"></div>')
             .text(className)
             .addClass("draggable")
             .css("background-color", "#fff");
@@ -1798,7 +1792,7 @@
 
             // Append the tab structure
             $("#class-info-columns").append(`
-                         <div class="class-info-column">
+                         <div class="class-info-column base-column">
                              <ul class="nav nav-tabs" id="classTabs" role="tablist">
                                <li class="nav-item">
                                  <a class="nav-link active" id="classBoardTab" data-toggle="tab" href="#classBoard" role="tab">${baseClassName} 게시판</a>
@@ -1851,7 +1845,7 @@
 
             // Append the tab structure
             $("#class-info-columns").append(`
-                         <div class="class-info-column">
+                         <div class="class-info-column base-column">
                              <ul class="nav nav-tabs" id="classTabs" role="tablist">
                                <li class="nav-item">
                                  <a class="nav-link active" id="classBoardTab" data-toggle="tab" href="#classBoard" role="tab">${baseClassName} 게시판</a>
@@ -1962,12 +1956,12 @@
 
         // Create user columns
         users.forEach(function (user) {
-          var column = $('<div class="character-column"></div>').css(
+          var column = $('<div class="character-column base-column"></div>').css(
             "background-color",
             "#fff"
           );
           var form = $(
-            `<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임을 입력하세요"><button type="submit" class="submit-button btn-sm">${user} 등록</button></form>`
+            `<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임 입력"><button type="submit" class="submit-button btn-sm">${user} 등록</button></form>`
           );
           var section = $('<div class="character-section"></div>');
           column.append(form);
@@ -2393,7 +2387,7 @@
             // Clear the existing character data display
             $("#profile-column").empty();
             var profile = $(
-              '<div id="profile-column" class="character-info-column"></div>'
+              '<div id="profile-column" class="character-info-column base-column"></div>'
             );
             $("#section-column").append(profile);
             // Create a container to hold the data
@@ -2413,7 +2407,7 @@
                        `);
 
             var stats = $(
-              '<div id="stat-column" class="character-info-column"></div>'
+              '<div id="stat-column" class="character-info-column base-column"></div>'
             );
             var basicStats = $('<div class="row"></div>');
             var mainStats = $('<div class="row"></div>');
@@ -2484,7 +2478,7 @@
           displayGemData: function (characterName) {
             var gemData = this.gemData[characterName];
             var gemColumn = $(
-              "<div id='gem-column' class='character-info-column'></div>"
+              "<div id='gem-column' class='character-info-column base-column'></div>"
             );
             $("#section-column").append(gemColumn);
             // Clear the existing character data display
@@ -2913,7 +2907,7 @@
 
         // Create grouping columns
         synergyGroup.forEach(function (party, index) {
-          var column = $('<div class="party-column"></div>').css(
+          var column = $('<div class="party-column base-column"></div>').css(
             "background-color",
             "#fff"
           );
@@ -3017,7 +3011,7 @@
 
         // Create grouping columns
         classGroup.forEach(function (party, index) {
-          var column = $('<div class="party-column"></div>').css(
+          var column = $('<div class="party-column base-column"></div>').css(
             "background-color",
             "#fff"
           );
@@ -3274,7 +3268,7 @@
         var characterGroup = ["1파티", "2파티"];
         // Create grouping columns
         characterGroup.forEach(function (party, index) {
-          var column = $('<div class="party-column"></div>').css(
+          var column = $('<div class="party-column base-column"></div>').css(
             "background-color",
             "#fff"
           );
