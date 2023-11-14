@@ -2387,7 +2387,7 @@
             // Clear the existing character data display
             $("#profile-column").empty();
             var profile = $(
-              '<div id="profile-column" class="character-info-column base-column"></div>'
+              '<div id="profile-column" class="character-info-column"></div>'
             );
             $("#section-column").append(profile);
             // Create a container to hold the data
@@ -2407,7 +2407,7 @@
                        `);
 
             var stats = $(
-              '<div id="stat-column" class="character-info-column base-column"></div>'
+              '<div id="stat-column" class="character-info-column"></div>'
             );
             var basicStats = $('<div class="row"></div>');
             var mainStats = $('<div class="row"></div>');
@@ -2478,7 +2478,7 @@
           displayGemData: function (characterName) {
             var gemData = this.gemData[characterName];
             var gemColumn = $(
-              "<div id='gem-column' class='character-info-column base-column'></div>"
+              "<div id='gem-column' class='character-info-column'></div>"
             );
             $("#section-column").append(gemColumn);
             // Clear the existing character data display
