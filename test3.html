@@ -245,7 +245,7 @@
         display: flex;
         height: 400px;
         min-width: 200px;
-        padding: 20px;
+        padding: 10px;
         border: 1px solid #ccc;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -267,14 +267,14 @@
         overflow-y: auto;
         padding: 15px;
       }
-      
+
       #synergy-info-columns,
       #class-info-columns,
       #character-info-columns {
         width: 100%;
         overflow: hidden;
       }
-      
+
       #character-columns {
         display: flex;
         flex-direction: column;
@@ -291,17 +291,16 @@
         flex-wrap: wrap;
         justify-content: flex-start;
         align-items: flex-start;
-        font-size: 13px;
+        font-size: 20px;
       }
 
-      
       /*------------------------------------------ column ------------------------------------------*/
 
-      .base-column{
-        position: relative;   
+      .base-column {
+        position: relative;
         width: 40%;
         min-width: 200px;
-        height: 300px;
+        min-height: 300px;
         overflow-x: hidden;
         border: 1px solid #ccc;
         padding: 15px;
@@ -310,9 +309,9 @@
         background-color: #fff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-      
+
       .synergy-column {
-        position: relative;   
+        position: relative;
         min-width: 200px;
         height: 300px;
         overflow-x: hidden;
@@ -325,10 +324,8 @@
       }
 
       .class-column {
-
         width: 40%;
         height: 100px;
-
       }
 
       .party-column {
@@ -340,13 +337,12 @@
       }
 
       .class-info-column {
-        margin: auto;
         width: 100%;
-        height: 100%;
+        height: 300px;
       }
 
-      .class-info-column .contents {
-        height: 100%;
+      .class-info-column .tab-pane {
+        height: 300px;
       }
 
       .character-column {
@@ -354,7 +350,6 @@
         height: 300px;
         min-height: 150px;
         overflow-y: auto;
-
       }
 
       .nickname-input {
@@ -373,23 +368,30 @@
       }
 
       .character-info-column {
+        position: relative;
         min-height: 50px;
         padding: 15px;
         margin: 5px auto;
-
+        min-width: 150px;
+        overflow-x: auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-size: 13px;
       }
 
-      #section-column {
+      .section-column {
         display: flex;
         flex-direction: column;
-        justify-contents: space-evenly;
+        justify-content: space-evenly;
         margin: 0 auto;
         width: 500px;
-        height: 95%;
+        height: 98%;
         margin: auto;
       }
-      
-      #equipment-column {
+
+      .equipment-column {
         display: flex;
         margin: auto;
         width: 700px;
@@ -399,28 +401,30 @@
         flex-wrap: wrap;
       }
 
-      #profile-column {
+      .profile-column {
         width: 100%;
         height: 160px;
         padding: 10px auto;
       }
 
-      #stat-column {
+      .stat-column {
+        display: flex;
+        flex-wrap: wrap;
         height: 80px;
         margin: 5px 0 0 0;
         padding: 10px;
       }
 
-      #gem-column {
+      .gem-column {
         display: flex;
         width: 100%;
-        height: 80px;
-        padding: 10px;
-        overflow-x: scroll;
+        height: 70px;
+        padding: 5px;
+        overflow-x: hidden;
         overflow-y: hidden;
       }
 
-      #card-column {
+      .card-column {
         position: relative;
         display: flex;
         flex-wrap: wrap;
@@ -428,16 +432,15 @@
         padding: 10px;
       }
 
-      
-    /*------------------------------------element------------------------------------------*/
-      .class-element{
+      /*------------------------------------element------------------------------------------*/
+      .class-element {
         position: relative;
       }
-      
-      .character-element{
+
+      .character-element {
         position: relative;
       }
-      
+
       .member-element {
         background-color: grey;
       }
@@ -452,33 +455,34 @@
 
       .gem-element.container {
         display: inline-block;
-        width: 50px;
+        width: 25px;
         height: 50px;
         padding: 5px;
         justify-content: space-evenly;
       }
 
       .effect-element {
-        position: absolute;
-        width: 200px;
+        text-align: center;
+        position: relative;
+        width: 100%;
         z-index: 100;
-        top: 30%;
-        left: 25%;
       }
 
       .card-deck-element {
+        position: absolute;
         display: flex;
         justify-content: space-evenly;
         flex-wrap: nowrap;
-        width: 100%;
+        width: 95%;
         opacity: 0.6;
-       
       }
+      
       .card {
         min-width: 50px;
         height: auto;
         --bs-card-img-overlay-padding: 3px;
-        margin: 0 3px;
+        margin: 3px;
+        margin-bottom: 10px;
       }
 
       .equipment-img {
@@ -497,8 +501,6 @@
 
       .card-img {
         opacity: 0.8;
-        min-width: 50px;
-        height: auto;
       }
 
       .card-img-overlay {
@@ -570,35 +572,34 @@
 
       /* Styling for the button */
       .add-button {
-          position: absolute;
-          border: grey;
-          width: 40px;
-          height: 100%;
-          top: 0;
-          right: 0;
-          cursor: pointer;
-          z-index: auto;
+        position: absolute;
+        border: grey;
+        width: 40px;
+        height: 100%;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        z-index: auto;
       }
 
       .remove-button {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 40px;
-          height: 100%;
-          background-color: red;
-          color: white;
-          cursor: pointer;
-          z-index: auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 100%;
+        background-color: red;
+        color: white;
+        cursor: pointer;
+        z-index: auto;
       }
 
       .btn-dark:hover {
         background-color: grey;
       }
-      
+
       /* ------------------------- synergy symbol ------------------------- */
 
-      
       .color-circle {
         display: inline-block;
         width: 15px;
@@ -731,7 +732,7 @@
       iframe {
         margin: auto;
         width: 100%;
-        height: 700px;
+        height: 100%;
       }
 
       i {
@@ -747,8 +748,8 @@
       .page-name {
         width: 200px;
       }
-      
-      .nickname-input{
+
+      .nickname-input {
         min-width: 150px;
       }
       /* ==================================================== mediaquery layout module ==================================================== */
@@ -778,7 +779,7 @@
           height: 400px;
         }
       }
-      
+
       @media (max-width: 425px) {
         .container {
           width: 100%;
@@ -793,17 +794,26 @@
         }
 
         .base-columns {
-          width: 95%;
-          height: 300px;
-        }
-        
-        .base-grouping-columns {
-          flex-wrap:wrap;
-          width: 95%;
+          width: 100%;
           height: 300px;
         }
 
-        .base-column{
+        .base-info-columns {
+          height: 500px;
+        }
+
+        .character-info-column {
+          width: 100%;
+          height: auto;
+        }
+
+        .base-grouping-columns {
+          flex-wrap: wrap;
+          width: 100%;
+          height: 300px;
+        }
+
+        .base-column {
           width: 100%;
           margin: 10px;
         }
@@ -972,7 +982,9 @@
         <!--
         <h4 class="container-header">시너지 정보</h4>
         -->
-        <div id="synergy-info-columns" class="base-info-columns">위의 요소를 클릭하면 관련 정보가 제공됩니다.</div>
+        <div id="synergy-info-columns" class="base-info-columns">
+          위의 요소를 클릭하면 관련 정보가 제공됩니다.
+        </div>
       </div>
 
       <!-------------------------------- class container -------------------------------->
@@ -1003,7 +1015,9 @@
         <!--
         <h4 class="container-header">클래스 정보</h4>
         -->
-        <div id="class-info-columns" class="base-info-columns">위의 요소를 클릭하면 관련 정보가 제공됩니다.</div>
+        <div id="class-info-columns" class="base-info-columns">
+          위의 요소를 클릭하면 관련 정보가 제공됩니다.
+        </div>
       </div>
 
       <!-------------------------------- character container -------------------------------->
@@ -1034,7 +1048,9 @@
         <!--
         <h4 class="container-header">캐릭터 정보</h4>
         -->
-        <div id="character-info-columns" class="base-info-columns">위의 요소를 클릭하면 관련 정보가 제공됩니다.</div>
+        <div id="character-info-columns" class="base-info-columns">
+          위의 요소를 클릭하면 관련 정보가 제공됩니다.
+        </div>
       </div>
     </div>
 
@@ -1393,32 +1409,37 @@
               /* Add the .class-element class and set the background color */
 
               // Create the '+' icon button
-              var plusButton = $('<button class="btn btn-dark btn-sm add-button">+</button>');
+              var plusButton = $(
+                '<button class="btn btn-dark btn-sm add-button">+</button>'
+              );
               element.append(plusButton);
-       
-              element.on("click",function () {
-                
+
+              element.on("click", function () {
                 var synergyUrl = synergyData[className];
 
                 $("#synergy-info-columns").empty();
                 $("#synergy-info-columns").append(
-                  `<iframe src=${synergyUrl}></iframe>`
+                  `
+                    <iframe class="synergy-info-column" src=${synergyUrl}></iframe>
+                `
                 );
               });
-              
-               if(synergyInfoFlag==false) {
-                 synergyInfoFlag=true;
+
+              if (synergyInfoFlag == false) {
+                synergyInfoFlag = true;
                 var defaultClassName = "건슬링어";
                 var synergyUrl = synergyData[defaultClassName];
 
                 $("#synergy-info-columns").empty();
                 $("#synergy-info-columns").append(
-                  `<iframe src=${synergyUrl}></iframe>`
+                  `
+                    <iframe class="synergy-info-column" src=${synergyUrl}></iframe>
+                `
                 );
               }
               subColumn.append(element);
             });
-            
+
             column.append(subColumn);
           });
 
@@ -1426,39 +1447,43 @@
         });
 
         // Event handler for the '+' icon button
-        $("#synergy-columns .add-button").on("click",function (event) {
-            event.stopPropagation(); // Prevent the click event from propagating to the element itself
+        $("#synergy-columns .add-button").on("click", function (event) {
+          event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
-            var draggableElement = $(this).parent(); // Get the parent draggable element
-            var droppableElements = $("#synergy-group .droppable").not(":has(.draggable)");
+          var draggableElement = $(this).parent(); // Get the parent draggable element
+          var droppableElements = $("#synergy-group .droppable").not(
+            ":has(.draggable)"
+          );
 
-            if (droppableElements.length > 0) {
-                // Get the first empty droppable element
-                var firstEmptyDroppable = droppableElements.first();
+          if (droppableElements.length > 0) {
+            // Get the first empty droppable element
+            var firstEmptyDroppable = droppableElements.first();
 
-                // Clone the draggable element and add it to the empty droppable
-                var clonedElement = draggableElement.clone();
-                firstEmptyDroppable.empty().append(clonedElement);
+            // Clone the draggable element and add it to the empty droppable
+            var clonedElement = draggableElement.clone();
+            firstEmptyDroppable.empty().append(clonedElement);
 
-                clonedElement.draggable({
-                    helper: "clone",
-                    revert: "invalid",
-                    appendTo: "body",
-                    zIndex: 100,
-                });
+            clonedElement.draggable({
+              helper: "clone",
+              revert: "invalid",
+              appendTo: "body",
+              zIndex: 100,
+            });
 
-                // Change the button to "-"
-                var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
-                clonedElement.find(".add-button").replaceWith(removeButton);
+            // Change the button to "-"
+            var removeButton = $(
+              '<button class="btn btn-danger btn-sm remove-button">-</button>'
+            );
+            clonedElement.find(".add-button").replaceWith(removeButton);
 
-                // Handle click event for the "-" button (removal)
-                removeButton.on("click",function () {
-                    var parentDroppable = $(this).closest(".droppable");
-                    var defaultContent = parentDroppable.data("default-content");
+            // Handle click event for the "-" button (removal)
+            removeButton.on("click", function () {
+              var parentDroppable = $(this).closest(".droppable");
+              var defaultContent = parentDroppable.data("default-content");
 
-                    parentDroppable.empty().append(defaultContent);
-                });
-            }
+              parentDroppable.empty().append(defaultContent);
+            });
+          }
         });
 
         /* ================================================ classData build module ( extraction from synergyData ) ==================================================== */
@@ -1712,14 +1737,16 @@
         /*  ==================================================== classData display module ==================================================== */
 
         // Now you have a classes dictionary where each key is a class name and its value is an array of synergies
-        var classInfoFlag=false;
+        var classInfoFlag = false;
         // Create class columns
         Object.keys(classes).forEach(function (className) {
           var column = $('<div class="class-column base-column"></div>')
             .text(className)
             .addClass("draggable")
             .css("background-color", "#fff");
-          var plusButton = $('<button class="btn btn-dark btn-sm add-button">+</button>');
+          var plusButton = $(
+            '<button class="btn btn-dark btn-sm add-button">+</button>'
+          );
           column.append(plusButton);
           // Create a circle with the first letter of synergyName
           var wrapper = $("<div class='class-synergy'></div>");
@@ -1781,8 +1808,8 @@
                        `);
                        });
                    }); */
-          
-          column.on("click",function () {
+
+          column.on("click", function () {
             // Clear existing data
             $("#class-info-columns").empty();
 
@@ -1792,7 +1819,7 @@
 
             // Append the tab structure
             $("#class-info-columns").append(`
-                         <div class="class-info-column base-column">
+                         <div class="class-info-column">
                              <ul class="nav nav-tabs" id="classTabs" role="tablist">
                                <li class="nav-item">
                                  <a class="nav-link active" id="classBoardTab" data-toggle="tab" href="#classBoard" role="tab">${baseClassName} 게시판</a>
@@ -1821,7 +1848,7 @@
                            </div>
                          `);
             });
-            
+
             $("#classTabs a").each(function (index, element) {
               var tab = $(element);
               tab.on("click", function (e) {
@@ -1831,11 +1858,10 @@
             });
           });
 
-          
-          if(classInfoFlag==false){
-            classInfoflag=true;
-            var defaultClassName = "건슬링어"; 
-            
+          if (classInfoFlag == false) {
+            classInfoflag = true;
+            var defaultClassName = "건슬링어";
+
             // Clear existing data
             $("#class-info-columns").empty();
 
@@ -1845,7 +1871,7 @@
 
             // Append the tab structure
             $("#class-info-columns").append(`
-                         <div class="class-info-column base-column">
+                         <div class="class-info-column">
                              <ul class="nav nav-tabs" id="classTabs" role="tablist">
                                <li class="nav-item">
                                  <a class="nav-link active" id="classBoardTab" data-toggle="tab" href="#classBoard" role="tab">${baseClassName} 게시판</a>
@@ -1874,54 +1900,56 @@
                            </div>
                          `);
             });
-            
           }
           // Append the column to the appropriate container
 
           $("#class-columns").append(column);
         });
-        
-                // Event handler for the '+' icon button
-        $("#class-columns .add-button").on("click",function (event) {
-            event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
-            var draggableElement = $(this).parent(); // Get the parent draggable element
-            var droppableElements = $("#class-group .droppable").not(":has(.draggable)");
+        // Event handler for the '+' icon button
+        $("#class-columns .add-button").on("click", function (event) {
+          event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
-            if (droppableElements.length > 0) {
-                // Get the first empty droppable element
-                var firstEmptyDroppable = droppableElements.first();
+          var draggableElement = $(this).parent(); // Get the parent draggable element
+          var droppableElements = $("#class-group .droppable").not(
+            ":has(.draggable)"
+          );
 
-                // Clone the draggable element and add it to the empty droppable
-                var clonedElement = draggableElement.clone();
-                firstEmptyDroppable.empty().append(clonedElement);
+          if (droppableElements.length > 0) {
+            // Get the first empty droppable element
+            var firstEmptyDroppable = droppableElements.first();
 
-                clonedElement.draggable({
-                    helper: "clone",
-                    revert: "invalid",
-                    appendTo: "body",
-                    zIndex: 100,
-                });
-                clonedElement.find("[data-toggle='tooltip']").tooltip();
-                clonedElement.removeClass("ui-draggable ui-draggable-handle");
-                clonedElement.css({ position: "sticky", left: "", top: "" });
-                // Change the button to "-"
-                var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
-                clonedElement.find(".add-button").replaceWith(removeButton);
+            // Clone the draggable element and add it to the empty droppable
+            var clonedElement = draggableElement.clone();
+            firstEmptyDroppable.empty().append(clonedElement);
 
-                // Handle click event for the "-" button (removal)
-                removeButton.on("click",function () {
-                    var parentDroppable = $(this).closest(".droppable");
-                    var defaultContent = parentDroppable.data("default-content");
-                    parentDroppable.empty().append(defaultContent);
-                  
-                    updateClassParty();
-                });
-              
+            clonedElement.draggable({
+              helper: "clone",
+              revert: "invalid",
+              appendTo: "body",
+              zIndex: 100,
+            });
+            clonedElement.find("[data-toggle='tooltip']").tooltip();
+            clonedElement.removeClass("ui-draggable ui-draggable-handle");
+            clonedElement.css({ position: "sticky", left: "", top: "" });
+            // Change the button to "-"
+            var removeButton = $(
+              '<button class="btn btn-danger btn-sm remove-button">-</button>'
+            );
+            clonedElement.find(".add-button").replaceWith(removeButton);
+
+            // Handle click event for the "-" button (removal)
+            removeButton.on("click", function () {
+              var parentDroppable = $(this).closest(".droppable");
+              var defaultContent = parentDroppable.data("default-content");
+              parentDroppable.empty().append(defaultContent);
+
               updateClassParty();
-            }
-        });
+            });
 
+            updateClassParty();
+          }
+        });
 
         /*  ==================================================== character display module ==================================================== */
 
@@ -1956,10 +1984,9 @@
 
         // Create user columns
         users.forEach(function (user) {
-          var column = $('<div class="character-column base-column"></div>').css(
-            "background-color",
-            "#fff"
-          );
+          var column = $(
+            '<div class="character-column base-column"></div>'
+          ).css("background-color", "#fff");
           var form = $(
             `<form><input type="text" class="nickname-input" placeholder="캐릭터 닉네임 입력"><button type="submit" class="submit-button btn-sm">${user} 등록</button></form>`
           );
@@ -2021,7 +2048,8 @@
             data.forEach(function (character) {
               var element = $("<div class='character-element'></div>")
                 .html(
-                  character.CharacterName + "<br>" +
+                  character.CharacterName +
+                    "<br>" +
                     " [" +
                     character.CharacterClassName +
                     " " +
@@ -2030,7 +2058,9 @@
                 )
                 .addClass("draggable")
                 .css("background-color", "white");
-              var plusButton = $('<button class="btn btn-dark btn-sm add-button">+</button>');
+              var plusButton = $(
+                '<button class="btn btn-dark btn-sm add-button">+</button>'
+              );
               element.append(plusButton);
               // Add other character information as needed
               var color = getColorForClass(character.CharacterClassName);
@@ -2071,14 +2101,16 @@
               characterManager.getGemData(character.CharacterName);
               characterManager.getCardData(character.CharacterName);
             });
-            
-        $("#character-columns .add-button").on("click",function (event) {
-            event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
-            var draggableElement = $(this).parent(); // Get the parent draggable element
-            var droppableElements = $("#character-group .droppable").not(":has(.draggable)");
+            $("#character-columns .add-button").on("click", function (event) {
+              event.stopPropagation(); // Prevent the click event from propagating to the element itself
 
-            if (droppableElements.length > 0) {
+              var draggableElement = $(this).parent(); // Get the parent draggable element
+              var droppableElements = $("#character-group .droppable").not(
+                ":has(.draggable)"
+              );
+
+              if (droppableElements.length > 0) {
                 // Get the first empty droppable element
                 var firstEmptyDroppable = droppableElements.first();
 
@@ -2087,28 +2119,30 @@
                 firstEmptyDroppable.empty().append(clonedElement);
 
                 clonedElement.draggable({
-                    helper: "clone",
-                    revert: "invalid",
-                    appendTo: "body",
-                    zIndex: 100,
+                  helper: "clone",
+                  revert: "invalid",
+                  appendTo: "body",
+                  zIndex: 100,
                 });
                 clonedElement.find("[data-toggle='tooltip']").tooltip();
                 clonedElement.removeClass("ui-draggable ui-draggable-handle");
                 clonedElement.css({ position: "sticky", left: "", top: "" });
                 // Change the button to "-"
-                var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
+                var removeButton = $(
+                  '<button class="btn btn-danger btn-sm remove-button">-</button>'
+                );
                 clonedElement.find(".add-button").replaceWith(removeButton);
 
                 // Handle click event for the "-" button (removal)
-                removeButton.on("click",function () {
-                    var parentDroppable = $(this).closest(".droppable");
-                    var defaultContent = parentDroppable.data("default-content");
-                    parentDroppable.empty().append(defaultContent);
-                  
-                    updateCharacterParty();
+                removeButton.on("click", function () {
+                  var parentDroppable = $(this).closest(".droppable");
+                  var defaultContent = parentDroppable.data("default-content");
+                  parentDroppable.empty().append(defaultContent);
+
+                  updateCharacterParty();
                 });
-              
-              updateCharacterParty();
+
+                updateCharacterParty();
               }
             });
           },
@@ -2146,7 +2180,7 @@
             // Clear the existing equipment data display
             $("#character-info-columns").empty();
             var equipmentColumn = $(
-              "<div id='equipment-column' class='character-info-column'></div>"
+              "<div class='equipment-column character-info-column'></div>"
             );
             $("#character-info-columns").append(equipmentColumn);
 
@@ -2180,7 +2214,7 @@
               $('[data-bs-toggle="tooltip"]').tooltip({
                 html: true,
                 title: tooltipElement,
-                trigger: "click",
+                trigger: "hover click",
               });
             });
             console.log(equipmentColumn);
@@ -2372,24 +2406,25 @@
           },
 
           displaySectionData: function (characterName) {
-            $("#section-column").empty();
-            var duo = $(`<div id="section-column"></div>`);
+            $(".section-column").empty();
+            var duo = $(
+              `<div class="section-column character-info-column"></div>`
+            );
             $("#character-info-columns").append(duo);
             this.displayProfileData(characterName);
             this.displayGemData(characterName);
             this.displayCardData(characterName);
-            
           },
 
           displayProfileData: function (characterName) {
             var profileData = this.profileData[characterName];
 
             // Clear the existing character data display
-            $("#profile-column").empty();
+            $(".profile-column").empty();
             var profile = $(
-              '<div id="profile-column" class="character-info-column"></div>'
+              '<div class="profile-column character-info-column"></div>'
             );
-            $("#section-column").append(profile);
+            $(".section-column").append(profile);
             // Create a container to hold the data
             var profileHTML = $(`
                          <div class="container">
@@ -2407,7 +2442,7 @@
                        `);
 
             var stats = $(
-              '<div id="stat-column" class="character-info-column"></div>'
+              '<div class="stat-column character-info-column"></div>'
             );
             var basicStats = $('<div class="row"></div>');
             var mainStats = $('<div class="row"></div>');
@@ -2478,9 +2513,9 @@
           displayGemData: function (characterName) {
             var gemData = this.gemData[characterName];
             var gemColumn = $(
-              "<div id='gem-column' class='character-info-column'></div>"
+              "<div class='gem-column character-info-column'></div>"
             );
-            $("#section-column").append(gemColumn);
+            $(".section-column").append(gemColumn);
             // Clear the existing character data display
             gemColumn.empty();
 
@@ -2499,7 +2534,7 @@
               $('[data-bs-toggle="tooltip"]').tooltip({
                 html: true,
                 title: tooltipElement,
-                trigger: "hover",
+                trigger: "click hover",
               });
             });
           },
@@ -2632,9 +2667,9 @@
           displayCardData: function (characterName) {
             var cardData = this.cardData[characterName];
             var cardColumn = $(
-              "<div id='card-column' class='character-info-column'></div>"
+              "<div class='card-column character-info-column'></div>"
             );
-            $("#section-column").append(cardColumn);
+            $(".section-column").append(cardColumn);
 
             cardData.Effects.forEach(function (effect) {
               var effectElement = `
@@ -2659,7 +2694,7 @@
               $('[data-bs-toggle="tooltip"]').tooltip({
                 html: true,
                 title: tooltipElement,
-                trigger: "hover",
+                trigger: "click hover",
               });
             });
 
@@ -2751,7 +2786,7 @@
               .find(".droppable")
               .each(function (ElementIndex, Element) {
                 //check character element existence in a character element space.
-              
+
                 if ($(this).find(".draggable").length) {
                   $(this).find("[data-toggle='tooltip']").tooltip();
                   //get character data from a characterElement
@@ -2771,7 +2806,7 @@
                       .text()
                       .match(/\[([^\]]+)\s([\d,\.]+)\s\]/)[2]
                       .trim()
-                      .replace(/,/g, '')
+                      .replace(/,/g, "")
                   );
 
                   //add unique data in a party from each character element
@@ -2970,7 +3005,7 @@
             $(this).empty().append(dropped);
           },
         });
-/*
+        /*
         // Sortable elements
         $("#synergy-group .grouping-columns")
           .sortable({
@@ -3063,20 +3098,22 @@
           drop: function (event, ui) {
             var dropped = ui.helper.clone();
             dropped.removeClass("ui-draggable ui-draggable-handle");
-            dropped.css({ position: "sticky",left: "", top: "" });
+            dropped.css({ position: "sticky", left: "", top: "" });
             // Add tooltips to the cloned draggable elements
             dropped.find("[data-toggle='tooltip']").tooltip();
-            var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
+            var removeButton = $(
+              '<button class="btn btn-danger btn-sm remove-button">-</button>'
+            );
             dropped.find(".add-button").replaceWith(removeButton);
 
             // Handle click event for the "-" button (removal)
-            removeButton.on("click",function () {
+            removeButton.on("click", function () {
               var parentDroppable = $(this).closest(".droppable");
               var defaultContent = parentDroppable.data("default-content");
               parentDroppable.empty().append(defaultContent);
               updateClassParty();
             });
-            
+
             $(this).empty().append(dropped);
             updateClassParty();
           },
@@ -3115,7 +3152,6 @@
           })
           .disableSelection();
 
-
         function updateClassParty() {
           $("#class-group .party-column").each(function (
             elementIndex,
@@ -3134,7 +3170,6 @@
               .each(function (ElementIndex, Element) {
                 //check character element existence in a character element space.
                 if ($(this).find(".draggable").length) {
-                  
                   //get class name of a characterElement
                   className = $(Element)[0].innerText.split("\n")[0];
 
@@ -3315,20 +3350,22 @@
           drop: function (event, ui) {
             var dropped = ui.helper.clone();
             dropped.removeClass("ui-draggable ui-draggable-handle");
-            dropped.css({ position: "sticky",left: "", top: "" });
+            dropped.css({ position: "sticky", left: "", top: "" });
             // Add tooltips to the cloned draggable elements
             dropped.find("[data-toggle='tooltip']").tooltip();
-            var removeButton = $('<button class="btn btn-danger btn-sm remove-button">-</button>');
+            var removeButton = $(
+              '<button class="btn btn-danger btn-sm remove-button">-</button>'
+            );
             dropped.find(".add-button").replaceWith(removeButton);
 
             // Handle click event for the "-" button (removal)
-            removeButton.on("click",function () {
+            removeButton.on("click", function () {
               var parentDroppable = $(this).closest(".droppable");
               var defaultContent = parentDroppable.data("default-content");
               parentDroppable.empty().append(defaultContent);
               updateCharacterParty();
             });
-            
+
             $(this).empty().append(dropped);
             updateCharacterParty();
           },
@@ -3365,8 +3402,6 @@
             },
           })
           .disableSelection();
-
-        
 
         /*  ==================================================== copy/paste module ==================================================== */
         /*
