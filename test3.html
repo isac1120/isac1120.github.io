@@ -369,7 +369,7 @@
 
       .character-info-column {
         position: relative;
-        min-height: 50px;
+        min-height: 70px;
         padding: 15px;
         margin: 5px auto;
         min-width: 150px;
@@ -385,10 +385,10 @@
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        margin: 0 auto;
+        margin: 1% auto;
         width: 500px;
         height: 98%;
-        margin: auto;
+        
       }
 
       .equipment-column {
@@ -420,7 +420,7 @@
         width: 100%;
         height: 70px;
         padding: 5px;
-        overflow-x: hidden;
+        overflow-x: auto;
         overflow-y: hidden;
       }
 
@@ -429,7 +429,9 @@
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        padding: 10px;
+        height: 100px;
+        padding: 5px;
+        overflow: hidden;
       }
 
       /*------------------------------------element------------------------------------------*/
@@ -466,6 +468,7 @@
         position: relative;
         width: 100%;
         z-index: 100;
+        
       }
 
       .card-deck-element {
@@ -473,13 +476,13 @@
         display: flex;
         justify-content: space-evenly;
         flex-wrap: nowrap;
-        width: 95%;
+        width: 100%;
         opacity: 0.6;
+        
       }
       
       .card {
-        min-width: 50px;
-        height: auto;
+        min-width: 25px;
         --bs-card-img-overlay-padding: 3px;
         margin: 3px;
         margin-bottom: 10px;
@@ -500,6 +503,8 @@
       }
 
       .card-img {
+
+        max-height: 70px;
         opacity: 0.8;
       }
 
@@ -511,6 +516,10 @@
       .equipment-header {
         font-size: 15px;
         font-weight: bold;
+      }
+      
+      .contents{
+        width: 85%;
       }
       /*---------------------------------- draggable droppable ------------------------------*/
 
@@ -574,7 +583,7 @@
       .add-button {
         position: absolute;
         border: grey;
-        width: 40px;
+        width: 15%;
         height: 100%;
         top: 0;
         right: 0;
@@ -1403,11 +1412,11 @@
 
             category.classes.forEach(function (className) {
               var element = $("<div></div>")
-                .text(className)
                 .addClass("class-element draggable")
                 .css("background-color", category.color);
               /* Add the .class-element class and set the background color */
-
+              var contents = $("<div></div>").addClass("contents").text(className);
+              element.append(contents);
               // Create the '+' icon button
               var plusButton = $(
                 '<button class="btn btn-dark btn-sm add-button">+</button>'
@@ -1741,9 +1750,11 @@
         // Create class columns
         Object.keys(classes).forEach(function (className) {
           var column = $('<div class="class-column base-column"></div>')
-            .text(className)
             .addClass("draggable")
             .css("background-color", "#fff");
+          
+          var contents = $(`<div></div>`).addClass("contents").text(className);
+          column.append(contents);
           var plusButton = $(
             '<button class="btn btn-dark btn-sm add-button">+</button>'
           );
@@ -1772,7 +1783,7 @@
 
             wrapper.append(circle);
           });
-          column.append(wrapper);
+          contents.append(wrapper);
 
           /*               column.click(function () {
                        // Clear existing data
@@ -2047,17 +2058,17 @@
             section.empty();
             data.forEach(function (character) {
               var element = $("<div class='character-element'></div>")
-                .html(
-                  character.CharacterName +
+                .addClass("draggable")
+                .css("background-color", "white");
+              var contents = $(`<div></div>`).addClass("contents").html(                  
+                    character.CharacterName +
                     "<br>" +
                     " [" +
                     character.CharacterClassName +
                     " " +
                     character.ItemAvgLevel +
-                    " ]"
-                )
-                .addClass("draggable")
-                .css("background-color", "white");
+                    " ]");
+              element.append(contents);
               var plusButton = $(
                 '<button class="btn btn-dark btn-sm add-button">+</button>'
               );
@@ -2087,7 +2098,7 @@
                 wrapper.append(circle);
               });
 
-              element.append(wrapper);
+              contents.append(wrapper);
               section.append(element);
               element.draggable({
                 helper: "clone",
