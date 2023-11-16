@@ -152,7 +152,7 @@
         width: 39%;
         height: 100%;
       }
-
+      
       .row {
         width: 100%;
       }
@@ -229,6 +229,7 @@
       }
 
       .base-grouping-columns {
+        position: relative;
         flex-wrap: wrap;
         display: flex;
         width: 100%;
@@ -636,7 +637,9 @@
 
       .button-container {
         position: absolute;
-        right: 0;
+        top: 3%;
+        right: 3%;
+        z-index: 1000;
       }
       .copy-button,
       .save-button {
@@ -650,7 +653,10 @@
       }
 
       /* ==================================================== sidebar layout module ========================================================*/
-
+      #spreadsheet{
+        margin: 10%;
+        
+      }
       /* The side navigation menu */
       #sideOpenBtn {
         display: flex;
@@ -776,6 +782,7 @@
         }
 
         .base-grouping-columns {
+
           flex-wrap: nowrap;
           height: 300px;
         }
@@ -853,7 +860,7 @@
       <h1 class="d-inline">로모임</h1>
       <h6 class="d-inline align-bottom">ver2beta</h6>
     </div>
-    <!--     <div id="sideOpenBtn" onclick="openBar()">
+    <div id="sideOpenBtn" onclick="openBar()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -869,6 +876,8 @@
       </svg>
     </div>
     <div id="table-sidebar" class="sidebar">
+      <button id="paste-button" class="btn btn-primary">붙여넣기</button>
+      <div id="spreadsheet"></div>
       <div id="sideCloseBtn" onclick="closeBar()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -884,29 +893,7 @@
           />
         </svg>
       </div>
-
-      <div id="side-container">
-        <div id="synergy-info-container" class="info-container">
-          <h4 class="container-header">시너지 정보</h4>
-          <div id="synergy-info-columns" class="base-columns"></div>
-        </div>
-        <div id="class-info-container" class="info-container">
-          <h4 class="container-header">클래스 정보</h4>
-          <div id="class-info-columns" class="base-columns"></div>
-        </div>
-        <div id="character-info-container" class="info-container">
-          <h4 class="container-header">캐릭터 정보</h4>
-          <div id="character-info-columns" class="base-columns"></div>
-        </div>
-
-        <div id="spreadsheet-header" class="container-header">
-          <h4>레이드 시트</h4>
-          <button id="paste-button" class="save-button">붙여넣기</button>
-        </div>
-        <div id="spreadsheet"></div>
-
-      </div>
-    </div> -->
+    </div>
     <div class="container">
       <!--
       <div class="switch-container">
@@ -975,16 +962,14 @@
         </div>
 
         <div id="synergy-group-container" class="to-container">
-          <!--
-          <div class="container-header">
+          <div id="synergy-group" class="base-grouping-columns">
+            <!--
             <div class="button-container">
               <button id="synergy-copyBtn" class="copy-button">복사</button>
               <button id="synergy-saveBtn" class="save-button">저장</button>
             </div>
-            <h4 class="text-center">공대</h4>
+            -->
           </div>
-          -->
-          <div id="synergy-group" class="base-grouping-columns"></div>
         </div>
       </div>
       <div id="synergy-info-container" class="info-container">
@@ -1008,15 +993,13 @@
         </div>
 
         <div id="class-group-container" class="to-container">
-          <!--
-          <div class="container-header">
+         
             <div class="button-container">
               <button id="class-copyBtn" class="copy-button">복사</button>
               <button id="class-saveBtn" class="save-button">저장</button>
             </div>
-            <h4 class="text-center">공대</h4>
-          </div>
-          -->
+          
+          
           <div id="class-group" class="base-grouping-columns"></div>
         </div>
       </div>
@@ -3415,26 +3398,31 @@
           .disableSelection();
 
         /*  ==================================================== copy/paste module ==================================================== */
-        /*
+        
                    // Add event listeners to copy buttons
-                   $("#class-copyBtn").click(function () {
-                     var containerId = $(this).closest(".to-container").attr("id");
+                   $(".copy-button").click(function () {
+                     var containerId = $(this).closest(".to-container").attr("id").split("-")[0];
+                     console.log(containerId);
                      var dataElement = $("#" + containerId + " .grouping-columns");
                      openBar();
                      copyData(dataElement);
+                     alert("copied");
                    });
 
                    // Add event listeners to save buttons
-                   $("#class-saveBtn").click(function () {
+                   $(".save-button").click(function () {
                      var containerId = $(this).closest(".to-container").attr("id");
                      var dataElement = $("#" + containerId + " .grouping-columns");
                      saveData(dataElement);
+
                    });
 
                    // Function to copy the content of an element as JSON or CSV
                    function copyData(element) {
                      var json = convertToJSON(element);
-                     navigator.clipboard.writeText(json).then(function () {});
+                     
+                     navigator.clipboard.writeText(json).then(function (){} );
+
                    }
 
                    // Function to save the content of an element as JSON or CSV
@@ -3556,6 +3544,7 @@
                        });
 
                        // Initialize Handsontable
+                       
 
                        //prepare table data
                        var container = document.getElementById("spreadsheet");
@@ -3656,7 +3645,7 @@
                    pasteButton.addEventListener("click", function () {
                      convertToTable(hot);
                    });
-                   */
+                   
         /*
                   $('input[name="radioBtn"]').change(function () {
                      const selectedComponentId = $(this).val();
@@ -3671,7 +3660,7 @@
       });
 
       //end documnet
-      /*
+      
                  function openBar() {
                    if (window.matchMedia("(max-width: 340px)").matches) {
                      document.getElementById("table-sidebar").style.display = "flex";
@@ -3697,7 +3686,7 @@
                    document.getElementById("table-sidebar").style.paddingRight = "0";
                    document.getElementById("sideOpenBtn").style.width = "30px";
                  }
-                 */
+                 
     </script>
   </body>
 </html>
