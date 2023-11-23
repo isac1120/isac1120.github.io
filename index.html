@@ -315,6 +315,7 @@
         min-width: 200px;
         height: 300px;
         overflow-x: hidden;
+        overflow-y: scroll;
         border: 1px solid #ccc;
         padding: 15px;
         margin: 10px;
@@ -350,9 +351,13 @@
         height: 300px;
         min-height: 150px;
         overflow-y: auto;
+        overflow-x: auto;
+        
+        
       }
 
       .nickname-input {
+        min-width: 150px;
         margin-right: 10px;
         font-size: 15px;
       }
@@ -444,6 +449,7 @@
       }
 
       .member-element {
+        position: relative;
         background-color: grey;
       }
 
@@ -2962,7 +2968,7 @@
 
           for (var i = 0; i < 4; i++) {
             var element = $("<div></div>")
-              .addClass("droppable")
+              .addClass("droppable member-element")
               .css("min-height", "50px");
 
             column.append(element);
@@ -3005,6 +3011,19 @@
             dropped.css({ position: "static", left: "", top: "" });
             // Add tooltips to the cloned draggable elements
             dropped.find("[data-toggle='tooltip']").tooltip();
+            // Change the button to "-"
+            var removeButton = $(
+              '<button class="btn btn-danger btn-sm remove-button">-</button>'
+            );
+            dropped.find(".add-button").replaceWith(removeButton);
+
+            // Handle click event for the "-" button (removal)
+            removeButton.on("click", function () {
+              var parentDroppable = $(this).closest(".droppable");
+              var defaultContent = parentDroppable.data("default-content");
+              parentDroppable.empty().append(defaultContent);
+            });
+            
             dropped.click(function () {
               dropped.find("[data-toggle='tooltip']").tooltip("hide");
               // Reset the droppable element to its default content
@@ -3070,7 +3089,7 @@
 
           for (var i = 0; i < 4; i++) {
             var element = $("<div></div>")
-              .addClass("droppable")
+              .addClass("droppable member-element")
               .css("min-height", "50px");
             column.append(element);
             if (i == 0) {
@@ -3330,7 +3349,7 @@
 
           for (var i = 0; i < 4; i++) {
             var element = $("<div></div>")
-              .addClass("droppable")
+              .addClass("droppable member-element")
               .css("min-height", "50px");
             column.append(element);
             if (i == 0) {
