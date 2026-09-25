@@ -8,7 +8,7 @@ const projects = [
       "integration"
     ],
     "title": "지게차 Sim-to-Real · 주행 제어",
-    "summary": "시뮬레이션에서 검증한 자율주행 소프트웨어를 실차에 적용하고 주행을 개선했습니다.",
+    "summary": "실차 응답을 step test와 주행 기록으로 분석하고, 맞춤 NMPC로 사행과 목표 도달 문제를 해결했습니다.",
     "tags": [
       "Isaac Sim",
       "ROS 2 / Nav2",
@@ -16,16 +16,24 @@ const projects = [
     ],
     "sections": [
       [
-        "개발 경험",
-        "시뮬레이션과 ROS 2 기반 주행 소프트웨어를 연동하고 실제 장비에 적용했습니다."
+        "Sim-to-Real",
+        "Isaac Sim의 센서·Action Graph와 ROS 2 주행 스택을 연동하고, 주행 구성을 비교한 뒤 센서·모터 드라이버를 연결해 실차에 적용했습니다."
       ],
       [
-        "문제 해결",
-        "실제 구동 특성을 고려한 NMPC를 구현하고, 연산 부담을 줄이기 위한 최적화와 실차 검증을 진행했습니다."
+        "문제와 원인 분석",
+        "TEB에서는 사행이 발생했고, 대안인 RPP에서는 목표 위치·자세 도달이 어긋났습니다. 서로 다른 목표 속도를 입력하는 전진 step test를 수행하고, rosbag의 목표·실제 속도를 그래프로 비교해 구동 응답 특성을 분석했습니다."
       ],
       [
-        "시스템 평가",
-        "센서 비교 평가와 odometry 구성을 포함해 자율주행 시스템의 동작을 점검하고 개선했습니다."
+        "차량에 맞춘 NMPC",
+        "분석한 구동 특성을 고려하는 NMPC를 구현했습니다. 적용 후 실시한 주행 테스트에서 사행과 목표 위치·자세 도달 문제를 해결했습니다."
+      ],
+      [
+        "온보드 연산 최적화",
+        "Python 기반 solver 관련 구현을 C++로 옮기고, 고정값으로 처리할 수 있는 항목을 정리해 불필요한 최적화 변수를 줄였습니다. 다른 프로그램과 함께 동작하도록 연산 부담을 낮췄습니다."
+      ],
+      [
+        "센서 평가",
+        "센서 비교 평가와 odometry 구성을 통해 주행 시스템을 개선했습니다."
       ]
     ],
     "media": [
@@ -64,8 +72,8 @@ const projects = [
         "플랫폼에 맞게 MCU firmware를 수정하고 통신 인터페이스와 센서·구동부를 ROS 2 시스템에 통합했습니다."
       ],
       [
-        "활용",
-        "Mapping·navigation 실험을 위한 플랫폼을 구축하고 후속 로봇학습 실험에도 활용했습니다."
+        "주행 실험에서 학습 플랫폼으로",
+        "실장비를 다른 개발에 사용하는 동안에도 주행 실험을 이어갈 수 있도록 구축했습니다. Mapping·navigation에서 모방학습 데이터 수집과 정책 실행까지 활용 범위를 확장했습니다."
       ]
     ],
     "media": [
@@ -83,8 +91,8 @@ const projects = [
     "filters": [
       "learning"
     ],
-    "title": "ACT 모방학습의 실로봇 적용",
-    "summary": "직접 통합한 플랫폼에서 데이터 수집·모델 학습·실기 실행을 연결했습니다.",
+    "title": "단일 ACT 정책으로 접근·정렬·복귀",
+    "summary": "여섯 배치 유형의 시연 데이터를 구성하고, 하나의 ACT 모델로 명령에 따른 접근·정렬과 복귀를 구현했습니다.",
     "tags": [
       "LeRobot",
       "ACT",
@@ -92,21 +100,52 @@ const projects = [
     ],
     "sections": [
       [
-        "개발 경험",
-        "모방학습용 데이터를 수집하고 LeRobot 기반 ACT 모델을 학습했습니다."
+        "과제 설계",
+        "컨테이너 내부의 파레트 적재 상황을 모사한 RC car 환경에서, 가장 앞줄의 왼쪽 대상을 우선하는 접근·정렬 과제와 시작 지점 복귀 과제를 시험했습니다. 포킹 전 정렬 동작을 모사한 실험입니다."
       ],
       [
-        "실기 적용",
-        "학습한 정책을 실제 RC car에서 실행하며 데이터 수집부터 로봇 동작까지 연결하는 과정을 경험했습니다."
+        "데이터와 단일 정책",
+        "대상의 수와 위치가 다른 여섯 배치 유형별로 시연 데이터를 수집하고 LeRobot 기반 ACT 모델을 학습했습니다. 하나의 모델에 0/1 명령으로 과제를 지정해 접근·정렬과 복귀를 실행했습니다."
+      ],
+      [
+        "실기 조건에 맞춘 모델 선택",
+        "SmolVLA와 ACT를 시험했습니다. 사용한 온보드 환경에서는 SmolVLA의 실행 속도가 과제 수행에 충분하지 않았고, ACT에서는 실행 가능한 속도와 실제 동작을 확인했습니다."
+      ],
+      [
+        "실기 실행",
+        "직접 통합한 RC car에서 데이터 수집·정책 학습·명령별 동작 실행을 연결했습니다. 아래 영상은 학습 데이터를 구성한 여섯 배치 유형에서의 접근·정렬과 복귀 사례입니다."
       ]
     ],
     "media": [
-      "07-rc-car-act-imitation-learning"
+      "act-case-a-four-targets-approach",
+      "act-case-b-front-right-approach",
+      "act-case-d-two-targets-approach",
+      "act-case-a-four-targets-return",
+      "act-case-b-front-right-return",
+      "act-case-c-front-left-approach",
+      "act-case-c-front-left-return",
+      "act-case-d-two-targets-return",
+      "act-case-e-single-right-approach",
+      "act-case-e-single-right-return",
+      "act-case-f-single-left-approach",
+      "act-case-f-single-left-return"
     ],
     "labels": [
-      "ACT 실기 실험"
+      "A · 4개 배치 · 접근·정렬",
+      "B · 앞줄 왼쪽 없음 · 접근·정렬",
+      "D · 뒤쪽 2개 · 접근·정렬",
+      "A · 4개 배치 · 복귀",
+      "B · 앞줄 왼쪽 없음 · 복귀",
+      "C · 앞줄 오른쪽 없음 · 접근·정렬",
+      "C · 앞줄 오른쪽 없음 · 복귀",
+      "D · 뒤쪽 2개 · 복귀",
+      "E · 오른쪽 1개 · 접근·정렬",
+      "E · 오른쪽 1개 · 복귀",
+      "F · 왼쪽 1개 · 접근·정렬",
+      "F · 왼쪽 1개 · 복귀"
     ],
-    "portrait": true
+    "portrait": true,
+    "featuredCount": 4
   },
   {
     "id": "manipulator",
@@ -180,6 +219,7 @@ const projects = [
     ]
   }
 ];
+function videoOptions(p){const button=(l,i)=>`<button data-video="${i}" aria-pressed="false">${l}</button>`;if(!p.featuredCount)return p.labels.map(button).join('');return p.labels.slice(0,p.featuredCount).map(button).join('')+`<details class="more-cases"><summary>배치별 추가 영상 보기</summary><div class="video-options">${p.labels.slice(p.featuredCount).map((l,i)=>button(l,i+p.featuredCount)).join('')}</div></details>`;}
 const descriptions={
 '01-forklift-nmpc-field':'실차 주행 · 원본 00:40–01:40 발췌 · 원속도',
 '02-forklift-nmpc-rviz':'RViz 모니터링 · 원본 00:05–00:50 · 실차 영상과 별도 기록',
@@ -194,6 +234,7 @@ const descriptions={
 '11-amr-navigation-field':'AMR 실내 주행 · 약 50초 전체',
 '12-amr-navigation-return':'AMR 실내 주행 · 원본 01:20–02:15 발췌',
 '13-amr-waypoint-monitor':'Waypoint 편집·주행 화면 · 원본 00:10–00:55'};
+Object.assign(descriptions,{"act-case-a-four-targets-approach":"A · 4개 배치 · 접근·정렬 · 원본 전체 5.7초 · 원속도","act-case-a-four-targets-return":"A · 4개 배치 · 복귀 · 원본 전체 7.0초 · 원속도","act-case-b-front-right-approach":"B · 앞줄 왼쪽 없음 · 접근·정렬 · 원본 전체 5.3초 · 원속도","act-case-b-front-right-return":"B · 앞줄 왼쪽 없음 · 복귀 · 원본 전체 6.0초 · 원속도","act-case-c-front-left-approach":"C · 앞줄 오른쪽 없음 · 접근·정렬 · 원본 전체 5.0초 · 원속도","act-case-c-front-left-return":"C · 앞줄 오른쪽 없음 · 복귀 · 원본 전체 6.5초 · 원속도","act-case-d-two-targets-approach":"D · 뒤쪽 2개 · 접근·정렬 · 원본 전체 6.9초 · 원속도","act-case-d-two-targets-return":"D · 뒤쪽 2개 · 복귀 · 원본 전체 8.4초 · 원속도","act-case-e-single-right-approach":"E · 오른쪽 1개 · 접근·정렬 · 원본 전체 6.7초 · 원속도","act-case-e-single-right-return":"E · 오른쪽 1개 · 복귀 · 원본 전체 8.4초 · 원속도","act-case-f-single-left-approach":"F · 왼쪽 1개 · 접근·정렬 · 원본 전체 7.1초 · 원속도","act-case-f-single-left-return":"F · 왼쪽 1개 · 복귀 · 원본 전체 8.0초 · 원속도"});
 const grid=document.querySelector('#project-grid'),dialog=document.querySelector('#project-dialog');
 let returnFocus=null;
 function render(filter='all'){
@@ -208,12 +249,12 @@ function setVideo(p,index){
  v.setAttribute('aria-label',p.labels[index]);v.load();
  dialog.querySelector('.video-caption').textContent=descriptions[id];
  dialog.querySelector('.detail-link').href=`media/${id}.mp4`;
- dialog.querySelectorAll('[data-video]').forEach((b,i)=>{b.classList.toggle('active',i===index);b.setAttribute('aria-pressed',String(i===index))});
+ dialog.querySelectorAll('[data-video]').forEach(b=>{const active=Number(b.dataset.video)===index;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
 }
 function openProject(id){
  const p=projects.find(x=>x.id===id);if(!p)return;
  returnFocus=document.activeElement;
- document.querySelector('#dialog-content').innerHTML=`<h2 id="dialog-title">${p.title}</h2><p class="intro">${p.summary}</p><div class="tags">${p.tags.map(x=>`<span>${x}</span>`).join('')}</div><div class="video-stage"><video controls playsinline preload="none">브라우저가 영상을 지원하지 않습니다.</video></div><p class="video-caption" aria-live="polite"></p><div class="video-options" role="group" aria-label="프로젝트 영상 선택">${p.labels.map((l,i)=>`<button data-video="${i}" aria-pressed="false">${l}</button>`).join('')}</div><div class="detail-grid">${p.sections.map(([h,t])=>`<section><h3>${h}</h3><p>${t}</p></section>`).join('')}</div><a class="detail-link" target="_blank" rel="noopener" href="">현재 영상 별도 열기 ↗</a>`;
+ document.querySelector('#dialog-content').innerHTML=`<h2 id="dialog-title">${p.title}</h2><p class="intro">${p.summary}</p><div class="tags">${p.tags.map(x=>`<span>${x}</span>`).join('')}</div><div class="video-stage"><video controls playsinline preload="none">브라우저가 영상을 지원하지 않습니다.</video></div><p class="video-caption" aria-live="polite"></p><div class="video-options" role="group" aria-label="프로젝트 영상 선택">${videoOptions(p)}</div><div class="detail-grid">${p.sections.map(([h,t])=>`<section><h3>${h}</h3><p>${t}</p></section>`).join('')}</div><a class="detail-link" target="_blank" rel="noopener" href="">현재 영상 별도 열기 ↗</a>`;
  setVideo(p,0);dialog.querySelectorAll('[data-video]').forEach(b=>b.addEventListener('click',()=>setVideo(p,Number(b.dataset.video))));
  dialog.showModal();document.body.style.overflow='hidden';document.querySelector('#close-dialog').focus();
 }

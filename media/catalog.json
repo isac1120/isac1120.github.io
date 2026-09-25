@@ -103,5 +103,77 @@
     "duration": 45,
     "title": "AMR · Waypoint 주행 모니터",
     "bytes": 301696
+  },
+  {
+    "id": "act-case-a-four-targets-approach",
+    "title": "A · 4개 배치 · 접근·정렬",
+    "duration": 5.6868,
+    "bytes": 1594007
+  },
+  {
+    "id": "act-case-a-four-targets-return",
+    "title": "A · 4개 배치 · 복귀",
+    "duration": 6.9972,
+    "bytes": 1860245
+  },
+  {
+    "id": "act-case-b-front-right-approach",
+    "title": "B · 앞줄 왼쪽 없음 · 접근·정렬",
+    "duration": 5.2906,
+    "bytes": 1470034
+  },
+  {
+    "id": "act-case-b-front-right-return",
+    "title": "B · 앞줄 왼쪽 없음 · 복귀",
+    "duration": 6.0157,
+    "bytes": 1579574
+  },
+  {
+    "id": "act-case-c-front-left-approach",
+    "title": "C · 앞줄 오른쪽 없음 · 접근·정렬",
+    "duration": 4.967,
+    "bytes": 1357579
+  },
+  {
+    "id": "act-case-c-front-left-return",
+    "title": "C · 앞줄 오른쪽 없음 · 복귀",
+    "duration": 6.4769,
+    "bytes": 1734416
+  },
+  {
+    "id": "act-case-d-two-targets-approach",
+    "title": "D · 뒤쪽 2개 · 접근·정렬",
+    "duration": 6.8871,
+    "bytes": 1856354
+  },
+  {
+    "id": "act-case-d-two-targets-return",
+    "title": "D · 뒤쪽 2개 · 복귀",
+    "duration": 8.3671,
+    "bytes": 2261776
+  },
+  {
+    "id": "act-case-e-single-right-approach",
+    "title": "E · 오른쪽 1개 · 접근·정렬",
+    "duration": 6.7445,
+    "bytes": 1843700
+  },
+  {
+    "id": "act-case-e-single-right-return",
+    "title": "E · 오른쪽 1개 · 복귀",
+    "duration": 8.4005,
+    "bytes": 2274888
+  },
+  {
+    "id": "act-case-f-single-left-approach",
+    "title": "F · 왼쪽 1개 · 접근·정렬",
+    "duration": 7.114,
+    "bytes": 2031585
+  },
+  {
+    "id": "act-case-f-single-left-return",
+    "title": "F · 왼쪽 1개 · 복귀",
+    "duration": 8.0061,
+    "bytes": 2193235
   }
 ]
