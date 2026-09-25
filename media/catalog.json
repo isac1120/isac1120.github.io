@@ -1,0 +1,119 @@
+[
+  {
+    "id": "01-forklift-nmpc-field",
+    "start": 40,
+    "end": 100,
+    "duration": 60,
+    "title": "지게차 · 지연을 고려한 NMPC 실차 주행",
+    "caption": "실차 주행 발췌 · 원속도 · 제어기 구성은 개발자 설명 기준",
+    "bytes": 14079789
+  },
+  {
+    "id": "02-forklift-nmpc-rviz",
+    "start": 5,
+    "end": 50,
+    "duration": 45,
+    "title": "지게차 · NMPC 주행 RViz 모니터링",
+    "caption": "지도·경로·센서 관측 화면 · 실차 영상과 동기화하지 않은 별도 기록",
+    "bytes": 1487531
+  },
+  {
+    "id": "03-forklift-isaac-sim",
+    "start": 10,
+    "end": 55,
+    "duration": 45,
+    "title": "지게차 · Isaac Sim 내비게이션",
+    "caption": "기존 환경·에셋에 센서와 Action Graph를 구성하고 ROS 2 연동",
+    "bytes": 8596382
+  },
+  {
+    "id": "04-forklift-sim-rviz",
+    "start": 15,
+    "end": 60,
+    "duration": 45,
+    "title": "지게차 · 시뮬레이션 RViz",
+    "caption": "시뮬레이션과 연결한 주행 스택의 지도·경로 화면",
+    "bytes": 990269
+  },
+  {
+    "id": "05-forklift-teleoperation",
+    "start": 10,
+    "end": 45,
+    "duration": 35,
+    "title": "지게차 · 원격조종 구동 확인",
+    "caption": "원격조종 영상 · 자율주행 결과와 구분",
+    "bytes": 5431579
+  },
+  {
+    "id": "06-rc-car-system-teleoperation",
+    "start": 0,
+    "end": 24.8483,
+    "duration": 24.8483,
+    "title": "RC car · 통합 플랫폼 원격조종",
+    "caption": "센서·MCU·CAN·ROS 2를 연결한 플랫폼 · 원격조종 장면",
+    "bytes": 1107591
+  },
+  {
+    "id": "07-rc-car-act-imitation-learning",
+    "start": 0,
+    "end": 20.9489,
+    "duration": 20.9489,
+    "title": "RC car · ACT 모방학습 실기 실험",
+    "caption": "LeRobot 데이터 수집·ACT 학습 후 실행 실험 · 학습 구성은 개발자 설명 기준",
+    "bytes": 988654
+  },
+  {
+    "id": "08-manipulator-calibration-vision",
+    "start": 0,
+    "end": 27.75,
+    "duration": 27.75,
+    "title": "로봇팔 · 카메라 보정과 비전 연동",
+    "caption": "로봇 동작과 카메라·보정 화면 · Scaramuzza / hand–eye / AprilTag 프로젝트",
+    "bytes": 3736218
+  },
+  {
+    "id": "09-amr-canopen-motor-bench",
+    "start": 0,
+    "end": 7.4547,
+    "duration": 7.4547,
+    "title": "AMR · CANopen 모터 벤치 테스트",
+    "caption": "모터 단품 구동 장면 · CANopen 구현 내용은 개발자 설명 기준",
+    "bytes": 681990
+  },
+  {
+    "id": "10-amr-motor-driver-platform",
+    "start": 0,
+    "end": 4.4373,
+    "duration": 4.4373,
+    "title": "AMR · 모터 드라이버 플랫폼 확인",
+    "caption": "프레임·배선·구동부 확인 · 모터 제어 드라이버 프로젝트",
+    "bytes": 203652
+  },
+  {
+    "id": "11-amr-navigation-field",
+    "start": 0,
+    "end": 49.9484,
+    "duration": 49.9484,
+    "title": "AMR · 실내 주행",
+    "caption": "실내에서 이동하는 AMR · 원속도 주행 기록",
+    "bytes": 3251316
+  },
+  {
+    "id": "12-amr-navigation-return",
+    "start": 80,
+    "end": 135,
+    "duration": 55,
+    "title": "AMR · 실내 주행 추가 시점",
+    "caption": "카메라 방향으로 접근·통과하는 AMR · 발췌 구간",
+    "bytes": 2776332
+  },
+  {
+    "id": "13-amr-waypoint-monitor",
+    "start": 10,
+    "end": 55,
+    "duration": 45,
+    "title": "AMR · Waypoint 주행 모니터",
+    "caption": "waypoint 편집 화면과 지도 위 위치 변화 · UI 전체 개발 기여는 미확인",
+    "bytes": 301696
+  }
+]

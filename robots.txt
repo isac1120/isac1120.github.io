@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://isac1120.github.io/sitemap.xml
